@@ -32,10 +32,31 @@
     # here is some command line tools I use frequently
     # feel free to add your own or remove some of them
 
-    neofetch
-    nnn 
+    chezmoi
+
+    fd
+    ripgrep
+    fzf
+    bat
+    delta
+    tealdeer
+    wl-clipboard
+    exa
+    nnn
     lazygit
     gh # GitHub cli
+    just
+
+    stylua
+    luarocks
+
+    neofetch
+
+    go
+    gcc
+    cargo
+    gnumake
+    nodejs
 
     # archives
     zip
@@ -81,7 +102,8 @@
     # hugo # static site generator
     glow # markdown previewer in terminal
 
-    btop  # replacement of htop/nmon
+    btop # replacement of htop/nmon
+    htop
     # iotop # io monitoring
     # iftop # network monitoring
 
@@ -99,49 +121,24 @@
   ];
 
   programs.neovim = {
-      enable = true;
-      defaultEditor = true;
-      plugins = with pkgs.vimPlugins; [
-        catppuccin-nvim
- #       (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
-        telescope-nvim
- #       telescope-manix
-        nvim-web-devicons
- #       bufferline-nvim
-        nvim-lspconfig
-        vim-nix
- #       csv-vim
- #       nvim-compe
-        vim-oscyank
- #       indent-blankline-nvim
-        gitsigns-nvim
-        nvim-cmp
-        cmp-nvim-lsp
-        cmp-path
-      ];
-  };
-
-  # starship - an customizable prompt for any shell
-  programs.starship = {
     enable = true;
-    settings = {
-      add_newline = false;
-      aws.disabled = true;
-      gcloud.disabled = true;
-      line_break.disabled = true;
-    };
+    defaultEditor = true;
+    withNodeJs = true;
+    withPython3 = true;
+    extraPackages = with pkgs; [ gcc rnix-lsp sumneko-lua-language-server ];
   };
 
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
   programs.kitty = {
     enable = true;
+    theme = "Tokyo Night";
     settings = {
-	font_family =      "FiraCode Nerd Font Med";
-	bold_font =        "FiraCode Nerd ont Bold";
-	hide_window_decorations = "yes";
-	dynamic_background_opacity = "yes";
-    	background_opacity = "0.7";
-      };
+      font_family = "FiraCode Nerd Font Med";
+      bold_font = "FiraCode Nerd ont Bold";
+      hide_window_decorations = "yes";
+      dynamic_background_opacity = "yes";
+      background_opacity = "0.7";
+    };
   };
 
   programs.bash = {
