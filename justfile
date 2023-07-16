@@ -1,0 +1,2 @@
+style:
+  nix fmt *.nix
