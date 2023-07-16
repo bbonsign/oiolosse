@@ -5,20 +5,19 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   nix = {
-	  package = pkgs.nixFlakes;
-	  extraOptions = ''
-		  experimental-features = nix-command flakes
-		  '';
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
   };
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -49,30 +48,28 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-
   services.keyd.enable = true;
   services.keyd.ids = [ "05ac:0273" ];
   services.keyd.settings = {
-  		  global = { layer_indicator = 1; };
-		  main = {
-			  ";" = ":";
-			  capslock = "overload(control, esc)";
-			  enter = "overload(control, enter)";
-		  };
-		  control = { backspace = "~"; };
-		  shift = { ";" = ";"; };
-		  "control+alt" = {
-			  h = "left";
-			  j = "down";
-			  k = "up";
-			  l = "right";
-		  };
-		  alt = {
-		  	"[" = "C-S-tab";
-		  	"]" = "C-tab";
-		  };
-	  };
-  
+    global = { layer_indicator = 1; };
+    main = {
+      ";" = ":";
+      capslock = "overload(control, esc)";
+      enter = "overload(control, enter)";
+    };
+    control = { backspace = "~"; };
+    shift = { ";" = ";"; };
+    "control+alt" = {
+      h = "left";
+      j = "down";
+      k = "up";
+      l = "right";
+    };
+    alt = {
+      "[" = "C-S-tab";
+      "]" = "C-tab";
+    };
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -116,25 +113,11 @@
     isNormalUser = true;
     description = "Brian Bonsignore";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-      neovim
-      wl-clipboard
-      exa
-      bat
-      ripgrep
-      fzf
-      kitty
-      tealdeer
-      keyd
-      gnome.gnome-tweaks
-    ];
+    packages = with pkgs; [ firefox neovim kitty keyd gnome.gnome-tweaks ];
   };
 
-  fonts.fonts = with pkgs; [
-	  (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-  ];
-
+  fonts.fonts = with pkgs;
+    [ (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -142,9 +125,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
+    python3
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -155,7 +139,32 @@
   #   enableSSHSupport = true;
   # };
   programs.fish.enable = true;
-  programs.starship.enable = true;
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = true;
+      line_break.disabled = false;
+      aws.disabled = true;
+      gcloud.disabled = true;
+
+      character = {
+        success_symbol = "[λ](bold blue)";
+        error_symbol = "[λ](bold red)";
+      };
+      elixir = {
+        symbol = " ";
+        style = "#5e3f9e";
+      };
+      haskell.symbol = " ";
+      lua.symbol = " ";
+      python.symbol = " ";
+      docker_context.symbol = "  ";
+      elm.symbol = " ";
+      git_branch.symbol = " ";
+      golang.symbol = " ";
+      rust.symbol = " ";
+    };
+  };
 
   # List services that you want to enable:
 

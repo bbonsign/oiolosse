@@ -1,13 +1,13 @@
 {
-  description = "NixOS configuration";
+  description = "My NixOS configuration,";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgsStable.url = "github:nixos/nixpkgs/release-23.05";
+    # nixpkgsStable.url = "github:nixos/nixpkgs/release-23.05";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.inputs.nixpkgsStable.follows = "nixpkgsStable";
+    # home-manager.inputs.nixpkgsStable.follows = "nixpkgsStable";
   };
 
   outputs = inputs@{ nixpkgs, home-manager, ... }: {
@@ -30,6 +30,8 @@
           }
         ];
       };
+
     };
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
   };
 }
