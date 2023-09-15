@@ -70,21 +70,47 @@
     global = { layer_indicator = 1; };
     main = {
       ";" = ":";
-      capslock = "overload(control, esc)";
+      capslock = "overload(ctrl_vim, esc)";
       enter = "overload(control, enter)";
+    };
+    alt = {
+      "[" = "C-S-tab";
+      "]" = "C-tab";
     };
     control = { backspace = "~"; };
     shift = { ";" = ";"; };
+    "ctrl_vim:C" = { space = "swap(vim_mode)"; };
+    "vim_mode:C" = {
+      h = "left";
+      j = "down";
+      k = "up";
+      l = "right";
+      a = "home";
+      g = "home";
+      e = "end";
+      "4" = "end";
+      u = "pageup";
+      d = "pagedown";
+      # forward word
+      w = "C-right";
+      # backward word
+      b = "C-left";
+    };
     "control+alt" = {
       h = "left";
       j = "down";
       k = "up";
       l = "right";
     };
-    alt = {
-      "[" = "C-S-tab";
-      "]" = "C-tab";
-    };
+  };
+
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "mydatabase" ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+    '';
   };
 
   # Enable the X11 windowing system.
@@ -154,7 +180,9 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
   programs.fish.enable = true;
+
   programs.starship = {
     enable = true;
     settings = {
