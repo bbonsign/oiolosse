@@ -1,2 +1,2 @@
-style:
+format:
   nix fmt *.nix
