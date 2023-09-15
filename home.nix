@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # TODO please change the username & home direcotry to your own
+  # TODO please change the username & home directory to your own
   home.username = "bbonsign";
   home.homeDirectory = "/home/bbonsign";
 
@@ -34,6 +34,9 @@
 
     chezmoi
 
+    kitty
+    chromium
+
     fd
     ripgrep
     fzf
@@ -47,10 +50,18 @@
     gh # GitHub cli
     just
 
+    trashy
+
+    slack
+
     stylua
     luarocks
 
     neofetch
+
+    podman
+    podman-compose
+    distrobox
 
     go
     gcc
@@ -70,6 +81,7 @@
     yq-go # yaml processer https://github.com/mikefarah/yq
     exa # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
+    zellij
 
     # networking tools
     # mtr # A network diagnostic tool
@@ -129,17 +141,17 @@
   };
 
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
-  programs.kitty = {
-    enable = true;
-    theme = "Tokyo Night";
-    settings = {
-      font_family = "FiraCode Nerd Font Med";
-      bold_font = "FiraCode Nerd ont Bold";
-      hide_window_decorations = "yes";
-      dynamic_background_opacity = "yes";
-      background_opacity = "0.7";
-    };
-  };
+  # programs.kitty = {
+  #   enable = true;
+  #   theme = "Tokyo Night";
+  #   settings = {
+  #     font_family = "FiraCode Nerd Font Med";
+  #     bold_font = "FiraCode Nerd ont Bold";
+  #     hide_window_decorations = "yes";
+  #     dynamic_background_opacity = "yes";
+  #     background_opacity = "0.7";
+  #   };
+  # };
 
   programs.bash = {
     enable = true;
