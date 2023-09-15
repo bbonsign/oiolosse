@@ -83,16 +83,6 @@
     fzf # A command-line fuzzy finder
     zellij
 
-    # networking tools
-    # mtr # A network diagnostic tool
-    # iperf3
-    # dnsutils  # `dig` + `nslookup`
-    # ldns # replacement of `dig`, it provide the command `drill`
-    # aria2 # A lightweight multi-protocol & multi-source command-line download utility
-    # socat # replacement of openbsd-netcat
-    # nmap # A utility for network discovery and security auditing
-    # ipcalc  # it is a calculator for the IPv4/v6 addresses
-
     # misc
     cowsay
     file
@@ -110,12 +100,21 @@
     # with more details log output
     nix-output-monitor
 
-    # productivity
-    # hugo # static site generator
     glow # markdown previewer in terminal
 
-    btop # replacement of htop/nmon
+    btop
     htop
+
+    # networking tools
+    # mtr # A network diagnostic tool
+    # iperf3
+    # dnsutils  # `dig` + `nslookup`
+    # ldns # replacement of `dig`, it provide the command `drill`
+    # aria2 # A lightweight multi-protocol & multi-source command-line download utility
+    # socat # replacement of openbsd-netcat
+    # nmap # A utility for network discovery and security auditing
+    # ipcalc  # it is a calculator for the IPv4/v6 addresses
+
     # iotop # io monitoring
     # iftop # network monitoring
 
@@ -140,7 +139,6 @@
     extraPackages = with pkgs; [ gcc rnix-lsp sumneko-lua-language-server ];
   };
 
-  # alacritty - a cross-platform, GPU-accelerated terminal emulator
   # programs.kitty = {
   #   enable = true;
   #   theme = "Tokyo Night";
