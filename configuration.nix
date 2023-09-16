@@ -64,6 +64,8 @@
     };
   };
 
+  services.tailscale.enable = true;
+
   services.keyd.enable = true;
   services.keyd.ids = [ "05ac:0273" ];
   services.keyd.settings = {
