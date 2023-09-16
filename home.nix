@@ -37,6 +37,7 @@
     kitty
     chromium
 
+    nushell
     fd
     ripgrep
     fzf
@@ -102,6 +103,7 @@
 
     glow # markdown previewer in terminal
 
+    duf
     btop
     htop
 
