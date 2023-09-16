@@ -62,7 +62,8 @@
 
     podman
     podman-compose
-    distrobox
+    poetry
+    pipenv
 
     go
     gcc
