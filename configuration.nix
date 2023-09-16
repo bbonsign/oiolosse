@@ -150,13 +150,13 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.defaultUserShell = pkgs.fish;
   users.users.bbonsign = {
     isNormalUser = true;
     description = "Brian Bonsignore";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [ firefox neovim kitty keyd gnome.gnome-tweaks ];
   };
+  users.defaultUserShell = pkgs.fish;
 
   fonts.fonts = with pkgs;
     [ (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ];
@@ -182,33 +182,6 @@
   # };
 
   programs.fish.enable = true;
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = true;
-      line_break.disabled = false;
-      aws.disabled = true;
-      gcloud.disabled = true;
-
-      character = {
-        success_symbol = "[λ](bold blue)";
-        error_symbol = "[λ](bold red)";
-      };
-      elixir = {
-        symbol = " ";
-        style = "#5e3f9e";
-      };
-      haskell.symbol = " ";
-      lua.symbol = " ";
-      python.symbol = " ";
-      docker_context.symbol = "  ";
-      elm.symbol = " ";
-      git_branch.symbol = " ";
-      golang.symbol = " ";
-      rust.symbol = " ";
-    };
-  };
 
   programs._1password.enable = true;
   programs._1password-gui = {
