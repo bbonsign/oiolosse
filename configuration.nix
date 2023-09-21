@@ -66,43 +66,49 @@
 
   services.tailscale.enable = true;
 
-  services.keyd.enable = true;
-  services.keyd.ids = [ "05ac:0273" ];
-  services.keyd.settings = {
-    global = { layer_indicator = 1; };
-    main = {
-      ";" = ":";
-      capslock = "overload(ctrl_vim, esc)";
-      enter = "overload(control, enter)";
-    };
-    alt = {
-      "[" = "C-S-tab";
-      "]" = "C-tab";
-    };
-    control = { backspace = "~"; };
-    shift = { ";" = ";"; };
-    "ctrl_vim:C" = { space = "swap(vim_mode)"; };
-    "vim_mode:C" = {
-      h = "left";
-      j = "down";
-      k = "up";
-      l = "right";
-      a = "home";
-      g = "home";
-      e = "end";
-      "4" = "end";
-      u = "pageup";
-      d = "pagedown";
-      # forward word
-      w = "C-right";
-      # backward word
-      b = "C-left";
-    };
-    "control+alt" = {
-      h = "left";
-      j = "down";
-      k = "up";
-      l = "right";
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = [ "05ac:0273" ];
+        settings = {
+          global = { layer_indicator = 1; };
+          main = {
+            ";" = ":";
+            capslock = "overload(ctrl_vim, esc)";
+            enter = "overload(control, enter)";
+          };
+          alt = {
+            "[" = "C-S-tab";
+            "]" = "C-tab";
+          };
+          control = { backspace = "~"; };
+          shift = { ";" = ";"; };
+          "ctrl_vim:C" = { space = "swap(vim_mode)"; };
+          "vim_mode:C" = {
+            h = "left";
+            j = "down";
+            k = "up";
+            l = "right";
+            a = "home";
+            g = "home";
+            e = "end";
+            "4" = "end";
+            u = "pageup";
+            d = "pagedown";
+            # forward word
+            w = "C-right";
+            # backward word
+            b = "C-left";
+          };
+          "control+alt" = {
+            h = "left";
+            j = "down";
+            k = "up";
+            l = "right";
+          };
+        };
+      };
     };
   };
 
@@ -160,7 +166,7 @@
   };
   users.defaultUserShell = pkgs.fish;
 
-  fonts.fonts = with pkgs;
+  fonts.packages = with pkgs;
     [ (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ];
 
   # Allow unfree packages
