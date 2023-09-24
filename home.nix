@@ -1,14 +1,23 @@
 { config, pkgs, ... }:
 
 {
-  # TODO please change the username & home directory to your own
   home.username = "bbonsign";
   home.homeDirectory = "/home/bbonsign";
 
-  imports = builtins.concatMap import [ ./programs ];
+  # This value determines the home Manager release that your
+  # configuration is compatible with. This helps avoid breakage
+  # when a new home Manager release introduces backwards
+  # incompatible changes.
+  #
+  # You can update home Manager without changing this value. See
+  # the home Manager release notes for a list of state version
+  # changes in each release.
+  home.stateVersion = "22.11";
 
-  # link the configuration file in current directory to the specified location in home directory
-  # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
+  # Let home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
+  imports = builtins.concatMap import [ ./programs ];
 
   # link all files in `./scripts` to `~/.config/i3/scripts`
   # home.file.".config/i3/scripts" = {
@@ -16,6 +25,7 @@
   #   recursive = true;   # link recursively
   #   executable = true;  # make all files executable
   # };
+
   home.file.".iex.exs".source = ./dotfiles/dot_iex.exs;
 
   # encode the file content in nix configuration file directly
@@ -32,47 +42,50 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    # here is some command line tools I use frequently
-    # feel free to add your own or remove some of them
-
-    chezmoi
-
-    # kitty
-    chromium
-
-    nushell
-    fd
-    ripgrep
-    fzf
     bat
+    btop
+    cargo
+    chezmoi
+    chromium
+    cowsay
     delta
-    tealdeer
-    wl-clipboard
+    duf
     eza
-    nnn
-    lazygit
+    fd
+    file
+    fzf
+    fzf
+    gcc
     gh # GitHub cli
+    glow # markdown previewer in terminal
+    gnumake
+    gnupg
+    gnused
+    go
+    htop
+    jq
     just
-
-    trashy
-
-    slack
-
-    stylua
+    lazygit
     luarocks
-
     neofetch
-
+    nnn
+    nodejs
+    nushell
+    pipenv
     podman
     podman-compose
     poetry
-    pipenv
-
-    go
-    gcc
-    cargo
-    gnumake
-    nodejs
+    ripgrep
+    ripgrep
+    slack
+    stylua
+    tealdeer
+    trashy
+    tree
+    which
+    wl-clipboard
+    yq-go # yaml processer https://github.com/mikefarah/yq
+    zellij
 
     # archives
     zip
@@ -80,35 +93,9 @@
     unzip
     p7zip
 
-    # utils
-    ripgrep # recursively searches directories for a regex pattern
-    jq # A lightweight and flexible command-line JSON processor
-    yq-go # yaml processer https://github.com/mikefarah/yq
-    fzf # A command-line fuzzy finder
-    zellij
-
-    # misc
-    cowsay
-    file
-    which
-    tree
-    gnused
-    # gnutar
-    # gawk
-    # zstd
-    gnupg
-
-    # nix related
-    #
-    # it provides the command `nom` works just like `nix
+    # Provides the command `nom` works just like `nix
     # with more details log output
     nix-output-monitor
-
-    glow # markdown previewer in terminal
-
-    duf
-    btop
-    htop
 
     # networking tools
     # mtr # A network diagnostic tool
@@ -135,17 +122,4 @@
     # pciutils # lspci
     # usbutils # lsusb
   ];
-
-  # This value determines the home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update home Manager without changing this value. See
-  # the home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "22.11";
-
-  # Let home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }
