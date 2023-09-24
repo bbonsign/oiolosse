@@ -5,6 +5,8 @@
   home.username = "bbonsign";
   home.homeDirectory = "/home/bbonsign";
 
+  imports = builtins.concatMap import [ ./programs ];
+
   # link the configuration file in current directory to the specified location in home directory
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
 
@@ -14,6 +16,7 @@
   #   recursive = true;   # link recursively
   #   executable = true;  # make all files executable
   # };
+  home.file.".iex.exs".source = ./dotfiles/dot_iex.exs;
 
   # encode the file content in nix configuration file directly
   # home.file.".xxx".text = ''
@@ -34,7 +37,7 @@
 
     chezmoi
 
-    kitty
+    # kitty
     chromium
 
     nushell
@@ -132,74 +135,6 @@
     # pciutils # lspci
     # usbutils # lsusb
   ];
-
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true; # see note on other shells below
-    nix-direnv.enable = true;
-  };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    withNodeJs = true;
-    withPython3 = true;
-    extraPackages = with pkgs; [ gcc rnix-lsp sumneko-lua-language-server ];
-  };
-
-  # programs.kitty = {
-  #   enable = true;
-  #   theme = "Tokyo Night";
-  #   settings = {
-  #     font_family = "FiraCode Nerd Font Med";
-  #     bold_font = "FiraCode Nerd ont Bold";
-  #     hide_window_decorations = "yes";
-  #     dynamic_background_opacity = "yes";
-  #     background_opacity = "0.7";
-  #   };
-  # };
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = true;
-      line_break.disabled = false;
-      aws.disabled = true;
-      gcloud.disabled = true;
-
-      character = {
-        success_symbol = "[λ](bold blue)";
-        error_symbol = "[λ](bold red)";
-      };
-      elixir = {
-        symbol = " ";
-        style = "#5e3f9e";
-      };
-      haskell.symbol = " ";
-      lua.symbol = " ";
-      python.symbol = " ";
-      docker_context.symbol = " ";
-      elm.symbol = " ";
-      git_branch.symbol = " ";
-      golang.symbol = " ";
-      rust.symbol = " ";
-    };
-  };
-
-  programs.bash = {
-    enable = true;
-    enableCompletion = true;
-    bashrcExtra = ''
-      export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
-    '';
-
-    # set some aliases, feel free to add more or remove some
-    # shellAliases = {
-    #   urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
-    #   urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
-    #   httpproxy = "export https_proxy=http://127.0.0.1:7890; export http_proxy=http://127.0.0.1:7890;";
-    # };
-  };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
