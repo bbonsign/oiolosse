@@ -1,0 +1,11 @@
+{
+  "lspconfig": {
+    "yamlls": {
+      "yaml.customTags": [
+        "!Ref scalar",
+        "!Sub scalar",
+        "!GetAtt scalar"
+      ]
+    }
+  }
+}
