@@ -162,12 +162,12 @@
     isNormalUser = true;
     description = "Brian Bonsignore";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [ firefox neovim kitty keyd gnome.gnome-tweaks ];
+    # packages = with pkgs; [   ];
   };
   users.defaultUserShell = pkgs.fish;
 
   fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ];
+    [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

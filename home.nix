@@ -33,15 +33,9 @@
   #     xxx
   # '';
 
-  # basic configuration of git, please change to your own
-  # programs.git = {
-  #   enable = true;
-  #   userName = "Ryan Yin";
-  #   userEmail = "xiaoyin_c@qq.com";
-  # };
-
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
+
     bat
     btop
     cargo
@@ -53,11 +47,13 @@
     eza
     fd
     file
+    firefox
     fzf
     fzf
     gcc
     gh # GitHub cli
     glow # markdown previewer in terminal
+    gnome.gnome-tweaks
     gnumake
     gnupg
     gnused
@@ -65,6 +61,8 @@
     htop
     jq
     just
+    keyd
+    kitty
     lazygit
     luarocks
     neofetch
@@ -86,7 +84,6 @@
     wl-clipboard
     yq-go # yaml processer https://github.com/mikefarah/yq
     zellij
-
     # archives
     zip
     xz
