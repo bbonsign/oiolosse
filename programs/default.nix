@@ -5,4 +5,5 @@
   ./kitty.nix
   ./neovim.nix
   ./starship.nix
+  ./wezterm.nix
 ]

@@ -14,10 +14,11 @@
   # changes in each release.
   home.stateVersion = "22.11";
 
+  imports = builtins.concatMap import [ ./programs ];
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  imports = builtins.concatMap import [ ./programs ];
+  services.ssh-agent.enable = true;
 
   # link all files in `./scripts` to `~/.config/i3/scripts`
   # home.file.".config/i3/scripts" = {
@@ -35,7 +36,6 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-
     bat
     btop
     cargo
@@ -62,6 +62,7 @@
     jq
     just
     keyd
+    killall
     kitty
     lazygit
     luarocks
