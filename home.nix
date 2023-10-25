@@ -77,7 +77,7 @@
     ripgrep
     ripgrep
     slack
-    stylua
+    # stylua
     tealdeer
     trashy
     tree

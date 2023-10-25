@@ -57,10 +57,6 @@
 
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
-      # For Nixos version > 22.11
-      #defaultNetwork.settings = {
-      #  dns_enabled = true;
-      #};
     };
   };
 
@@ -176,9 +172,13 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
+    awscli2
+    dig
     git
+    podman-tui
     python3
+    sqlite
+    wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
