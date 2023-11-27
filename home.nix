@@ -34,6 +34,9 @@
   #     xxx
   # '';
 
+  # rtx - asdf clone in Rust
+  programs.rtx.enable = true;
+
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     bat

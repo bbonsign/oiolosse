@@ -108,14 +108,14 @@
     };
   };
 
-  services.postgresql = {
-    enable = true;
-    ensureDatabases = [ "mydatabase" ];
-    authentication = pkgs.lib.mkOverride 10 ''
-      #type database  DBuser  auth-method
-      local all       all     trust
-    '';
-  };
+  # services.postgresql = {
+  #   enable = true;
+  #   ensureDatabases = [ "postgres" ];
+  #   authentication = pkgs.lib.mkOverride 10 ''
+  #     #type database  DBuser  auth-method
+  #     local all       all     trust
+  #   '';
+  # };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -132,6 +132,10 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [
+    # Driver for Epson WF-2950 printer
+    pkgs.epson-escpr
+  ];
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -173,8 +177,11 @@
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     awscli2
+    devbox
     dig
     git
+    inotify-tools
+    ncurses
     podman-tui
     python3
     sqlite
