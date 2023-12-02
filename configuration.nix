@@ -177,10 +177,14 @@
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     awscli2
+    bazecor
     devbox
     dig
+    elixir
+    erlang
     git
     inotify-tools
+    livebook
     ncurses
     podman-tui
     python3
