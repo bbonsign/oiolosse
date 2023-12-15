@@ -5,7 +5,7 @@ alias f := format
 format:
   nix fmt *.nix
 
-rebuild:
+switch:
   sudo nixos-rebuild switch --flake .#nixos
 
 update:
