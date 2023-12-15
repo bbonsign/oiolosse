@@ -180,12 +180,14 @@
     bazecor
     devbox
     dig
+    distrobox
     elixir
     erlang
     git
     inotify-tools
     livebook
     ncurses
+    pciutils
     podman-tui
     python3
     sqlite
