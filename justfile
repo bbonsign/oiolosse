@@ -1,3 +1,7 @@
+default:
+  @just --choose
+
+alias f := format
 format:
   nix fmt *.nix
 
