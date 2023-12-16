@@ -20,6 +20,11 @@
         log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate'';
       st = "status";
       unstage = "reset HEAD --";
+      wt = "worktree";
+      wta = "worktree add";
+      wtl = "worktree list";
+      wtr = "worktree remove";
+
     };
     extraConfig = {
       core = {

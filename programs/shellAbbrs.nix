@@ -116,6 +116,7 @@
   rbmaster = "git rebase master";
   rmimages = "docker rmi (docker images -q -f dangling=true)";
   t = "tmux";
+  tp = "trash put";
   venv = "python -m venv";
   weather = "curl wttr.in";
   wlc = "wl-copy";

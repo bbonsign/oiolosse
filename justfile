@@ -3,7 +3,7 @@ default:
 
 alias f := format
 format:
-  fd -e nix | nix fmt 
+  @fd -e nix | nix fmt
 
 alias sw := switch
 switch:
