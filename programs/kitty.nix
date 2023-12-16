@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 
 {
   home.file.".config/kitty/tab_bar.py".source =
@@ -29,7 +29,7 @@
       tab_bar_edge = "top";
       tab_bar_style = "custom";
       tab_title_template = ''
-      {index} {title}{f" [{num_windows}]" if num_windows>1 and layout_name=="stack" else ""}
+        {index} {title}{f" [{num_windows}]" if num_windows>1 and layout_name=="stack" else ""}
       '';
 
       editor = "nvim";
