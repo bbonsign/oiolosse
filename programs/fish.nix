@@ -5,8 +5,20 @@
     enable = true;
 
     shellAliases = import ./shellAliases.nix;
-
     shellAbbrs = import ./shellAbbrs.nix;
+
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+      source ~/.config/fish/colors/fish_tokyonight_night.fish
+
+      # bgcolor of the current tab completion selection
+      set fish_color_search_match --background=4b719c
+
+      set -gx PATH "$HOME/.cargo/bin" $PATH
+      set -gx PATH "$HOME/go/bin" $PATH
+
+      fzf_configure_bindings
+    '';
 
     plugins = [{
       name = "fzf";

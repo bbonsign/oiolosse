@@ -29,6 +29,9 @@
 
   home.file.".iex.exs".source = ./dotfiles/dot_iex.exs;
 
+  home.file.".config/fish/colors/fish_tokyonight_night.fish".source =
+    ./dotfiles/dot_config/fish/colors/fish_tokyonight_night.fish;
+
   # encode the file content in nix configuration file directly
   # home.file.".xxx".text = ''
   #     xxx
