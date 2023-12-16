@@ -3,8 +3,9 @@ default:
 
 alias f := format
 format:
-  nix fmt *.nix
+  fd -e nix | nix fmt 
 
+alias sw := switch
 switch:
   sudo nixos-rebuild switch --flake .#nixos
 
