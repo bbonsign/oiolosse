@@ -194,6 +194,9 @@
     wget
   ];
 
+  # https://nix-community.github.io/home-manager/options.html#opt-programs.zsh.enableCompletion
+  environment.pathsToLink = [ "/share/zsh" ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
