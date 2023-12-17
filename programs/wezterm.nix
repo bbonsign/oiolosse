@@ -3,7 +3,7 @@
 {
   programs.wezterm.enable = true;
   home.file.".config/wezterm" = {
-    source = ../dotfiles/dot_config/wezterm;
+    source = ./wezterm;
     recursive = true;
   };
 }

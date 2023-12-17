@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-SHELL=/usr/bin/fish toolbox enter

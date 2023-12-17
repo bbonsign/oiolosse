@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.file.".config/git/ignore".source = ../dotfiles/dot_config/git/ignore;
+  home.file.".config/git/ignore".source = ./git/ignore;
 
   home.packages = with pkgs; [ lazygit ];
 

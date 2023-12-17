@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+
+  home.file.".config/fish/colors/fish_tokyonight_night.fish".source =
+    ./fish/fish_tokyonight_night.fish;
+
   programs.fish = {
     enable = true;
 
