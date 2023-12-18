@@ -13,11 +13,14 @@
       ca = "commit --amend";
       cd = "!cd .";
       clone-bare = "git-clone-bare";
+      f = "fetch";
       last = "log -1 HEAD";
       ll = ''
         log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'';
       ls = ''
         log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate'';
+      p = "pull";
+      pp = "push";
       st = "status";
       unstage = "reset HEAD --";
       wt = "worktree";
