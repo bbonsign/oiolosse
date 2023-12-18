@@ -16,7 +16,7 @@
       adjust_line_height = "90%";
       window_padding_width = 2;
       hide_window_decorations = "yes";
-      background_opacity = ".85";
+      background_opacity = ".70";
       background_tint = "0.4";
       dynamic_background_opacity = "no";
       enable_audio_bell = "no";

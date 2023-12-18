@@ -71,6 +71,7 @@
     gh # GitHub cli
     glow # markdown previewer in terminal
     gnome.gnome-tweaks
+    gnome.gnome-themes-extra
     gnumake
     gnupg
     gnused
@@ -111,4 +112,26 @@
     zip
   ];
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      enable-hot-corners = false;
+      "show-battery-percentage" = true;
+    };
+
+    "org/gnome/clocks" = {
+      world-clocks =
+        "[{'location': <(uint32 2, <('Sacramento', 'KSAC', true, [(0.67207295768107522, -2.1204877747105106)], [(0.67337546199525378, -2.1204773027349986)])>)>}, {'location': <(uint32 2, <('London', 'EGWU', true, [(0.89971722940307675, -0.007272211034407213)], [(0.89884456477707964, -0.0020362232784242244)])>)>}]";
+    };
+
+    "org/gnome/desktop/background" = {
+      color-shading-type = "solid";
+      picture-options = "zoom";
+      picture-uri = "file://${./wallpapers/stsci-h-p1821a-m-1699x2000.png}";
+      picture-uri-dark =
+        "file://${./wallpapers/stsci-h-p1821a-m-1699x2000.png}";
+      primary-color = "#000000000000";
+      secondary-color = "#000000000000";
+    };
+  };
 }

@@ -15,9 +15,11 @@ local config = {
   color_scheme = 'tokyonight',
   -- window_background_image = '/home/bbonsign/Pictures/Wallpapers/mountain-unsplash-6-small.jpg',
   -- text_background_opacity = 1.0,
-  window_background_opacity = 0.8,
+  window_background_opacity = 0.70,
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
+
+  window_decorations = 'RESIZE',
   inactive_pane_hsb = {
     saturation = 0.8,
     brightness = 0.5,
