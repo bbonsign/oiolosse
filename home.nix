@@ -1,6 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nix-index-database, ... }:
 
 {
+
   home.username = "bbonsign";
   home.homeDirectory = "/home/bbonsign";
 
@@ -14,11 +15,20 @@
   # changes in each release.
   home.stateVersion = "22.11";
 
-  imports = builtins.concatMap import [ ./programs ];
+  imports = builtins.concatMap import [ ./programs ]
+    ++ [ nix-index-database.hmModules.nix-index ];
+
+  services.ssh-agent.enable = true;
+
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  services.ssh-agent.enable = true;
+  programs.nix-index.enable = true;
+  programs.nix-index.enableBashIntegration = true;
+  programs.nix-index.enableFishIntegration = true;
+  programs.nix-index.enableZshIntegration = true;
+
+  programs.nix-index-database.comma.enable = true;
 
   # link all files in `./scripts` to `~/.config/i3/scripts`
   # home.file.".config/i3/scripts" = {
@@ -27,29 +37,30 @@
   #   executable = true;  # make all files executable
   # };
 
-  home.file.".iex.exs".source = ./dot_iex.exs;
-
-  # home.file.".config/fish/colors/fish_tokyonight_night.fish".source =
-  #   ./dotfiles/dot_config/fish/colors/fish_tokyonight_night.fish;
-
   # encode the file content in nix configuration file directly
   # home.file.".xxx".text = ''
   #     xxx
   # '';
 
-  # rtx - asdf clone in Rust
-  programs.rtx.enable = true;
+  home.file.".iex.exs".source = ./dot_iex.exs;
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
+    awscli2
     bat
+    bazecor
     bottom
     cargo
     chezmoi
     chromium
     cowsay
     delta
+    devbox
+    distrobox
+    dnsutils # `dig` + `nslookup`
     duf
+    elixir
+    erlang
     eza
     fd
     file
@@ -71,59 +82,33 @@
     killall
     kitty
     lazygit
+    livebook
     luarocks
     neofetch
+    nix-output-monitor
     nnn
     nodejs
     nushell
+    p7zip
     pipenv
     podman
     podman-compose
+    podman-tui
     poetry
     ripgrep
     ripgrep
     slack
-    # stylua
     tealdeer
     trashy
     tree
+    unzip
+    usbutils # lsusb
     which
     wl-clipboard
+    xz
     yq-go # yaml processer https://github.com/mikefarah/yq
     zellij
-    # archives
     zip
-    xz
-    unzip
-    p7zip
-
-    # Provides the command `nom` works just like `nix
-    # with more details log output
-    nix-output-monitor
-
-    # networking tools
-    # mtr # A network diagnostic tool
-    # iperf3
-    # dnsutils  # `dig` + `nslookup`
-    # ldns # replacement of `dig`, it provide the command `drill`
-    # aria2 # A lightweight multi-protocol & multi-source command-line download utility
-    # socat # replacement of openbsd-netcat
-    # nmap # A utility for network discovery and security auditing
-    # ipcalc  # it is a calculator for the IPv4/v6 addresses
-
-    # iotop # io monitoring
-    # iftop # network monitoring
-
-    # system call monitoring
-    # strace # system call monitoring
-    # ltrace # library call monitoring
-    # lsof # list open files
-
-    # system tools
-    # sysstat
-    # lm_sensors # for `sensors` command
-    # ethtool
-    # pciutils # lspci
-    # usbutils # lsusb
   ];
+
 }

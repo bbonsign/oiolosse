@@ -5,7 +5,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -175,20 +176,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    awscli2
-    bazecor
-    devbox
-    dig
-    distrobox
-    elixir
-    erlang
+    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     git
     inotify-tools
-    livebook
     ncurses
     pciutils
-    podman-tui
     python3
     sqlite
     wget
