@@ -10,19 +10,40 @@
     userName = "Brian Bonsignore";
     userEmail = "bonsignore.brian@gmail.com";
     aliases = {
+      a = "add";
+      aa = "add --all";
+
+      b = "branch";
+      ba = "branch --all";
+      bm = "branch --merged";
+
+      c = "commit";
       ca = "commit --amend";
+      cm = "commit --message";
       cd = "!cd .";
+
+      cp = "cherry-pick";
+      cpa = "cherry-pick --abort";
+      cpc = "cherry-pick --continue";
+
       clone-bare = "git-clone-bare";
+
       f = "fetch";
+
+      g = "grep";
+
       last = "log -1 HEAD";
-      ll = ''
-        log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'';
-      ls = ''
-        log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate'';
+      l =
+        "log --oneline -n 40 --date=short --boundary --pretty=format:'%Cgreen%ad %C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cblue[%aN]%Creset %Cblue'";
+      ll = "log --graph --oneline --abbrev-commit --decorate --all";
+
       p = "pull";
       pp = "push";
+
       st = "status";
+
       unstage = "reset HEAD --";
+
       wt = "worktree";
       wta = "worktree add";
       wtl = "worktree list";
@@ -58,3 +79,4 @@
     };
   };
 }
+

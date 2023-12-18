@@ -72,7 +72,8 @@
   gdel = "git branch -d";
   gds = "git diff --staged";
   gf = "git fetch";
-  gl = "git log --oneline -n 40";
+  gl =
+    "git log --oneline -n 40 --date=short --boundary --pretty=format:'%Cgreen%ad %C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cblue[%aN]%Creset %Cblue'";
   gll = "git log --graph --oneline --abbrev-commit --decorate --all";
   glog = "git log --oneline";
   gmm = "git merge main";
