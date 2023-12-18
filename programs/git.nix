@@ -37,6 +37,9 @@
         "log --oneline -n 40 --date=short --boundary --pretty=format:'%Cgreen%ad %C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cblue[%aN]%Creset %Cblue'";
       ll = "log --graph --oneline --abbrev-commit --decorate --all";
 
+      m = "merge";
+      ma = "merge --abort";
+
       p = "pull";
       pp = "push";
 

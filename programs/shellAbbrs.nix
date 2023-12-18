@@ -55,7 +55,8 @@
   e = "nvim";
   fsh = "flatpak-spawn --host";
   g = "git";
-  ga = "git add -A";
+  ga = "git add";
+  gaa = "git add -A";
   gau = "git add -u";
   gb = "git branch";
   gba = "git branch -a";
