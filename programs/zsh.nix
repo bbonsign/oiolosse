@@ -11,7 +11,13 @@
 
     syntaxHighlighting.enable = true;
 
-    shellAliases = import ./shellAliases.nix;
+    # shellAliases = import ./shellAliases.nix;
+    sessionVariables = {
+      MANPAGER = "nvim +Man!";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+
     zsh-abbr = {
       enable = true;
       abbreviations = import ./shellAbbrs.nix;

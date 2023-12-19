@@ -44,6 +44,8 @@
 
   home.file.".iex.exs".source = ./dot_iex.exs;
 
+  home.shellAliases = import ./programs/shellAliases.nix;
+
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     awscli2

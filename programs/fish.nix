@@ -8,7 +8,7 @@
   programs.fish = {
     enable = true;
 
-    shellAliases = import ./shellAliases.nix;
+    # shellAliases = import ./shellAliases.nix;
     shellAbbrs = import ./shellAbbrs.nix;
 
     interactiveShellInit = ''
