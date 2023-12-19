@@ -24,9 +24,6 @@
   programs.home-manager.enable = true;
 
   programs.nix-index.enable = true;
-  programs.nix-index.enableBashIntegration = true;
-  programs.nix-index.enableFishIntegration = true;
-  programs.nix-index.enableZshIntegration = true;
 
   programs.nix-index-database.comma.enable = true;
 
@@ -67,8 +64,6 @@
     fd
     file
     firefox
-    fzf
-    fzf
     gcc
     gh # GitHub cli
     glow # markdown previewer in terminal

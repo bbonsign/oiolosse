@@ -22,8 +22,11 @@
       set -gx PATH "$HOME/go/bin" $PATH
 
       set -gx MANPAGER "nvim +Man!"
+      set -gx EDITOR "nvim"
+      set -gx VISUAL "nvim"
 
       fzf_configure_bindings
+      set -gx fzf_preview_dir_cmd 'eza --long --all --color=always'
     '';
 
     plugins = [{

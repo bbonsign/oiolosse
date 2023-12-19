@@ -2,10 +2,13 @@
   ./bash.nix
   ./direnv.nix
   ./fish.nix
+  ./fzf.nix
   ./git.nix
   ./kitty.nix
+  ./lazygit.nix
   ./neovim.nix
   ./starship.nix
   ./wezterm.nix
+  ./zathura.nix
   ./zsh.nix
 ]
