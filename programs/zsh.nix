@@ -16,6 +16,7 @@
       MANPAGER = "nvim +Man!";
       EDITOR = "nvim";
       VISUAL = "nvim";
+      FZF_COMPLETION_TRIGGER = "";
     };
 
     zsh-abbr = {
