@@ -24,6 +24,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/interface" = {
+      cursor-size = 24;
+      cursor-theme = "Nordzy-cursors";
       clock-show-date = true;
       clock-show-seconds = false;
       clock-show-weekday = true;

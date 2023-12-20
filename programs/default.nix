@@ -4,6 +4,7 @@
   ./fish.nix
   ./fzf.nix
   ./git.nix
+  ./gtk.nix
   ./kitty.nix
   ./lazygit.nix
   ./neovim.nix
