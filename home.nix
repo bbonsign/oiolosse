@@ -69,6 +69,7 @@
     glow # markdown previewer in terminal
     gnome.gnome-tweaks
     gnome.gnome-themes-extra
+    # gnomeExtensions.valent
     gnumake
     gnupg
     gnused
@@ -101,6 +102,7 @@
     tree
     unzip
     usbutils # lsusb
+    # valent # KDE Connect client
     which
     wl-clipboard
     xz

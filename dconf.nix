@@ -83,7 +83,7 @@ with lib.hm.gvariant;
       minimize = [ ];
       move-to-workspace-1 = [ "<Shift><Super>1" ];
       move-to-workspace-2 = [ "<Shift><Super>2" ];
-      move-to-workspace-3 = [ "<Shift><Super>2" ];
+      move-to-workspace-3 = [ "<Shift><Super>3" ];
       move-to-workspace-4 = [ "<Shift><Super>4" ];
       move-to-workspace-left = [ "<Shift><Super>bracketleft" ];
       move-to-workspace-right = [ "<Shift><Super>bracketright" ];
@@ -157,102 +157,103 @@ with lib.hm.gvariant;
       toggle-overview = [ "<Super>o" ];
     };
 
-    "org/gnome/shell/world-clocks" = {
-      locations = [
-        (mkVariant [
-          (mkUint32 2)
-          (mkVariant [
-            "Sacramento"
-            "KSAC"
-            true
-            [ (mkTuple [ 0.6720729576810752 (-2.1204877747105106) ]) ]
-            [ (mkTuple [ 0.6733754619952538 (-2.1204773027349986) ]) ]
-          ])
-        ])
-        (mkVariant [
-          (mkUint32 2)
-          (mkVariant [
-            "Raleigh"
-            "KRDU"
-            true
-            [ (mkTuple [ 0.6260593067210071 (-1.3750818938070426) ]) ]
-            [ (mkTuple [ 0.6243408555394935 (-1.3725027509582006) ]) ]
-          ])
-        ])
-        (mkVariant [
-          (mkUint32 2)
-          (mkVariant [
-            "London"
-            "EGWU"
-            true
-            [ (mkTuple [ 0.8997172294030767 (-7.272211034407213e-3) ]) ]
-            [ (mkTuple [ 0.8988445647770796 (-2.0362232784242244e-3) ]) ]
-          ])
-        ])
-        (mkVariant [
-          (mkUint32 2)
-          (mkVariant [
-            "Berlin"
-            "EDDT"
-            true
-            [ (mkTuple [ 0.9174614159494501 0.23241968454167572 ]) ]
-            [ (mkTuple [ 0.916588751323453 0.23387411976724018 ]) ]
-          ])
-        ])
-      ];
-    };
-    "org/gnome/clocks" = {
-      world-clocks = [
-        {
-          location = mkVariant [
-            (mkUint32 2)
-            (mkVariant [
-              "Sacramento"
-              "KSAC"
-              true
-              [ (mkTuple [ 0.6720729576810752 (-2.1204877747105106) ]) ]
-              [ (mkTuple [ 0.6733754619952538 (-2.1204773027349986) ]) ]
-            ])
-          ];
-        }
-        {
-          location = mkVariant [
-            (mkUint32 2)
-            (mkVariant [
-              "Raleigh"
-              "KRDU"
-              true
-              [ (mkTuple [ 0.6260593067210071 (-1.3750818938070426) ]) ]
-              [ (mkTuple [ 0.6243408555394935 (-1.3725027509582006) ]) ]
-            ])
-          ];
-        }
-        {
-          location = mkVariant [
-            (mkUint32 2)
-            (mkVariant [
-              "London"
-              "EGWU"
-              true
-              [ (mkTuple [ 0.8997172294030767 (-7.272211034407213e-3) ]) ]
-              [ (mkTuple [ 0.8988445647770796 (-2.0362232784242244e-3) ]) ]
-            ])
-          ];
-        }
-        {
-          location = mkVariant [
-            (mkUint32 2)
-            (mkVariant [
-              "Berlin"
-              "EDDT"
-              true
-              [ (mkTuple [ 0.9174614159494501 0.23241968454167572 ]) ]
-              [ (mkTuple [ 0.916588751323453 0.23387411976724018 ]) ]
-            ])
-          ];
-        }
-      ];
-    };
+    # "org/gnome/shell/world-clocks" = {
+    #   locations = [
+    #     (mkVariant [
+    #       (mkUint32 2)
+    #       (mkVariant [
+    #         "Sacramento"
+    #         "KSAC"
+    #         true
+    #         [ (mkTuple [ 0.6720729576810752 (-2.1204877747105106) ]) ]
+    #         [ (mkTuple [ 0.6733754619952538 (-2.1204773027349986) ]) ]
+    #       ])
+    #     ])
+    #     (mkVariant [
+    #       (mkUint32 2)
+    #       (mkVariant [
+    #         "Raleigh"
+    #         "KRDU"
+    #         true
+    #         [ (mkTuple [ 0.6260593067210071 (-1.3750818938070426) ]) ]
+    #         [ (mkTuple [ 0.6243408555394935 (-1.3725027509582006) ]) ]
+    #       ])
+    #     ])
+    #     (mkVariant [
+    #       (mkUint32 2)
+    #       (mkVariant [
+    #         "London"
+    #         "EGWU"
+    #         true
+    #         [ (mkTuple [ 0.8997172294030767 (-7.272211034407213e-3) ]) ]
+    #         [ (mkTuple [ 0.8988445647770796 (-2.0362232784242244e-3) ]) ]
+    #       ])
+    #     ])
+    #     (mkVariant [
+    #       (mkUint32 2)
+    #       (mkVariant [
+    #         "Berlin"
+    #         "EDDT"
+    #         true
+    #         [ (mkTuple [ 0.9174614159494501 0.23241968454167572 ]) ]
+    #         [ (mkTuple [ 0.916588751323453 0.23387411976724018 ]) ]
+    #       ])
+    #     ])
+    #   ];
+    # };
+
+    # "org/gnome/clocks" = {
+    #   world-clocks = [
+    #     {
+    #       location = mkVariant [
+    #         (mkUint32 2)
+    #         (mkVariant [
+    #           "Sacramento"
+    #           "KSAC"
+    #           true
+    #           [ (mkTuple [ 0.6720729576810752 (-2.1204877747105106) ]) ]
+    #           [ (mkTuple [ 0.6733754619952538 (-2.1204773027349986) ]) ]
+    #         ])
+    #       ];
+    #     }
+    #     {
+    #       location = mkVariant [
+    #         (mkUint32 2)
+    #         (mkVariant [
+    #           "Raleigh"
+    #           "KRDU"
+    #           true
+    #           [ (mkTuple [ 0.6260593067210071 (-1.3750818938070426) ]) ]
+    #           [ (mkTuple [ 0.6243408555394935 (-1.3725027509582006) ]) ]
+    #         ])
+    #       ];
+    #     }
+    #     {
+    #       location = mkVariant [
+    #         (mkUint32 2)
+    #         (mkVariant [
+    #           "London"
+    #           "EGWU"
+    #           true
+    #           [ (mkTuple [ 0.8997172294030767 (-7.272211034407213e-3) ]) ]
+    #           [ (mkTuple [ 0.8988445647770796 (-2.0362232784242244e-3) ]) ]
+    #         ])
+    #       ];
+    #     }
+    #     {
+    #       location = mkVariant [
+    #         (mkUint32 2)
+    #         (mkVariant [
+    #           "Berlin"
+    #           "EDDT"
+    #           true
+    #           [ (mkTuple [ 0.9174614159494501 0.23241968454167572 ]) ]
+    #           [ (mkTuple [ 0.916588751323453 0.23387411976724018 ]) ]
+    #         ])
+    #       ];
+    #     }
+    #   ];
+    # };
 
     "org/gnome/tweaks" = { show-extensions-notice = false; };
 
