@@ -3,8 +3,20 @@
 {
   programs.fzf = {
     enable = true;
-
-    # --bind=ctrl-u:preview-up,ctrl-d:preview-down,ctrl-space:toggle-preview
+    defaultOptions = [
+      "--ansi"
+      "--cycle"
+      "--layout=reverse"
+      "--height=70%"
+      "--pointer='⦿'"
+      "--prompt=' '"
+      "--preview-window=right:65%"
+      "--bind=ctrl-u:preview-up"
+      "--bind=ctrl-d:preview-down"
+      "--bind=ctrl-space:toggle-preview"
+    ];
+    #
+    # tokyonight colors
     colors = {
       fg = "#c0caf5";
       bg = "#1a1b26";
