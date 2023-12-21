@@ -20,7 +20,7 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/input-sources" = {
       sources = [ (mkTuple [ "xkb" "us" ]) ];
-      xkb-options = [ "terminate:ctrl_alt_bksp" "caps:ctrl_modifier" ];
+      xkb-options = [ "terminate:ctrl_alt_bksp" ];
     };
 
     "org/gnome/desktop/interface" = {

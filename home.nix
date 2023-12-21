@@ -39,8 +39,18 @@
   #     xxx
   # '';
 
-  home.file.".iex.exs".source = ./dot_iex.exs;
+  home.file = {
+    ".iex.exs" = { source = ./dot_iex.exs; };
+    ".test" = {
+      source = ./programs/fdignore;
+      target = ".config/fd/ignore";
+    };
+    ".ipython/profile_default/ipython_config.py" = {
+      source = ./ipython_config.py;
+      target = ".ipython/profile_default/ipython_config.py";
+    };
 
+  };
   home.shellAliases = import ./programs/shellAliases.nix;
 
   # Packages that should be installed to the user profile.
@@ -69,6 +79,7 @@
     glow # markdown previewer in terminal
     gnome.gnome-tweaks
     gnome.gnome-themes-extra
+    gnomeExtensions.hide-top-bar
     # gnomeExtensions.valent
     gnumake
     gnupg
@@ -90,6 +101,7 @@
     nushell
     p7zip
     pipenv
+    pkgs.python311Packages.ipython
     podman
     podman-compose
     podman-tui
