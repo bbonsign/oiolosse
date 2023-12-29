@@ -182,6 +182,7 @@
     ncurses
     pciutils
     python3
+    qutebrowser
     sqlite
     wget
   ];
