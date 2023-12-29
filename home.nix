@@ -39,6 +39,7 @@
   #     xxx
   # '';
 
+  # Link configs that don't have home-manager modules
   home.file = {
     ".iex.exs" = { source = ./dot_iex.exs; };
     ".ipython/profile_default/ipython_config.py" = {
