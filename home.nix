@@ -41,14 +41,11 @@
 
   home.file = {
     ".iex.exs" = { source = ./dot_iex.exs; };
-    ".config/fd/ignore" = {
-      source = ./programs/fdignore;
-      target = ".config/fd/ignore";
-    };
     ".ipython/profile_default/ipython_config.py" = {
       source = ./ipython_config.py;
-      target = ".ipython/profile_default/ipython_config.py";
     };
+    ".config/fd/ignore" = { source = ./programs/fdignore; };
+    ".config/zellij" = { source = ./programs/zellij; };
 
   };
   home.shellAliases = import ./programs/shellAliases.nix;
