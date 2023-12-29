@@ -41,7 +41,7 @@
 
   home.file = {
     ".iex.exs" = { source = ./dot_iex.exs; };
-    ".test" = {
+    ".config/fd/ignore" = {
       source = ./programs/fdignore;
       target = ".config/fd/ignore";
     };
@@ -79,7 +79,7 @@
     glow # markdown previewer in terminal
     gnome.gnome-tweaks
     gnome.gnome-themes-extra
-    gnomeExtensions.hide-top-bar
+    # gnomeExtensions.hide-top-bar
     # gnomeExtensions.valent
     gnumake
     gnupg
