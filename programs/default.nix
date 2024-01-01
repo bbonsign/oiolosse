@@ -8,6 +8,7 @@
   ./kitty.nix
   ./lazygit.nix
   ./neovim.nix
+  ./nushell.nix
   ./starship.nix
   ./wezterm.nix
   ./zathura.nix

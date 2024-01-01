@@ -93,6 +93,8 @@
     livebook
     luarocks
     neofetch
+    nixd # nix lsp
+    nixfmt
     nix-output-monitor
     nnn
     nodejs

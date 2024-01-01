@@ -6,7 +6,7 @@
   conf = "cd ~/.config";
   cp = "cp -v";
   dl = "cd ~/Downloads";
-  dul = "du -h -d1 | sort -hr";
+  # dul = "du -h -d1 | sort -hr";
   fly = "flyctl";
   icat = "kitty +kitten icat";
   l = "eza --all --long --group-directories-first --icons";
