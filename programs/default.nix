@@ -1,16 +1,16 @@
 [
   ./bash.nix
   ./direnv.nix
-  ./fish.nix
+  ./fish
   ./fzf.nix
-  ./git.nix
+  ./git
   ./gtk.nix
-  ./kitty.nix
+  ./kitty
   ./lazygit.nix
   ./neovim.nix
   ./nushell.nix
   ./starship.nix
-  ./wezterm.nix
+  ./wezterm
   ./zathura.nix
   ./zsh.nix
 ]

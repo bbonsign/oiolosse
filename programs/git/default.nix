@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.file.".config/git/ignore".source = ./git/ignore;
+  home.file.".config/git/ignore".source = ./ignore;
 
   home.packages = with pkgs; [ lazygit ];
 
@@ -82,4 +82,3 @@
     };
   };
 }
-

@@ -2,8 +2,8 @@
 
 {
   programs.wezterm.enable = true;
-  home.file.".config/wezterm" = {
-    source = ./wezterm;
+  xdg.configFile."wezterm" = {
+    source = ./.;
     recursive = true;
   };
 }

@@ -3,13 +3,13 @@
 {
 
   home.file.".config/fish/colors/fish_tokyonight_night.fish".source =
-    ./fish/fish_tokyonight_night.fish;
+    ./fish_tokyonight_night.fish;
 
   programs.fish = {
     enable = true;
 
     # shellAliases = import ./shellAliases.nix;
-    shellAbbrs = import ./shellAbbrs.nix;
+    shellAbbrs = import ../shellAbbrs.nix;
 
     interactiveShellInit = ''
       set fish_greeting # Disable greeting

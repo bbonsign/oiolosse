@@ -1,9 +1,8 @@
 { ... }:
 
 {
-  home.file.".config/kitty/tab_bar.py".source = ./kitty/tab_bar.py;
-  home.file.".config/kitty/open-actions.conf".source =
-    ./kitty/open-actions.conf;
+  home.file.".config/kitty/tab_bar.py".source = ./tab_bar.py;
+  home.file.".config/kitty/open-actions.conf".source = ./open-actions.conf;
 
   programs.kitty = {
     enable = true;
