@@ -29,14 +29,15 @@
 
   # Link configs that don't have home-manager modules
   home.file = {
-    ".iex.exs" = { source = ./dot_iex.exs; };
-    ".ipython/profile_default/ipython_config.py" = {
-      source = ./ipython_config.py;
-    };
-    ".config/fd/ignore" = { source = ./programs/fdignore; };
-    ".config/zellij" = { source = ./programs/zellij; };
-
+    ".iex.exs".source = ./dot_iex.exs;
+    ".ipython/profile_default/ipython_config.py".source = ./ipython_config.py;
   };
+  xdg.configFile."fd/ignore".source = ./programs/fdignore;
+  xdg.configFile."zellij" = {
+    source = ./programs/zellij;
+    recursive = true;
+  };
+
   home.shellAliases = import ./programs/shellAliases.nix;
 
   # Packages that should be installed to the user profile.
