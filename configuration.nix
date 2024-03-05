@@ -72,7 +72,8 @@
           global = { layer_indicator = 1; };
           main = {
             ";" = ":";
-            capslock = "overload(ctrl_vim, esc)";
+            # capslock = "overload(ctrl_vim, esc)";
+            capslock = "overload(control, esc)";
             enter = "overload(control, enter)";
           };
           alt = {
@@ -81,7 +82,7 @@
           };
           control = { backspace = "~"; };
           shift = { ";" = ";"; };
-          "ctrl_vim:C" = { space = "swap(vim_mode)"; };
+          # "ctrl_vim:C" = { space = "swap(vim_mode)"; };
           "vim_mode:C" = {
             h = "left";
             j = "down";
@@ -103,6 +104,17 @@
             j = "down";
             k = "up";
             l = "right";
+
+            a = "home";
+            g = "home";
+            e = "end";
+            "4" = "end";
+            u = "pageup";
+            d = "pagedown";
+            # forward word
+            w = "C-right";
+            # backward word
+            b = "C-left";
           };
         };
       };

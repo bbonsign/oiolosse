@@ -7,7 +7,7 @@
   ./gtk.nix
   ./kitty
   ./lazygit.nix
-  ./neovim.nix
+  ./neovim
   ./nushell.nix
   ./starship.nix
   ./tmux

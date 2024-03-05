@@ -54,6 +54,7 @@
     devbox
     distrobox
     dnsutils # `dig` + `nslookup`
+    duckdb
     duf
     elixir
     erlang
@@ -99,6 +100,7 @@
     ripgrep
     slack
     tealdeer
+    tmux
     trashy
     tree
     unzip
@@ -109,6 +111,7 @@
     xz
     yq-go # yaml processer https://github.com/mikefarah/yq
     zellij
+    # zig
     zip
   ];
 

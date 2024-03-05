@@ -32,6 +32,6 @@
       header = "#9ece6a";
 
     };
+    tmux.enableShellIntegration = true;
   };
 }
-
