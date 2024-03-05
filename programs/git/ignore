@@ -60,3 +60,5 @@ deps
 /luarocks
 /lua_modules
 /.luarocks
+
+zig-cache

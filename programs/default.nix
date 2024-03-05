@@ -10,6 +10,7 @@
   ./neovim.nix
   ./nushell.nix
   ./starship.nix
+  ./tmux
   ./wezterm
   ./zathura.nix
   ./zsh.nix
