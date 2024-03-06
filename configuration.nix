@@ -63,63 +63,107 @@
 
   services.tailscale.enable = true;
 
-  services.keyd = {
-    enable = true;
-    keyboards = {
-      default = {
-        ids = [ "05ac:0273" ];
-        settings = {
-          global = { layer_indicator = 1; };
-          main = {
-            ";" = ":";
-            # capslock = "overload(ctrl_vim, esc)";
-            capslock = "overload(control, esc)";
-            enter = "overload(control, enter)";
-          };
-          alt = {
-            "[" = "C-S-tab";
-            "]" = "C-tab";
-          };
-          control = { backspace = "~"; };
-          shift = { ";" = ";"; };
-          # "ctrl_vim:C" = { space = "swap(vim_mode)"; };
-          "vim_mode:C" = {
-            h = "left";
-            j = "down";
-            k = "up";
-            l = "right";
-            a = "home";
-            g = "home";
-            e = "end";
-            "4" = "end";
-            u = "pageup";
-            d = "pagedown";
-            # forward word
-            w = "C-right";
-            # backward word
-            b = "C-left";
-          };
-          "control+alt" = {
-            h = "left";
-            j = "down";
-            k = "up";
-            l = "right";
+  # services.kanata = {
+  #   enable = true;
+  #   keyboards = {
+  #     default = {
+  #       config = ''
+  #         (defcfg
+  #           #|
+  #           This configuration will process all keys pressed inside of kanata, even if
+  #           they are not mapped in defsrc. This is so that certain actions can activate
+  #           at the right time for certain input sequences. By default, unmapped keys are
+  #           not processed through kanata due to a Windows issue related to AltGr. If you
+  #           use AltGr in your keyboard, you will likely want to follow the simple.kbd
+  #           file while unmapping lctl and ralt from defsrc.
+  #           |#
+  #           process-unmapped-keys yes
+  #         )
+  #
+  #         (defsrc
+  #           caps grv         i
+  #                       j    k    l
+  #           lsft rsft
+  #         )
+  #
+  #         (deflayer default
+  #           @cap @grv        _
+  #                       _    _    _
+  #           _    _
+  #         )
+  #
+  #         (deflayer arrows
+  #           _    _           up
+  #                       left down rght
+  #           _    _
+  #         )
+  #
+  #         (defalias
+  #           cap (tap-hold-press 200 200 caps lctl)
+  #           grv (tap-hold-press 200 200 grv (layer-toggle arrows))
+  #         )
+  #       '';
+  #     };
+  #   };
+  # };
 
-            a = "home";
-            g = "home";
-            e = "end";
-            "4" = "end";
-            u = "pageup";
-            d = "pagedown";
-            # forward word
-            w = "C-right";
-            # backward word
-            b = "C-left";
-          };
-        };
-      };
-    };
-  };
+  # services.keyd = {
+  #   enable = true;
+  #   keyboards = {
+  #     default = {
+  #       ids = [ "05ac:0273" ];
+  #       settings = {
+  #         global = { layer_indicator = 1; };
+  #         main = {
+  #           ";" = ":";
+  #           # capslock = "overload(ctrl_vim, esc)";
+  #           capslock = "overload(control, esc)";
+  #           enter = "overload(control, enter)";
+  #         };
+  #         alt = {
+  #           "[" = "C-S-tab";
+  #           "]" = "C-tab";
+  #         };
+  #         control = { backspace = "~"; };
+  #         shift = { ";" = ";"; };
+  #         # "ctrl_vim:C" = { space = "swap(vim_mode)"; };
+  #         "vim_mode:C" = {
+  #           h = "left";
+  #           j = "down";
+  #           k = "up";
+  #           l = "right";
+  #           a = "home";
+  #           g = "home";
+  #           e = "end";
+  #           "4" = "end";
+  #           u = "pageup";
+  #           d = "pagedown";
+  #           # forward word
+  #           w = "C-right";
+  #           # backward word
+  #           b = "C-left";
+  #         };
+  #         "control+alt" = {
+  #           h = "left";
+  #           j = "down";
+  #           k = "up";
+  #           l = "right";
+  #
+  #           a = "home";
+  #           g = "home";
+  #           e = "end";
+  #           "4" = "end";
+  #           u = "pageup";
+  #           d = "pagedown";
+  #           # forward word
+  #           w = "C-right";
+  #           # backward word
+  #           b = "C-left";
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
 
   # services.postgresql = {
   #   enable = true;
