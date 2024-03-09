@@ -1,0 +1,36 @@
+(defoverrides
+  (;)      (lsft ;)
+  (lsft ;) (;)
+  (rsft ;) (;)
+)
+
+(defalias
+  cap (tap-hold-press 200 200 esc lctl)
+  retctl (tap-hold-press 200 200 ret lctl)
+
+  atl (multi alt (layer-while-held alted-with-exceptions))
+  tabl (multi (release-key alt) C-S-tab) 
+  tabr (multi (release-key alt) C-tab)
+)
+
+(defsrc
+                                [  ]
+  caps           h  j   k   l   ;  ret
+  lsft                          rsft
+  alt
+)
+
+(deflayer default
+                                [  ]
+  @cap           _  _   _   _   ; @retctl
+  lsft                          rsft
+  @atl
+)
+
+(deflayer alted-with-exceptions
+                                @tabl  @tabr
+  _           _  _   _   _   _ _
+  _                          _
+  _
+)
+

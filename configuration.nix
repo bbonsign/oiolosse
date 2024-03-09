@@ -63,49 +63,15 @@
 
   services.tailscale.enable = true;
 
-  # services.kanata = {
-  #   enable = true;
-  #   keyboards = {
-  #     default = {
-  #       config = ''
-  #         (defcfg
-  #           #|
-  #           This configuration will process all keys pressed inside of kanata, even if
-  #           they are not mapped in defsrc. This is so that certain actions can activate
-  #           at the right time for certain input sequences. By default, unmapped keys are
-  #           not processed through kanata due to a Windows issue related to AltGr. If you
-  #           use AltGr in your keyboard, you will likely want to follow the simple.kbd
-  #           file while unmapping lctl and ralt from defsrc.
-  #           |#
-  #           process-unmapped-keys yes
-  #         )
-  #
-  #         (defsrc
-  #           caps grv         i
-  #                       j    k    l
-  #           lsft rsft
-  #         )
-  #
-  #         (deflayer default
-  #           @cap @grv        _
-  #                       _    _    _
-  #           _    _
-  #         )
-  #
-  #         (deflayer arrows
-  #           _    _           up
-  #                       left down rght
-  #           _    _
-  #         )
-  #
-  #         (defalias
-  #           cap (tap-hold-press 200 200 caps lctl)
-  #           grv (tap-hold-press 200 200 grv (layer-toggle arrows))
-  #         )
-  #       '';
-  #     };
-  #   };
-  # };
+  services.kanata = {
+    enable = true;
+    keyboards = {
+      default = {
+        extraDefCfg = "process-unmapped-keys yes";
+        config = builtins.readFile ./kanata.kbd;
+      };
+    };
+  };
 
   # services.keyd = {
   #   enable = true;
@@ -182,9 +148,9 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Enable CUPS to print documents.
