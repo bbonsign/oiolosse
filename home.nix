@@ -76,7 +76,6 @@
     htop
     jq
     just
-    keyd
     killall
     kitty
     lazygit
