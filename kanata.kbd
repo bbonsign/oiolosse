@@ -1,36 +1,53 @@
 (defoverrides
-  (;)      (lsft ;)
-  (lsft ;) (;)
-  (rsft ;) (;)
+  (;)        (lsft ;)
+  (lsft ;)   (;)
+  (rsft ;)   (;)
 )
 
 (defalias
-  cap (tap-hold-press 200 200 esc lctl)
-  retctl (tap-hold-press 200 200 ret lctl)
+  cap   (tap-hold-press 200 200 esc lctl)
+  rtctl (tap-hold-press 200 200 ret lctl)
 
-  atl (multi alt (layer-while-held alted-with-exceptions))
-  tabl (multi (release-key alt) C-S-tab) 
-  tabr (multi (release-key alt) C-tab)
+  nav   (layer-while-held nav)
+
+  tab   (tap-hold-press 200 200 tab (layer-while-held nav))
+  atl   (multi alt (layer-while-held alted-with-exceptions))
+
+  navl  (multi (release-key alt) @nav) 
+  tabl  (multi (release-key alt) C-S-tab) 
+  tabr  (multi (release-key alt) C-tab)
 )
 
 (defsrc
-                                [  ]
-  caps           h  j   k   l   ;  ret
-  lsft                          rsft
-  alt
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
 )
 
 (deflayer default
-                                [  ]
-  @cap           _  _   _   _   ; @retctl
-  lsft                          rsft
-  @atl
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @tab q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @cap a    s    d    f    g    h    j    k    l    ;    '    @rtctl
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet @atl           spc            ralt rmet rctl
 )
+
+
 
 (deflayer alted-with-exceptions
-                                @tabl  @tabr
-  _           _  _   _   _   _ _
-  _                          _
-  _
+  _     _    _    _    _    _    _    _    _    _    _    _     _      _
+  _     _    _    _    _    _    _    _    _    _    _    @tabl @tabr  _
+  @navl _    _    _    _    _    _    _    _    _    _    _     _
+  _     _    _    _    _    _    _    _    _    _    _    _
+  _     _    _           _            _    _    _
 )
 
+(deflayer nav
+  _  _    _      _     end  _      _    _    _    _    home _     _     _
+  _  _    C-rght end   _    _      _    pgup _    _    _    @tabl @tabr _
+  _  home _      pgdn  _    home   lft  down up   rght _    _     _
+  _  _    _      _     _    C-left _    _    _    _    _    _
+  _  _    _             pgdn            _    _    _
+)
