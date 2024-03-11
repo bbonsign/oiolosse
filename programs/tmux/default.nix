@@ -46,6 +46,7 @@
       { plugin = tmuxPlugins.tmux-fzf; }
 
       {
+        # Bound to prefix-u be default
         plugin = tmuxPlugins.fzf-tmux-url;
         extraConfig = ''
           set -g @fzf-url-fzf-options '-p 60%,30% --prompt="   " --border-label=" Open URL "'
@@ -75,7 +76,7 @@
           set -g @catppuccin_window_default_fill "number"
           set -g @catppuccin_window_default_text "#W"
           set -g @catppuccin_window_current_fill "number"
-          set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag, ,}"
+          set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag,  ,}"
           set -g @catppuccin_status_modules_right "directory meetings date_time"
           set -g @catppuccin_status_modules_left "session"
           set -g @catppuccin_status_left_separator  " "
