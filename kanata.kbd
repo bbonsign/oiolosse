@@ -5,8 +5,18 @@
 )
 
 (defalias
-  cap   (tap-hold-press 200 200 esc lctl)
-  rtctl (tap-hold-press 200 200 ret lctl)
+  bsmet  (tap-hold-press 200 200 bspc lmet)
+  delmet (tap-hold-press 200 200 del lmet)
+  cap    (tap-hold-press 200 200 esc lctl)
+  rtctl  (tap-hold-press 200 200 ret lctl)
+  aalt   (tap-hold-release 200 200 a lalt)
+  lalt   (tap-hold-release 200 200 l lalt)
+  ssft   (tap-hold-release 200 200 s lsft)
+  ksft   (tap-hold-release 200 200 k lsft)
+  dmet   (tap-hold-release 200 200 d lmet)
+  jmet   (tap-hold-release 200 200 j lmet)
+  fctl   (tap-hold-release 200 200 f lctl)
+  hctl   (tap-hold-release 200 200 h lctl)
 
   nav   (layer-while-held nav)
 
@@ -27,11 +37,11 @@
 )
 
 (deflayer default
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  @tab q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @cap a    s    d    f    g    h    j    k    l    ;    '    @rtctl
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet @atl           spc            ralt rmet rctl
+  grv  1       2     3     4     5    6     7     8      9     0    -    =    bspc
+  @tab q       w     e     r     t    y     u     i      o     p    [    ]    \
+  @cap @aalt   @ssft @dmet @fctl g    @hctl @jmet @ksft  @lalt ;    '    @rtctl
+  lsft z       x     c     v     b    n     m     ,      .     /    rsft
+  lctl @delmet @atl            spc          ralt  @bsmet rctl
 )
 
 
