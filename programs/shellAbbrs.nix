@@ -105,9 +105,9 @@
   nv = "nvim";
   pc = "pre-commit";
   pd = "podman";
-  pdc = "podman-compose";
-  pdce = "podman-compose exec";
-  pdcr = "podman-compose run";
+  pdc = "podman compose";
+  pdce = "podman compose exec";
+  pdcr = "podman compose run";
   pdk = "podman kill";
   pdps = "podman ps";
   pdpsa = "podman ps -a";
