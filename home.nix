@@ -82,7 +82,7 @@
     livebook
     luarocks
     neofetch
-    nixd # nix lsp
+    # nixd # nix lsp
     nixfmt
     nix-output-monitor
     nnn
@@ -90,7 +90,7 @@
     nushell
     p7zip
     # pipenv
-    pkgs.python311Packages.ipython
+    pkgs.python312Packages.ipython
     # podman
     # podman-compose
     podman-tui

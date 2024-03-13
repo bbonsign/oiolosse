@@ -148,7 +148,7 @@
     inotify-tools
     ncurses
     pciutils
-    python3
+    python312
     qutebrowser
     sqlite
     wget
