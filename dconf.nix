@@ -37,8 +37,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/peripherals/keyboard" = {
-      delay = mkUint32 207;
-      repeat-interval = mkUint32 7;
+      delay = mkUint32 210;
+      repeat-interval = mkUint32 10;
     };
 
     "org/gnome/desktop/peripherals/mouse" = { natural-scroll = false; };

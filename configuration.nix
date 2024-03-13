@@ -52,6 +52,7 @@
   virtualisation = {
     podman = {
       enable = true;
+      extraPackages = [ pkgs.podman-compose ];
       # Create a `docker` alias for podman, to use it as a drop-in replacement
       dockerCompat = true;
       # Required for containers under podman-compose to be able to talk to each other.
@@ -65,7 +66,11 @@
     enable = true;
     keyboards = {
       default = {
-        extraDefCfg = "process-unmapped-keys yes";
+        extraDefCfg = ''
+          process-unmapped-keys  yes
+          log-layer-changes      no
+          linux-dev              /dev/input/event11
+        '';
         config = builtins.readFile ./kanata.kbd;
       };
     };

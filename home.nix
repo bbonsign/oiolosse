@@ -89,10 +89,10 @@
     nodejs
     nushell
     p7zip
-    pipenv
+    # pipenv
     pkgs.python311Packages.ipython
-    podman
-    podman-compose
+    # podman
+    # podman-compose
     podman-tui
     poetry
     ripgrep
