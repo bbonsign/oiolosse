@@ -46,7 +46,7 @@
       };
       homeConfigurations = {
         "bbonsign" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = import nixpkgs { system = system; };
 
           # Specify your home configuration modules here, for example,
           # the path to your home.nix.
@@ -54,7 +54,7 @@
 
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
-          home-manager.extraSpecialArgs = {
+          extraSpecialArgs = {
             inherit nix-index-database home-manager tmux-sessionx;
           };
         };
