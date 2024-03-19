@@ -20,6 +20,7 @@
 
       set -gx PATH "$HOME/.cargo/bin" $PATH
       set -gx PATH "$HOME/go/bin" $PATH
+      set -gx PATH "$HOME/.local/bin" $PATH
 
       set -gx MANPAGER "nvim +Man!"
       set -gx EDITOR "nvim"
