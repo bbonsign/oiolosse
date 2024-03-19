@@ -17,10 +17,12 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, home-manager, nix-index-database, tmux-sessionx, ... }: {
+    inputs@{ nixpkgs, home-manager, nix-index-database, tmux-sessionx, ... }:
+    let system = "x86_64-linux";
+    in {
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          system = system;
           modules = [
             ./configuration.nix
 
@@ -42,6 +44,24 @@
         };
 
       };
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+      homeConfigurations = {
+        "bbonsign" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+
+          # Specify your home configuration modules here, for example,
+          # the path to your home.nix.
+          modules = [ ./home.nix ];
+
+          # Optionally use extraSpecialArgs
+          # to pass through arguments to home.nix
+          home-manager.extraSpecialArgs = {
+            inherit nix-index-database home-manager tmux-sessionx;
+          };
+        };
+
+      };
+      formatter = {
+        x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+      };
     };
 }
