@@ -83,10 +83,11 @@
   gpp = "git push";
   gpsu = "git push --set-upstream origin";
   grpo = "git remote prune origin";
-  gsd = "git stash show -p";
-  gsh = "git stash";
-  gsl = "git stash list";
   gst = "git status";
+  gt = "git stash";
+  gtp = "git stash pop";
+  gtd = "git stash show -p";
+  gtl = "git stash list";
   gtrack = "git checkout --track";
   guntrack = "git rm -r --cached";
   gwt = "git worktree";
