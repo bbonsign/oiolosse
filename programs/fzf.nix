@@ -19,7 +19,7 @@
     # tokyonight colors
     colors = {
       fg = "#c0caf5";
-      bg = "#1a1b26";
+      bg = "-1"; # Default terminal foreground/background color
       hl = "#bb9af7";
       "fg+" = "#c0caf5";
       "bg+" = "#1a1b26";
