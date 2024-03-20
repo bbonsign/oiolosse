@@ -24,16 +24,11 @@
   ":pos" = "poetry shell";
   ":prod" = "export AWS_PROFILE=prod_qlair";
   ":prod_v2" = "export AWS_PROFILE=prod_v2_qlair";
-  ":pwd" = "pwd | pb";
-  ":q" = "clear";
+  ":pwd" = "pwd | wl-copy";
   ":sand" = "export AWS_PROFILE=sandbox";
   ":t" = "tmux attach -t";
-  ":tr" = "toolbox run";
   ":v" = "pipenv";
   ":vr" = "pipenv run";
-  ":vrf" = "pipenv run format";
-  ":vrl" = "pipenv run local";
-  ":vrt" = "pipenv run tests";
   ":vs" = "pipenv shell";
   ":w" = "wezterm";
   ":wr" = "wezterm cli set-tab-title";
@@ -116,13 +111,10 @@
   pipi = "python -m pip install";
   pyhton = "python";
   pyhttp = "python -m http.server";
-  rbmaster = "git rebase master";
   rmimages = "docker rmi (docker images -q -f dangling=true)";
   t = "tmux";
   tp = "trash put";
   venv = "python -m venv";
   weather = "curl wttr.in";
   wlc = "wl-copy";
-  z = "zellij";
-  za = "zellij a";
 }
