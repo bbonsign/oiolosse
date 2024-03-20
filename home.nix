@@ -74,6 +74,7 @@
     gnused
     go
     htop
+    httpie
     jq
     just
     killall
