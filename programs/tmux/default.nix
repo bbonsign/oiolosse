@@ -57,7 +57,10 @@
 
       {
         plugin = tmuxPlugins.resurrect;
-        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+        extraConfig = ''
+          set -g @resurrect-processes     'lazygit man nvim'
+          set -g @resurrect-strategy-nvim 'session'
+        '';
       }
 
       {

@@ -8,6 +8,7 @@
   ":dev" = "export AWS_PROFILE=dev_qlair";
   ":dev_v2" = "export AWS_PROFILE=dev_v2_qlair";
   ":euprod" = "export AWS_PROFILE=prod_qlair_eu";
+  ":euprod_v2" = "export AWS_PROFILE=prod_v2_qlair_eu";
   ":g" = "lazygit";
   ":gb" = "lazygit branch";
   ":gl" = "lazygit log";
