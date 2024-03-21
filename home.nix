@@ -56,7 +56,7 @@
     dnsutils # `dig` + `nslookup`
     duckdb
     duf
-    elixir
+    elixir_1_16
     erlang
     eza
     fd
@@ -80,6 +80,7 @@
     killall
     kitty
     lazygit
+    litecli
     livebook
     luarocks
     neofetch
@@ -92,6 +93,7 @@
     p7zip
     # pipenv
     pkgs.python312Packages.ipython
+    pgcli
     # podman
     # podman-compose
     podman-tui
