@@ -78,6 +78,7 @@
   gp = "git pull";
   gpp = "git push";
   gpsu = "git push --set-upstream origin";
+  gr = "git remote -v";
   grpo = "git remote prune origin";
   gst = "git status";
   gt = "git stash";
