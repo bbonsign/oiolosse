@@ -75,6 +75,7 @@
     go
     htop
     httpie
+    inotify-tools
     jq
     just
     killall
