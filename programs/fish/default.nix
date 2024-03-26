@@ -15,6 +15,10 @@
       set fish_greeting # Disable greeting
       source ~/.config/fish/colors/fish_tokyonight_night.fish
 
+      function jwt-decode
+         echo  $argv[1] |    jq -R 'split(".") |.[0:2] | map(@base64d) | map(fromjson)'
+      end
+
       # bgcolor of the current tab completion selection
       set fish_color_search_match --background=4b719c
 
@@ -25,6 +29,7 @@
       set -gx MANPAGER "nvim +Man!"
       set -gx EDITOR "nvim"
       set -gx VISUAL "nvim"
+      set -gx FZF_CTRL_T_COMMAND "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'"
 
       fzf_configure_bindings
       set -gx fzf_preview_dir_cmd 'eza --long --all --color=always'
