@@ -3,6 +3,8 @@
 {
   programs.fzf = {
     enable = true;
+    defaultCommand =
+      "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
     defaultOptions = [
       "--ansi"
       "--cycle"
