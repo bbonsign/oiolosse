@@ -82,7 +82,7 @@
     kitty
     lazygit
     litecli
-    livebook
+    # livebook
     luarocks
     neofetch
     # nixd # nix lsp
@@ -92,6 +92,7 @@
     nodejs
     nushell
     p7zip
+    pkgs.nodePackages.pnpm
     # pipenv
     pkgs.python312Packages.ipython
     pgcli
@@ -113,6 +114,7 @@
     which
     wl-clipboard
     xz
+    yarn
     yq-go # yaml processer https://github.com/mikefarah/yq
     zellij
     # zig
