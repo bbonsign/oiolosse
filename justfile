@@ -12,5 +12,5 @@ switch:
 update:
   nix flake update
 
-hm:
-  NIXPKGS_ALLOW_UNFREE=1 nix run home-manager -- --flake . --impure switch
+hm cmd="switch":
+  NIXPKGS_ALLOW_UNFREE=1 nix run home-manager -- --flake . --impure {{cmd}}
