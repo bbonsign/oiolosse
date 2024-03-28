@@ -17,6 +17,8 @@
           pager = "delta --dark --paging=never --no-gitconfig";
         };
 
+        autoFetch = false;
+
         os.editPreset = "nvim";
 
       };
