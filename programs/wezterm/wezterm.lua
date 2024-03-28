@@ -18,7 +18,7 @@ local config = {
   window_background_opacity = 0.70,
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
-
+  warn_about_missing_glyphs = false,
   window_decorations = 'RESIZE',
   inactive_pane_hsb = {
     saturation = 0.8,
