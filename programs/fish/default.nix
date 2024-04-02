@@ -31,6 +31,8 @@
       set -gx VISUAL "nvim"
       set -gx FZF_CTRL_T_COMMAND "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'"
 
+      set -gx ERL_AFLAGS "-kernel shell_history enabled -kernel shell_history_file_bytes 1024000"
+
       fzf_configure_bindings
       set -gx fzf_preview_dir_cmd 'eza --long --all --color=always'
     '';
