@@ -1,8 +1,6 @@
 alias IO.ANSI
 
-IO.puts(
-  "#{ANSI.blue()}  #{ANSI.magenta()}   Welcome to Elixir   #{ANSI.blue()}  #{ANSI.reset()}\n"
-)
+IO.puts("#{ANSI.blue()}  #{ANSI.magenta()}  Elixir IEx #{ANSI.blue()}  #{ANSI.reset()}\n")
 
 # Editor to open code in using `open` function
 System.put_env("ELIXIR_EDITOR", "kitty --execute #{System.fetch_env!("EDITOR")} __FILE__ &")
@@ -32,7 +30,7 @@ IEx.configure(
       "#{ANSI.cyan()}%counter#{ANSI.reset()}]",
   alive_prompt:
     "#{ANSI.green()}%prefix#{ANSI.reset()}" <>
-      "(#{ANSI.yellow()}%node#{ANSI.reset()}) " <>
+      "(#{ANSI.yellow()}%node#{ANSI.reset()})" <>
       "[#{ANSI.magenta()}#{ANSI.reset()}" <>
       "#{ANSI.cyan()}%counter#{ANSI.reset()}]",
   history_size: 200,
