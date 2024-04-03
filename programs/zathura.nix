@@ -4,6 +4,7 @@
   programs.zathura = {
     enable = true;
     options = {
+      selection-clipboard = "clipboard";
       # Tokyonight color theme for Zathura
       # Swaps Foreground for Background to get a light version if the user prefers
       #
