@@ -3,7 +3,7 @@ alias IO.ANSI
 IO.puts("#{ANSI.blue()}  #{ANSI.magenta()}  Elixir IEx #{ANSI.blue()}  #{ANSI.reset()}\n")
 
 # Editor to open code in using `open` function
-System.put_env("ELIXIR_EDITOR", "kitty --execute #{System.fetch_env!("EDITOR")} __FILE__ &")
+System.put_env("ELIXIR_EDITOR", "wezterm start #{System.fetch_env!("EDITOR")} __FILE__ &")
 
 # Prevent dbg() from adding a breakpoint and dropping into pry
 Application.put_env(:elixir, :dbg_callback, {Macro, :dbg, []})
