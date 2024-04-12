@@ -74,6 +74,7 @@
   gll = "git log --graph --oneline --abbrev-commit --decorate --all";
   glog = "git log --oneline";
   gm = "git merge";
+  gma = "git merge --abort";
   gmm = "git merge main";
   gnew = "git checkout -b";
   gp = "git pull";
