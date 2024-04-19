@@ -35,7 +35,7 @@ IEx.configure(
       "#{ANSI.cyan()}%counter#{ANSI.reset()}]",
   history_size: 200,
   inspect: [
-    charlists: :as_lists,
+    # charlists: :as_strings,
     pretty: true,
     limit: 50,
     width: 80
