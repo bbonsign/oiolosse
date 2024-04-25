@@ -66,6 +66,8 @@
   gcm = "git commit -m";
   gcp = "git cherry-pick";
   gd = "git diff";
+  gdm =
+    "git diff --numstat main HEAD | fzf -0 --preview-window='bottom' --preview='git diff --color main -- {3} HEAD -- {3} | delta --file-style=omit --width=$FZF_PREVIEW_COLUMNS'";
   gdel = "git branch -d";
   gds = "git diff --staged";
   gf = "git fetch";
