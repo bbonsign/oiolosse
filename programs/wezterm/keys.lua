@@ -106,7 +106,6 @@ for i = 1, 9 do
 end
 
 return {
-  debug_key_events = true,
   -- timeout_milliseconds defaults to 1000 and can be omitted
   leader = { key = 'x', mods = 'CTRL', timeout_milliseconds = 1000 },
   keys = keys,
@@ -196,4 +195,5 @@ return {
       { key = 'Escape', action = 'PopKeyTable' },
     },
   },
+	debug_key_events = false,
 }
