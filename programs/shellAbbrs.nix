@@ -23,6 +23,8 @@
   ":pos" = "poetry shell";
   ":prod" = "export AWS_PROFILE=prod_qlair";
   ":pwd" = "pwd | wl-copy";
+  ":r" = "rpm-ostree";
+  ":rs" = "rpm-ostree status";
   ":sand" = "export AWS_PROFILE=sandbox";
   ":t" = "tmux attach -t";
   ":v" = "pipenv";
