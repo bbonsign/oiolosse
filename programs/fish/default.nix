@@ -35,6 +35,9 @@
 
       fzf_configure_bindings
       set -gx fzf_preview_dir_cmd 'eza --long --all --color=always'
+
+      # disable built-in binding for appending pipe into less
+      bind --erase --preset  \ep
     '';
 
     plugins = [{

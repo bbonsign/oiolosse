@@ -6,7 +6,7 @@
   ":cm" = "cmatrix -absCcyan";
   ":cwd" = "pwd | pbcopy";
   ":dev" = "export AWS_PROFILE=dev_qlair";
-  ":euprod_v2" = "export AWS_PROFILE=prod_qlair_eu";
+  ":euprod" = "export AWS_PROFILE=prod_qlair_eu";
   ":g" = "lazygit";
   ":gb" = "lazygit branch";
   ":gl" = "lazygit log";
@@ -40,6 +40,7 @@
   covlet =
     "pandoc --pdf-engine=xelatex --template=moderncv.tex source/letter.md -o output/coverletter-(git rev-parse --abbrev-ref HEAD).pdf";
   d = "docker";
+  dbx = "distrobox";
   dc = "docker compose";
   dce = "docker compose exec";
   dcr = "docker compose run";
