@@ -8,7 +8,7 @@
   ./kitty
   ./lazygit.nix
   ./neovim
-  ./nushell.nix
+  ./nushell
   ./starship.nix
   ./tmux
   ./wezterm
