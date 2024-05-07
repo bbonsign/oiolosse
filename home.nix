@@ -46,6 +46,7 @@
     bat
     bazecor
     bottom
+    carapace
     cargo
     chezmoi
     chromium
