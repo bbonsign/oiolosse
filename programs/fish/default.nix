@@ -22,9 +22,9 @@
       # bgcolor of the current tab completion selection
       set fish_color_search_match --background=4b719c
 
-      set -gx PATH "$HOME/.cargo/bin" $PATH
-      set -gx PATH "$HOME/go/bin" $PATH
-      set -gx PATH "$HOME/.local/bin" $PATH
+      set -gx PATH $PATH "$HOME/.cargo/bin" 
+      set -gx PATH $PATH "$HOME/go/bin"
+      # set -gx PATH "$HOME/.local/bin" $PATH
 
       set -gx MANPAGER "nvim +Man!"
       set -gx EDITOR "nvim"
@@ -38,6 +38,9 @@
 
       # disable built-in binding for appending pipe into less
       bind --erase --preset  \ep
+
+      # open line in $EDITOR
+      bind \co edit_command_buffer
     '';
 
     plugins = [{
