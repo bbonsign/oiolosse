@@ -1,5 +1,6 @@
 [
   ./bash.nix
+  ./carapace.nix
   ./direnv.nix
   ./fish
   ./fzf.nix
