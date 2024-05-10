@@ -22,6 +22,8 @@
       enabled_layouts = "tall, fat, stack, splits";
       inactive_text_alpha = "0.55";
 
+      # shell = "nu";
+
       tab_bar_edge = "top";
       tab_bar_style = "custom";
       tab_title_template = ''
@@ -35,7 +37,6 @@
       confirm_os_window_close = 1;
     };
     keybindings = {
-
       "ctrl+x>ctrl+x" = "send_text all u0018";
       "ctrl+c" = " copy_or_interrupt";
       "kitty_mod+v" = " paste_from_clipboard";

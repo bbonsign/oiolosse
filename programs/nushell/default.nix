@@ -3,7 +3,7 @@
 
   programs.nushell = {
     enable = true;
-    shellAliases = import ../shellAliases.nix;
+    shellAliases = (import ../shellAliases.nix) // (import ../shellAbbrs.nix);
     envFile.source = ./env.nu;
     configFile.source = ./config.nu;
     loginFile = {

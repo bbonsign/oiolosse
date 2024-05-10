@@ -11,6 +11,7 @@
     prefix = "C-Space";
     sensibleOnTop = true;
     shell = "${pkgs.fish}/bin/fish";
+    # shell = "${pkgs.nushell}/bin/nu";
     terminal = "tmux-256color";
     extraConfig = builtins.readFile ./tmux.conf;
 

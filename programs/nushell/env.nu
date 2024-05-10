@@ -40,6 +40,10 @@ $env.PATH = ($env.PATH | split row (char esep) | append '$env.HOME/.nix-profile/
 $env.PATH = ($env.PATH | split row (char esep) | append '/etc/profiles/per-user/$env.USER/bin')
 $env.PATH = ($env.PATH | split row (char esep) | append '/run/current-system/sw/bin')
 $env.PATH = ($env.PATH | split row (char esep) | append '/nix/var/nix/profiles/default/bin')
+$env.PATH = ($env.PATH | split row (char esep) | append '/var/home/bbonsign/.local/bin')
+
+$env.MANPAGER =  'nvim +Man!'
+
 $env.NIXPKGS_ALLOW_UNFREE = 1
 
 # Set up carapace: https://carapace-sh.github.io/carapace-bin/setup.html#nushell

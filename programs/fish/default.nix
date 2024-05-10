@@ -9,7 +9,14 @@
     enable = true;
 
     # shellAliases = import ./shellAliases.nix;
-    shellAbbrs = import ../shellAbbrs.nix;
+    shellAbbrs = import ../shellAbbrs.nix // {
+      ":dev" = "export AWS_PROFILE=dev_qlair";
+      ":euprod" = "export AWS_PROFILE=prod_qlair_eu";
+      ":loc" = "export AWS_PROFILE=local";
+      ":prod" = "export AWS_PROFILE=prod_qlair";
+      ":sand" = "export AWS_PROFILE=sandbox";
+
+    };
 
     interactiveShellInit = ''
       set fish_greeting # Disable greeting

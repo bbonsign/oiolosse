@@ -1,12 +1,12 @@
 {
   ":b" = "cd -";
   ":bin" = "cd ~/.local/bin";
-  ":bm" = "cd (cat  ~/.bookmarks | fzf )";
-  ":bma" = "pwd >> ~/.bookmarks";
+  # ":bm" = "cd (cat  ~/.bookmarks | fzf )";
+  # ":bma" = "pwd >> ~/.bookmarks";
   ":cm" = "cmatrix -absCcyan";
-  ":cwd" = "pwd | pbcopy";
-  ":dev" = "export AWS_PROFILE=dev_qlair";
-  ":euprod" = "export AWS_PROFILE=prod_qlair_eu";
+  # ":cwd" = "pwd | pbcopy";
+  #  ":dev" = "export AWS_PROFILE=dev_qlair";
+  #  ":euprod" = "export AWS_PROFILE=prod_qlair_eu";
   ":g" = "lazygit";
   ":gb" = "lazygit branch";
   ":gl" = "lazygit log";
@@ -16,16 +16,16 @@
   ":ke" = "kitty +edit-config";
   ":ld" = "l --only-dirs";
   ":ln" = "l -s newest";
-  ":loc" = "export AWS_PROFILE=local";
+  #  ":loc" = "export AWS_PROFILE=local";
   ":nf" = "neofetch";
   ":po" = "poetry";
   ":por" = "poetry run";
   ":pos" = "poetry shell";
-  ":prod" = "export AWS_PROFILE=prod_qlair";
-  ":pwd" = "pwd | wl-copy";
+  #  ":prod" = "export AWS_PROFILE=prod_qlair";
+  # ":pwd" = "pwd | wl-copy";
   ":r" = "rpm-ostree";
   ":rs" = "rpm-ostree status";
-  ":sand" = "export AWS_PROFILE=sandbox";
+  #  ":sand" = "export AWS_PROFILE=sandbox";
   ":t" = "tmux attach -t";
   ":v" = "pipenv";
   ":vr" = "pipenv run";
@@ -37,8 +37,6 @@
   cl = "clear";
   cleancontainers = "docker rm -v (docker ps -a -q -f status=exited)";
   cleanimages = "docker rmi (docker images -q -f dangling=true)";
-  covlet =
-    "pandoc --pdf-engine=xelatex --template=moderncv.tex source/letter.md -o output/coverletter-(git rev-parse --abbrev-ref HEAD).pdf";
   d = "docker";
   dbx = "distrobox";
   dc = "docker compose";
@@ -47,7 +45,6 @@
   dk = "docker kill";
   dps = "docker ps";
   dpsa = "docker ps -a";
-  dud = "du -sh * | sort -rh";
   e = "nvim";
   fsh = "flatpak-spawn --host";
   g = "git";
@@ -66,8 +63,8 @@
   gcm = "git commit -m";
   gcp = "git cherry-pick";
   gd = "git diff";
-  gdm =
-    "git diff --numstat main HEAD | fzf -0 --preview-window='bottom' --preview='git diff --color main -- {3} HEAD -- {3} | delta --file-style=omit --width=$FZF_PREVIEW_COLUMNS'";
+  # gdm =
+  # "git diff --numstat main HEAD | fzf -0 --preview-window='bottom' --preview='git diff --color main -- {3} HEAD -- {3} | delta --file-style=omit --width=$FZF_PREVIEW_COLUMNS'";
   gdel = "git branch -d";
   gds = "git diff --staged";
   gf = "git fetch";
@@ -101,11 +98,10 @@
   lg = "l --git";
   lgg = "l --grid";
   m = "mix";
-  moon = "curl wttr.in/moon";
+  # moon = "curl wttr.in/moon";
   myip = "curl ifconfig.co";
   n = "nnn";
   nv = "nvim";
-  pc = "pre-commit";
   pd = "podman";
   pdc = "podman compose";
   pdce = "podman compose exec";
@@ -120,7 +116,7 @@
   rmimages = "docker rmi (docker images -q -f dangling=true)";
   t = "tmux";
   tp = "trash put";
-  venv = "python -m venv";
-  weather = "curl wttr.in";
+  # venv = "python -m venv";
+  # weather = "curl wttr.in";
   wlc = "wl-copy";
 }
