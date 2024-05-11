@@ -129,13 +129,15 @@
   users.users.bbonsign = {
     isNormalUser = true;
     description = "Brian Bonsignore";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     # packages = with pkgs; [   ];
   };
   users.defaultUserShell = pkgs.fish;
 
-  fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
+  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -193,5 +195,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }

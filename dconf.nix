@@ -10,16 +10,22 @@ with lib.hm.gvariant;
       color-shading-type = "solid";
       picture-options = "zoom";
       picture-uri = "file://${./wallpapers/stsci-h-p1821a-m-1699x2000.png}";
-      picture-uri-dark =
-        "file://${./wallpapers/stsci-h-p1821a-m-1699x2000.png}";
+      picture-uri-dark = "file://${./wallpapers/stsci-h-p1821a-m-1699x2000.png}";
       primary-color = "#000000000000";
       secondary-color = "#000000000000";
     };
 
-    "org/gnome/desktop/calendar" = { show-weekdate = true; };
+    "org/gnome/desktop/calendar" = {
+      show-weekdate = true;
+    };
 
     "org/gnome/desktop/input-sources" = {
-      sources = [ (mkTuple [ "xkb" "us" ]) ];
+      sources = [
+        (mkTuple [
+          "xkb"
+          "us"
+        ])
+      ];
       xkb-options = [ "terminate:ctrl_alt_bksp" ];
     };
 
@@ -41,7 +47,9 @@ with lib.hm.gvariant;
       repeat-interval = mkUint32 10;
     };
 
-    "org/gnome/desktop/peripherals/mouse" = { natural-scroll = false; };
+    "org/gnome/desktop/peripherals/mouse" = {
+      natural-scroll = false;
+    };
 
     "org/gnome/desktop/peripherals/touchpad" = {
       natural-scroll = false;
@@ -117,7 +125,9 @@ with lib.hm.gvariant;
       toggle-tiled-right = [ "<Super>l" ];
     };
 
-    "org/gnome/nautilus/icon-view" = { default-zoom-level = "small"; };
+    "org/gnome/nautilus/icon-view" = {
+      default-zoom-level = "small";
+    };
 
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
@@ -132,12 +142,11 @@ with lib.hm.gvariant;
       www = [ "<Super>b" ];
     };
 
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
-      {
-        binding = "<Super>Return";
-        command = "kitty";
-        name = "kitty";
-      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      binding = "<Super>Return";
+      command = "kitty";
+      name = "kitty";
+    };
 
     "org/gnome/settings-daemon/plugins/power" = {
       power-button-action = "nothing";
@@ -257,7 +266,8 @@ with lib.hm.gvariant;
     #   ];
     # };
 
-    "org/gnome/tweaks" = { show-extensions-notice = false; };
-
+    "org/gnome/tweaks" = {
+      show-extensions-notice = false;
+    };
   };
 }

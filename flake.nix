@@ -17,9 +17,17 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, home-manager, nix-index-database, tmux-sessionx, ... }:
-    let system = "x86_64-linux";
-    in {
+    inputs@{
+      nixpkgs,
+      home-manager,
+      nix-index-database,
+      tmux-sessionx,
+      ...
+    }:
+    let
+      system = "x86_64-linux";
+    in
+    {
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           system = system;
@@ -42,7 +50,6 @@
             }
           ];
         };
-
       };
       homeConfigurations = {
         "bbonsign" = home-manager.lib.homeManagerConfiguration {
@@ -58,10 +65,9 @@
             inherit nix-index-database home-manager tmux-sessionx;
           };
         };
-
       };
       formatter = {
-        x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+        x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
       };
     };
 }

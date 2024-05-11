@@ -1,8 +1,16 @@
-{ config, pkgs, nix-index-database, home-manager, ... }:
+{
+  config,
+  pkgs,
+  nix-index-database,
+  home-manager,
+  ...
+}:
 
 {
-  imports = builtins.concatMap import [ ./programs ]
-    ++ [ nix-index-database.hmModules.nix-index ./dconf.nix ];
+  imports = builtins.concatMap import [ ./programs ] ++ [
+    nix-index-database.hmModules.nix-index
+    ./dconf.nix
+  ];
 
   home.username = "bbonsign";
   home.homeDirectory = "/home/bbonsign";
@@ -130,5 +138,4 @@
   # the home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "22.11";
-
 }

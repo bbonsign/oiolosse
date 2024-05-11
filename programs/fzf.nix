@@ -3,8 +3,7 @@
 {
   programs.fzf = {
     enable = true;
-    defaultCommand =
-      "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
+    defaultCommand = "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
     defaultOptions = [
       "--ansi"
       "--cycle"
@@ -32,7 +31,6 @@
       marker = "#9ece6a";
       spinner = "#9ece6a";
       header = "#9ece6a";
-
     };
     tmux.enableShellIntegration = true;
   };

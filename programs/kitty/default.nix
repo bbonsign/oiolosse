@@ -121,8 +121,7 @@
 
       "ctrl+x>/>h" = "kitten hints --type hash --program -";
 
-      "ctrl+x>/>n" =
-        "kitten hints --type=linenum --linenum-action=self /usr/local/bin/nvim +{line} {path}";
+      "ctrl+x>/>n" = "kitten hints --type=linenum --linenum-action=self /usr/local/bin/nvim +{line} {path}";
 
       "kitty_mod+escape" = "kitty_shell window";
       "ctrl+x>backspace" = "kitty_shell window";

@@ -2,8 +2,7 @@
 
 {
 
-  home.file.".config/fish/colors/fish_tokyonight_night.fish".source =
-    ./fish_tokyonight_night.fish;
+  home.file.".config/fish/colors/fish_tokyonight_night.fish".source = ./fish_tokyonight_night.fish;
 
   programs.fish = {
     enable = true;
@@ -15,7 +14,6 @@
       ":loc" = "export AWS_PROFILE=local";
       ":prod" = "export AWS_PROFILE=prod_qlair";
       ":sand" = "export AWS_PROFILE=sandbox";
-
     };
 
     interactiveShellInit = ''
@@ -50,14 +48,16 @@
       bind \co edit_command_buffer
     '';
 
-    plugins = [{
-      name = "fzf";
-      src = pkgs.fetchFromGitHub {
-        owner = "oddlama";
-        repo = "fzf.fish";
-        rev = "6331eedaf680323dd5a2e2f7fba37a1bc89d6564";
-        sha256 = "sha256-BO+KFvHdbBz7SRA6EuOk2dEC8zORsCH9V04dHhJ6gxw=";
-      };
-    }];
+    plugins = [
+      {
+        name = "fzf";
+        src = pkgs.fetchFromGitHub {
+          owner = "oddlama";
+          repo = "fzf.fish";
+          rev = "6331eedaf680323dd5a2e2f7fba37a1bc89d6564";
+          sha256 = "sha256-BO+KFvHdbBz7SRA6EuOk2dEC8zORsCH9V04dHhJ6gxw=";
+        };
+      }
+    ];
   };
 }

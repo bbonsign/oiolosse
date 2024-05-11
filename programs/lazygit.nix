@@ -9,7 +9,12 @@
       gui = {
         nerdFontsVersion = "3";
         sidePanelWidth = 0.25;
-        theme = { selectedLineBgColor = [ "black" "bold" ]; };
+        theme = {
+          selectedLineBgColor = [
+            "black"
+            "bold"
+          ];
+        };
       };
       git = {
         paging = {
@@ -20,14 +25,12 @@
         autoFetch = false;
 
         os.editPreset = "nvim";
-
       };
       keybinding = {
         universal = {
           quit = "q";
           quit-alt1 = "<c-c>"; # alternative/alias of quit
-          return =
-            "<esc>"; # return to previous menu, will quit if there"s nowhere to return;
+          return = "<esc>"; # return to previous menu, will quit if there"s nowhere to return;
           quitWithoutChangingDirectory = "Q";
           togglePanel = "<tab>"; # goto the next panel;
           prevItem = "<up>"; # go one line up;
@@ -44,7 +47,13 @@
           nextBlock = "<right>"; # goto the next block / panel;
           prevBlock-alt = "K"; # goto the previous block / panel;
           nextBlock-alt = "J"; # goto the next block / panel;
-          jumpToBlock = [ "1" "2" "3" "4" "5" ]; # goto the Nth block / panel;
+          jumpToBlock = [
+            "1"
+            "2"
+            "3"
+            "4"
+            "5"
+          ]; # goto the Nth block / panel;
           nextMatch = "n";
           prevMatch = "N";
           optionMenu = "?"; # show help menu;
@@ -94,8 +103,7 @@
         };
         files = {
           commitChanges = "c";
-          commitChangesWithoutHook =
-            "w"; # commit changes without pre-commit hook;
+          commitChangesWithoutHook = "w"; # commit changes without pre-commit hook;
           amendLastCommit = "A";
           commitChangesWithEditor = "C";
           findBaseCommitForFixup = "<c-f>";
@@ -153,7 +161,9 @@
           popStash = "<c-p>";
           renameStash = "r";
         };
-        commitFiles = { checkoutCommitFile = "c"; };
+        commitFiles = {
+          checkoutCommitFile = "c";
+        };
         main = {
           toggleSelectHunk = "a";
           pickBothHunks = "b";
@@ -163,7 +173,9 @@
           update = "u";
           bulkMenu = "b";
         };
-        commitMessage = { commitMenu = "<c-o>"; };
+        commitMessage = {
+          commitMenu = "<c-o>";
+        };
         amendAttribute = {
           addCoAuthor = "c";
           resetAuthor = "a";

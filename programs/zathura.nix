@@ -43,8 +43,6 @@
       #
       recolor-lightcolor = "#1a1b26";
       recolor-darkcolor = "#c0caf5";
-
     };
   };
 }
-

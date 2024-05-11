@@ -69,49 +69,49 @@ $env.config = {
     },
 
     # https://github.com/nushell/nushell/issues/5552#issuecomment-2077047961
-    keybindings: [
-        {
-            name: abbr_menu
-            modifier: none
-            keycode: enter
-            mode: [emacs, vi_normal, vi_insert]
-            event: [
-              { send: menu name: abbr_menu }
-              { send: enter }
-            ]
-        }
-        {
-            name: abbr_menu
-            modifier: none
-            keycode: space
-            mode: [emacs, vi_normal, vi_insert]
-            event: [
-              { send: menu name: abbr_menu }
-              { edit: insertchar value: ' '}
-            ]
-        }
-    ]
+    # keybindings: [
+    #     {
+    #         name: abbr_menu
+    #         modifier: none
+    #         keycode: enter
+    #         mode: [emacs, vi_normal, vi_insert]
+    #         event: [
+    #           { send: menu name: abbr_menu }
+    #           { send: enter }
+    #         ]
+    #     }
+    #     {
+    #         name: abbr_menu
+    #         modifier: none
+    #         keycode: space
+    #         mode: [emacs, vi_normal, vi_insert]
+    #         event: [
+    #           { send: menu name: abbr_menu }
+    #           { edit: insertchar value: ' '}
+    #         ]
+    #     }
+    # ]
 
-    menus: [
-        {
-            name: abbr_menu
-            only_buffer_difference: false
-            marker: none
-            type: {
-                layout: columnar
-                    columns: 1
-                    col_width: 20
-                    col_padding: 2
-            }
-            style: {
-                text: green
-                selected_text: green_reverse
-                description_text: yellow
-            }
-            source: { |buffer, position|
-                        let match = (scope aliases | where name == $buffer)
-                        if ($match | is-empty) { {value: $buffer} } else { $match | each { {value: ($in.expansion) }} }
-                   }
-        }
-    ]
+    # menus: [
+    #     {
+    #         name: abbr_menu
+    #         only_buffer_difference: false
+    #         marker: none
+    #         type: {
+    #             layout: columnar
+    #                 columns: 1
+    #                 col_width: 20
+    #                 col_padding: 2
+    #         }
+    #         style: {
+    #             text: green
+    #             selected_text: green_reverse
+    #             description_text: yellow
+    #         }
+    #         source: { |buffer, position|
+    #                     let match = (scope aliases | where name == $buffer)
+    #                     if ($match | is-empty) { {value: $buffer} } else { $match | each { {value: ($in.expansion) }} }
+    #                }
+    #     }
+    # ]
 }

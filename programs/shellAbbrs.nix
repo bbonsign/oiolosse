@@ -54,8 +54,7 @@
   gb = "git branch";
   gba = "git branch -a";
   gbm = "git branch --merged";
-  gbsu =
-    "git branch --set-upstream-to origin/(git rev-parse --abbrev-ref HEAD)";
+  gbsu = "git branch --set-upstream-to origin/(git rev-parse --abbrev-ref HEAD)";
   gc = "git commit";
   gca = "git commit --amend";
   gcb = "git clone-bare";
@@ -68,8 +67,7 @@
   gdel = "git branch -d";
   gds = "git diff --staged";
   gf = "git fetch";
-  gl =
-    "git log --oneline -n 40 --date=short --boundary --pretty=format:'%Cgreen%ad %C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cblue[%aN]%Creset %Cblue'";
+  gl = "git log --oneline -n 40 --date=short --boundary --pretty=format:'%Cgreen%ad %C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cblue[%aN]%Creset %Cblue'";
   gll = "git log --graph --oneline --abbrev-commit --decorate --all";
   glog = "git log --oneline";
   gm = "git merge";
