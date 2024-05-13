@@ -4,5 +4,6 @@
   programs.carapace = {
     enable = true;
     enableFishIntegration = false;
+    # enableNushellIntegration = false;
   };
 }

@@ -14,6 +14,7 @@
       ":loc" = "export AWS_PROFILE=local";
       ":prod" = "export AWS_PROFILE=prod_qlair";
       ":sand" = "export AWS_PROFILE=sandbox";
+      g = "git";
     };
 
     interactiveShellInit = ''

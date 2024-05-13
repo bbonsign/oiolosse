@@ -26,9 +26,9 @@ let external_completer = {|spans|
 
     match $spans.0 {
         # carapace completions are incorrect for nu
-        nu => $fish_completer
+        # nu => $fish_completer
         # fish completes commits and branch names in a nicer way
-        git => $fish_completer
+        # git => $fish_completer
         # carapace doesn't have completions for asdf
         asdf => $fish_completer
         _ => $carapace_completer
@@ -57,12 +57,12 @@ $env.config = {
     # aka, show the nushell start message
     # show_banner: false,
 
-    #completions: {
-    #    external: {
-    #        enable: true
-    #        completer: $external_completer
-    #    }
-    #},
+    # completions: {
+    #     external: {
+    #         enable: true
+    #         completer: $external_completer
+    #     }
+    # },
 
     cursor_shape: {
         emacs: inherit # block, underscore, line (line is the default)

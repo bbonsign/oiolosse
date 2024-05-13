@@ -32,7 +32,7 @@
       shlvl = {
         disabled = false;
         symbol = "";
-        threshold = 1;
+        threshold = 2;
         format = "($shlvl) ";
       };
       time = {
