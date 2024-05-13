@@ -35,21 +35,23 @@ let external_completer = {|spans|
     } | do $in $spans
 }
 
+# Set up carapace: https://carapace-sh.github.io/carapace-bin/setup.html#nushell
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+# mkdir ~/.cache/carapace
+# carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
 
-$env.PATH = ($env.PATH | split row (char esep) | append '$env.HOME/.nix-profile/bin')
-$env.PATH = ($env.PATH | split row (char esep) | append '/etc/profiles/per-user/$env.USER/bin')
-$env.PATH = ($env.PATH | split row (char esep) | append '/run/current-system/sw/bin')
-$env.PATH = ($env.PATH | split row (char esep) | append '/nix/var/nix/profiles/default/bin')
-$env.PATH = ($env.PATH | split row (char esep) | append '/var/home/bbonsign/.local/bin')
+
+$env.PATH = ($env.PATH | split row (char esep) 
+    | append ($env.HOME | path join .nix-profile bin)
+    | append '/etc/profiles/per-user/$env.USER/bin'
+    | append '/run/current-system/sw/bin'
+    | append '/nix/var/nix/profiles/default/bin'
+    | append ($env.HOME | path join .local bin)
+    | uniq)
 
 $env.MANPAGER =  'nvim +Man!'
 
 $env.NIXPKGS_ALLOW_UNFREE = 1
-
-# Set up carapace: https://carapace-sh.github.io/carapace-bin/setup.html#nushell
-$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
-mkdir ~/.cache/carapace
-carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
 
 $env.config = {
     # aka, show the nushell start message
