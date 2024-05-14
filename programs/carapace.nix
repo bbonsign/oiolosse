@@ -3,7 +3,7 @@
 {
   programs.carapace = {
     enable = true;
-    enableFishIntegration = false;
+    # enableFishIntegration = false;
     # enableNushellIntegration = false;
   };
 }

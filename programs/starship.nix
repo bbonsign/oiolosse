@@ -27,6 +27,10 @@
       line_break.disabled = false;
       lua.symbol = " ";
       python.symbol = " ";
+      rlang = {
+        symbol = "  ";
+        style = "blue bold";
+      };
       rust.symbol = " ";
       shell.disabled = false;
       shlvl = {
