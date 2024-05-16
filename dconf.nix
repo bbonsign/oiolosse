@@ -26,7 +26,10 @@ with lib.hm.gvariant;
           "us"
         ])
       ];
-      xkb-options = [ "terminate:ctrl_alt_bksp" ];
+      xkb-options = [
+        "terminate:ctrl_alt_bksp"
+        "ctrl:nocaps"
+      ];
     };
 
     "org/gnome/desktop/interface" = {
@@ -144,8 +147,8 @@ with lib.hm.gvariant;
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>Return";
-      command = "kitty";
-      name = "kitty";
+      command = "/var/home/bbonsign/.local/bin/kitty";
+      name = "terminal";
     };
 
     "org/gnome/settings-daemon/plugins/power" = {
@@ -158,6 +161,10 @@ with lib.hm.gvariant;
 
     "org/gnome/shell/extensions/auto-move-windows" = {
       application-list = [ "firefox.desktop:1" ];
+    };
+
+    "org/gnome/shell/extensions/Logo-menu" = {
+      menu-button-terminal = "/var/home/bbonsign/.local/bin/kitty";
     };
 
     "org/gnome/shell/keybindings" = {
