@@ -89,6 +89,7 @@
   gwta = "git worktree add";
   gwtl = "git worktree list";
   gwtr = "git worktree remove";
+  h = "help";
   ipy = "ipython";
   j = "just";
   jz = "just --choose";
