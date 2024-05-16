@@ -1,5 +1,6 @@
 source ~/.cache/carapace/init.nu
 
+
 $env.config = {
     # aka, show the nushell start message
     # show_banner: false,
@@ -11,10 +12,12 @@ $env.config = {
     #     }
     # },
 
+    history: {max_size: 10000},
+
     cursor_shape: {
-        emacs: inherit # block, underscore, line (line is the default)
-            vi_insert: inherit # block, underscore, line (block is the default)
-            vi_normal: inherit # block, underscore, line  (underscore is the default)
+        emacs: inherit      # block, underscore, line (line is the default)
+        vi_insert: line     # block, underscore, line (block is the default)
+        vi_normal: block    # block, underscore, line (underscore is the default)
     },
 
     # https://github.com/nushell/nushell/issues/5552#issuecomment-2077047961
@@ -28,7 +31,22 @@ $env.config = {
           { send: menu name: abbr_menu }
           { edit: insertchar, value: ' '}
         ]
-      }
+      },
+      # {
+      #   name: fzf_tmux
+      #   modifier: control
+      #   keycode: char_t
+      #   mode: emacs
+      #   event: [
+      #     {
+      #       edit: InsertString,
+      #       value: "fzf-tmux"
+      #     },
+      #     # {
+      #     #   send: Enter
+      #     # }
+      #   ]
+      # }
     ],
 
     menus: [
