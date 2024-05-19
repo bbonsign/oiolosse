@@ -32,6 +32,16 @@ $env.config = {
           { edit: insertchar, value: ' '}
         ]
       },
+      {
+        name: fuzzy_file
+        modifier: control
+        keycode: char_t
+        mode: emacs
+        event: {
+          send: executehostcommand
+          cmd: "commandline edit --insert (fzf --layout=reverse)"
+        }
+      }
       # {
       #   name: fzf_tmux
       #   modifier: control
