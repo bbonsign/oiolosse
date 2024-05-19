@@ -54,6 +54,7 @@
     bat
     bazecor
     bottom
+    broot
     cargo
     chezmoi
     chromium
@@ -125,8 +126,9 @@
     yarn
     yq-go # yaml processer https://github.com/mikefarah/yq
     zellij
-    # zig
+    zig
     zip
+    zls # zig language server
   ];
 
   # This value determines the home Manager release that your
