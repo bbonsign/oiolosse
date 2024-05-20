@@ -31,7 +31,6 @@
       set -gx PATH $PATH "$HOME/.cargo/bin" 
       set -gx PATH $PATH "$HOME/go/bin"
       set -gx PATH "$HOME/.local/bin" $PATH
-      set -gx PATH "$HOME/.local/bin/nvim-linux64/bin" $PATH
 
       set -gx MANPAGER "nvim +Man!"
       set -gx EDITOR "nvim"
