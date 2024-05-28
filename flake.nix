@@ -11,9 +11,6 @@
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-
-    tmux-sessionx.url = "github:omerxx/tmux-sessionx";
-    tmux-sessionx.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -21,7 +18,6 @@
       nixpkgs,
       home-manager,
       nix-index-database,
-      tmux-sessionx,
       ...
     }:
     let
@@ -29,43 +25,48 @@
     in
     {
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        mithlond = nixpkgs.lib.nixosSystem {
           system = system;
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
-            ./configuration.nix
+            ./nixos/mithlond/configuration.nix
 
             # make home-manager as a module of nixos
             # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
+
               home-manager.useUserPackages = true;
 
-              home-manager.users.bbonsign = import ./home.nix;
+              home-manager.backupFileExtension = "hmbak";
+              home-manager.users.bbonsign = import ./home-manager/bbonsign/home.nix;
 
               # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
               home-manager.extraSpecialArgs = {
-                inherit nix-index-database home-manager tmux-sessionx;
+                inherit inputs;
               };
             }
           ];
         };
       };
+
       homeConfigurations = {
         "bbonsign" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = system; };
 
-          # Specify your home configuration modules here, for example,
-          # the path to your home.nix.
-          modules = [ ./home.nix ];
+          # Specify your home configuration modules here, for example, the path to your home.nix.
+          modules = [ ./home-manager/bbonsign/home.nix ];
 
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
+          # Optionally use extraSpecialArgs to pass through arguments to home.nix
           extraSpecialArgs = {
-            inherit nix-index-database home-manager tmux-sessionx;
+            inherit inputs;
           };
         };
       };
+
       formatter = {
         x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
       };

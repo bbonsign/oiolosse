@@ -21,7 +21,7 @@
     '';
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "mithlond"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -62,19 +62,19 @@
 
   services.tailscale.enable = true;
 
-  services.kanata = {
-    enable = true;
-    keyboards = {
-      default = {
-        extraDefCfg = ''
-          process-unmapped-keys  yes
-          log-layer-changes      no
-          linux-dev              /dev/input/by-id/usb-Apple_Inc._Apple_Internal_Keyboard___Trackpad_D3H835500E1F-if01-event-kbd
-        '';
-        config = builtins.readFile ./kanata.kbd;
-      };
-    };
-  };
+  # services.kanata = {
+  #   enable = true;
+  #   keyboards = {
+  #     default = {
+  #       extraDefCfg = ''
+  #         process-unmapped-keys  yes
+  #         log-layer-changes      no
+  #         linux-dev              /dev/input/by-id/usb-Apple_Inc._Apple_Internal_Keyboard___Trackpad_D3H835500E1F-if01-event-kbd
+  #       '';
+  #       config = builtins.readFile ./kanata.kbd;
+  #     };
+  #   };
+  # };
 
   # services.postgresql = {
   #   enable = true;
@@ -91,11 +91,25 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.desktopManager.plasma6.enable = true;
+
+  # enable sway window manager
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
+  programs.hyprland.enable = true;
+  # Optional, hint electron apps to use wayland:
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
+    options = "ctrl:no_caps";
   };
 
   # Enable CUPS to print documents.
@@ -146,14 +160,22 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    neovim
+    brightnessctl
+    distrobox
     git
+    grim # screenshot functionality
     inotify-tools
+    mako # notification system developed by swaywm maintainer
     ncurses
+    neovim
     pciutils
     python312
+    rofi-wayland
+    slurp # screenshot functionality
     sqlite
+    waybar
     wget
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
   ];
 
   # https://nix-community.github.io/home-manager/options.html#opt-programs.zsh.enableCompletion

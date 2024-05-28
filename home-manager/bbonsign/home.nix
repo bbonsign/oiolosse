@@ -1,15 +1,14 @@
 {
   config,
   pkgs,
-  nix-index-database,
-  home-manager,
+  inputs,
   ...
 }:
 
 {
   imports = builtins.concatMap import [ ./programs ] ++ [
-    nix-index-database.hmModules.nix-index
     ./dconf.nix
+    inputs.nix-index-database.hmModules.nix-index
   ];
 
   home.username = "bbonsign";
@@ -61,7 +60,6 @@
     cowsay
     delta
     devbox
-    distrobox
     dnsutils # `dig` + `nslookup`
     duckdb
     duf

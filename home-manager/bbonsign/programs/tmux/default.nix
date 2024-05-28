@@ -19,19 +19,6 @@
       tmuxPlugins.sensible
 
       {
-        plugin = tmux-sessionx.packages.${pkgs.system}.default;
-        extraConfig = ''
-          set -g @sessionx-bind 'o'
-          # set -g @sessionx-x-path '~/dotfiles'
-          set -g @sessionx-window-height '85%'
-          set -g @sessionx-window-width '75%'
-          # set -g @sessionx-zoxide-mode 'on'
-          set -g @sessionx-filter-current 'false'
-          set -g @sessionx-preview-enabled 'true'
-        '';
-      }
-
-      {
         plugin = tmuxPlugins.fuzzback;
         extraConfig = ''
           set -g @fuzzback-table tableSearch
