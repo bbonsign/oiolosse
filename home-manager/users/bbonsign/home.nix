@@ -38,7 +38,6 @@
       erlang
       eza
       file
-      firefox
       gcc
       gh # GitHub cli
       glow # markdown previewer in terminal
