@@ -2,7 +2,10 @@
 
 {
   imports =
-    [ ./users/bbonsign/home.nix inputs.nix-index-database.hmModules.nix-index ];
+    [
+      ./users/bbonsign/home.nix
+      inputs.nix-index-database.hmModules.nix-index
+    ];
 
   config = {
     # Let home Manager install and manage itself.

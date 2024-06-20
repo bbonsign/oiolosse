@@ -1,7 +1,10 @@
 { pkgs, ... }:
 
 {
-  imports = [ ../../_mixins/programs ../../_mixins/desktops/gnome ];
+  imports = [
+    ../../_mixins/programs
+    ../../_mixins/desktops/gnome
+  ];
 
   config = {
     home.username = "bbonsign";
@@ -30,7 +33,7 @@
       chromium
       cowsay
       delta
-      devbox
+      # devbox
       dnsutils # `dig` + `nslookup`
       duckdb
       duf
