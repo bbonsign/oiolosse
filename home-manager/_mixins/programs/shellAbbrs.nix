@@ -85,6 +85,7 @@
   gtl = "git stash list";
   gtrack = "git checkout --track";
   guntrack = "git rm -r --cached";
+  gw = "git switch";
   gwt = "git worktree";
   gwta = "git worktree add";
   gwtl = "git worktree list";

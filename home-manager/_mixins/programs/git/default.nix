@@ -46,6 +46,8 @@
 
         unstage = "reset HEAD --";
 
+        w = "switch";
+
         wt = "worktree";
         wta = "worktree add";
         wtl = "worktree list";
