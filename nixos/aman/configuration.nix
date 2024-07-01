@@ -2,16 +2,16 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
+    # Include the results of the hardware scan.
+    # ./hardware-configuration.nix
     ../_mixins/common.nix
     ../_mixins/desktops
     # ../_mixins/services
   ];
 
-  # Set your time zone.
   time.timeZone = "America/New_York";
 
-  networking.hostName = "mithlond"; # Define your hostname.
+  networking.hostName = "aman";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
