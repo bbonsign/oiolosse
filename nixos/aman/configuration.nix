@@ -34,16 +34,6 @@
   services.xserver.desktopManager.gnome.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
-  # enable sway window manager
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
-
-  programs.hyprland.enable = true;
-  # Optional, hint electron apps to use wayland:
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
