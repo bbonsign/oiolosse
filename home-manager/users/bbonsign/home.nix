@@ -23,6 +23,7 @@
 
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
+      asdf-vm
       awscli2
       bat
       bazecor
@@ -65,9 +66,10 @@
       nnn
       nodejs
       p7zip
-      pkgs.nodePackages.pnpm
+      nodePackages.pnpm
       # pipenv
-      pkgs.python312Packages.ipython
+      python39
+      python312Packages.ipython
       pgcli
       # podman
       # podman-compose
