@@ -5,8 +5,8 @@
 
   config = {
     home.packages = with pkgs; [
-      gnome.gnome-tweaks
-      gnome.gnome-themes-extra
+      gnome-tweaks
+      gnome-themes-extra
       # gnomeExtensions.hide-top-bar
       # gnomeExtensions.valent
     ];

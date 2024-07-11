@@ -76,7 +76,7 @@
       # podman-compose
       podman-tui
       poetry
-      qutebrowser
+      # qutebrowser
       ripgrep
       ripgrep
       slack

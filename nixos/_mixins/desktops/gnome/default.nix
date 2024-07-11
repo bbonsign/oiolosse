@@ -11,7 +11,7 @@
 
       systemPackages = with pkgs; [
         eyedropper
-        gnome.gnome-tweaks
+        gnome-tweaks
         gnomeExtensions.appindicator
         gnomeExtensions.dash-to-dock
         gnomeExtensions.removable-drive-menu
