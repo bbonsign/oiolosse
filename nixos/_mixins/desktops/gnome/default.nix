@@ -5,8 +5,8 @@
     environment = {
       gnome.excludePackages = with pkgs; [
         baobab
-        gnome.gnome-system-monitor
-        gnome.epiphany
+        gnome-system-monitor
+        epiphany
       ];
 
       systemPackages = with pkgs; [
