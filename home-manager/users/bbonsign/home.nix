@@ -38,6 +38,7 @@
       dnsutils # `dig` + `nslookup`
       duckdb
       duf
+      beam.packages.erlang_27.erlang
       beam.packages.erlang_27.elixir_1_17
       # elixir_1_16
       # erlang
