@@ -32,6 +32,7 @@
       cargo
       chezmoi
       chromium
+      # copilot-cli # AWS ECS cli 
       cowsay
       delta
       # devbox
@@ -80,6 +81,7 @@
       # qutebrowser
       ripgrep
       ripgrep
+      ssm-session-manager-plugin  # For aws cli
       slack
       tealdeer
       trashy
