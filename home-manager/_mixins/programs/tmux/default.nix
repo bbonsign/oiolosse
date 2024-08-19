@@ -43,6 +43,16 @@
         { plugin = tmuxPlugins.prefix-highlight; }
 
         {
+          plugin = tmuxPlugins.tmux-floax;
+          extraConfig = ''
+            set -g @floax-bind '-n M-p'
+            # set -g @floax-change-path 'false'
+            set -g @floax-session-name 'floax'
+            set -g @floax-text-color 'white'
+          '';
+        }
+
+        {
           plugin = tmuxPlugins.resurrect;
           extraConfig = ''
             set -g @resurrect-processes     'lazygit man nvim'
