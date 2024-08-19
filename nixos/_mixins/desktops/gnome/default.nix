@@ -13,7 +13,7 @@
         eyedropper
         gnome-tweaks
         gnomeExtensions.appindicator
-        gnomeExtensions.dash-to-dock
+        # gnomeExtensions.dash-to-dock
         gnomeExtensions.removable-drive-menu
         # gnomeExtensions.emoji-copy
         # gnomeExtensions.just-perfection
