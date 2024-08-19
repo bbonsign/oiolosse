@@ -1,6 +1,6 @@
 _: {
   config = {
-    programs.wezterm.enable = true;
+    programs.wezterm.enable = false;
     xdg.configFile."wezterm" = {
       source = ./.;
       recursive = true;
