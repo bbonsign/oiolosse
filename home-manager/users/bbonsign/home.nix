@@ -68,6 +68,7 @@
       nix-output-monitor
       nnn
       nodejs
+      opentofu
       p7zip
       nodePackages.pnpm
       # pipenv
@@ -81,7 +82,7 @@
       # qutebrowser
       ripgrep
       ripgrep
-      ssm-session-manager-plugin  # For aws cli
+      ssm-session-manager-plugin # For aws cli
       slack
       tealdeer
       trashy
