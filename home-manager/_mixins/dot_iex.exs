@@ -62,10 +62,26 @@ defmodule MyHelpers do
 
   @doc """
   Shortcut for:
-    `IEx.Helpers.recompile()`
+  `IEx.Helpers.recompile()`
   """
   def rc do
     IEx.Helpers.recompile()
+  end
+
+  @doc """
+  Load applications needed to run observer
+  """
+  def obs do
+    [:wx, :observer, :runtime_tools]
+    |> Enum.map(&Mix.ensure_application!/1)
+  end
+
+  @doc """
+  Shortcut to start observer
+  """
+  def obss do
+    obs()
+    :observer.start()
   end
 end
 
