@@ -7,7 +7,7 @@
   cp = "cp -v";
   dl = "cd ~/Downloads";
   # dul = "du -h -d1 | sort -hr";
-  fly = "flyctl";
+  # fly = "flyctl";
   icat = "kitty +kitten icat";
   l = "eza --all --long --group-directories-first --icons";
   lg = "eza --all l --group-directories-first --git";
