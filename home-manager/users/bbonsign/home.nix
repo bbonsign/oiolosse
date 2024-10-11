@@ -45,6 +45,7 @@
       # erlang
       eza
       file
+      flyctl
       gcc
       gh # GitHub cli
       glow # markdown previewer in terminal
@@ -82,6 +83,7 @@
       # qutebrowser
       ripgrep
       ripgrep
+      ruff # python linter and formatter
       ssm-session-manager-plugin # For aws cli
       slack
       tealdeer
@@ -89,6 +91,7 @@
       tree
       unzip
       usbutils # lsusb
+      uv # python packaging and project manager
       # valent # KDE Connect client
       which
       wl-clipboard
