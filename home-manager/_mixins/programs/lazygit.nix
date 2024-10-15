@@ -63,7 +63,7 @@ _:
             scrollDownMain-alt1 = "<disabled>"; # main panel scroll down;
             scrollUpMain-alt2 = "<c-u>"; # main panel scroll up;
             scrollDownMain-alt2 = "<c-d>"; # main panel scroll down;
-            executeCustomCommand = ":";
+            executeShellCommand = ":";
             createRebaseOptionsMenu = "m";
             pushFiles = "P";
             pullFiles = "p";
