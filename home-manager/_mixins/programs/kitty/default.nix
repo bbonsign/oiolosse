@@ -5,7 +5,7 @@ _: {
 
     programs.kitty = {
       enable = true;
-      theme = "Tokyo Night";
+      themeFile = "tokyo_night_night";
       font = {
         name = "FiraCode Nerd Font";
         size = 12.0;

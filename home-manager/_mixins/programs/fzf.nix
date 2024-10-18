@@ -6,6 +6,7 @@ _:
       enable = true;
       defaultCommand =
         "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
+      fileWidgetCommand = "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
       defaultOptions = [
         "--ansi"
         "--cycle"
@@ -18,6 +19,7 @@ _:
         "--bind=ctrl-d:preview-down"
         "--bind=ctrl-space:toggle-preview"
       ];
+      tmux.enableShellIntegration = true;
       #
       # tokyonight colors
       colors = {
@@ -34,7 +36,6 @@ _:
         spinner = "#9ece6a";
         header = "#9ece6a";
       };
-      tmux.enableShellIntegration = true;
     };
   };
 }

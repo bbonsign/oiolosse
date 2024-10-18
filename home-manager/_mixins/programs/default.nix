@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
+    ./atuin
     ./bash.nix
     ./carapace.nix
     ./direnv.nix
