@@ -63,27 +63,21 @@
       litecli
       # livebook
       luarocks
-      neofetch
-      # nixd # nix lsp
       nixfmt
       nix-output-monitor
-      nnn
       nodejs
       opentofu
       p7zip
       nodePackages.pnpm
       # pipenv
-      python39
       python312Packages.ipython
       pgcli
       # podman
       # podman-compose
       podman-tui
-      poetry
+      # poetry
       # qutebrowser
       ripgrep
-      ripgrep
-      ruff # python linter and formatter
       ssm-session-manager-plugin # For aws cli
       slack
       tealdeer

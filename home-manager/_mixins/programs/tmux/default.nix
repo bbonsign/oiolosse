@@ -1,5 +1,9 @@
 { pkgs, ... }: {
   config = {
+
+    home.packages = [
+      pkgs.smug # tmux session manager
+    ];
     programs.tmux = {
       enable = true;
       baseIndex = 1;
