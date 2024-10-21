@@ -15,6 +15,8 @@
         ":prod" = "export AWS_PROFILE=prod_qlair";
         ":sand" = "export AWS_PROFILE=sandbox";
         g = "git";
+        # open nvim with quick-fix from rg search
+        eqf = "nvim --cmd 'copen' -q (rg --column --line-number --no-heading | psub)";
       };
 
       interactiveShellInit = ''
@@ -48,6 +50,10 @@
 
         # open line in $EDITOR
         bind \co edit_command_buffer
+
+        if command -v ruff 1>/dev/null 2>&1
+            ruff generate-shell-completion fish | source
+        end
       '';
 
       plugins = [{

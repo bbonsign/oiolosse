@@ -111,6 +111,10 @@
   pipi = "python -m pip install";
   pyhton = "python";
   pyhttp = "python -m http.server";
+  # rg search with quick-fix compatible output
+  qf = "rg --column --line-number --no-heading";
+  # open nvim with quick-fix from rg search
+  eqf = "nvim --cmd 'copen' -q <(rg --column --line-number --no-heading)";
   rmimages = "docker rmi (docker images -q -f dangling=true)";
   t = "tmux";
   tp = "trash put";
