@@ -27,6 +27,13 @@
            echo  $argv[1] |    jq -R 'split(".") |.[0:2] | map(@base64d) | map(fromjson)'
         end
 
+        function _to_qf --description 'start nvim with current command output as quick-fix list'
+            set -l cmd (commandline)
+            commandline -r "nvim -q ($cmd | psub)"
+        end
+
+        bind \cq _to_qf
+
         # bgcolor of the current tab completion selection
         set fish_color_search_match --background=4b719c
 
@@ -41,14 +48,15 @@
 
         set -gx ERL_AFLAGS "-kernel shell_history enabled -kernel shell_history_file_bytes 1024000"
 
+        set -gx fzf_preview_dir_cmd 'eza --long --all --color=always'
+
         fzf_configure_bindings --history=
         bind --erase \cr
-        set -gx fzf_preview_dir_cmd 'eza --long --all --color=always'
 
         # disable built-in binding for appending pipe into less
         bind --erase --preset  \ep
 
-        # open line in $EDITOR
+        # open commandline in $EDITOR
         bind \co edit_command_buffer
 
         if command -v ruff 1>/dev/null 2>&1
