@@ -62,3 +62,5 @@ deps
 /.luarocks
 
 zig-cache
+
+.markdownlint-cli2.jsonc
