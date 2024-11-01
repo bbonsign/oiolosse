@@ -34,6 +34,7 @@ _: {
         macos_quit_when_last_window_closed = "yes";
 
         confirm_os_window_close = 1;
+        cursor = "#7aa2f7";
         cursor_trail = 20;
       };
       keybindings = {
