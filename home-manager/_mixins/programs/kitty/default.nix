@@ -34,6 +34,7 @@ _: {
         macos_quit_when_last_window_closed = "yes";
 
         confirm_os_window_close = 1;
+        cursor_trail = 20;
       };
       keybindings = {
         "ctrl+x>ctrl+x" = "send_text all u0018";
