@@ -14,3 +14,6 @@ update:
 
 hm *cmd="switch":
   NIXPKGS_ALLOW_UNFREE=1 nix run home-manager -- --flake . --impure {{cmd}}
+
+gc days="50":
+  nix-collect-garbage --delete-older-than {{days}}d
