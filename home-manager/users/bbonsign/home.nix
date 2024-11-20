@@ -26,9 +26,9 @@
       asdf-vm
       awscli2
       bat
-      bazecor
+      # bazecor
       bottom
-      broot
+      # broot
       cargo
       chezmoi
       chromium
@@ -63,14 +63,14 @@
       litecli
       # livebook
       luarocks
-      nixfmt
+      # nixfmt
       nix-output-monitor
       nodejs
-      opentofu
+      # opentofu
       p7zip
       nodePackages.pnpm
       # pipenv
-      python312Packages.ipython
+      # python312Packages.ipython
       pgcli
       # podman
       # podman-compose
@@ -79,7 +79,7 @@
       # qutebrowser
       ripgrep
       ssm-session-manager-plugin # For aws cli
-      slack
+      # slack
       tealdeer
       trashy
       tree
@@ -91,10 +91,11 @@
       wl-clipboard
       xz
       yarn
+      yazi
       yq-go # yaml processer https://github.com/mikefarah/yq
-      zig
+      # zig
       zip
-      zls # zig language server
+      # zls # zig language server
     ];
 
     # This value determines the home Manager release that your
