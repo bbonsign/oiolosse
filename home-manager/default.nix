@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports =
@@ -14,6 +14,13 @@
 
     programs.nix-index.enable = true;
     programs.nix-index-database.comma.enable = true;
+
+    nix = {
+      package = pkgs.nixVersions.stable;
+      extraOptions = ''
+        experimental-features = nix-command flakes pipe-operators
+      '';
+    };
 
     home.shellAliases = import ./_mixins/programs/shellAliases.nix;
   };
