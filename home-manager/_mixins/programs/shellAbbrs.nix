@@ -47,6 +47,7 @@
   dpsa = "docker ps -a";
   e = "nvim";
   fsh = "flatpak-spawn --host";
+  g = "git";
   ga = "git add";
   gaa = "git add -A";
   gau = "git add -u";

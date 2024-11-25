@@ -15,16 +15,20 @@
         b = "branch";
         ba = "branch --all";
         bm = "branch --merged";
+        bn = "branch --show-current";
 
         c = "commit";
         ca = "commit --amend";
         cm = "commit --message";
-        cd = "!cd .";
+
+        # cd to worktree root (repo root in normal clone)
+        # cd = "!cd $(git worktree list | rg $(git branch --show-current) | awk '{print $1}')";
 
         cp = "cherry-pick";
         cpa = "cherry-pick --abort";
         cpc = "cherry-pick --continue";
 
+        # ~/.local/bin/git-clone-bare 
         clone-bare = "git-clone-bare";
 
         f = "fetch";

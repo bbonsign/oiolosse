@@ -7,16 +7,13 @@
     programs.fish = {
       enable = true;
 
-      # shellAliases = import ./shellAliases.nix;
-      shellAbbrs = import ../shellAliases.nix // import ../shellAbbrs.nix // {
+      shellAliases = import ../shellAliases.nix;
+      shellAbbrs = import ../shellAbbrs.nix // {
         ":dev" = "export AWS_PROFILE=dev_qlair";
         ":euprod" = "export AWS_PROFILE=prod_qlair_eu";
         ":loc" = "export AWS_PROFILE=local";
         ":prod" = "export AWS_PROFILE=prod_qlair";
         ":sand" = "export AWS_PROFILE=sandbox";
-        g = "git";
-        # open nvim with quick-fix from rg search
-        eqf = "nvim --cmd 'copen' -q (rg --column --line-number --no-heading | psub)";
       };
 
       interactiveShellInit = ''

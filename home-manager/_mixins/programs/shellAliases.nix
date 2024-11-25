@@ -2,12 +2,12 @@
   "..." = "cd ../..";
   "...." = "cd ../../..";
   bx = "cd ~/Dropbox";
-  # cdr = "cd (git rev-parse --git-dir)/..";
   conf = "cd ~/.config";
   cp = "cp -v";
   dl = "cd ~/Downloads";
   # dul = "du -h -d1 | sort -hr";
-  # fly = "flyctl";
+  cdr = "cd $(git rev-parse --show-toplevel)";
+  gcd = "cd $(git rev-parse --show-toplevel)";
   icat = "kitty +kitten icat";
   l = "eza --all --long --group-directories-first --icons";
   lg = "eza --all l --group-directories-first --git";
