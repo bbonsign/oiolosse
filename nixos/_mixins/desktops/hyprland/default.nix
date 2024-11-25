@@ -2,7 +2,7 @@
 
 {
   config = {
-    programs.hyprland = { enable = true; };
+    programs.hyprland = { enable = false; };
     # Optional, hint electron apps to use wayland:
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
     environment.systemPackages = with pkgs; [

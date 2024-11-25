@@ -29,6 +29,7 @@
 
     wayland.windowManager.sway = {
       enable = true;
+      package = pkgs.swayfx;
 
       # extraSessionCommands = ''
       #   unset __NIXOS_SET_ENVIRONMENT_DONE
