@@ -1,12 +1,7 @@
 {
   ":b" = "cd -";
   ":bin" = "cd ~/.local/bin";
-  # ":bm" = "cd (cat  ~/.bookmarks | fzf )";
-  # ":bma" = "pwd >> ~/.bookmarks";
   ":cm" = "cmatrix -absCcyan";
-  # ":cwd" = "pwd | pbcopy";
-  #  ":dev" = "export AWS_PROFILE=dev_qlair";
-  #  ":euprod" = "export AWS_PROFILE=prod_qlair_eu";
   ":g" = "lazygit";
   ":gb" = "lazygit branch";
   ":gl" = "lazygit log";
@@ -16,16 +11,12 @@
   ":ke" = "kitty +edit-config";
   ":ld" = "l --only-dirs";
   ":ln" = "l -s newest";
-  #  ":loc" = "export AWS_PROFILE=local";
   ":nf" = "neofetch";
   ":po" = "poetry";
   ":por" = "poetry run";
   ":pos" = "poetry shell";
-  #  ":prod" = "export AWS_PROFILE=prod_qlair";
-  # ":pwd" = "pwd | wl-copy";
   ":r" = "rpm-ostree";
   ":rs" = "rpm-ostree status";
-  #  ":sand" = "export AWS_PROFILE=sandbox";
   ":t" = "tmux attach -t";
   ":v" = "pipenv";
   ":vr" = "pipenv run";
