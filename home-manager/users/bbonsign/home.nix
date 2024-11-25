@@ -56,6 +56,7 @@
       htop
       httpie
       inotify-tools
+      jless
       jq
       just
       killall
