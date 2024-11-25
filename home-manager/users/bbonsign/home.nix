@@ -15,8 +15,11 @@
     # Link configs that don't have home-manager modules
     home.file = {
       ".iex.exs".source = ../../_mixins/dot_iex.exs;
-      ".ipython/profile_default/ipython_config.py".source =
-        ../../_mixins/ipython_config.py;
+      ".ipython/profile_default/ipython_config.py".source = ../../_mixins/ipython_config.py;
+      ".local/bin" = {
+        source = ./local-bin;
+        recursive = true;
+      };
     };
 
     # home.shellAliases = import ../programs/shellAliases.nix;
