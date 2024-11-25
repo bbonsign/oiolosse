@@ -48,6 +48,11 @@
 
         st = "status";
 
+        ti = "stash --include-untracked";
+        tp = "stash pop";
+        td = "stash show -p";
+        tl = "stash list";
+
         unstage = "reset HEAD --";
 
         w = "switch";

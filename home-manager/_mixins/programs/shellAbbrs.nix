@@ -72,6 +72,7 @@
   grpo = "git remote prune origin";
   gst = "git status";
   gt = "git stash";
+  gti = "git stash --include-untracked";
   gtp = "git stash pop";
   gtd = "git stash show -p";
   gtl = "git stash list";
