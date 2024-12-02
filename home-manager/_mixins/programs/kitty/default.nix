@@ -21,7 +21,7 @@ _: {
         enabled_layouts = "tall, fat, stack, splits";
         inactive_text_alpha = "0.55";
 
-        # shell = "nu";
+        shell = "nu";
 
         tab_bar_edge = "top";
         tab_bar_style = "custom";

@@ -1,16 +1,16 @@
+source ~/.config/nushell/scripts/themes/nu-themes/tokyo-night.nu
 source ~/.cache/carapace/init.nu
 
+# config scripts/: module
+use : *
 
 $env.config = {
     # aka, show the nushell start message
-    # show_banner: false,
+    show_banner: false,
 
-    # completions: {
-    #     external: {
-    #         enable: true
-    #         completer: $external_completer
-    #     }
-    # },
+    completions: {
+      algorithm: fuzzy
+    },
 
     history: {max_size: 10000},
 
