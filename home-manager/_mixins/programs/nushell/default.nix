@@ -2,7 +2,7 @@ _: {
   config = {
     programs.nushell = {
       enable = true;
-      shellAliases = (import ../shellAliases.nix) // (import ../shellAbbrs.nix);
+      shellAliases = (import ../shellAliases.nix) // (import ../shellAbbrs.nix) // { "h" = "help"; ":h" = ":help"; };
       envFile.source = ./env.nu;
       configFile.source = ./config.nu;
       loginFile = {
