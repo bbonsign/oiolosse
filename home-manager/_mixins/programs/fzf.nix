@@ -10,7 +10,6 @@ _:
       defaultOptions = [
         "--ansi"
         "--cycle"
-        "--multi"
         "--layout=reverse"
         "--height=70%"
         "--pointer='┃'"
