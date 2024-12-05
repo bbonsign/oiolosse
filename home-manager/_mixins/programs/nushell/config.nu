@@ -1,7 +1,7 @@
 source ~/.config/nushell/scripts/themes/nu-themes/tokyo-night.nu
 source ~/.cache/carapace/init.nu
 
-# config scripts/: module
+# ~/.config/nushell/scripts/bb module
 use bb *
 
 let fish_completer = {|spans|
@@ -41,10 +41,9 @@ let external_completer = {|spans|
   } | do $in $spans
 }
 
-# def fuzzy-tab [...commandline: string] {
 def fuzzy-tab [] list<string> -> string {
-  # let commandline = commandline | split row -r '\s+'
-  # let cursor_position = commandline get-cursor
+  # use the last word on the commandline to only complete the remain selected part
+  let last_word_len = $in | last | str length
   let res = do $external_completer $in
   match $res {
     null => { return "" }
@@ -61,14 +60,15 @@ def fuzzy-tab [] list<string> -> string {
     $"(ansi --escape ($x.style? | default {}))($x.value | fill --alignment l --width $max_len)(ansi reset)\t(ansi yellow_bold)($x.description? | default "" | str trim)(ansi reset)"
   }
   | to text
-  | fzf --ansi
+  # if there is one result, return immediately
+  | fzf --ansi --select-1
   | parse --regex '(?<completion_target>.*)\t\s*(?P<description>.*)'
   | get completion_target?
   | default [""]
   | each {str trim }
   | str join " "
-  # commandline set-cursor ($cursor_position + ($return_val | str length) + 1)
-  $return_val
+
+  $return_val | str substring $last_word_len..
 }
 
 $env.config = {
@@ -233,18 +233,19 @@ $env.config = {
       }
       source: { |buffer, position|
         let tokens = $buffer | split row -r '\s+'
+        let last_word = $tokens | last
+        # let last_word_len = $tokens | last | str length
         let result = $tokens
         | fuzzy-tab
         | do {
           let selected_value = $in
           {
-            value: ($tokens | range 0..-2 | append $selected_value)
-            span: {
-              start: position
-            }
+            # Reconstruct commandline with the chosen completion
+            value: ($tokens | range 0..-2 | append $"($last_word)($selected_value)" | str join " ")
           }
         }
-        $result | inspect
+        # expects a table
+        [$result]
       }
     },
     {
