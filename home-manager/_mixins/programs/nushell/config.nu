@@ -41,16 +41,18 @@ let external_completer = {|spans|
   } | do $in $spans
 }
 
-def fuzzy-tab [] list<string> -> string {
+def fzf-complete [] list<string> -> string {
   # use the last word on the commandline to only complete the remain selected part
   let last_word_len = $in | last | str length
   let res = do $external_completer $in
+
   match $res {
     null => { return "" }
     [] => {return ""}
     _ => $res
   }
 
+  # To align value/description columns in fzf
   let max_len = $res
   | each { $in.value | str length }
   | math max
@@ -60,8 +62,7 @@ def fuzzy-tab [] list<string> -> string {
     $"(ansi --escape ($x.style? | default {}))($x.value | fill --alignment l --width $max_len)(ansi reset)\t(ansi yellow_bold)($x.description? | default "" | str trim)(ansi reset)"
   }
   | to text
-  # if there is one result, return immediately
-  | fzf --ansi --select-1
+  | (fzf --ansi --select-1)
   | parse --regex '(?<completion_target>.*)\t\s*(?P<description>.*)'
   | get completion_target?
   | default [""]
@@ -70,6 +71,8 @@ def fuzzy-tab [] list<string> -> string {
 
   $return_val | str substring $last_word_len..
 }
+
+let all_modes = [emacs, vi_normal, vi_insert]
 
 $env.config = {
   # aka, show the nushell start message
@@ -94,19 +97,9 @@ $env.config = {
   # https://github.com/nushell/nushell/issues/5552#issuecomment-2077047961
   keybindings: [
     {
-      name: fuzzy_tab
-      modifier: control
-      keycode: char_t
-      mode: emacs
-      event: {
-        send: executehostcommand
-        cmd: `commandline edit --insert (commandline | split row -r '\s+' | fuzzy-tab)`
-      }
-    },
-    {
       name: fzf_menu
       modifier: control
-      keycode: char_y
+      keycode: char_j
       mode: [emacs, vi_normal, vi_insert]
       event: {
         send: menu
@@ -117,17 +110,29 @@ $env.config = {
       name: abbr
       modifier: control
       keycode: space
-      mode: [emacs, vi_normal, vi_insert]
+      mode: $all_modes
       event: {
         send: menu
         name: abbr_menu
       }
     },
+    # {
+    #   name: completion_menu
+    #   modifier: control
+    #   keycode: char_t
+    #   mode: $all_modes
+    #   event: {
+    #     until: [
+    #       { send: menu name: completion_menu }
+    #       { send: MenuNext }
+    #     ]
+    #   }
+    # },
     {
       name: fuzzy_file
       modifier: control
-      keycode: char_j
-      mode: emacs
+      keycode: char_t
+      mode: $all_modes
       event: {
         send: executehostcommand
         cmd: "commandline edit --insert (fzf-tmux)"
@@ -137,7 +142,7 @@ $env.config = {
       name: fuzzy_file
       modifier: control_alt
       keycode: char_j
-      mode: emacs
+      mode: $all_modes
       event: {
         send: executehostcommand
         cmd: "commandline edit --insert (fzf-tmux)"
@@ -147,7 +152,7 @@ $env.config = {
       name: fuzzy_git_status
       modifier: control_alt
       keycode: char_s
-      mode: emacs
+      mode: $all_modes
       event: {
         send: executehostcommand
         cmd: "commandline edit --insert (fg status)"
@@ -157,7 +162,7 @@ $env.config = {
       name: fuzzy_git_branch
       modifier: control_alt
       keycode: char_b
-      mode: emacs
+      mode: $all_modes
       event: {
         send: executehostcommand
         cmd: "commandline edit --insert (fg branches)"
@@ -167,7 +172,7 @@ $env.config = {
       name: fuzzy_git_branch_all
       modifier: control_alt
       keycode: char_g
-      mode: emacs
+      mode: $all_modes
       event: {
         send: executehostcommand
         cmd: "commandline edit --insert (fg branches --all)"
@@ -178,21 +183,21 @@ $env.config = {
       name: clear_backwards
       modifier: control
       keycode: char_u
-      mode: [emacs, vi_normal, vi_insert]
+      mode: $all_modes
       event: { edit: CutFromStart },
     },
     {
       name: clear_forwards
       modifier: control
       keycode: char_k
-      mode: [emacs, vi_normal, vi_insert]
+      mode: $all_modes
       event: { edit: ClearToLineEnd }
     },
     {
       name: complete_hint
       modifier: control
       keycode: char_f
-      mode: [emacs, vi_normal, vi_insert]
+      mode: $all_modes
       event: {
         until: [
           {send: HistoryHintComplete},
@@ -205,7 +210,7 @@ $env.config = {
       name: complete_hint_incremental
       modifier: alt
       keycode: char_f
-      mode: [emacs, vi_normal, vi_insert]
+      mode: $all_modes
       event: {
         until: [
           {send: HistoryHintWordComplete},
@@ -236,7 +241,7 @@ $env.config = {
         let last_word = $tokens | last
         # let last_word_len = $tokens | last | str length
         let result = $tokens
-        | fuzzy-tab
+        | fzf-complete
         | do {
           let selected_value = $in
           {

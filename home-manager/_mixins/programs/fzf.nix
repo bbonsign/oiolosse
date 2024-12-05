@@ -15,8 +15,8 @@ _:
         "--pointer='┃'"
         "--prompt=' '"
         "--preview-window=right:65%"
-        "--bind=ctrl-u:preview-up"
-        "--bind=ctrl-d:preview-down"
+        "--bind=ctrl-b:preview-up"
+        "--bind=ctrl-f:preview-down"
         "--bind=ctrl-space:toggle-preview"
       ];
       tmux.enableShellIntegration = true;
