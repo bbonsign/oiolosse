@@ -1,12 +1,8 @@
 # pyright: reportMissingImports=false
 
 import datetime
-import json
-import subprocess
-from collections import defaultdict
 
-from kitty.boss import get_boss
-from kitty.fast_data_types import Screen, add_timer
+from kitty.fast_data_types import Screen
 from kitty.rgb import Color
 from kitty.tab_bar import (
     DrawData,
@@ -152,4 +148,3 @@ def draw_tab(
     )
 
     return screen.cursor.x
-
