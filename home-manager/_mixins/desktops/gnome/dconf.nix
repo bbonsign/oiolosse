@@ -95,7 +95,7 @@
         switch-to-workspace-4 = [ "<Super>4" ];
         switch-to-workspace-left = [ "<Super>bracketleft" ];
         switch-to-workspace-right = [ "<Super>bracketright" ];
-        toggle-fullscreen = [ "<Super>f" ];
+        toggle-fullscreen = [ "<Super><Shift>f" ];
       };
 
       "org/gnome/desktop/wm/preferences" = {
