@@ -1,116 +1,134 @@
 source ~/.config/nushell/scripts/themes/nu-themes/tokyo-night.nu
-source ~/.cache/carapace/init.nu
+# source ~/.cache/carapace/init.nu
 
 # ~/.config/nushell/scripts/bb module
 use bb *
 
-let fish_completer = {|spans|
-  fish --command $'complete "--do-complete=($spans | str join " ")"'
-  | from tsv --flexible --noheaders --no-infer
-  | rename value description
+const ALL_MODES = [emacs, vi_normal, vi_insert]
+
+let fzf_menu_source = {|buffer, position|
+  fzf_menu_source $buffer $position
 }
 
-let carapace_completer = {|spans: list<string>|
-  carapace $spans.0 nushell ...$spans
-  | from json
-  | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
+#################
+## $env.config ##
+#################
+
+$env.config.show_banner = false
+
+$env.config.history = {
+  file_format: sqlite
+  max_size: 1_000_000
+  sync_on_enter: true
+  isolation: true
 }
 
-# This completer will use carapace by default
-let external_completer = {|spans|
-  let expanded_alias = scope aliases
-  | where name == $spans.0?
-  | get --ignore-errors 0.expansion
+$env.config.cursor_shape = {
+  emacs: inherit      # block, underscore, line (line is the default)
+  vi_insert: line     # block, underscore, line (block is the default)
+  vi_normal: block    # block, underscore, line (underscore is the default)
+}
 
-  let spans = if $expanded_alias != null {
-    $spans
-    | skip 1
-    | prepend ($expanded_alias | split row ' ' | take 1)
-  } else {
-    $spans
+$env.config.completions = {
+  algorithm: fuzzy
+  external: {
+    enable: false
   }
-
-  match $spans.0 {
-    # carapace completions are incorrect for nu
-    # nu => $fish_completer
-    # fish completes commits and branch names in a nicer way
-    # git => $fish_completer
-    # carapace doesn't have completions for asdf
-    asdf => $fish_completer
-    _ => $carapace_completer
-  } | do $in $spans
 }
 
-def fzf-complete [] list<string> -> string {
-  # use the last word on the commandline to only complete the remain selected part
-  let last_word_len = $in | last | str length
-  let res = do $external_completer $in
-
-  match $res {
-    null => { return "" }
-    [] => {return ""}
-    _ => $res
-  }
-
-  # To align value/description columns in fzf
-  let max_len = $res
-  | each { $in.value | str length }
-  | math max
-
-  let return_val = $res
-  | each {|x|
-    $"(ansi --escape ($x.style? | default {}))($x.value | fill --alignment l --width $max_len)(ansi reset)\t(ansi yellow_bold)($x.description? | default "" | str trim)(ansi reset)"
-  }
-  | to text
-  | (fzf --ansi --select-1)
-  | parse --regex '(?<completion_target>.*)\t\s*(?P<description>.*)'
-  | get completion_target?
-  | default [""]
-  | each {str trim }
-  | str join " "
-
-  $return_val | str substring $last_word_len..
-}
-
-let all_modes = [emacs, vi_normal, vi_insert]
-
-$env.config = {
-  # aka, show the nushell start message
-  show_banner: false,
-
-  completions: {
-    algorithm: fuzzy
-    external: {
-      enable: true
-      completer: $external_completer
+$env.config.menus = ($env.config.menus | append [
+  {
+    name: fzf_menu
+    only_buffer_difference: false
+    marker: ""
+    type: { 
+      layout: columnar 
+      columns: 1
+      col_width: 20
+      col_padding: 2
+    }
+    style: {
+      text: green
+      selected_text: green_reverse
+      description_text: yellow
+    }
+    source: $fzf_menu_source
+  },
+  {
+    name: completion_menu
+    only_buffer_difference: false # Search is done on the text written after activating the menu
+    marker: ""                  # Indicator that appears with the menu is active
+    type: {
+      layout: columnar          # Type of menu
+      columns: 4                # Number of columns where the options are displayed
+      col_width: 20             # Optional value. If missing all the screen width is used to calculate column width
+      col_padding: 2            # Padding between columns
+    }
+    style: {
+      text: green                   # Text style
+      selected_text: green_reverse  # Text style for selected option
+      description_text: yellow      # Text style for description
     }
   },
+  {
+    name: abbr_menu
+    only_buffer_difference: false
+    marker: ""
+    type: {
+      layout: columnar
+      columns: 1
+      col_width: 20
+      col_padding: 2
+    }
+    style: {
+      text: green
+      selected_text: green_reverse
+      description_text: yellow
+    }
+    source: { |buffer, position|
+      scope aliases
+      | where name == ($buffer | str trim)
+      | each { |it| {value: $"($it.expansion) " }}
+    }
+  }
+]
+)
 
-  history: {max_size: 10000},
-
-  cursor_shape: {
-    emacs: inherit      # block, underscore, line (line is the default)
-    vi_insert: line     # block, underscore, line (block is the default)
-    vi_normal: block    # block, underscore, line (underscore is the default)
-  },
-
-  # https://github.com/nushell/nushell/issues/5552#issuecomment-2077047961
-  keybindings: [
+# https://github.com/nushell/nushell/issues/5552#issuecomment-2077047961
+$env.config.keybindings = (
+  $env.config.keybindings | append [
     {
-      name: fzf_menu
+      name: fuzzy_tab
       modifier: control
       keycode: char_j
-      mode: [emacs, vi_normal, vi_insert]
+      mode: $ALL_MODES
       event: {
-        send: menu
-        name: fzf_menu
+        send: executehostcommand
+        cmd: `commandline edit --insert (commandline | split row -r '\s+' | fzf-complete)`
+      }
+    },
+    {
+      name: fzf_menu
+      # modifier: none
+      # keycode: tab
+      modifier: control
+      keycode: char_o
+      mode: $ALL_MODES
+      event: {
+        until: [
+          { send: menu, name: fzf_menu }
+          # { edit: InsertString, value: "After fzf_menu" }
+          # { send: menu, name: completion_menu }
+          # { edit: InsertString, value: "After nu completion_menu" }
+          # { send: MenuNext }
+        ]
       }
     },
     {
       name: abbr
       modifier: control
       keycode: space
-      mode: $all_modes
+      mode: $ALL_MODES
       event: {
         send: menu
         name: abbr_menu
@@ -119,11 +137,11 @@ $env.config = {
     # {
     #   name: completion_menu
     #   modifier: control
-    #   keycode: char_t
-    #   mode: $all_modes
+    #   keycode: char_j
+    #   mode: $ALL_MODES
     #   event: {
     #     until: [
-    #       { send: menu name: completion_menu }
+    #       { send: menu, name: completion_menu }
     #       { send: MenuNext }
     #     ]
     #   }
@@ -132,7 +150,7 @@ $env.config = {
       name: fuzzy_file
       modifier: control
       keycode: char_t
-      mode: $all_modes
+      mode: $ALL_MODES
       event: {
         send: executehostcommand
         cmd: "commandline edit --insert (fzf-tmux)"
@@ -142,7 +160,7 @@ $env.config = {
       name: fuzzy_file
       modifier: control_alt
       keycode: char_j
-      mode: $all_modes
+      mode: $ALL_MODES
       event: {
         send: executehostcommand
         cmd: "commandline edit --insert (fzf-tmux)"
@@ -152,7 +170,7 @@ $env.config = {
       name: fuzzy_git_status
       modifier: control_alt
       keycode: char_s
-      mode: $all_modes
+      mode: $ALL_MODES
       event: {
         send: executehostcommand
         cmd: "commandline edit --insert (fg status)"
@@ -162,7 +180,7 @@ $env.config = {
       name: fuzzy_git_branch
       modifier: control_alt
       keycode: char_b
-      mode: $all_modes
+      mode: $ALL_MODES
       event: {
         send: executehostcommand
         cmd: "commandline edit --insert (fg branches)"
@@ -172,32 +190,45 @@ $env.config = {
       name: fuzzy_git_branch_all
       modifier: control_alt
       keycode: char_g
-      mode: $all_modes
+      mode: $ALL_MODES
       event: {
         send: executehostcommand
         cmd: "commandline edit --insert (fg branches --all)"
       }
+    },
+    {
+      name: open_prompt_in_editor
+      modifier: alt
+      keycode: char_e
+      mode: $ALL_MODES
+      event: {send: OpenEditor}
     },
     # Extend regular bindings to all vi+emacs modes
     {
       name: clear_backwards
       modifier: control
       keycode: char_u
-      mode: $all_modes
-      event: { edit: CutFromStart },
+      mode: $ALL_MODES
+      event: [
+        { edit: CutFromLineStart }
+        { edit: Backspace }
+      ],
     },
     {
       name: clear_forwards
       modifier: control
       keycode: char_k
-      mode: $all_modes
-      event: { edit: ClearToLineEnd }
+      mode: $ALL_MODES
+      event: [
+        { edit: ClearToLineEnd }
+        { edit: Delete }
+      ]
     },
     {
       name: complete_hint
       modifier: control
       keycode: char_f
-      mode: $all_modes
+      mode: $ALL_MODES
       event: {
         until: [
           {send: HistoryHintComplete},
@@ -210,7 +241,7 @@ $env.config = {
       name: complete_hint_incremental
       modifier: alt
       keycode: char_f
-      mode: $all_modes
+      mode: $ALL_MODES
       event: {
         until: [
           {send: HistoryHintWordComplete},
@@ -218,61 +249,5 @@ $env.config = {
         ]
       }
     },
-  ],
-
-  menus: [
-    {
-      name: fzf_menu
-      only_buffer_difference: false
-      marker: ""
-      type: {
-        layout: columnar
-        columns: 1
-        col_width: 20
-        col_padding: 2
-      }
-      style: {
-        text: green
-        selected_text: green_reverse
-        description_text: yellow
-      }
-      source: { |buffer, position|
-        let tokens = $buffer | split row -r '\s+'
-        let last_word = $tokens | last
-        # let last_word_len = $tokens | last | str length
-        let result = $tokens
-        | fzf-complete
-        | do {
-          let selected_value = $in
-          {
-            # Reconstruct commandline with the chosen completion
-            value: ($tokens | range 0..-2 | append $"($last_word)($selected_value)" | str join " ")
-          }
-        }
-        # expects a table
-        [$result]
-      }
-    },
-    {
-      name: abbr_menu
-      only_buffer_difference: false
-      marker: ""
-      type: {
-        layout: columnar
-        columns: 1
-        col_width: 20
-        col_padding: 2
-      }
-      style: {
-        text: green
-        selected_text: green_reverse
-        description_text: yellow
-      }
-      source: { |buffer, position|
-        scope aliases
-        | where name == ($buffer | str trim)
-        | each { |it| {value: $"($it.expansion) " }}
-      }
-    }
   ]
-}
+)

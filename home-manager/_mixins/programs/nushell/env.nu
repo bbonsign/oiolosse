@@ -1,5 +1,5 @@
 # Set up carapace: https://carapace-sh.github.io/carapace-bin/setup.html#nushell
-$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+$env.CARAPACE_BRIDGES = 'fish,zsh,bash,inshellisense' # optional
 
 
 $env.PATH = ($env.PATH | split row (char esep) 
