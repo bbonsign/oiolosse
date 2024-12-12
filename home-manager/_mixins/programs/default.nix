@@ -3,6 +3,7 @@
     ./atuin
     ./bash.nix
     ./carapace.nix
+    ./difftastic
     ./direnv.nix
     ./fd
     ./fish
@@ -14,6 +15,7 @@
     ./neovim
     ./nushell
     ./starship.nix
+    ./topiary
     ./tmux
     ./wezterm
     ./zathura.nix
