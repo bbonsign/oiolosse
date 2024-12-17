@@ -104,7 +104,7 @@ $env.config.keybindings = (
       mode: $ALL_MODES
       event: {
         send: executehostcommand
-        cmd: `commandline edit --insert (commandline | split row -r '\s+' | fzf-complete)`
+        cmd: `commandline edit ( fzf-complete (commandline) (commandline get-cursor))`
       }
     },
     {
@@ -202,6 +202,16 @@ $env.config.keybindings = (
       keycode: char_e
       mode: $ALL_MODES
       event: {send: OpenEditor}
+    },
+    {
+      name: wrap_commandline_in_nvim_quickfix
+      modifier: control
+      keycode: char_q
+      mode: $ALL_MODES
+      event: {
+        send: executehostcommand
+        cmd: "wrap_commandline_in_nvim_quickfix"
+      }
     },
     # Extend regular bindings to all vi+emacs modes
     {
