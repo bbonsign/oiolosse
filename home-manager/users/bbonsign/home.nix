@@ -32,7 +32,7 @@
       # bazecor
       bottom
       # broot
-      cargo
+      # cargo
       chezmoi
       chromium
       # copilot-cli # AWS ECS cli 
@@ -82,6 +82,7 @@
       # poetry
       # qutebrowser
       ripgrep
+      # rustup
       ssm-session-manager-plugin # For aws cli
       # slack
       tealdeer

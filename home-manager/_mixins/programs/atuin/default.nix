@@ -16,6 +16,9 @@ _: {
           vim_insert = "blink-block";
           vim_normal = "steady-block";
         };
+        preview = {
+          strategy ="static";
+        };
       };
     };
   };

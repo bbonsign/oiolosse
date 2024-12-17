@@ -31,7 +31,13 @@
 
         { plugin = tmuxPlugins.tmux-fzf; }
 
-        { plugin = tmuxPlugins.yank; }
+        {
+          plugin = tmuxPlugins.yank;
+          extraConfig = ''
+            # Don't exit copy mode on yank. 'copy-pipe-and-cancel' for the default
+            set -g @yank_action 'copy-pipe'
+          '';
+        }
 
         {
           # Bound to prefix-u by default
