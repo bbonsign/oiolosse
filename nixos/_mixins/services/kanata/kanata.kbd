@@ -1,3 +1,10 @@
+;; Forcefully exit kanata
+;; Pressing and holding all of the three following keys together at the same time will cause kanata to exit:
+;;     Left Control
+;;     Space
+;;     Escape
+;; This mechanism works on the key input before any remappings done by kanata.
+
 (defoverrides
   (;)        (lsft ;)
   (lsft ;)   (;)

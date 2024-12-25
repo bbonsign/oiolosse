@@ -4,7 +4,7 @@ _:
   config = {
     programs.carapace = {
       enable = true;
-      # enableFishIntegration = false;
+      enableFishIntegration = true;
       enableNushellIntegration = true;
     };
   };

@@ -37,7 +37,7 @@
       };
 
       "org/gnome/desktop/peripherals/keyboard" = {
-        delay = mkUint32 240;
+        delay = mkUint32 260;
         repeat-interval = mkUint32 10;
       };
 
