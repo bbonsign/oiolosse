@@ -17,7 +17,7 @@ _: {
           vim_normal = "steady-block";
         };
         preview = {
-          strategy ="static";
+          strategy = "static";
         };
       };
     };

@@ -43,6 +43,8 @@
         m = "merge";
         ma = "merge --abort";
 
+        new = "switch --create";
+
         p = "pull";
         pp = "push";
 
@@ -71,6 +73,9 @@
         merge.conflictstyle = "diff3";
         interactive.diffFilter = "delta --color-only";
         worktree.guessRemote = true;
+        # https://github.com/jesseduffield/lazygit/blob/master/docs/Stacked_Branches.md
+        rebase.updateRefs = true;
+        rerere.enabled = true;
         color.decorate = {
           head = "bold white";
           branch = "bold magenta";

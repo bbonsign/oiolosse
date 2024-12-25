@@ -64,7 +64,7 @@
   gm = "git merge";
   gma = "git merge --abort";
   gmm = "git merge main";
-  gnew = "git checkout -b";
+  gnew = "git switch --create";
   gp = "git pull";
   gpp = "git push";
   gpsu = "git push --set-upstream origin";
