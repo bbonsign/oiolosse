@@ -45,9 +45,10 @@
 (deflayer default
   grv  1       2     3     4     5    6     7     8      9     0    -    =    bspc
   @tab q       w     e     r     t    y     u     i      o     p    [    ]    \
-  @cap @aalt   @ssft @dmet @fctl g    @hctl @jmet @ksft  @lalt ;    '    @rtctl
+  @cap a    s    d    f    g    h    j    k    l    ;    '    @rtctl
+  ;; @cap @aalt   @ssft @dmet @fctl g    @hctl @jmet @ksft  @lalt ;    '    @rtctl
   lsft z       x     c     v     b    n     m     ,      .     /    rsft
-  lctl @delmet @atl            spc          ralt  @bsmet rctl
+  lctl lmet @atl            spc          ralt  rmet ctl
 )
 
 

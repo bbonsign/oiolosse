@@ -27,7 +27,7 @@
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
       asdf-vm
-      awscli2
+      # awscli2
       bat
       # bazecor
       bottom
@@ -84,7 +84,7 @@
       ripgrep
       # rustup
       ssm-session-manager-plugin # For aws cli
-      # slack
+      slack
       tealdeer
       trashy
       tree

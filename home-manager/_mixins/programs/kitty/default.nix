@@ -12,6 +12,7 @@ _: {
       };
       settings = {
         adjust_line_height = "90%";
+        allow_remote_control = true;
         window_padding_width = 2;
         hide_window_decorations = "yes";
         background_opacity = ".75";

@@ -3,7 +3,7 @@ _:
 {
   config = {
     services.kanata = {
-      enable = false;
+      enable = true;
       keyboards = {
         default = {
           extraDefCfg = ''

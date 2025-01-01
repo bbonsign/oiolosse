@@ -113,5 +113,6 @@
   # venv = "python -m venv";
   # weather = "curl wttr.in";
   wlc = "wl-copy";
-  # y = "yazi";
+  y = "yazi";
+  # z = "zellij";
 }

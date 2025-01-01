@@ -1,6 +1,6 @@
 _: {
   config = {
-    programs.zellig.enable = true;
-    xdg.configFile."zellij" = { source = ./config.kdl; };
+    programs.zellij.enable = true;
+    xdg.configFile."zellij/config.kdl" = { source = ./config.kdl; };
   };
 }

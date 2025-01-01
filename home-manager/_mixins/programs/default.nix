@@ -19,6 +19,7 @@
     ./tmux
     ./wezterm
     ./zathura.nix
+    # ./zellij
     ./zsh.nix
   ];
 }

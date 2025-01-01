@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
     ../_mixins/common.nix
     ../_mixins/desktops
-    # ../_mixins/services
+    ../_mixins/services
   ];
 
   # Set your time zone.
