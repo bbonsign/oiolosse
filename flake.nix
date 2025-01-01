@@ -28,7 +28,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            ./nixos/aman
+            ./nixos/mithlond
 
             # make home-manager as a module of nixos
             # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -43,6 +43,7 @@
             }
           ];
         };
+
         mithlond = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };

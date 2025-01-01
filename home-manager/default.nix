@@ -4,7 +4,6 @@
   imports =
     [
       ./users/bbonsign/home.nix
-      # ./_mixins/desktops/sway
       inputs.nix-index-database.hmModules.nix-index
     ];
 

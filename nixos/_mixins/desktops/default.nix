@@ -1,5 +1,9 @@
 { ... }:
 
 {
-  imports = [ ./gnome ./sway ./hyprland ];
+  imports = [
+    # ./gnome
+    ./sway
+    # ./hyprland
+  ];
 }
