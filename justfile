@@ -9,6 +9,7 @@ alias sw := switch
 switch:
   sudo nixos-rebuild switch --flake .#mithlond
 
+alias up := update
 update:
   nix flake update
 
