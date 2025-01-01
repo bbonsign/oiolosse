@@ -29,6 +29,17 @@
     };
   };
 
+  security.rtkit.enable = true;
+
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+  };
+
+  services.blueman.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -43,10 +54,6 @@
     pkgs.epson-escpr
   ];
 
-  # Enable sound with pipewire.
-  # sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -83,6 +90,7 @@
   environment.systemPackages = with pkgs; [
     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     brightnessctl
+    bluez
     distrobox
     git
     grim # screenshot functionality

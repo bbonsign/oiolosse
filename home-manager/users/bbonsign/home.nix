@@ -12,6 +12,9 @@
 
     services.ssh-agent.enable = true;
 
+    # https://nixos.wiki/wiki/Bluetooth#Using_Bluetooth_headset_buttons_to_control_media_player
+    services.mpris-proxy.enable = true;
+
     # Link configs that don't have home-manager modules
     home.file = {
       ".iex.exs".source = ../../_mixins/dot_iex.exs;
