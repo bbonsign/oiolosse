@@ -44,13 +44,6 @@
     options = "ctrl:no_caps";
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.printing.drivers = [
-    # Driver for Epson WF-2950 printer
-    pkgs.epson-escpr
-  ];
-
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -75,7 +68,9 @@
   users.defaultUserShell = pkgs.fish;
 
   fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
+    [
+      pkgs.nerd-fonts.fira-code
+    ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
