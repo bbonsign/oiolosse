@@ -12,13 +12,19 @@
     services.libinput.enable = true;
 
     environment.systemPackages = with pkgs; [
-      # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      grim # screenshot functionality
-      mako # notification system developed by swaywm maintainer
+      brightnessctl
+      fuzzel
+      # mako # notification system developed by swaywm maintainer
+      networkmanagerapplet
       rofi-wayland
-      slurp # screenshot functionality
+      swappy # screenshot annotation tool 
+      sway-contrib.grimshot
+      swaynotificationcenter
+      slurp # screen selection functionality
       waybar
+      wev # Wayland event viewer
       wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+      wlprop # click to get window details
     ];
   };
 }

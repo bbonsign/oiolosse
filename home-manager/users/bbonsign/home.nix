@@ -9,6 +9,11 @@
   config = {
     home.username = "bbonsign";
     home.homeDirectory = "/home/bbonsign";
+    home.sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+      GRIM_DEFAULT_DIR = "$HOME/Pictures/Screenshots";
+    };
 
     services.ssh-agent.enable = true;
 
