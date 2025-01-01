@@ -1,9 +1,9 @@
 { pkgs, ... }: {
   config = {
 
-    home.packages = [
-      pkgs.smug # tmux session manager
-    ];
+    # home.packages = [
+    #   pkgs.smug # tmux session manager
+    # ];
     programs.tmux = {
       enable = true;
       baseIndex = 1;
@@ -74,37 +74,6 @@
           plugin = tmuxPlugins.continuum;
           extraConfig = "set -g @continuum-restore 'on'";
         }
-
-        # {
-        #   plugin = tmuxPlugins.catppuccin;
-        #   extraConfig = ''
-        #     set -g @catppuccin_window_left_separator ""
-        #     set -g @catppuccin_window_right_separator " "
-        #     set -g @catppuccin_window_middle_separator "█ "
-        #     set -g @catppuccin_window_number_position "left"
-        #     set -g @catppuccin_window_default_fill "number"
-        #     set -g @catppuccin_window_default_text "#W"
-        #     set -g @catppuccin_window_current_fill "number"
-        #     set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag,  ,}"
-        #     set -g @catppuccin_status_modules_right "directory date_time"
-        #     set -g @catppuccin_status_modules_left "session"
-        #     set -g @catppuccin_status_left_separator  " "
-        #     set -g @catppuccin_status_right_separator " "
-        #     set -g @catppuccin_status_right_separator_inverse "no"
-        #     set -g @catppuccin_status_fill "icon"
-        #     set -g @catppuccin_status_connect_separator "no"
-        #     set -g @catppuccin_directory_text "#{b:pane_current_path}"
-        #     set -g @catppuccin_date_time_text "%H:%M"
-        #
-        #     set -g @catppuccin_icon_window_last "󰖰"
-        #     set -g @catppuccin_icon_window_current ""
-        #     set -g @catppuccin_icon_window_zoom "󰁌 "
-        #     set -g @catppuccin_icon_window_mark "󰃀"
-        #     set -g @catppuccin_icon_window_silent "󰂛 "
-        #     set -g @catppuccin_icon_window_activity "󰂞 "
-        #     set -g @catppuccin_icon_window_bell "󰂞 "
-        #   '';
-        # }
 
         # {
         #   plugin = tmuxPlugins.mkTmuxPlugin {
