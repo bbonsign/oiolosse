@@ -4,6 +4,7 @@
   imports = [
     ../../_mixins/programs
     ../../_mixins/desktops/gnome
+    # ../../_mixins/desktops/sway
   ];
 
   config = {
@@ -35,7 +36,7 @@
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
       asdf-vm
-      # awscli2
+      awscli2
       bat
       # bazecor
       bottom
