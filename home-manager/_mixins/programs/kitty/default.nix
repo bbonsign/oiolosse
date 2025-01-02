@@ -40,19 +40,19 @@ _: {
       };
       keybindings = {
         "ctrl+x>ctrl+x" = "send_text all u0018";
-        "ctrl+c" = " copy_or_interrupt";
-        "kitty_mod+v" = " paste_from_clipboard";
+        "ctrl+c" = "copy_or_interrupt";
+        "kitty_mod+v" = "paste_from_clipboard";
 
-        "ctrl+x>w>r" = "          start_resizing_window";
+        "ctrl+x>w>r" = "start_resizing_window";
         "ctrl+x>ctrl+w>ctrl+r" = "start_resizing_window";
-        "ctrl+x>return" = "     launch --cwd current";
+        "ctrl+x>return" = "launch --cwd current";
         "ctrl+x>ctrl+return" = "launch --cwd current";
-        "ctrl+x>v" = "          launch --location=vsplit";
+        "ctrl+x>v" = "launch --location=vsplit";
 
-        "ctrl+x>h" = "     neighboring_window left";
-        "ctrl+x>j" = "     neighboring_window down";
-        "ctrl+x>k" = "     neighboring_window up";
-        "ctrl+x>l" = "     neighboring_window right";
+        "ctrl+x>h" = "neighboring_window left";
+        "ctrl+x>j" = "neighboring_window down";
+        "ctrl+x>k" = "neighboring_window up";
+        "ctrl+x>l" = "neighboring_window right";
         "ctrl+x>ctrl+h" = "neighboring_window left";
         "ctrl+x>ctrl+j" = "neighboring_window down";
         "ctrl+x>ctrl+k" = "neighboring_window up";
@@ -62,18 +62,20 @@ _: {
         "ctrl+x>shift+j" = "move_window down";
         "ctrl+x>shift+k" = "move_window up";
         "ctrl+x>shift+l" = "move_window right";
-        "ctrl+x>[" = "      previous_tab";
-        "ctrl+x>ctrl+[" = " previous_tab";
-        "ctrl+x>]" = "      next_tab";
-        "ctrl+x>ctrl+]" = " next_tab";
+        "ctrl+x>[" = "previous_tab";
+        "ctrl+x>ctrl+[" = "previous_tab";
+        "ctrl+x>]" = "next_tab";
+        "ctrl+x>ctrl+]" = "next_tab";
 
-        "ctrl+x>t" = "         new_tab";
-        "ctrl+x>ctrl+t" = "    new_tab";
-        "ctrl+x>}" = "     move_tab_forward";
-        "ctrl+x>{" = "     move_tab_backward";
+        "ctrl+x>t" = "new_tab";
+        "ctrl+x>ctrl+t" = "new_tab";
+        "ctrl+x>}" = "move_tab_forward";
+        "ctrl+x>{" = "move_tab_backward";
 
-        "ctrl+x>r" = "       set_tab_title";
-        "ctrl+x>tab>r" = "   set_tab_title";
+        "kitty_mod+," = "load_config_file";
+        "ctrl+x>shift+r" = "load_config_file";
+        "ctrl+x>r" = "set_tab_title";
+        "ctrl+x>tab>r" = "set_tab_title";
 
         "ctrl+x>tab>s" = "select_tab";
 
