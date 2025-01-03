@@ -157,13 +157,13 @@ $env.config.keybindings = (
       }
     },
     {
-      name: fuzzy_file
+      name: fuzzy_file_pwd
       modifier: control_alt
       keycode: char_j
       mode: $ALL_MODES
       event: {
         send: executehostcommand
-        cmd: "commandline edit --insert (fzf-tmux)"
+        cmd: "commandline edit --insert (fd --max-depth 1 --color always | fzf-tmux)"
       }
     },
     {
