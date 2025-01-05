@@ -12,19 +12,10 @@
   ":ld" = "l --only-dirs";
   ":ln" = "l -s newest";
   ":nf" = "neofetch";
-  # ":po" = "poetry";
-  # ":por" = "poetry run";
-  # ":pos" = "poetry shell";
   ":r" = "rpm-ostree";
   ":rs" = "rpm-ostree status";
   ":t" = "tmux attach -t";
-  # ":v" = "pipenv";
-  # ":vr" = "pipenv run";
-  # ":vs" = "pipenv shell";
-  # ":w" = "wezterm";
-  # ":wr" = "wezterm cli set-tab-title";
   b = "bat";
-  # c = "cargo";
   cl = "clear";
   cleancontainers = "docker rm -v (docker ps -a -q -f status=exited)";
   cleanimages = "docker rmi (docker images -q -f dangling=true)";
@@ -37,7 +28,7 @@
   dps = "docker ps";
   dpsa = "docker ps -a";
   e = "nvim";
-  # fsh = "flatpak-spawn --host";
+  "e." = "nvim .";
   g = "git";
   ga = "git add";
   gaa = "git add -A";
@@ -53,8 +44,6 @@
   gcm = "git commit -m";
   gcp = "git cherry-pick";
   gd = "git diff";
-  # gdm =
-  # "git diff --numstat main HEAD | fzf -0 --preview-window='bottom' --preview='git diff --color main -- {3} HEAD -- {3} | delta --file-style=omit --width=$FZF_PREVIEW_COLUMNS'";
   gdel = "git branch -d";
   gds = "git diff --staged";
   gf = "git fetch";
@@ -110,9 +99,7 @@
   rmimages = "docker rmi (docker images -q -f dangling=true)";
   t = "tmux";
   tp = "trash put";
-  # venv = "python -m venv";
   # weather = "curl wttr.in";
   wlc = "wl-copy";
   y = "yazi";
-  # z = "zellij";
 }
