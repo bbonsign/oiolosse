@@ -93,6 +93,7 @@
     bluez
     distrobox
     git
+    ghostty
     inotify-tools
     ncurses
     neovim

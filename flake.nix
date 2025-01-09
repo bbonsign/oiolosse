@@ -4,11 +4,6 @@
   inputs = {
     nixpkgs = { url = "github:nixos/nixpkgs/nixos-unstable"; };
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs-unstable.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,12 +48,6 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            {
-              environment.systemPackages = [
-                inputs.ghostty.packages.x86_64-linux.default
-              ];
-            }
-
             ./nixos/mithlond
 
             # make home-manager as a module of nixos

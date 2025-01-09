@@ -60,13 +60,13 @@
       flyctl
       gcc
       gh # GitHub cli
-      gum # charm cli scripting helper
-      # inputs.ghostty.packages.x86_64-linux.default
+      # ghostty
       glow # markdown previewer in terminal
       gnumake
       gnupg
       gnused
       go
+      gum # charm cli scripting helper
       htop
       httpie
       inotify-tools
