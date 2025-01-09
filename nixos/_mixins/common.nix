@@ -89,6 +89,7 @@
     pciutils
     python312
     sqlite
+    vivaldi
     wget
   ];
 

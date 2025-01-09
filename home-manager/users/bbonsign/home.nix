@@ -43,7 +43,7 @@
       # broot
       # cargo
       # chezmoi
-      chromium
+      # chromium
       # copilot-cli # AWS ECS cli 
       cowsay
       delta
