@@ -15,7 +15,7 @@ _: {
         allow_remote_control = true;
         window_padding_width = 2;
         hide_window_decorations = "yes";
-        background_opacity = ".75";
+        background_opacity = ".70";
         background_tint = "0.4";
         dynamic_background_opacity = "no";
         enable_audio_bell = "no";
