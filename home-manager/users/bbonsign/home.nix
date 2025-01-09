@@ -60,6 +60,8 @@
       flyctl
       gcc
       gh # GitHub cli
+      gum # charm cli scripting helper
+      # inputs.ghostty.packages.x86_64-linux.default
       glow # markdown previewer in terminal
       gnumake
       gnupg
@@ -71,6 +73,7 @@
       jless
       jq
       just
+      kanata
       killall
       lazygit
       litecli
@@ -93,7 +96,7 @@
       ripgrep
       # rustup
       ssm-session-manager-plugin # For aws cli
-      slack
+      # slack
       tealdeer
       trashy
       tree
@@ -110,6 +113,18 @@
       # zig
       zip
       # zls # zig language server
+      # from nixos sway
+      brightnessctl
+      fuzzel
+      rofi-wayland
+      swappy # screenshot annotation tool
+      sway-contrib.grimshot
+      swaynotificationcenter
+      slurp # screen selection functionality
+      waybar
+      wev # Wayland event viewer
+      wlprop # click to get window details
+      wmenu
     ];
 
     # This value determines the home Manager release that your

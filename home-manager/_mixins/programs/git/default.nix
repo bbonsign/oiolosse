@@ -35,6 +35,7 @@
 
         g = "grep";
 
+        jm = "jump merge";
         last = "log -1 HEAD";
         l =
           "log --oneline -n 40 --date=short --boundary --pretty=format:'%Cgreen%ad %C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cblue[%aN]%Creset %Cblue'";
