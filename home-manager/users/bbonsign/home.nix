@@ -42,7 +42,7 @@
       bottom
       # broot
       # cargo
-      chezmoi
+      # chezmoi
       chromium
       # copilot-cli # AWS ECS cli 
       cowsay
