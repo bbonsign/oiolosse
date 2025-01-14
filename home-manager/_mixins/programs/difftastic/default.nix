@@ -1,7 +1,7 @@
 _: {
   config = {
     programs.git.difftastic = {
-      enable = true;
+      enable = false;
       display = "side-by-side";
     };
   };
