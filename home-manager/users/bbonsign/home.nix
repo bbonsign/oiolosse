@@ -84,13 +84,14 @@
       nodejs
       # opentofu
       p7zip
+      newman
       nodePackages.pnpm
       # pipenv
       # python312Packages.ipython
       pgcli
       # podman
       # podman-compose
-      podman-tui
+      # podman-tui
       # poetry
       # qutebrowser
       ripgrep
