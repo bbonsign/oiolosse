@@ -31,6 +31,11 @@
         # ~/.local/bin/git-clone-bare 
         clone-bare = "git-clone-bare";
 
+        # Diff $1=branch against its origin version
+        do = ''!f() { branch=$\{1:-main\} git diff "$branch" "origin/$branch"; }; f'';
+        # Summary diff $1=branch against its origin version
+        dos = ''!f() { branch=$\{1:-main\} git diff --stat "$branch" "origin/$branch"; }; f'';
+
         f = "fetch";
 
         g = "grep";

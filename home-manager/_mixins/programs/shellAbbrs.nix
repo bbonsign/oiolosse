@@ -45,6 +45,9 @@
   gcp = "git cherry-pick";
   gd = "git diff";
   gdel = "git branch -d";
+  # git do/dos are custom git aliases
+  gdo = "git do";
+  gdos = "git dos";
   gds = "git diff --staged";
   gf = "git fetch";
   gjm = "git jump merge";
