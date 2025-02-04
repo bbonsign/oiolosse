@@ -2,6 +2,7 @@
   imports = [
     ./atuin
     ./bash.nix
+    ./broot
     ./carapace.nix
     ./difftastic
     ./direnv.nix

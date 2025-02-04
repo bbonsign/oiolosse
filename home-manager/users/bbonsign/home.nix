@@ -35,12 +35,11 @@
 
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
-      asdf-vm
+      # asdf-vm
       awscli2
       bat
       # bazecor
       bottom
-      # broot
       # cargo
       # chezmoi
       # chromium
@@ -52,7 +51,7 @@
       duckdb
       duf
       beam.packages.erlang_27.erlang
-      beam.packages.erlang_27.elixir_1_17
+      beam.packages.erlang_27.elixir_1_18
       # elixir_1_16
       # erlang
       eza
@@ -99,6 +98,7 @@
       ssm-session-manager-plugin # For aws cli
       # slack
       tealdeer
+      television
       trashy
       tree
       unzip
