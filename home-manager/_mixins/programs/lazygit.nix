@@ -38,8 +38,8 @@ _:
             nextPage = "."; # go to previous page in list;
             gotoTop = "<"; # go to top of list;
             gotoBottom = ">"; # go to bottom of list;
-            scrollLeft = "h"; # scroll left within list view;
-            scrollRight = "l"; # scroll right within list view;
+            scrollLeft = "L"; # scroll left within list view;
+            scrollRight = "L"; # scroll right within list view;
             prevBlock = "<left>"; # goto the previous block / panel;
             nextBlock = "<right>"; # goto the next block / panel;
             prevBlock-alt = "K"; # goto the previous block / panel;
@@ -50,9 +50,11 @@ _:
             optionMenu = "?"; # show help menu;
             optionMenu-alt1 = "<disabled>"; # show help menu;
             select = "<space>";
-            goInto = "<enter>";
+            # goInto = "<enter>";
+            goInto = "l";
             openRecentRepos = "<c-r>";
-            confirm = "<enter>";
+            # confirm = "<enter>";
+            confirm = "y";
             remove = "d";
             new = "n";
             edit = "e";
@@ -110,6 +112,8 @@ _:
             toggleTreeView = "`";
             openMergeTool = "M";
             openStatusFilter = "<c-b>";
+            collapseAll = "_";
+            expandAll = "+";
           };
           branches = {
             createPullRequest = "o";
