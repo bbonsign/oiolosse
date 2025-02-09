@@ -50,11 +50,11 @@ _:
             optionMenu = "?"; # show help menu;
             optionMenu-alt1 = "<disabled>"; # show help menu;
             select = "<space>";
-            # goInto = "<enter>";
-            goInto = "l";
+            goInto = "<enter>";
+            # goInto = "l";
             openRecentRepos = "<c-r>";
-            # confirm = "<enter>";
-            confirm = "y";
+            confirm = "<enter>";
+            # confirm = "y";
             remove = "d";
             new = "n";
             edit = "e";

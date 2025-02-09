@@ -43,6 +43,7 @@
           # Bound to prefix-u by default
           plugin = tmuxPlugins.fzf-tmux-url;
           extraConfig = ''
+            set -g @fzf-url-bind 'U'
             set -g @fzf-url-fzf-options '-p 60%,30% --prompt="   " --border-label=" Open URL " --bind "ctrl-y:execute-silent(echo -n {2} | wl-copy)"'
             set -g @fzf-url-history-limit '2000'
           '';
