@@ -11,6 +11,7 @@
       aliases = {
         a = "add";
         aa = "add --all";
+        au = "add -u";
 
         b = "branch";
         ba = "branch --all";
@@ -53,6 +54,10 @@
 
         p = "pull";
         pp = "push";
+
+        ra = "rebase --abort";
+        rc = "rebase --continue";
+        ri = "rebase --interactive";
 
         st = "status";
 
