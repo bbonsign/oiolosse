@@ -18,3 +18,7 @@ hm *cmd="switch":
 
 gc days="50":
   nix-collect-garbage --delete-older-than {{days}}d
+
+# Symlink non-home-manager dotfiles
+dots:
+  ./dotfiles/symlink.sh

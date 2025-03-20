@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+_:
 
 {
   config = {
     programs.broot = {
-      enable = true;
+      enable = false;
       settings = {
-        imports = ["verbs.hjson" {file = "skins/catppuccin-mocha.hjson"; luma = ["dark" "unknown"];} ];
+        imports = [ "verbs.hjson" { file = "skins/catppuccin-mocha.hjson"; luma = [ "dark" "unknown" ]; } ];
         # enable_kitty_keyboard = true;
         icon_theme = "nerdfont";
         modal = true;

@@ -1,0 +1,4 @@
+format:
+  stylua .
+
+alias f := format

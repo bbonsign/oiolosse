@@ -1,0 +1,8 @@
+#!/usr/bin/env fish
+#
+set GIT_LOG 'git log --graph --oneline --abbrev-commit --decorate --all'
+
+export NNN_OPTS="aeR"
+export NNN_TRASH=2
+export NNN_PLUG='o:fzopen;c:fzcd;r:fzhist;p:preview-tui;l:-!'$GIT_LOG'*;b:-!bat $nnn*;z:!lazygit*'
+export NNN_BMS=".:$HOME/.dotfiles;c:$HOME/.config;d:$HOME/Downloads;D:$HOME/Dropbox;p:$HOME/projects;q:$HOME/qlair;h:$HOME"

@@ -1,0 +1,43 @@
+# format = "$nnn$all"
+
+[character]      # The name of the module we are configuring is "character"
+success_symbol = "[λ](bold blue)"
+error_symbol = "[λ](bold red)"
+vicmd_symbol = "[❰](bold green)"
+
+[python]
+symbol = " "
+
+[elixir]
+symbol = " "
+style = "#5e3f9e"
+
+[docker_context]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[directory]
+read_only = " "
+
+[aws]
+disabled = true
+
+# [custom.nnn]
+# command = "echo (math $NNNLVL-1) " # shows output of command
+# detect_files = ["foo"] # can specify filters but wildcards are not supported
+# when = """ test "$nnn" """
+# format = "[$output](bold blue)"

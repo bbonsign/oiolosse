@@ -1,0 +1,95 @@
+command = nu
+# gtk-tabs-location = hidden
+# gtk-titlebar = true
+gtk-single-instance = true
+font-family = "FiraCode Nerd Font"
+# font-style = "Reg"
+# font-family-bold == "FiraCode Nerd Font"
+# font-style-bold == "Bold"
+font-family-italic = "JetBrains Mono Nerd Font"
+# font-style-italic = "Light Italic"
+theme = tokyonight
+background-opacity = 0.70
+window-theme = ghostty
+# window-decoration = server
+# currently interferes with keyboard split focusing
+# focus-follows-mouse = true
+
+keybind = ctrl+x>shift+comma=jump_to_prompt:-1
+keybind = ctrl+x>shift+period=jump_to_prompt:+1
+keybind = ctrl+x>ctrl+x=text:\x0018
+keybind = ctrl+x>escape=ignore
+keybind = ctrl+x>ctrl+x>escape=ignore
+keybind = ctrl+x>shift+q=toggle_quick_terminal
+keybind = ctrl+x>shift+b=toggle_window_decorations
+keybind = ctrl+x>shift+i=inspector:toggle
+keybind = ctrl+x>1=goto_tab:1
+keybind = ctrl+x>2=goto_tab:2
+keybind = ctrl+x>3=goto_tab:3
+keybind = ctrl+x>4=goto_tab:2
+keybind = ctrl+x>5=goto_tab:5
+keybind = ctrl+x>6=goto_tab:6
+keybind = ctrl+x>7=goto_tab:6
+keybind = ctrl+x>8=goto_tab:7
+keybind = ctrl+x>9=goto_tab:8
+keybind = ctrl+x>[=previous_tab
+keybind = ctrl+x>]=next_tab
+
+keybind = ctrl+x>ctrl+[=previous_tab
+keybind = ctrl+x>ctrl+]=next_tab
+keybind = ctrl+x>h=goto_split:left
+keybind = ctrl+x>ctrl+h=goto_split:left
+keybind = ctrl+x>left=goto_split:left
+keybind = ctrl+x>j=goto_split:bottom
+keybind = ctrl+x>ctrl+j=goto_split:bottom
+keybind = ctrl+x>down=goto_split:bottom
+keybind = ctrl+x>k=goto_split:top
+keybind = ctrl+x>ctrl+k=goto_split:top
+keybind = ctrl+x>up=goto_split:top
+keybind = ctrl+x>l=goto_split:right
+keybind = ctrl+x>ctrl+l=goto_split:right
+keybind = ctrl+x>right=goto_split:right
+keybind = ctrl+x>ctrl+enter=new_split:right
+
+keybind = ctrl+x>ctrl+t=new_tab
+keybind = ctrl+x>ctrl+x=text:\u0018
+keybind = ctrl+x>h=goto_split:left
+keybind = ctrl+x>j=goto_split:bottom
+keybind = ctrl+x>k=goto_split:top
+keybind = ctrl+x>l=goto_split:right
+#keybind = ctrl+x>r=set_tab_title
+keybind = ctrl+x>shift+r=reload_config
+keybind = ctrl+x>enter=new_split:right
+keybind = ctrl+x>t=new_tab
+keybind = ctrl+x>tab>tab=toggle_tab_overview
+keybind = ctrl+x>tab>0=goto_tab:1
+keybind = ctrl+x>tab>2=goto_tab:2
+keybind = ctrl+x>tab>3=goto_tab:3
+keybind = ctrl+x>tab>4=goto_tab:4
+keybind = ctrl+x>tab>5=goto_tab:5
+keybind = ctrl+x>tab>6=goto_tab:6
+keybind = ctrl+x>tab>7=goto_tab:7
+keybind = ctrl+x>tab>8=goto_tab:8
+keybind = ctrl+x>tab>9=goto_tab:9
+#keybind = ctrl+x>tab>r=set_tab_title
+keybind = ctrl+x>s=new_split:down
+keybind = ctrl+x>v=new_split:right
+keybind = ctrl+x>z=toggle_split_zoom
+keybind = ctrl+x>shift+[=move_tab:-1
+keybind = ctrl+x>shift+]=move_tab:+1
+
+# Unbind these so they are passed to tmux
+keybind = ctrl+tab=unbind
+keybind = ctrl+shift+tab=unbind
+keybind = alt+[=unbind
+keybind = alt+]=unbind
+keybind = alt+0=unbind
+keybind = alt+1=unbind
+keybind = alt+2=unbind
+keybind = alt+3=unbind
+keybind = alt+4=unbind
+keybind = alt+5=unbind
+keybind = alt+6=unbind
+keybind = alt+7=unbind
+keybind = alt+8=unbind
+keybind = alt+9=unbind

@@ -1,0 +1,6 @@
+/* requies enabling css modifications in <vivaldi:experiments> */
+textarea#keyMappings,
+input[type="text"],
+textarea {
+  font-family: "FiraCode Nerd Font", monospace !important;
+}

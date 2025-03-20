@@ -109,7 +109,7 @@
       wl-clipboard
       xz
       yarn
-      yazi
+      # yazi
       yq-go # yaml processer https://github.com/mikefarah/yq
       # zig
       zip
@@ -125,6 +125,7 @@
       waybar
       wev # Wayland event viewer
       wlprop # click to get window details
+      wlr-which-key
       wmenu
     ];
 

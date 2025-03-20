@@ -1,0 +1,72 @@
+[user]
+	name = Brian Bonsignore
+	useConfigOnly = true
+	email = bbonsign@users.noreply.github.com
+
+[credential]
+	; helper = osxkeychain
+
+[core]
+	excludesfile = ~/.gitignore
+	editor = lvim
+  pager = delta
+
+[alias]
+	last = log -1 HEAD
+	st = status
+	ca = commit --amend
+	unstage = reset HEAD --
+	clone-bare = "git-clone-bare"
+
+[color "decorate"]
+	head = bold white
+	branch = bold magenta
+	remotebranch = blue
+	tag = bold red
+
+[interactive]
+  diffFilter = delta --color-only
+
+[merge]
+	conflictstyle = diff3
+
+[delta]
+	; hyperlinks = true
+	navigate = true
+	side-by-side = true
+  features = line-numbers decorations
+  whitespace-error-style = 22 reverse
+  ; https://github.com/folke/tokyonight.nvim/blob/main/extras/delta/tokyonight_night.gitconfig
+  ; minus-style                   = syntax "#3f2d3d"
+  ; minus-non-emph-style          = syntax "#3f2d3d"
+  ; minus-emph-style              = syntax "#763842"
+  ; minus-empty-line-marker-style = syntax "#3f2d3d"
+  ; line-numbers-minus-style      = "#c25d64"
+  ; plus-style                    = syntax "#283b4d"
+  ; plus-non-emph-style           = syntax "#283b4d"
+  ; plus-emph-style               = syntax "#316172"
+  ; plus-empty-line-marker-style  = syntax "#283b4d"
+  ; line-numbers-plus-style       = "#399a96"
+  ; line-numbers-zero-style       = "#3b4261"
+
+[delta "decorations"]
+  ; commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[hub]
+	protocol = https
+
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[worktree]
+	guessRemote = true

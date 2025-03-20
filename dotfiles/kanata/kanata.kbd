@@ -1,0 +1,77 @@
+;; Forcefully exit kanata
+;; Pressing and holding all of the three following keys together at the same time will cause kanata to exit:
+;;     Left Control
+;;     Space
+;;     Escape
+;; This mechanism works on the key input before any remappings done by kanata.
+
+(defcfg
+  process-unmapped-keys  yes
+  log-layer-changes      no
+  ;; device will depend on the system
+  linux-dev /dev/input/event4
+)
+
+(defoverrides
+  (;)        (lsft ;)
+  (lsft ;)   (;)
+  (rsft ;)   (;)
+)
+
+(defalias
+  ;; https://github.com/jtroo/kanata/blob/main/docs/config.adoc#tap-hold
+  bsmet  (multi f24 (tap-hold-press   200 200 bspc lmet))
+  delmet (multi f24 (tap-hold-press   200 200 del  lmet))
+  cap    (multi f24 (tap-hold-press   200 200 esc  lctl))
+  rtctl  (multi f24 (tap-hold-press   200 200 ret  lctl))
+  aalt   (multi f24 (tap-hold-release 200 200 a    lalt))
+  lalt   (multi f24 (tap-hold-release 200 200 l    lalt))
+  ssft   (multi f24 (tap-hold-release 200 200 s    lsft))
+  ksft   (multi f24 (tap-hold-release 200 200 k    lsft))
+  dmet   (multi f24 (tap-hold-release 200 200 d    lmet))
+  jmet   (multi f24 (tap-hold-release 200 200 j    lmet))
+  fctl   (multi f24 (tap-hold-release 200 200 f    lctl))
+  hctl   (multi f24 (tap-hold-release 200 200 h    lctl))
+  tab    (multi f24 (tap-hold-press   200 200 tab  (layer-while-held nav)))
+  nav    (layer-while-held nav)
+  atl    (multi alt (layer-while-held alted-with-exceptions))
+
+  navl  (multi (release-key alt) @nav) 
+  tabl  (multi (release-key alt) C-S-tab) 
+  tabr  (multi (release-key alt) C-tab)
+)
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+(deflayer default
+  grv  1       2     3     4     5    6     7     8      9     0    -    =    bspc
+  @tab q       w     e     r     t    y     u     i      o     p    [    ]    \
+  @cap a    s    d    f    g    h    j    k    l    ;    '    @rtctl
+  ;; @cap @aalt   @ssft @dmet @fctl g    @hctl @jmet @ksft  @lalt ;    '    @rtctl
+  lsft z       x     c     v     b    n     m     ,      .     /    rsft
+  lctl lmet @atl            spc          ralt  rmet ctl
+)
+
+
+
+(deflayer alted-with-exceptions
+  _     _    _    _    _    _    _    _    _    _    _    _     _      _
+  _     _    _    _    _    _    _    _    _    _    _    @tabl @tabr  _
+  @navl _    _    _    _    _    _    _    _    _    _    _     _
+  _     _    _    _    _    _    _    _    _    _    _    _
+  _     _    _           _            _    _    _
+)
+
+(deflayer nav
+  _  _    _      _     end  _      _    _    _    _    home _     _     _
+  _  _    C-rght end   _    _      _    pgup _    _    _    @tabl @tabr _
+  _  home _      pgdn  _    home   lft  down up   rght _    _     _
+  _  _    _      _     _    C-left _    _    _    _    _    _
+  _  _    _             pgdn            _    _    _
+)

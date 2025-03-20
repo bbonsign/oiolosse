@@ -4,7 +4,7 @@ _: {
     home.file.".config/kitty/open-actions.conf".source = ./open-actions.conf;
 
     programs.kitty = {
-      enable = true;
+      enable = false;
       themeFile = "tokyo_night_night";
       font = {
         name = "FiraCode Nerd Font";

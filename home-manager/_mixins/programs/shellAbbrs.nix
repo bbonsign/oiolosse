@@ -9,8 +9,8 @@
   ":gt" = "lazygit stash";
   ":k" = "kitty";
   ":ke" = "kitty +edit-config";
-  ":ld" = "l --only-dirs";
-  ":ln" = "l -s newest";
+  ":ld" = "eza --all --long --group-directories-first --icons --only-dirs";
+  ":ln" = "eza --all --long --group-directories-first --icons -s newest";
   ":nf" = "neofetch";
   ":r" = "rpm-ostree";
   ":rs" = "rpm-ostree status";
