@@ -3,6 +3,9 @@
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
+environment {
+    DISPLAY ":0"
+}
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
@@ -123,16 +126,22 @@ layout {
     // Proportion sets the width as a fraction of the output width, taking gaps into account.
     // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
     // The default preset widths are 1/3, 1/2 and 2/3 of the output.
-    proportion 0.33333
+    proportion 0.3333333
     proportion 0.5
-    proportion 0.66667
+    proportion 0.6666667
+    proportion 1.0
 
     // Fixed sets the width in logical pixels exactly.
     // fixed 1920
   }
 
   // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
-  // preset-window-heights { }
+  preset-window-heights { 
+    proportion 0.3333333
+    proportion 0.5
+    proportion 0.6666667
+    proportion 1.0
+  }
 
   // You can change the default width of the new windows.
   // default-column-width { proportion 0.5; }
@@ -161,13 +170,14 @@ layout {
     // Colors can be set in a variety of ways:
     // - CSS named colors: "red"
     // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
-    // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
+    // - CSS-like notation: "rgb(25, 17, 100)", rgba(), hsl() and a few others.
 
-    // Color of the ring on the active monitor.
-    active-color "#00000000"
+    // active-color "#7dcfff"
+    inactive-color "#414868"
 
-    // Color of the ring on inactive monitors.
-    inactive-color "#505050"
+    active-gradient from="#7dcfff" to="#7aa2f7" angle=135
+    // active-gradient from="#7dcfff" to="#7aa2f7" angle=135 relative-to="workspace-view"
+    // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
 
     // You can also use gradients. They take precedence over solid colors.
     // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
@@ -176,7 +186,6 @@ layout {
     // You can use any CSS linear-gradient tool on the web to set these up.
     // Changing the color space is also supported, check the wiki for more info.
     //
-    active-gradient from="#80c8ff" to="#003d90" angle=135
 
     // You can also color the gradient relative to the entire view
     // of the workspace, rather than relative to just the window itself.
@@ -185,18 +194,45 @@ layout {
     // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
   }
 
+
+  // # Tokyonight
+  // # normal
+  // color0 #15161e
+  // color1 #f7768e
+  // color2 #9ece6a
+  // color3 #e0af68
+  // color4 #7aa2f7
+  // color5 #bb9af7
+  // color6 #7dcfff
+  // color7 #a9b1d6
+  // 
+  // # bright
+  // color8 #414868
+  // color9 #f7768e
+  // color10 #9ece6a
+  // color11 #e0af68
+  // color12 #7aa2f7
+  // color13 #bb9af7
+  // color14 #7dcfff
+  // color15 #c0caf5
+  // 
+  // # extended colors
+  // color16 #ff9e64
+  // color17 #db4b4b
+  // url_color #73daca
+
   // You can also add a border. It's similar to the focus ring, but always visible.
   border {
     // The settings are the same as for the focus ring.
     // If you enable the border, you probably want to disable the focus ring.
-    //off
+    // off
 
     width 2
-    // active-color "#ffc87f"
-    inactive-color "#505050"
+    // active-color "#7dcfff"
+    inactive-color "#414868"
 
-    active-gradient from="#80c8ff" to="#003d90" angle=135
-    // active-gradient from="#80c8ff" to="#003d90" angle=135 relative-to="workspace-view"
+    active-gradient from="#7dcfff" to="#7aa2f7" angle=135
+    // active-gradient from="#7dcfff" to="#7aa2f7" angle=135 relative-to="workspace-view"
     // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
   }
 
@@ -254,7 +290,9 @@ layout {
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
-// spawn-at-startup "alacritty" "-e" "fish"
+ spawn-at-startup "bash" "-c" "swaybg --image $HOME/oiolosse/home-manager/_mixins/wallpapers/stsci-h-p1821a-m-1699x2000.png --mode fill"
+ spawn-at-startup "waybar"
+ spawn-at-startup "xwayland-satellite"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -302,6 +340,7 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match title=r#"1Password"# 
     open-floating true
 }
 
@@ -319,8 +358,8 @@ window-rule {
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    geometry-corner-radius 12
+window-rule {
+    geometry-corner-radius 4
     clip-to-geometry true
 }
 
@@ -343,6 +382,7 @@ binds {
     Mod+Return { spawn "/var/home/bbonsign/.local/kitty.app/bin/kitty"; }
     Mod+D { spawn "fuzzel" "--show-actions" "--lines" "20" "--width" "80"; }
     Super+Alt+L { spawn "swaylock"; }
+    Mod+Space { spawn "wlr-which-key"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -366,14 +406,14 @@ binds {
     // Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
 
-    Mod+Ctrl+Left  { move-column-left; }
-    Mod+Ctrl+Down  { move-window-down; }
-    Mod+Ctrl+Up    { move-window-up; }
-    Mod+Ctrl+Right { move-column-right; }
-    Mod+Ctrl+H     { move-column-left; }
-    Mod+Ctrl+J     { move-window-down; }
-    Mod+Ctrl+K     { move-window-up; }
-    Mod+Ctrl+L     { move-column-right; }
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Down  { move-window-down; }
+    Mod+Shift+Up    { move-window-up; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+H     { move-column-left; }
+    Mod+Shift+J     { move-window-down; }
+    Mod+Shift+K     { move-window-up; }
+    Mod+Shift+L     { move-column-right; }
 
     // Alternative commands that move across workspaces when reaching
     // the first or last window in a column.
@@ -387,14 +427,16 @@ binds {
     Mod+Ctrl+Home { move-column-to-first; }
     Mod+Ctrl+End  { move-column-to-last; }
 
-    Mod+Shift+Left  { focus-monitor-left; }
-    Mod+Shift+Down  { focus-monitor-down; }
-    Mod+Shift+Up    { focus-monitor-up; }
-    Mod+Shift+Right { focus-monitor-right; }
-    Mod+Shift+H     { focus-monitor-left; }
-    Mod+Shift+J     { focus-monitor-down; }
-    Mod+Shift+K     { focus-monitor-up; }
-    Mod+Shift+L     { focus-monitor-right; }
+    Mod+Ctrl+Left  { focus-monitor-left; }
+    Mod+Ctrl+Down  { focus-monitor-down; }
+    Mod+Ctrl+Up    { focus-monitor-up; }
+    Mod+Ctrl+Right { focus-monitor-right; }
+    Mod+Ctrl+H     { focus-monitor-left; }
+    Mod+Ctrl+J     { focus-monitor-down; }
+    Mod+Ctrl+K     { focus-monitor-up; }
+    Mod+Ctrl+L     { focus-monitor-right; }
+    Mod+BracketLeft  { focus-monitor-left; }
+    Mod+BracketRight { focus-monitor-right; }
 
     Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
@@ -499,8 +541,8 @@ binds {
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
     // If the window is already in a column, they will expel it out.
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Shift+BracketLeft  { consume-or-expel-window-left; }
+    Mod+Shift+BracketRight { consume-or-expel-window-right; }
 
     // Consume one window from the right to the bottom of the focused column.
     Mod+Comma  { consume-window-into-column; }

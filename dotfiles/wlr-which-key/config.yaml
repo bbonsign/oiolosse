@@ -1,12 +1,12 @@
 # Theming
-font: JetBrainsMono Nerd Font 12
+font: FiraCode Nerd Font Medium 10
 background: "#292e42"
 color: "#c0caf5"
 border: "#7aa2f7"
 separator: "  ➜  "
 border_width: 2
 corner_r: 10
-padding: 25 # Defaults to corner_r
+padding: 15 # Defaults to corner_r
 
 # Anchor and margin
 anchor: bottom # One of center, left, right, top, bottom, bottom-left, top-left, etc.
@@ -21,24 +21,43 @@ margin_top: 0
 # inhibit_compositor_keyboard_shortcuts: true
 
 menu:
+  "1": { desc: Workspace 1, cmd: niri msg action focus-workspace 1 }
+  "2": { desc: Workspace 2, cmd: niri msg action focus-workspace 2 }
+  "3": { desc: Workspace 3, cmd: niri msg action focus-workspace 3 }
+  "4": { desc: Workspace 4, cmd: niri msg action focus-workspace 4 }
+  "5": { desc: Workspace 5, cmd: niri msg action focus-workspace 5 }
+  "6": { desc: Workspace 6, cmd: niri msg action focus-workspace 6 }
+  "7": { desc: Workspace 7, cmd: niri msg action focus-workspace 7 }
+  "8": { desc: Workspace 8, cmd: niri msg action focus-workspace 8 }
+  "9": { desc: Workspace 9, cmd: niri msg action focus-workspace 9 }
+  "0":
+    desc: Power
+    submenu:
+      "l": { desc: Lock, cmd: "swaylock -f" }
+      "e": { desc: Exit, cmd: niri msg action quit }
+      "s": { desc: Suspend, cmd: systemctl suspend }
+      "h": { desc: Hibernate, cmd: systemctl hibernate }
+      "R": { desc: Reboot, cmd: systemctl reboot }
+      "S": { desc: Shutdown, cmd: systemctl poweroff }
+  "b":
+    desc: Bar
+    submenu:
+      "b": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
+      "r": { desc: Dark, cmd: pkill -SIGUSR2 waybar }
+      "t": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
   "w":
     desc: Workspaces
     submenu:
-      "1": { desc: Workspace 1, cmd: swaymsg workspace number 1 }
-      "2": { desc: Workspace 2, cmd: swaymsg workspace number 2 }
-      "3": { desc: Workspace 3, cmd: swaymsg workspace number 3 }
-  "p":
-    desc: Power
-    submenu:
-      "s": { desc: Sleep, cmd: systemctl suspend }
-      "r": { desc: Reboot, cmd: reboot }
-      "o": { desc: Off, cmd: poweroff }
-  "t":
-    desc: Theme
-    submenu:
-      "d": { desc: Dark, cmd: dark-theme on }
-      "l": { desc: Light, cmd: dark-theme off }
-      "t": { desc: Toggle, cmd: dark-theme toggle, keep_open: true }
+      "1": { desc: Workspace 1, cmd: niri msg action focus-workspace 1 }
+      "2": { desc: Workspace 2, cmd: niri msg action focus-workspace 2 }
+      "3": { desc: Workspace 3, cmd: niri msg action focus-workspace 3 }
+      "4": { desc: Workspace 4, cmd: niri msg action focus-workspace 4 }
+      "5": { desc: Workspace 5, cmd: niri msg action focus-workspace 5 }
+      "6": { desc: Workspace 6, cmd: niri msg action focus-workspace 6 }
+      "7": { desc: Workspace 7, cmd: niri msg action focus-workspace 7 }
+      "8": { desc: Workspace 8, cmd: niri msg action focus-workspace 8 }
+      "9": { desc: Workspace 9, cmd: niri msg action focus-workspace 9 }
+      "0": { desc: Workspace 10, cmd: niri msg action focus-workspace 10 }
   "l":
     desc: Laptop Screen
     submenu:

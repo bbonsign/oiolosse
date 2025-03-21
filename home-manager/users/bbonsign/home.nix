@@ -127,6 +127,7 @@
       wlprop # click to get window details
       wlr-which-key
       wmenu
+      xwayland-satellite
     ];
 
     # This value determines the home Manager release that your
