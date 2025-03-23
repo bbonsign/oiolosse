@@ -2,13 +2,50 @@ image=~/oiolosse/home-manager/_mixins/wallpapers/stsci-h-p1821a-m-1699x2000.png
 show-failed-attempts
 indicator-radius=80
 indicator-thickness=5
-ring-color=285577
-key-hl-color=2cb0b9
-text-color=455a64
-inside-ver-color=024f04
-line-color=00000000
-inside-color=00000060
-separator-color=00000000
+# Background color
+color=#24283b
+
+# Layout text colors
+layout-bg-color=#00000000
+layout-border-color=#00000000
+layout-text-color=#c0caf5
+
+# Text color
+text-color=#394b70
+text-clear-color=#89ddff
+text-caps-lock-color=#e0af68
+text-ver-color=#9d7cd8
+text-wrong-color=#f7768e
+
+# Highlight segments
+bs-hl-color=#24283b66
+key-hl-color=#394b70
+caps-lock-bs-hl-color=#24283b66
+caps-lock-key-hl-color=#e0af68
+
+# Highlight segments separator
+separator-color=#00000000
+
+# Inside of the indicator
+inside-color=#394b7055
+inside-clear-color=#89ddff55
+inside-caps-lock-color=#e0af6855
+inside-ver-color=#9d7cd855
+inside-wrong-color=#f7768e55
+
+# Line between the inside and ring
+line-color=#394b7011
+line-clear-color=#89ddff11
+line-caps-lock-color=#e0af6811
+line-ver-color=#9d7cd811
+line-wrong-color=#f7768e11
+
+# Indicator ring
+ring-color=#394b70aa
+ring-clear-color=#89ddffaa
+ring-caps-lock-color=#e0af68aa
+ring-ver-color=#9d7cd8aa
+ring-wrong-color=#f7768eaa
 
 
 # vi: ft=confini
