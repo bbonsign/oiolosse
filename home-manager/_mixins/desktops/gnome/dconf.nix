@@ -32,6 +32,7 @@
         color-scheme = "prefer-dark";
         enable-hot-corners = false;
         gtk-key-theme = "Emacs";
+        gtk-theme = "Adwaita-dark";
         locate-pointer = false;
         show-battery-percentage = true;
       };

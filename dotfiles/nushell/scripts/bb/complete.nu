@@ -94,7 +94,7 @@ export def fzf-complete [buffer: string, position: int = 0]  {
 
   let completed_end = $return_val | str substring $last_word_len.. | str trim
   # Reconstruct commandline with the chosen completion
-  $tokens | range 0..-2 | append $"($last_word)($completed_end)" | str join " "
+  $tokens | slice 0..-2 | append $"($last_word)($completed_end)" | str join " "
 }
 
 export def fzf_menu_source [buffer: string, position: int] {

@@ -12,15 +12,15 @@ layout-text-color=#c0caf5
 
 # Text color
 text-color=#394b70
-text-clear-color=#89ddff
+text-clear-color=#7aa2f7
 text-caps-lock-color=#e0af68
 text-ver-color=#9d7cd8
 text-wrong-color=#f7768e
 
 # Highlight segments
-bs-hl-color=#24283b66
-key-hl-color=#394b70
-caps-lock-bs-hl-color=#24283b66
+bs-hl-color=#24283b
+key-hl-color=#9d7cd8
+caps-lock-bs-hl-color=#24283b
 caps-lock-key-hl-color=#e0af68
 
 # Highlight segments separator
@@ -28,24 +28,24 @@ separator-color=#00000000
 
 # Inside of the indicator
 inside-color=#394b7055
-inside-clear-color=#89ddff55
+inside-clear-color=#7aa2f755
 inside-caps-lock-color=#e0af6855
 inside-ver-color=#9d7cd855
 inside-wrong-color=#f7768e55
 
 # Line between the inside and ring
 line-color=#394b7011
-line-clear-color=#89ddff11
+line-clear-color=#7aa2f711
 line-caps-lock-color=#e0af6811
 line-ver-color=#9d7cd811
 line-wrong-color=#f7768e11
 
 # Indicator ring
-ring-color=#394b70aa
-ring-clear-color=#89ddffaa
-ring-caps-lock-color=#e0af68aa
-ring-ver-color=#9d7cd8aa
-ring-wrong-color=#f7768eaa
+ring-color=#394b70
+ring-clear-color=#7aa2f7
+ring-caps-lock-color=#e0af68
+ring-ver-color=#9d7cd8
+ring-wrong-color=#f7768e
 
 
 # vi: ft=confini

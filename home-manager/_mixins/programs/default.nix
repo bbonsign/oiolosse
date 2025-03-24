@@ -11,7 +11,7 @@
     ./fzf.nix
     ./git
     ./gtk.nix
-    ./kitty
+    # ./kitty
     ./lazygit.nix
     ./neovim
     ./nushell
