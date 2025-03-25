@@ -112,7 +112,7 @@
     "wlr/taskbar": {
       "on-click": "activate",
       // "active-first": true,
-      "sort-by-app-id": false,
+      "sort-by-app-id": true,
       "tooltip-format": "{title} | {app_id}"
     },
     "keyboard-state": {

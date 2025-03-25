@@ -82,7 +82,9 @@ input {
 
   // Focus windows and outputs automatically when moving the mouse into them.
   // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-  focus-follows-mouse max-scroll-amount="0%"
+  // 90% prevents focusing when moving the mouse to the screen edge when a neighboring
+  // window's border bleeds over.
+  focus-follows-mouse max-scroll-amount="90%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -133,6 +135,16 @@ layout {
   // Set gaps around windows in logical pixels.
   gaps 4
 
+    tab-indicator {
+        width 6
+        // gap 8
+        length total-proportion=0.5
+        // position "left"
+        place-within-column
+        gaps-between-tabs 8
+        corner-radius  4
+        active-gradient from="#7dcfff" to="#bb9af7"
+    }
   // When to center a column when changing focus, options are:
   // - "never", default behavior, focusing an off-screen column will keep at the left
   //   or right edge of the screen.
@@ -293,6 +305,12 @@ layout {
     color "#0007"
   }
 
+  insert-hint {
+    // off
+    color "#ffc87f80"
+    gradient from="#7dcfff66" to="#bb9af777" angle=135
+  }
+
   // Struts shrink the area occupied by windows, similarly to layer-shell panels.
   // You can think of them as a kind of outer gaps. They are set in logical pixels.
   // Left and right struts will cause the next window to the side to always be visible.
@@ -348,13 +366,13 @@ animations {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 
 window-rule {
-    match title=r#"1Password"# 
+    match app-id=r#"1Password"# 
     default-column-width {proportion 0.25;}
     default-window-height {proportion 0.8;}
     open-floating true
     default-floating-position x=32 y=32 relative-to="top-left"
 
-    block-out-from "screencast"
+    block-out-from "screen-capture"
 }
 
 window-rule {
@@ -401,6 +419,7 @@ window-rule {
     }
 
     border {
+        active-color "#f7768e"
         inactive-color "#7d0d2d"
     }
 
@@ -413,6 +432,7 @@ window-rule {
         inactive-color "#7d0d2d"
     }
 }
+
 // Enable rounded corners for all windows.
 window-rule {
     geometry-corner-radius 4
@@ -421,7 +441,7 @@ window-rule {
 
 layer-rule {
     match namespace="swaync"
-    block-out-from "screencast"
+    block-out-from "screen-capture"
 }
 
 binds {
@@ -445,7 +465,9 @@ binds {
     Mod+D { spawn "fuzzel" "--show-actions" "--lines" "20" "--width" "80"; }
     Super+Alt+L { spawn "swaylock"; }
     Mod+Space { spawn "wlr-which-key"; }
-    Mod+Tab { spawn "~/.local/bin/niri-windows.nu"; }
+    Mod+Tab hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-windows.nu"; }
+    Mod+Comma hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-windows.nu"; }
+    Mod+Period hotkey-overlay-title="Window Picker"{ spawn "~/.local/bin/niri-windows.nu"; }
 
     Mod+Shift+Q { close-window; }
 
@@ -590,20 +612,19 @@ binds {
     Mod+Shift+BracketRight { consume-or-expel-window-right; }
 
     // Consume one window from the right to the bottom of the focused column.
-    Mod+Comma  { consume-window-into-column; }
+    // Mod+Comma  { consume-window-into-column; }
     // Expel the bottom window from the focused column to the right.
-    Mod+Period { expel-window-from-column; }
+    // Mod+Period { expel-window-from-column; }
 
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
     Mod+Shift+F { fullscreen-window; }
 
-    Mod+F { maximize-column; }
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
     Mod+E { expand-column-to-available-width; }
-
+    Mod+F { maximize-column; }
     Mod+C { center-column; }
 
     // Finer width adjustments.
