@@ -21,7 +21,7 @@ margin_top: 0
 # inhibit_compositor_keyboard_shortcuts: true
 
 menu:
-  "Tab": { desc: Windows, cmd: ~/.local/bin/niri-windows.nu }
+  "Tab": { desc: Windows, cmd: ~/.local/bin/niri-choose-window.nu }
   "1": { desc: Workspace 1, cmd: niri msg action focus-workspace 1 }
   "2": { desc: Workspace 2, cmd: niri msg action focus-workspace 2 }
   "3": { desc: Workspace 3, cmd: niri msg action focus-workspace 3 }
@@ -47,9 +47,37 @@ menu:
       "r": { desc: Dark, cmd: pkill -SIGUSR2 waybar }
       "t": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
 
+  "W":
+    desc: Workspaces
+    submenu:
+      "H":
+        {
+          desc: Move to monitor left,
+          cmd: niri msg action move-workspace-to-monitor-left,
+        }
+      "h":
+        {
+          desc: Move to monitor left,
+          cmd: niri msg action move-workspace-to-monitor-left,
+        }
+      "J": { desc: Move down, cmd: niri msg action move-workspace-down }
+      "j": { desc: Move down, cmd: niri msg action move-workspace-down }
+      "K": { desc: Move up, cmd: niri msg action move-workspace-up }
+      "k": { desc: Move up, cmd: niri msg action move-workspace-up }
+      "L":
+        {
+          desc: Move to monitor left,
+          cmd: niri msg action move-workspace-to-monitor-right,
+        }
+      "l":
+        {
+          desc: Move to monitor left,
+          cmd: niri msg action move-workspace-to-monitor-right,
+        }
   "w":
     desc: Windows
     submenu:
+      "b": { desc: Balance windows, cmd: ~/.local/bin/niri-balance-windows.nu }
       "c":
         desc: WindowColumn
         submenu:
