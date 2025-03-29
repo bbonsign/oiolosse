@@ -77,7 +77,21 @@ menu:
   "w":
     desc: Windows
     submenu:
-      "b": { desc: Balance windows, cmd: ~/.local/bin/niri-balance-windows.nu }
+      "b":
+        desc: Balance windows
+        submenu:
+          "2":
+            desc: Two-thirds
+            cmd: ~/.local/bin/niri-balance-windows.nu --two-thirds-main
+          "b":
+            desc: Equal
+            cmd: ~/.local/bin/niri-balance-windows.nu
+          "e":
+            desc: Equal
+            cmd: ~/.local/bin/niri-balance-windows.nu
+          "t":
+            desc: Two-thirds
+            cmd: ~/.local/bin/niri-balance-windows.nu --two-thirds-main
       "c":
         desc: WindowColumn
         submenu:
@@ -106,8 +120,11 @@ menu:
   "n":
     desc: Notifications
     submenu:
-      "o": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
-      "n": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
+      "n":
+        {
+          desc: "Notifications",
+          cmd: swaync-client --toggle-panel ; wlr-which-key notifications,
+        }
       "t": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
       "c": { desc: "close-all", cmd: swaync-client --close-all }
       "C": { desc: "close-all", cmd: swaync-client --close-all }

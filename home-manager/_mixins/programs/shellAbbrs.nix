@@ -79,8 +79,6 @@
   ipy = "ipython";
   j = "just";
   jz = "just --choose";
-  lg = "l --git";
-  lgg = "l --grid";
   m = "mix";
   # moon = "curl wttr.in/moon";
   myip = "curl ifconfig.co";

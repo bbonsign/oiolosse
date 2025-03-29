@@ -2,7 +2,14 @@ _: {
   config = {
     programs.nushell = {
       enable = true;
-      shellAliases = (import ../shellAliases.nix) // (import ../shellAbbrs.nix) // { "h" = "help"; ":h" = ":help"; };
+      # remove the `l` alias in favor os a nushell native ls alias in helpers.nu
+      shellAliases = builtins.removeAttrs
+        ((import ../shellAliases.nix) //
+          (import ../shellAbbrs.nix) //
+          {
+            "h" = "help";
+            ":h" = ":help";
+          }) [ "l" ];
       envFile.source = ./env.nu;
       configFile.source = ./config.nu;
       loginFile = {

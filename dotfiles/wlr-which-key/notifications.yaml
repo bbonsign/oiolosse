@@ -1,0 +1,29 @@
+# Theming
+font: FiraCode Nerd Font Medium 10
+background: "#292e42"
+color: "#c0caf5"
+border: "#7aa2f7"
+separator: "  ➜  "
+border_width: 2
+corner_r: 10
+padding: 15 # Defaults to corner_r
+
+# Anchor and margin
+anchor: bottom # One of center, left, right, top, bottom, bottom-left, top-left, etc.
+# Only relevant when anchor is not center
+margin_right: 0
+margin_bottom: 0
+margin_left: 0
+margin_top: 0
+
+# Permits key bindings that conflict with compositor key bindings.
+# Default is `false`.
+# inhibit_compositor_keyboard_shortcuts: true
+
+menu:
+  "o": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
+  "n": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
+  "t": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
+  "c": { desc: "close-all", cmd: swaync-client --close-all }
+  "C": { desc: "close-all", cmd: swaync-client --close-all }
+  "D": { desc: "toggle-dnd", cmd: swaync-client --toggle-dnd }
