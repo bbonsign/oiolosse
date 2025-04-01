@@ -98,7 +98,8 @@
       ssm-session-manager-plugin # For aws cli
       # slack
       tealdeer
-      television
+      # television
+      topiary # treesitter based formatter
       trashy
       tree
       unzip

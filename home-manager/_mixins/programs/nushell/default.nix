@@ -9,6 +9,9 @@ _: {
           {
             "h" = "help";
             ":h" = ":help";
+            "jl" = "job list";
+            "jf" = "job unfreeze";
+            "jfg" = "job unfreeze";
           }) [ "l" ];
       envFile.source = ./env.nu;
       configFile.source = ./config.nu;

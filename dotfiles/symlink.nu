@@ -3,28 +3,28 @@
 # Script to create symlinks to all dotfiles
 
 echo "===== Symlinking dotfiles ====="
-let DOTFILES = [ $env.HOME "oiolosse" "dotfiles"] | path join
-let CONFIG_DIR = [ $env.HOME ".config"] | path join
-let SERVICE_DIR = [ $env.HOME ".config" "systemd" "user"] | path join
-let BIN_DIR = [ $env.HOME ".local" "bin"] | path join
+let DOTFILES = [$env.HOME "oiolosse" "dotfiles"] | path join
+let CONFIG_DIR = [$env.HOME ".config"] | path join
+let SERVICE_DIR = [$env.HOME ".config" "systemd" "user"] | path join
+let BIN_DIR = [$env.HOME ".local" "bin"] | path join
 
 ^mkdir -p ([$SERVICE_DIR "niri.service.wants"] | path join)
 
 def create_symlink [src dest] {
-  if ($dest | path exists ) or ( ($dest | path type) == "symlink") {
+  if ($dest | path exists) or (($dest | path type) == "symlink") {
     trash put $dest
   }
   ln -sf ([$DOTFILES $src] | path join) $dest
 }
 
 # create_symlink "justfile" "$env.HOME/justfile"
-create_symlink ./rsync_excludes ([$env.HOME rsync_excludes]| path join)
-create_symlink ./symlink.nu ([$BIN_DIR .f]| path join)
+create_symlink ./rsync_excludes ([$env.HOME rsync_excludes] | path join)
+create_symlink ./symlink.nu ([$BIN_DIR .f] | path join)
 
 let bin_files = ls ($DOTFILES | path join "bin")
 
 $bin_files | each {
-  create_symlink $in.name ([$BIN_DIR ($in.name | path basename)] | path join) 
+  create_symlink $in.name ([$BIN_DIR ($in.name | path basename)] | path join)
 }
 
 create_symlink ./direnv/direnvrc ([$CONFIG_DIR "direnv/direnvrc"] | path join)

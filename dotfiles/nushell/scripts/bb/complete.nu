@@ -1,4 +1,4 @@
-export def fish_completer [ spans: list<string> ] {
+export def fish_completer [spans: list<string>] {
   # print fish-comp
   fish --command $'complete "--do-complete=($spans | str join " ")"'
   | from tsv --flexible --noheaders --no-infer
@@ -35,7 +35,7 @@ export def carapace_completer [spans: list<string>, cursor_pos: int = 0] {
 export def multi_completer [spans: list<string>, cursor_pos: int = 0] {
   let cmd = $spans.0? | str trim
   if ($cmd == "") {
-    return ( nu_completer $spans )
+    return (nu_completer $spans)
   }
 
   let expanded_alias = scope aliases
@@ -54,14 +54,14 @@ export def multi_completer [spans: list<string>, cursor_pos: int = 0] {
   if ($carapace_completions | is-empty) {
     let nu_completions = nu_completer $spans
     if ($nu_completions | is-empty) {
-      return ( fish_completer $spans )
+      return (fish_completer $spans)
     }
     return $nu_completions
   }
   return $carapace_completions
 }
 
-export def fzf-complete [buffer: string, position: int = 0]  {
+export def fzf-complete [buffer: string, position: int = 0] {
   let tokens = $buffer | split row -r '\s+'
   # use the last word on the commandline to only complete the remain selected part
   let last_word = $tokens | last
@@ -70,7 +70,7 @@ export def fzf-complete [buffer: string, position: int = 0]  {
 
   match $res {
     null => { return "" }
-    [] => {return ""}
+    [] => { return "" }
     _ => $res
   }
 
@@ -89,7 +89,7 @@ export def fzf-complete [buffer: string, position: int = 0]  {
   | rename completion_target description
   | get completion_target?
   | default [""]
-  | each {str trim }
+  | each { str trim }
   | str join " "
 
   let completed_end = $return_val | str substring $last_word_len.. | str trim
@@ -99,7 +99,7 @@ export def fzf-complete [buffer: string, position: int = 0]  {
 
 export def fzf_menu_source [buffer: string, position: int] {
   let result = (fzf-complete $buffer $position)
-  | do { { value: $in } }
+  | do { {value: $in} }
   # expects a table
   [$result]
 }

@@ -4,7 +4,7 @@ source ~/.config/nushell/scripts/themes/nu-themes/tokyo-night.nu
 # ~/.config/nushell/scripts/bb module
 use bb *
 
-const ALL_MODES = [emacs, vi_normal, vi_insert]
+const ALL_MODES = [emacs vi_normal vi_insert]
 
 let fzf_menu_source = {|buffer, position|
   fzf_menu_source $buffer $position
@@ -24,9 +24,9 @@ $env.config.history = {
 }
 
 $env.config.cursor_shape = {
-  emacs: inherit      # block, underscore, line (line is the default)
-  vi_insert: line     # block, underscore, line (block is the default)
-  vi_normal: block    # block, underscore, line (underscore is the default)
+  emacs: inherit # block, underscore, line (line is the default)
+  vi_insert: line # block, underscore, line (block is the default)
+  vi_normal: block # block, underscore, line (underscore is the default)
 }
 
 $env.config.completions = {
@@ -36,62 +36,63 @@ $env.config.completions = {
   }
 }
 
-$env.config.menus = ($env.config.menus | append [
-  {
-    name: fzf_menu
-    only_buffer_difference: false
-    marker: ""
-    type: { 
-      layout: columnar 
-      columns: 1
-      col_width: 20
-      col_padding: 2
+$env.config.menus = (
+  $env.config.menus | append [
+    {
+      name: fzf_menu
+      only_buffer_difference: false
+      marker: ""
+      type: {
+        layout: columnar
+        columns: 1
+        col_width: 20
+        col_padding: 2
+      }
+      style: {
+        text: green
+        selected_text: green_reverse
+        description_text: yellow
+      }
+      source: $fzf_menu_source
     }
-    style: {
-      text: green
-      selected_text: green_reverse
-      description_text: yellow
+    {
+      name: completion_menu
+      only_buffer_difference: false # Search is done on the text written after activating the menu
+      marker: "" # Indicator that appears with the menu is active
+      type: {
+        layout: columnar # Type of menu
+        columns: 4 # Number of columns where the options are displayed
+        col_width: 20 # Optional value. If missing all the screen width is used to calculate column width
+        col_padding: 2 # Padding between columns
+      }
+      style: {
+        text: green # Text style
+        selected_text: green_reverse # Text style for selected option
+        description_text: yellow # Text style for description
+      }
     }
-    source: $fzf_menu_source
-  },
-  {
-    name: completion_menu
-    only_buffer_difference: false # Search is done on the text written after activating the menu
-    marker: ""                  # Indicator that appears with the menu is active
-    type: {
-      layout: columnar          # Type of menu
-      columns: 4                # Number of columns where the options are displayed
-      col_width: 20             # Optional value. If missing all the screen width is used to calculate column width
-      col_padding: 2            # Padding between columns
+    {
+      name: abbr_menu
+      only_buffer_difference: false
+      marker: ""
+      type: {
+        layout: columnar
+        columns: 1
+        col_width: 20
+        col_padding: 2
+      }
+      style: {
+        text: green
+        selected_text: green_reverse
+        description_text: yellow
+      }
+      source: {|buffer, position|
+        scope aliases
+        | where name == ($buffer | str trim)
+        | each {|it| {value: $"($it.expansion) "} }
+      }
     }
-    style: {
-      text: green                   # Text style
-      selected_text: green_reverse  # Text style for selected option
-      description_text: yellow      # Text style for description
-    }
-  },
-  {
-    name: abbr_menu
-    only_buffer_difference: false
-    marker: ""
-    type: {
-      layout: columnar
-      columns: 1
-      col_width: 20
-      col_padding: 2
-    }
-    style: {
-      text: green
-      selected_text: green_reverse
-      description_text: yellow
-    }
-    source: { |buffer, position|
-      scope aliases
-      | where name == ($buffer | str trim)
-      | each { |it| {value: $"($it.expansion) " }}
-    }
-  }
-]
+  ]
 )
 
 # https://github.com/nushell/nushell/issues/5552#issuecomment-2077047961
@@ -106,7 +107,7 @@ $env.config.keybindings = (
         send: executehostcommand
         cmd: `commandline edit ( fzf-complete (commandline) (commandline get-cursor))`
       }
-    },
+    }
     {
       name: fzf_menu
       # modifier: none
@@ -116,14 +117,14 @@ $env.config.keybindings = (
       mode: $ALL_MODES
       event: {
         until: [
-          { send: menu, name: fzf_menu }
+          {send: menu name: fzf_menu}
           # { edit: InsertString, value: "After fzf_menu" }
           # { send: menu, name: completion_menu }
           # { edit: InsertString, value: "After nu completion_menu" }
           # { send: MenuNext }
         ]
       }
-    },
+    }
     {
       name: abbr
       modifier: control
@@ -133,7 +134,7 @@ $env.config.keybindings = (
         send: menu
         name: abbr_menu
       }
-    },
+    }
     # {
     #   name: completion_menu
     #   modifier: control
@@ -155,7 +156,7 @@ $env.config.keybindings = (
         send: executehostcommand
         cmd: "commandline edit --insert (fzf-tmux)"
       }
-    },
+    }
     {
       name: fuzzy_file_pwd
       modifier: control_alt
@@ -165,7 +166,7 @@ $env.config.keybindings = (
         send: executehostcommand
         cmd: "commandline edit --insert (fd --max-depth 1 --color always | fzf-tmux)"
       }
-    },
+    }
     {
       name: fuzzy_git_status
       modifier: control_alt
@@ -175,7 +176,7 @@ $env.config.keybindings = (
         send: executehostcommand
         cmd: "commandline edit --insert (fg status)"
       }
-    },
+    }
     {
       name: fuzzy_git_branch
       modifier: control_alt
@@ -185,7 +186,7 @@ $env.config.keybindings = (
         send: executehostcommand
         cmd: "commandline edit --insert (fg branches)"
       }
-    },
+    }
     {
       name: fuzzy_git_branch_all
       modifier: control_alt
@@ -195,14 +196,14 @@ $env.config.keybindings = (
         send: executehostcommand
         cmd: "commandline edit --insert (fg branches --all)"
       }
-    },
+    }
     {
       name: open_prompt_in_editor
       modifier: alt
       keycode: char_e
       mode: $ALL_MODES
       event: {send: OpenEditor}
-    },
+    }
     {
       name: wrap_commandline_in_nvim_quickfix
       modifier: control
@@ -212,7 +213,7 @@ $env.config.keybindings = (
         send: executehostcommand
         cmd: "wrap_commandline_in_nvim_quickfix"
       }
-    },
+    }
     # Extend regular bindings to all vi+emacs modes
     {
       name: clear_backwards
@@ -220,20 +221,20 @@ $env.config.keybindings = (
       keycode: char_u
       mode: $ALL_MODES
       event: [
-        { edit: CutFromLineStart }
-        { edit: Backspace }
-      ],
-    },
+        {edit: CutFromLineStart}
+        {edit: Backspace}
+      ]
+    }
     {
       name: clear_forwards
       modifier: control
       keycode: char_k
       mode: $ALL_MODES
       event: [
-        { edit: ClearToLineEnd }
-        { edit: Delete }
+        {edit: ClearToLineEnd}
+        {edit: Delete}
       ]
-    },
+    }
     {
       name: complete_hint
       modifier: control
@@ -241,12 +242,12 @@ $env.config.keybindings = (
       mode: $ALL_MODES
       event: {
         until: [
-          {send: HistoryHintComplete},
-          {send: MenuRight},
-          {send: Right},
+          {send: HistoryHintComplete}
+          {send: MenuRight}
+          {send: Right}
         ]
       }
-    },
+    }
     {
       name: complete_hint_incremental
       modifier: alt
@@ -254,10 +255,10 @@ $env.config.keybindings = (
       mode: $ALL_MODES
       event: {
         until: [
-          {send: HistoryHintWordComplete},
-          {edit: MoveWordRight, select: false},
+          {send: HistoryHintWordComplete}
+          {edit: MoveWordRight select: false}
         ]
       }
-    },
+    }
   ]
 )
