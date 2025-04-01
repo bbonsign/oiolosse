@@ -1,4 +1,5 @@
 return {
+  -- Right click menu
   {
     "nvzone/menu",
     lazy = true,

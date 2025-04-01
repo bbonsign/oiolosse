@@ -2,4 +2,5 @@
 return -- Lua
 {
   "folke/twilight.nvim",
+  enabled = false,
 }

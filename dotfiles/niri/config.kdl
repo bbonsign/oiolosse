@@ -403,6 +403,7 @@ window-rule {
 
 window-rule {
   match app-id=r#"xdg-desktop-portal-gtk"# title="Open File"
+  match app-id=r#"xdg-desktop-portal-gtk"# title="All Files"
   open-floating true
   default-column-width {proportion 0.75;}
   default-window-height {proportion 0.8;}

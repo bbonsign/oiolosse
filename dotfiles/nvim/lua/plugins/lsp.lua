@@ -182,10 +182,17 @@ return {
         lua = { "stylua" },
         fish = { "fish_indent" },
         python = { "ruff_organize_imports", "ruff_format" },
+        nu = { "topiary_nu" },
         -- -- You can customize some of the format options for the filetype (:help conform.format)
         -- rust = { "rustfmt", lsp_format = "fallback" },
         -- -- Conform will run the first available formatter
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      },
+      formatters = {
+        topiary_nu = {
+          command = "topiary",
+          args = { "format", "--language", "nu" },
+        },
       },
     },
   },
