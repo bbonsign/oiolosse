@@ -93,7 +93,7 @@
       nautilus
       nix-output-monitor
       nodejs
-      # opentofu
+      obsidian
       p7zip
       newman
       nodePackages.pnpm

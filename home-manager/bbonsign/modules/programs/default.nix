@@ -9,6 +9,7 @@
     ./fd
     ./fish
     ./fzf.nix
+    ./gammastep.nix
     ./git
     ./gtk.nix
     # ./kitty
