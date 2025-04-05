@@ -127,7 +127,7 @@ export def "fg branches" [
   }
 }
 
-export def "l" [...args] {
+export def "ll" [...args] {
   let args = if ($args | is-empty ) { ["."] } else { $args }
   ls --all --long ...$args | sort-by type name modified  | select name type mode created modified target
 }

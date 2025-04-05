@@ -5,6 +5,9 @@ return {
     -- build = vim.g.lazyvim_blink_main and "cargo build --release",
     -- build = vim.g.lazyvim_blink_main and "nix run .#build-plugin",
     opts = {
+      fuzzy = {
+        implementation = 'prefer_rust',
+      },
       appearance = {
         -- sets the fallback highlight groups to nvim-cmp's highlight groups
         -- useful for when your theme doesn't support blink.cmp

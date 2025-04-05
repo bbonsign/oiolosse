@@ -24,26 +24,6 @@
     let system = "x86_64-linux";
     in {
       nixosConfigurations = {
-        aman = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./nixos/mithlond
-
-            # make home-manager as a module of nixos
-            # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "hmbak";
-              home-manager.users.bbonsign = import ./home-manager/default.nix;
-              # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-              home-manager.extraSpecialArgs = { inherit inputs; };
-            }
-          ];
-        };
-
         mithlond = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -57,7 +37,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "hmbak";
-              home-manager.users.bbonsign = import ./home-manager/default.nix;
+              home-manager.users.bbonsign = import ./home-manager/bbonsign;
               # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
@@ -70,7 +50,7 @@
           pkgs = import nixpkgs { inherit system; };
 
           # Specify your home configuration modules here, for example, the path to your home.nix.
-          modules = [ ./home-manager ];
+          modules = [ ./home-manager/bbonsign ];
 
           # Optionally use extraSpecialArgs to pass through arguments to home.nix
           extraSpecialArgs = { inherit inputs; };

@@ -12,7 +12,7 @@ set {
 
   $browser vivaldi
   $slack flatpak run com.slack.Slack
-  $term $HOME/.local/bin/kitty
+  $term kitty
   # $term ghostty
 
   # $menu should be dmenu-like
@@ -67,7 +67,7 @@ client.background       $black
 
 ### Output configuration
 output {
-  *      bg $HOME/oiolosse/home-manager/_mixins/wallpapers/stsci-h-p1821a-m-1699x2000.png fill
+  *      bg $HOME/oiolosse/home-manager/bbonsign/modules/wallpapers/stsci-h-p1821a-m-1699x2000.png fill
   # eDP-1 is laptop screen
   eDP-1  pos    0 0
   DP-1   pos 1920 0

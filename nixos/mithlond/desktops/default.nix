@@ -4,6 +4,7 @@
   imports = [
     # ./gnome
     ./sway
-    # ./hyprland
+    ./hyprland
+    ./niri
   ];
 }

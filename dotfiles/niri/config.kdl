@@ -12,11 +12,11 @@ environment {
 }
 
 
-workspace "browser" {
-  open-on-output "eDP-1"
-}
 workspace "term" {
   open-on-output "DP-1"
+}
+workspace "browser" {
+  open-on-output "eDP-1"
 }
 workspace "chat" {
   open-on-output "eDP-1"
@@ -329,11 +329,11 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 spawn-at-startup "/usr/libexec/xdg-desktop-portal" "--replace"
-spawn-at-startup "bash" "-c" "swaybg --image $HOME/oiolosse/home-manager/_mixins/wallpapers/stsci-h-p1821a-m-1699x2000.png --mode fill"
+spawn-at-startup "bash" "-c" "swaybg --image $HOME/oiolosse/home-manager/bbonsign/modules/wallpapers/stsci-h-p1821a-m-1699x2000.png --mode fill"
 spawn-at-startup "swaync"
 spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "~/.local/kitty.app/bin/kitty"
+spawn-at-startup "kitty"
 // --silent opens to the system tray without showing the main window
 spawn-at-startup "/usr/bin/1password" "--silent"
 
@@ -419,6 +419,7 @@ window-rule {
 // Open on named workspace, if it runs at niri startup.
 window-rule {
   match at-startup=true app-id=r#"kitty"#
+  default-column-width {proportion 1.00;}
   open-on-workspace "term"
 }
 window-rule {
@@ -478,7 +479,7 @@ binds {
   // You can also use a shell. Do this if you need pipes, multiple commands, etc.
   // Note: the entire command goes as a single argument in the end.
   // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
-  Mod+Return { spawn "~/.local/kitty.app/bin/kitty"; }
+  Mod+Return { spawn "kitty"; }
   Mod+D { spawn "fuzzel" "--show-actions" "--lines" "20" "--width" "80"; }
   Super+Alt+L { spawn "swaylock"; }
   Mod+Space { spawn "wlr-which-key"; }
@@ -608,8 +609,8 @@ binds {
   //
   // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
   // will all refer to the 3rd workspace.
-  Mod+1 { focus-workspace "browser"; }
-  Mod+2 { focus-workspace "term"; }
+  Mod+1 { focus-workspace "term"; }
+  Mod+2 { focus-workspace "browser"; }
   Mod+3 { focus-workspace "chat"; }
   Mod+4 { focus-workspace 4; }
   Mod+5 { focus-workspace 5; }
@@ -617,8 +618,8 @@ binds {
   Mod+7 { focus-workspace 7; }
   Mod+8 { focus-workspace 8; }
   Mod+9 { focus-workspace 9; }
-  Mod+Shift+1 { move-column-to-workspace "browser"; }
-  Mod+Shift+2 { move-column-to-workspace "term"; }
+  Mod+Shift+1 { move-column-to-workspace "term"; }
+  Mod+Shift+2 { move-column-to-workspace "browser"; }
   Mod+Shift+3 { move-column-to-workspace "chat"; }
   Mod+Shift+4 { move-column-to-workspace 4; }
   Mod+Shift+5 { move-column-to-workspace 5; }

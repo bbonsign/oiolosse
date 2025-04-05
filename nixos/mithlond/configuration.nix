@@ -3,9 +3,9 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../_mixins/common.nix
-    ../_mixins/desktops
-    ../_mixins/services
+    ./common.nix
+    ./desktops
+    ./services
   ];
 
   # Set your time zone.
@@ -77,11 +77,12 @@
     extraGroups = [ "networkmanager" "wheel" ];
     # packages = with pkgs; [   ];
   };
-  users.defaultUserShell = pkgs.fish;
+  # users.defaultUserShell = pkgs.fish;
 
   fonts.packages = with pkgs;
     [
       pkgs.nerd-fonts.fira-code
+      pkgs.nerd-fonts.fantasque-sans-mono
     ];
 
   # Allow unfree packages

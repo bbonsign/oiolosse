@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
-    ../../_mixins/programs
-    ../../_mixins/desktops/gnome
-    # ../../_mixins/desktops/sway
+    ./modules/programs
+    ./modules/desktops/gnome
+    inputs.nix-index-database.hmModules.nix-index
   ];
 
   config = {
@@ -16,15 +16,25 @@
       GRIM_DEFAULT_DIR = "$HOME/Pictures/Screenshots";
     };
 
-    services.ssh-agent.enable = true;
+    # nix = {
+    #   package = pkgs.nixVersions.stable;
+    #   extraOptions = ''
+    #     experimental-features = nix-command flakes pipe-operators
+    #   '';
+    # };
 
-    # https://nixos.wiki/wiki/Bluetooth#Using_Bluetooth_headset_buttons_to_control_media_player
-    services.mpris-proxy.enable = true;
+    home.shellAliases = import ./modules/programs/shellAliases.nix;
+
+    home.pointerCursor = {
+      gtk.enable = true;
+      package = pkgs.nordzy-cursor-theme;
+      name = "Nordzy-cursors";
+      size = 24;
+    };
+
 
     # Link configs that don't have home-manager modules
     home.file = {
-      ".iex.exs".source = ../../_mixins/dot_iex.exs;
-      ".ipython/profile_default/ipython_config.py".source = ../../_mixins/ipython_config.py;
       ".local/bin" = {
         source = ./local-bin;
         recursive = true;
@@ -74,11 +84,13 @@
       just
       kanata
       killall
+      kitty
       lazygit
       litecli
       # livebook
       luarocks
       # nixfmt
+      nautilus
       nix-output-monitor
       nodejs
       # opentofu
@@ -140,5 +152,16 @@
     # the home Manager release notes for a list of state version
     # changes in each release.
     home.stateVersion = "22.11";
+
+    # Let home Manager install and manage itself.
+    programs.home-manager.enable = true;
+
+    programs.nix-index.enable = true;
+    programs.nix-index-database.comma.enable = true;
+
+    services.ssh-agent.enable = true;
+
+    # https://nixos.wiki/wiki/Bluetooth#Using_Bluetooth_headset_buttons_to_control_media_player
+    services.mpris-proxy.enable = true;
   };
 }

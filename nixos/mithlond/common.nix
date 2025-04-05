@@ -31,17 +31,19 @@
 
   services.tailscale.enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
   # services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
+  # services.displayManager.sddm.enable = true;
+  services.displayManager.enable = false;
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-    options = "ctrl:no_caps";
+  services.xserver = {
+    # enable = true;
+    # autorun = false;
+
+    xkb = {
+      layout = "us";
+      variant = "";
+      options = "ctrl:no_caps";
+    };
   };
 
   security.rtkit.enable = true;
@@ -65,7 +67,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     # packages = with pkgs; [   ];
   };
-  users.defaultUserShell = pkgs.fish;
+  # users.defaultUserShell = pkgs.fish;
 
   fonts.packages = with pkgs;
     [

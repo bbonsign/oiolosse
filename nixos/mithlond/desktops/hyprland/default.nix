@@ -2,13 +2,14 @@
 
 {
   config = {
-    programs.hyprland = { enable = false; };
+    programs.hyprland = { enable = true; };
     # Optional, hint electron apps to use wayland:
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
     environment.systemPackages = with pkgs; [
       # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       grim # screenshot functionality
-      mako # notification system developed by swaywm maintainer
+      # mako # notification system developed by swaywm maintainer
+      swaynotificationcenter
       rofi-wayland
       slurp # screenshot functionality
       waybar

@@ -78,7 +78,7 @@
   gwtr = "git worktree remove";
   ipy = "ipython";
   j = "just";
-  jz = "just --choose";
+  jl = "just --list";
   m = "mix";
   # moon = "curl wttr.in/moon";
   myip = "curl ifconfig.co";
