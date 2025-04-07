@@ -2,8 +2,7 @@
 
 {
   imports = [
-    ./modules/programs
-    ./modules/desktops/gnome
+    ./modules
     inputs.nix-index-database.hmModules.nix-index
   ];
 
@@ -46,31 +45,50 @@
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
       # asdf-vm
-      awscli2
-      bat
-      # bazecor
-      bottom
+      bazecor
       # cargo
       # chezmoi
       # chromium
       # copilot-cli # AWS ECS cli 
+      # devbox
+      # elixir_1_16
+      # erlang
+      # from nixos sway
+      # ghostty
+      # jless
+      # livebook
+      # nixfmt
+      # pipenv
+      # podman
+      # podman-compose
+      # podman-tui
+      # poetry
+      # python312Packages.ipython
+      # qutebrowser
+      # rustup
+      # slack
+      # television
+      # valent # KDE Connect client
+      # yazi
+      # zig
+      # zls # zig language server
+      awscli2
+      bat
+      beam.packages.erlang_27.elixir_1_18
+      beam.packages.erlang_27.erlang
+      bottom
+      brightnessctl
       cowsay
       delta
-      # devbox
       dnsutils # `dig` + `nslookup`
       duckdb
       duf
-      beam.packages.erlang_27.erlang
-      beam.packages.erlang_27.elixir_1_18
-      # elixir_1_16
-      # erlang
       eza
       file
       flyctl
       gcc
       gh # GitHub cli
-      # ghostty
-      glow # markdown previewer in terminal
+      glow # terminal markdown previewer
       gnumake
       gnupg
       gnused
@@ -79,7 +97,6 @@
       htop
       httpie
       inotify-tools
-      jless
       jq
       just
       kanata
@@ -87,60 +104,29 @@
       kitty
       lazygit
       litecli
-      # livebook
       luarocks
-      # nixfmt
       nautilus
+      newman
       nix-output-monitor
+      nodePackages.pnpm
       nodejs
       obsidian
       p7zip
-      newman
-      nodePackages.pnpm
-      # pipenv
-      # python312Packages.ipython
       pgcli
-      # podman
-      # podman-compose
-      # podman-tui
-      # poetry
-      # qutebrowser
       ripgrep
-      # rustup
       ssm-session-manager-plugin # For aws cli
-      # slack
       tealdeer
-      # television
       topiary # treesitter based formatter
       trashy
       tree
       unzip
       usbutils # lsusb
       uv # python packaging and project manager
-      # valent # KDE Connect client
       which
-      wl-clipboard
       xz
       yarn
-      # yazi
       yq-go # yaml processer https://github.com/mikefarah/yq
-      # zig
       zip
-      # zls # zig language server
-      # from nixos sway
-      brightnessctl
-      fuzzel
-      rofi-wayland
-      swappy # screenshot annotation tool
-      sway-contrib.grimshot
-      swaynotificationcenter
-      slurp # screen selection functionality
-      waybar
-      wev # Wayland event viewer
-      wlprop # click to get window details
-      wlr-which-key
-      wmenu
-      xwayland-satellite
     ];
 
     # This value determines the home Manager release that your
@@ -159,9 +145,19 @@
     programs.nix-index.enable = true;
     programs.nix-index-database.comma.enable = true;
 
-    services.ssh-agent.enable = true;
+    services = {
+      ssh-agent.enable = true;
+      # https://nixos.wiki/wiki/Bluetooth#Using_Bluetooth_headset_buttons_to_control_media_player
+      mpris-proxy.enable = true;
+    };
 
-    # https://nixos.wiki/wiki/Bluetooth#Using_Bluetooth_headset_buttons_to_control_media_player
-    services.mpris-proxy.enable = true;
+    xdg.portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-gnome
+      ];
+      config.common.default = [ "*" ];
+    };
   };
 }

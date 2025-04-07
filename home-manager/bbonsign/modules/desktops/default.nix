@@ -1,10 +1,8 @@
-{ ... }:
-
-{
+_: {
   imports = [
     # ./gnome
-    ./sway
-    # ./hyprland
     ./niri
+    ./sway
+    ./dconf.nix
   ];
 }

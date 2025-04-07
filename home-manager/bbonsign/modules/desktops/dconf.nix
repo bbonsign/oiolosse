@@ -8,9 +8,9 @@
         color-shading-type = "solid";
         picture-options = "zoom";
         picture-uri =
-          "file://${../../wallpapers/stsci-h-p1821a-m-1699x2000.png}";
+          "file://${../wallpapers/stsci-h-p1821a-m-1699x2000.png}";
         picture-uri-dark =
-          "file://${../../wallpapers/stsci-h-p1821a-m-1699x2000.png}";
+          "file://${../wallpapers/stsci-h-p1821a-m-1699x2000.png}";
         primary-color = "#000000000000";
         secondary-color = "#000000000000";
       };
@@ -154,8 +154,8 @@
 
       "org/gnome/shell/extensions/auto-move-windows" = {
         application-list = [
-          "firefox.desktop:1"
-          # "kitty.desktop:2"
+          "kitty.desktop:1"
+          "firefox.desktop:2"
           "slack.desktop:3"
           "Bazecor.desktop:4"
         ];

@@ -335,7 +335,7 @@ spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "kitty"
 // --silent opens to the system tray without showing the main window
-spawn-at-startup "/usr/bin/1password" "--silent"
+spawn-at-startup "1password" "--silent"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -382,7 +382,7 @@ window-rule {
   // since this is the default config, and we want no false positives.
   // You can get away with just app-id="wezterm" if you want.
   match app-id=r#"vivaldi-stable"# 
-  default-column-width {}
+  default-column-width {proportion 1.00;}
   open-on-workspace "browser"
 }
 
