@@ -18,8 +18,8 @@ def create_symlink [src dest] {
 }
 
 # create_symlink "justfile" "$env.HOME/justfile"
-create_symlink ./rsync_excludes ([$env.HOME rsync_excludes] | path join)
-create_symlink ./dot_iex.exs ([$env.HOME ".iex.exs"] | path join)
+create_symlink rsync_excludes ([$env.HOME rsync_excludes] | path join)
+create_symlink dot_iex.exs ([$env.HOME ".iex.exs"] | path join)
 create_symlink ./ipython_config.py ([$env.HOME ".ipython" "profile_default" "ipython_config.py"] | path join)
 create_symlink ./symlink.nu ([$BIN_DIR .f] | path join)
 
