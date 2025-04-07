@@ -334,7 +334,8 @@ spawn-at-startup "pkill" "mako"
 spawn-at-startup "swaync"
 spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "kitty"
+// spawn-at-startup "kitty"
+spawn-at-startup "bash" "-c" "kitty || $HOME/.local/kitty.app/bin/kitty"
 // --silent opens to the system tray without showing the main window
 spawn-at-startup "1password" "--silent"
 
@@ -480,7 +481,8 @@ binds {
   // You can also use a shell. Do this if you need pipes, multiple commands, etc.
   // Note: the entire command goes as a single argument in the end.
   // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
-  Mod+Return { spawn "kitty"; }
+  // Mod+Return { spawn "kitty"; }
+  Mod+Return { spawn "bash" "-c" "kitty || $HOME/.local/kitty.app/bin/kitty"; }
   Mod+D { spawn "fuzzel" "--show-actions" "--lines" "20" "--width" "80"; }
   Super+Alt+L { spawn "swaylock"; }
   Mod+Space { spawn "wlr-which-key"; }
