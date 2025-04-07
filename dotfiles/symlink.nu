@@ -32,6 +32,7 @@ $bin_files | each {
 create_symlink ./direnv/direnvrc ([$CONFIG_DIR "direnv/direnvrc"] | path join)
 create_symlink ./dunst/ ([$CONFIG_DIR "dunst"] | path join)
 # create_symlink dygma/  ([$CONFIG_DIR "dygma"] | path join)
+create_symlink ./eww ([$CONFIG_DIR "eww"] | path join)
 create_symlink ./foot ([$CONFIG_DIR "foot"] | path join)
 create_symlink ./fuzzel ([$CONFIG_DIR "fuzzel"] | path join)
 # create_symlink ./ghostty ([$CONFIG_DIR "ghostty"] | path join)
@@ -46,7 +47,7 @@ create_symlink ./nvim ([$CONFIG_DIR "nvim"] | path join)
 create_symlink ./rofi ([$CONFIG_DIR "rofi"] | path join)
 create_symlink ./sway ([$CONFIG_DIR "sway"] | path join)
 # create_symlink  ([$SERVICE_DIR "swayidle.service"] | path join)
-# ln -s ([$SERVICE_DIR swayidle.service] | path join) ([$SERVICE_DIR niri.service.wants/] | path join) | complete 
+# ln -s ([$SERVICE_DIR swayidle.service] | path join) ([$SERVICE_DIR niri.service.wants/] | path join) | complete
 create_symlink ./swayidle ([$CONFIG_DIR "swayidle"] | path join)
 # create_symlink ./swayidle/swayidle.service ([$SERVICE_DIR niri.service.wants/] | path join)
 create_symlink ./swaylock/ ([$CONFIG_DIR "swaylock"] | path join)
