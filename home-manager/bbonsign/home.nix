@@ -83,6 +83,7 @@
       dnsutils # `dig` + `nslookup`
       duckdb
       duf
+      eww
       eza
       file
       flyctl
