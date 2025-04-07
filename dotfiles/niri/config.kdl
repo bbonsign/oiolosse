@@ -330,6 +330,7 @@ layout {
 // See the binds section below for more spawn examples.
 spawn-at-startup "/usr/libexec/xdg-desktop-portal" "--replace"
 spawn-at-startup "bash" "-c" "swaybg --image $HOME/oiolosse/home-manager/bbonsign/modules/wallpapers/stsci-h-p1821a-m-1699x2000.png --mode fill"
+spawn-at-startup "pkill" "mako"
 spawn-at-startup "swaync"
 spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"

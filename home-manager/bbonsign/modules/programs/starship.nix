@@ -42,6 +42,7 @@ _:
           style = "blue bold";
         };
         rust.symbol = " ";
+        zig.symbol = " ";
         shell.disabled = false;
         shlvl = {
           disabled = false;

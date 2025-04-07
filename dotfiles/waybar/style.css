@@ -110,7 +110,7 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #mpd {
-  margin: 2px;
+  margin: 1px;
   padding-left: 4px;
   padding-right: 4px;
   background-color: rgba(0, 0, 0, 0.3);

@@ -126,7 +126,9 @@
       xz
       yarn
       yq-go # yaml processer https://github.com/mikefarah/yq
+      zig
       zip
+      zls # zig language server
     ];
 
     # This value determines the home Manager release that your

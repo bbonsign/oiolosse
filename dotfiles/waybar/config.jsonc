@@ -111,7 +111,7 @@
     "wlr/taskbar": {
       "on-click": "activate",
       // "active-first": true,
-      "sort-by-app-id": true,
+      // "sort-by-app-id": true,
       "tooltip-format": "{title} | {app_id}"
     },
     "keyboard-state": {
@@ -168,7 +168,7 @@
     },
     "tray": {
       // "icon-size": 21,
-      "spacing": 8
+      "spacing": 4
     },
     "clock": {
       // "timezone": "America/New_York",

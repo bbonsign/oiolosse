@@ -7,6 +7,7 @@ vim.g.VM_leader = ";" -- for "mg979/vim-visual-multi" in plugins/multicursors.lu
 
 local opt = vim.opt
 
+opt.mousemoveevent = true
 opt.cmdheight = 0
 opt.conceallevel = 0
 opt.number = false
