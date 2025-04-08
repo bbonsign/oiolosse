@@ -109,6 +109,7 @@
       nautilus
       newman
       nix-output-monitor
+      nodePackages.aws-cdk
       nodePackages.pnpm
       nodejs
       obsidian
