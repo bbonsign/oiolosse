@@ -166,10 +166,11 @@ export extern "niri msg action" [
 #   --help (-h) # Print help information
 # ]
 
-export extern "main" [
+export extern "niri" [
   --config (-c): string = "" # Path to config file (default: `$XDG_CONFIG_HOME/niri/config.kdl`). This can also be set with the `NIRI_CONFIG` environment variable. If both are set, the command line argument takes precedence.
   --session # Import environment globally to systemd and D-Bus, run D-Bus services. Set this flag in a systemd service started by your display manager, or when running manually as your main compositor instance. Do not set when running as a nested window, or on a TTY as your non-main compositor instance, to avoid messing up the global environment.
   --help (-h) # Print help (see a summary with '-h')
   --version (-V) # Print version
   command?: string@"nu-complete niri"
+  ...rest: any
 ]

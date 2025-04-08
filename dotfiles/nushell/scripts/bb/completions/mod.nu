@@ -1,1 +1,2 @@
-export use ./niri.nu *
+export use ./niri-completions.nu *
+export use ./just-completions.nu *
