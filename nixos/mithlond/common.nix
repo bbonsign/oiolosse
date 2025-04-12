@@ -11,6 +11,7 @@
     package = pkgs.nixVersions.stable;
     extraOptions = ''
       experimental-features = nix-command flakes pipe-operators
+      download-buffer-size = 524288000 # 500MiB (default: 64 MiB)
     '';
   };
 
