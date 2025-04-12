@@ -2,9 +2,22 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-vim.keymap.del("n", "<S-h>")
-vim.keymap.del("n", "<S-l>")
-vim.keymap.del("n", "<Leader>l")
+-- https://nanotipsforvim.prose.sh/motion-setup--hjkl-as-amplified-hjkl
+-- HJKL as amplified versions of hjkl
+vim.keymap.set("n", "J", "6j")
+vim.keymap.set("n", "K", "6k")
+vim.keymap.set("n", "H", "0^")
+vim.keymap.set("n", "L", "$")
+vim.keymap.set("n", "M", "J") -- mnemonic: [M]erge
+vim.keymap.set("n", "<leader>hh", "K") -- mnemonic: [h]over
+-- https://nanotipsforvim.prose.sh/remapping-all-your-textobjs-for-speed
+-- see also mini.ai config
+vim.keymap.set({ "o", "x" }, "am", "aW")
+vim.keymap.set({ "o", "x" }, "im", "iW")
+
+-- vim.keymap.del("n", "<S-h>")
+-- vim.keymap.del("n", "<S-l>")
+-- vim.keymap.del("n", "<Leader>l")
 vim.keymap.del("n", "<C-h>")
 vim.keymap.del("n", "<C-j>")
 vim.keymap.del("n", "<C-k>")

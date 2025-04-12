@@ -1,5 +1,6 @@
 return {
   "jake-stewart/vmark.nvim",
+  enabled = false,
   event = "BufRead",
   config = function()
     local vmark = require("vmark")

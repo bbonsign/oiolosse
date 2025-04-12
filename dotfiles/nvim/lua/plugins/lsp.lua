@@ -200,6 +200,33 @@ return {
         mode = { "n", "v" },
         has = "inlay",
       }
+      -- disable a keymap
+      keys[#keys + 1] = { "K", false }
+      keys[#keys + 1] = {
+        "<leader>hh",
+        vim.lsp.buf.hover,
+        desc = "Hover",
+      }
+      keys[#keys + 1] = {
+        "<leader>lh",
+        vim.lsp.buf.hover,
+        desc = "Hover",
+      }
+      keys[#keys + 1] = {
+        "<leader>lk",
+        vim.lsp.buf.hover,
+        desc = "Hover",
+      }
+      keys[#keys + 1] = {
+        "<leader>ch",
+        vim.lsp.buf.hover,
+        desc = "Hover",
+      }
+      keys[#keys + 1] = {
+        "<leader>ck",
+        vim.lsp.buf.hover,
+        desc = "Hover",
+      }
 
       keys[#keys + 1] = {
         "<leader>lR",
