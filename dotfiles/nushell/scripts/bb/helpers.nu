@@ -132,3 +132,7 @@ export def "ll" [...args] {
   ls --all --long ...$args | sort-by type name modified  | select name type mode created modified target
 }
 
+export def --env "set_aws_profile" [] {
+   $env.AWS_PROFILE =  (aws configure list-profiles | fzf)
+}
+export alias :ae = set_aws_profile 

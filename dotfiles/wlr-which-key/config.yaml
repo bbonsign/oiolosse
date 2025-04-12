@@ -44,7 +44,7 @@ menu:
     desc: Bar
     submenu:
       "b": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
-      "r": { desc: Dark, cmd: pkill -SIGUSR2 waybar }
+      "r": { desc: Reload, cmd: pkill -SIGUSR2 waybar }
       "t": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
 
   "W":

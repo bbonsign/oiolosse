@@ -23,6 +23,10 @@ local function switch_case()
   end
 end
 
-vim.keymap.set("n", "<Leader>ls", function()
+vim.keymap.set("n", "gl", function()
   switch_case()
-end, { noremap = true, silent = true, desc = "Camel<->Snake" })
+end, {
+  noremap = true,
+  silent = true,
+  desc = "Camel<->Snake",
+})
