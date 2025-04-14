@@ -39,6 +39,7 @@ return {
         "lazy",
         "snacks_dashboard",
         "oil",
+        "man",
       },
       --- Return true for buffers to disable undo-highlight on.
       ignore_cb = function(_buf_no)

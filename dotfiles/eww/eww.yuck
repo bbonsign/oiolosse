@@ -1,20 +1,36 @@
 (defwindow example
-           :monitor 0
-           :geometry (geometry :x "0%"
-                               :y "5px"
-                               :width "95%"
-                               :height "2%"
-                               :anchor "top center")
-           :stacking "bg"
-           :exclusive true
-           :reserve (struts :distance "10px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-  (greeter :text "Hello" :name "World"))
+  :monitor 0
+  :geometry (geometry :x "0%"
+    :y "5px"
+    :width "95%"
+    :height "2%"
+    :anchor "top center")
+  :stacking "bg"
+  :exclusive true
+  :reserve (struts :distance "10px" :side "top")
+  :windowtype "dock"
+  :wm-ignore false
+  ;(greeter :text "Hello" :name {foo+10})
+  (workspaces )
+)
 
 (defwidget greeter [?text name]
   (box :orientation "horizontal"
-       :halign "center"
+    :halign "center"
     text
     (button :onclick "notify-send 'Hello' 'Hello, ${name}'"
       "Greet")))
+
+(defvar foo 32)
+
+(defpoll wss :interval "1m" :initial "[]"  `niri msg --json workspaces`)
+
+( defwidget workspaces []
+  (box
+    :orientation "horizontal"
+    :halign "center"
+    (for ws in wss
+      (button :onclick "niri msg action focus-workspace ${ws.name}" "${ws.id}${ws.name}" )
+    )
+  )
+)
