@@ -98,6 +98,7 @@
       htop
       httpie
       inotify-tools
+      jc # converts many command outputs/data types to json
       jq
       just
       kanata
@@ -105,6 +106,7 @@
       kitty
       lazygit
       litecli
+      lua-language-server
       luarocks
       nautilus
       newman
@@ -117,6 +119,7 @@
       pgcli
       ripgrep
       ssm-session-manager-plugin # For aws cli
+      stylua
       tealdeer
       topiary # treesitter based formatter
       trashy

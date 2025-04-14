@@ -38,10 +38,12 @@ return {
         "mason",
         "lazy",
         "snacks_dashboard",
+        "oil",
       },
-      -- ignore_cb is in comma as there is a default implementation. Setting
-      -- to nil will mean no default os called.
-      -- ignore_cb = nil,
+      --- Return true for buffers to disable undo-highlight on.
+      ignore_cb = function(_buf_no)
+        return not vim.o.modifiable or vim.o.ft == ""
+      end,
     },
   },
 }

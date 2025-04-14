@@ -32,6 +32,9 @@ return {
       },
 
       servers = {
+        lua_ls = {
+          mason = false,
+        },
         pyright = {
           settings = {
             pyright = {
@@ -201,7 +204,7 @@ return {
         has = "inlay",
       }
       -- disable a keymap
-      keys[#keys + 1] = { "K", false }
+      -- keys[#keys + 1] = { "K", false }
       keys[#keys + 1] = {
         "<leader>hh",
         vim.lsp.buf.hover,
@@ -233,6 +236,15 @@ return {
         "<Cmd>LspRestart<CR>",
         desc = "LspRestart",
       }
+    end,
+  },
+
+  {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = {}
+      opts.ui = { border = "single" }
+      return opts
     end,
   },
 }

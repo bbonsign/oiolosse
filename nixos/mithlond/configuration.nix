@@ -38,6 +38,8 @@
     };
   };
 
+  services.udev.packages = [ pkgs.bazecor ];
+
   services.blueman.enable = true;
 
   # Configure keymap in X11
