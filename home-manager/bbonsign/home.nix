@@ -45,7 +45,6 @@
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
       # asdf-vm
-      bazecor
       # cargo
       # chezmoi
       # chromium

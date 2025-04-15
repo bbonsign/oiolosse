@@ -17,7 +17,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -29,12 +28,6 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-
-  services.tailscale.enable = true;
-
-  # services.displayManager.sddm.enable = true;
-  # services.displayManager.sddm.enable = true;
-  services.displayManager.enable = false;
 
   services.xserver = {
     # enable = true;
@@ -61,20 +54,6 @@
     #media-session.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.bbonsign = {
-    isNormalUser = true;
-    description = "Brian Bonsignore";
-    extraGroups = [ "networkmanager" "wheel" ];
-    # packages = with pkgs; [   ];
-  };
-  # users.defaultUserShell = pkgs.fish;
-
-  fonts.packages = with pkgs;
-    [
-      pkgs.nerd-fonts.fira-code
-    ];
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -82,6 +61,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    bluez
     brightnessctl
     distrobox
     firefox
@@ -94,6 +74,7 @@
     sqlite
     vivaldi
     wget
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
   ];
 
   # https://nix-community.github.io/home-manager/options.html#opt-programs.zsh.enableCompletion
@@ -109,13 +90,6 @@
 
   programs.fish.enable = true;
 
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    # Certain features, including CLI integration and system authentication support,
-    # require enabling PolKit integration on some desktop environments (e.g. Plasma).
-    polkitPolicyOwners = [ "bbonsign" ];
-  };
 
   # Enable networking
   networking.networkmanager.enable = true;

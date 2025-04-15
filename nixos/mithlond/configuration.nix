@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -38,7 +38,11 @@
     };
   };
 
-  services.udev.packages = [ pkgs.bazecor ];
+  services.tailscale.enable = true;
+
+  # services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.enable = true;
+  services.displayManager.enable = false;
 
   services.blueman.enable = true;
 
@@ -87,38 +91,8 @@
       pkgs.nerd-fonts.fantasque-sans-mono
     ];
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    bluez
-    distrobox
-    git
-    ghostty
-    inotify-tools
-    ncurses
-    neovim
-    pciutils
-    python312
-    sqlite
-    wget
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-  ];
-
   # https://nix-community.github.io/home-manager/options.html#opt-programs.zsh.enableCompletion
   environment.pathsToLink = [ "/share/zsh" ];
-
-  programs.fish.enable = true;
-
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    # Certain features, including CLI integration and system authentication support,
-    # require enabling PolKit integration on some desktop environments (e.g. Plasma).
-    polkitPolicyOwners = [ "bbonsign" ];
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

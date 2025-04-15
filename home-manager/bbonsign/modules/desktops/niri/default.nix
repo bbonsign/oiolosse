@@ -17,8 +17,6 @@
     ];
 
     systemd.user.services = {
-      # xwayland-satellite.wantedBy = [ "graphical-session.target" ];
-
       swayidle = {
         Install.WantedBy = [ "niri.service" ];
         Unit = {

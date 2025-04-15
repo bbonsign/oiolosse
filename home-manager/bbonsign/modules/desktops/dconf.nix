@@ -157,7 +157,6 @@
           "kitty.desktop:1"
           "firefox.desktop:2"
           "slack.desktop:3"
-          "Bazecor.desktop:4"
         ];
       };
 

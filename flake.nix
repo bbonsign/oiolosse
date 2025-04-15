@@ -29,6 +29,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./nixos/mithlond
+            ./modules/nixos
 
             # make home-manager as a module of nixos
             # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -50,7 +51,10 @@
           pkgs = import nixpkgs { inherit system; };
 
           # Specify your home configuration modules here, for example, the path to your home.nix.
-          modules = [ ./home-manager/bbonsign ];
+          modules = [
+            ./home-manager/bbonsign
+            ./modules/home-manager
+          ];
 
           # Optionally use extraSpecialArgs to pass through arguments to home.nix
           extraSpecialArgs = { inherit inputs; };

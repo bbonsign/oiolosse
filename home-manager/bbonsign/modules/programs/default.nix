@@ -16,6 +16,7 @@
     ./lazygit.nix
     ./neovim
     ./nushell
+    ./ssh.nix
     ./starship.nix
     ./topiary
     ./tmux
