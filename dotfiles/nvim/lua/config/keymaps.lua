@@ -2,6 +2,16 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+vim.keymap.del("n", "<Leader>l")
+vim.keymap.del("n", "<C-h>")
+vim.keymap.del("n", "<C-j>")
+vim.keymap.del("n", "<C-k>")
+vim.keymap.del("n", "<C-l>")
+vim.keymap.del("n", "<A-b>")
+-- vim.keymap.del("n", "<A-j>")
+-- vim.keymap.del("n", "<A-k>")
+-- vim.keymap.del("n", "<A-l>")
+
 -- https://nanotipsforvim.prose.sh/motion-setup--hjkl-as-amplified-hjkl
 -- HJKL as amplified versions of hjkl
 -- vim.keymap.set("n", "J", "6j")
@@ -14,18 +24,6 @@ vim.keymap.set("n", "<leader>hh", "K") -- mnemonic: [h]over
 -- see also mini.ai config
 vim.keymap.set({ "o", "x" }, "am", "aW")
 vim.keymap.set({ "o", "x" }, "im", "iW")
-
--- vim.keymap.del("n", "<S-h>")
--- vim.keymap.del("n", "<S-l>")
--- vim.keymap.del("n", "<Leader>l")
-vim.keymap.del("n", "<C-h>")
-vim.keymap.del("n", "<C-j>")
-vim.keymap.del("n", "<C-k>")
-vim.keymap.del("n", "<C-l>")
--- vim.keymap.del("n", "<A-h>")
--- vim.keymap.del("n", "<A-j>")
--- vim.keymap.del("n", "<A-k>")
--- vim.keymap.del("n", "<A-l>")
 
 -- Overrides <C-I> too
 -- vim.keymap.set("n", "<Tab>", "za", { desc = "Toggle Fold" })
