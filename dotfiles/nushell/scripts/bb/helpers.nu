@@ -127,12 +127,23 @@ export def "fg branches" [
   }
 }
 
+export def "datetime from int" []: [
+  duration -> datetime
+  int -> datetime
+  float -> datetime
+] {
+  $in | into duration --unit ns | into int | into datetime
+}
+
 export def "ll" [...args] {
   let args = if ($args | is-empty ) { ["."] } else { $args }
   ls --all --long ...$args | sort-by type name modified  | select name type mode created modified target
 }
 
 export def --env "set_aws_profile" [] {
-   $env.AWS_PROFILE =  (aws configure list-profiles | fzf)
+  $env.AWS_PROFILE =  (aws configure list-profiles | fzf)
 }
-export alias :ae = set_aws_profile 
+
+export alias ":ae" = set_aws_profile 
+export alias "dtfi" = datetime from int  
+

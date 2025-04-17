@@ -28,10 +28,10 @@ vim.keymap.set({ "o", "x" }, "im", "iW")
 -- Overrides <C-I> too
 -- vim.keymap.set("n", "<Tab>", "za", { desc = "Toggle Fold" })
 
-vim.keymap.set("n", "<Leader>LL", "<cmd>Lazy<CR>", { desc = "Lazy" })
-vim.keymap.set("n", "<leader>LN", function()
-  LazyVim.news.changelog()
-end, { desc = "LazyVim Changelog" })
+-- vim.keymap.set("n", "<Leader>LL", "<cmd>Lazy<CR>", { desc = "Lazy" })
+-- vim.keymap.set("n", "<leader>LN", function()
+--   LazyVim.news.changelog()
+-- end, { desc = "LazyVim Changelog" })
 
 -- Use the blackhole register "_ by default for x
 vim.keymap.set({ "n", "v" }, "x", '"_x')
