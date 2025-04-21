@@ -1,4 +1,3 @@
-source ~/.config/nushell/scripts/themes/nu-themes/tokyo-night.nu
 # source ~/.cache/carapace/init.nu
 
 # ~/.config/nushell/scripts/bb module
