@@ -21,6 +21,7 @@ margin_top: 0
 # inhibit_compositor_keyboard_shortcuts: true
 
 menu:
+  "BackSpace": { desc: "close-all", cmd: swaync-client --close-all }
   "o": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
   "n": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
   "t": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
