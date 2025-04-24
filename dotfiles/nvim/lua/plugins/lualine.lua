@@ -1,3 +1,76 @@
+-- `get_scrollbar_widget` and `get_fileinfo_widget`
+-- originially from: https://github.com/mcauley-penney/nvim/blob/35b59cdf3f737a7894f5e0240224dbfa01d8fb16/lua/ui/statusline.lua
+local hl_str = function(hl, str)
+  return "%#" .. hl .. "#" .. str .. "%*"
+end
+
+-- insert grouping separators in numbers
+-- viml regex: https://stackoverflow.com/a/42911668
+-- lua pattern: stolen from Akinsho
+local group_number = function(num, sep)
+  if num < 999 then
+    return tostring(num)
+  else
+    num = tostring(num)
+    return num:reverse():gsub("(%d%d%d)", "%1" .. sep):reverse():gsub("^,", "")
+  end
+end
+
+local function get_scrollbar_widget()
+  local sbar_chars = {
+    "▔",
+    "🮂",
+    "🬂",
+    "🮃",
+    "▀",
+    "▄",
+    "▃",
+    "🬭",
+    "▂",
+    "▁",
+  }
+
+  local cur_line = vim.api.nvim_win_get_cursor(0)[1]
+  local lines = vim.api.nvim_buf_line_count(0)
+
+  local i = math.floor((cur_line - 1) / lines * #sbar_chars) + 1
+  local sbar = string.rep(sbar_chars[i], 2)
+
+  -- return hl_str("Function", sbar)
+  return sbar
+end
+
+local function get_vlinecount_str()
+  local raw_count = vim.fn.line(".") - vim.fn.line("v")
+  raw_count = raw_count < 0 and raw_count - 1 or raw_count + 1
+
+  return group_number(math.abs(raw_count), ",")
+end
+
+--- Get wordcount for current buffer or visual selection
+--- @return string word count
+local function get_fileinfo_widget()
+  -- local ft = vim.api.nvim_get_option_value("filetype", {})
+  local lines = group_number(vim.api.nvim_buf_line_count(0), ",")
+
+  local wc_table = vim.fn.wordcount()
+  if wc_table.visual_words and wc_table.visual_chars then
+    -- Visual selection mode: line count, word count, and char count
+    return table.concat({
+      "‹›",
+      " ",
+      get_vlinecount_str(),
+      " lines  ",
+      group_number(wc_table.visual_words, ","),
+      " words  ",
+      group_number(wc_table.visual_chars, ","),
+      " chars",
+    })
+  else
+    return table.concat({ "󰍜", " ", lines, " lines" })
+  end
+end
+
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
@@ -20,7 +93,10 @@ return {
       options = {
         theme = "auto",
         globalstatus = true,
-        disabled_filetypes = { statusline = { "dashboard", "alpha" }, tabline = { "oil" } },
+        disabled_filetypes = {
+          statusline = { "snacks_dashboard", "dashboard", "alpha" },
+          tabline = { "snacks_dashboard", "dashboard", "alpha" },
+        },
         separator = "",
         section_separators = { left = "", right = "" },
       },
@@ -33,7 +109,14 @@ return {
             color = "lualine_c_normal",
           },
         },
-        lualine_b = {},
+        lualine_b = {
+          {
+            function()
+              return get_fileinfo_widget()
+            end,
+            color = "lualine_c_normal",
+          },
+        },
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},
@@ -66,7 +149,7 @@ return {
             separator = "",
             padding = { left = 1, right = 1 },
             on_click = function()
-              require("telescope.builtin").git_status()
+              Snacks.picker.git_status()
             end,
           },
 
@@ -80,7 +163,7 @@ return {
             separator = "",
             padding = { left = 0, right = 1 },
             on_click = function()
-              require("telescope.builtin").git_status()
+              Snacks.picker.git_status()
             end,
           },
         },
@@ -96,7 +179,7 @@ return {
             },
             padding = { left = 1, right = 0 },
             on_click = function()
-              require("telescope.builtin").diagnostics()
+              Snacks.picker.diagnostics()
             end,
           },
           {
@@ -149,7 +232,6 @@ return {
         },
 
         lualine_y = {
-          { "selectioncount" },
           {
             "location",
             padding = { left = 1, right = 1 },
@@ -159,28 +241,29 @@ return {
             --   bg = Snacks.util.color("lualine_c_normal", "bg"),
             -- },
           },
-          { "progress", padding = { left = 1, right = 0 } },
-          { "fileformat", padding = { left = 1, right = 1 } },
-        },
-
-        lualine_z = {
           {
-            function()
-              -- return "  "
-              return " "
-            end,
-            padding = { left = 1, right = 0 },
-            color = {},
+            get_scrollbar_widget,
+            padding = { left = 0, right = 0 },
+            -- color = { fg = Snacks.util.color("Constant") },
+            color = "lualine_a_inactive",
             cond = nil,
             on_click = function()
               vim.cmd.write()
             end,
           },
-          -- {
-          --   function()
-          --     return " " .. os.date("%R")
-          --   end,
-          -- },
+          {
+            "progress",
+            color = "lualine_a_inactive",
+            padding = { left = 1, right = 0 },
+          },
+        },
+
+        lualine_z = {
+          {
+            "fileformat",
+            color = "lualine_a_inactive",
+            padding = { left = 1, right = 1 },
+          },
         },
       },
       extensions = { "neo-tree", "lazy" },
