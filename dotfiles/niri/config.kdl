@@ -13,10 +13,10 @@ environment {
 
 
 workspace "term" {
-  open-on-output "DP-1"
+  open-on-output "eDP-1"
 }
 workspace "browser" {
-  open-on-output "eDP-1"
+  open-on-output "DP-1"
 }
 workspace "chat" {
   open-on-output "eDP-1"
