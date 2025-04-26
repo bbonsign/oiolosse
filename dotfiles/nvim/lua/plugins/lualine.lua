@@ -95,7 +95,7 @@ return {
         globalstatus = true,
         disabled_filetypes = {
           statusline = { "snacks_dashboard", "dashboard", "alpha" },
-          tabline = { "snacks_dashboard", "dashboard", "alpha" },
+          tabline = { "snacks_dashboard", "dashboard", "alpha", "lazy" },
         },
         separator = "",
         section_separators = { left = "", right = "" },
