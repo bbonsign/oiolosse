@@ -128,6 +128,11 @@ output "DP-1" {
   position x=1536 y=0
 }
 
+overview {
+  backdrop-color "#0F1329"
+  zoom 0.70
+}
+
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
@@ -425,7 +430,7 @@ window-rule {
   open-on-workspace "term"
 }
 window-rule {
-  match app-id=r#"Slack"#
+  match title=r#"Slack"#
   open-on-workspace "chat"
 }
 
@@ -501,6 +506,7 @@ binds {
   Mod+K     { focus-window-or-workspace-up; }
   Mod+L     { focus-column-or-monitor-right; }
 
+  Mod+A     { toggle-overview; }
   Mod+O     { focus-window-previous;}
   Mod+I     { focus-window-previous;}
 

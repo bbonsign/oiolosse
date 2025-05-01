@@ -21,6 +21,8 @@ margin_top: 0
 # inhibit_compositor_keyboard_shortcuts: true
 
 menu:
+  "a": { desc: "Overview", cmd: niri msg action toggle-overview }
+  "space": { desc: "Overview", cmd: niri msg action toggle-overview }
   "BackSpace": { desc: "close-all", cmd: swaync-client --close-all }
   "Tab": { desc: Windows, cmd: ~/.local/bin/niri-choose-window.nu }
   "1": { desc: Workspace 1, cmd: niri msg action focus-workspace 1 }
