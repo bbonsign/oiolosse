@@ -45,27 +45,17 @@
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
       # asdf-vm
-      # cargo
-      # chezmoi
-      # chromium
       # copilot-cli # AWS ECS cli 
       # devbox
-      # elixir_1_16
-      # erlang
-      # from nixos sway
       # ghostty
       # jless
-      # livebook
       # nixfmt
-      # pipenv
       # podman
       # podman-compose
       # podman-tui
-      # poetry
       # python312Packages.ipython
       # qutebrowser
       # rustup
-      # slack
       # television
       # valent # KDE Connect client
       # yazi
@@ -77,6 +67,7 @@
       beam.packages.erlang_27.erlang
       bottom
       brightnessctl
+      cargo
       cowsay
       delta
       dnsutils # `dig` + `nslookup`

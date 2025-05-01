@@ -1,7 +1,8 @@
-_: {
+{pkgs, ...}: {
   config = {
     programs.nushell = {
       enable = true;
+      plugins = [ pkgs.nushellPlugins.polars ];
       # remove the `ll` alias in favor os a nushell native ls alias in helpers.nu
       shellAliases = builtins.removeAttrs
         ((import ../shellAliases.nix) //
