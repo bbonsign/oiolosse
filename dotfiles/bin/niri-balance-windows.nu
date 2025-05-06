@@ -33,9 +33,9 @@ export def main [
   # Equal widths
   let percent = 100 / $number_of_windows
   seq 1 $number_of_windows | each {$percent}
-}
+  }
 
-niri msg action do-screen-transition --delay-ms=10
-$windows | zip $percents | each { set_column_width $in.0.id $in.1}
-niri msg action focus-window --id $focused_window.id
+  niri msg action do-screen-transition --delay-ms=10
+  $windows | zip $percents | each { set_column_width $in.0.id $in.1}
+  niri msg action focus-window --id $focused_window.id
 }

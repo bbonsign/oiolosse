@@ -21,6 +21,7 @@ workspace "browser" {
 workspace "chat" {
   open-on-output "eDP-1"
 }
+workspace "scratch"
 
 
 
@@ -30,6 +31,8 @@ workspace "chat" {
 // Find the full list of options on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
 input {
+  workspace-auto-back-and-forth;
+
   keyboard {
     xkb {
       // You can set rules, model, layout, variant and options.
@@ -343,6 +346,7 @@ spawn-at-startup "xwayland-satellite"
 spawn-at-startup "bash" "-c" "kitty || $HOME/.local/kitty.app/bin/kitty"
 // --silent opens to the system tray without showing the main window
 spawn-at-startup "1password" "--silent"
+spawn-at-startup "bash" "-c" "kitty --class kitty-scratch || $HOME/.local/kitty.app/bin/kitty --class kitty-scratch"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -430,6 +434,21 @@ window-rule {
   open-on-workspace "term"
 }
 window-rule {
+  match app-id=r#"kitty-scratch"#
+  open-on-workspace "scratch"
+  open-floating true
+  // Anchor to the top edge of the screen.
+  default-floating-position x=0 y=0 relative-to="top"
+  // Half of the screen high.
+  default-window-height { proportion 0.75; }
+  // 80% of the screen wide.
+  default-column-width { proportion 0.75; }
+}
+window-rule {
+  match app-id=r#"kitty-btm"#
+  // open-floating true
+}
+window-rule {
   match title=r#"Slack"#
   open-on-workspace "chat"
 }
@@ -494,6 +513,7 @@ binds {
   Mod+Tab hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
   Mod+Comma hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
   Mod+Period hotkey-overlay-title="Window Picker"{ spawn "~/.local/bin/niri-choose-window.nu"; }
+  Mod+Minus hotkey-overlay-title="Scratch Term"{ spawn "~/.local/bin/niri-scratch.nu"; }
 
   Mod+Shift+Q { close-window; }
 
@@ -667,8 +687,8 @@ binds {
   // * adjust width as a percentage of screen width: "-10%" or "+10%"
   // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
   // set-column-width "100" will make the column occupy 200 physical screen pixels.
-  Mod+Minus { set-column-width "-10%"; }
-  Mod+Equal { set-column-width "+10%"; }
+  Mod+Ctrl+Minus { set-column-width "-10%"; }
+  Mod+Ctrl+Equal { set-column-width "+10%"; }
 
   // Finer height adjustments when in column with other windows.
   Mod+Shift+Minus { set-window-height "-10%"; }
