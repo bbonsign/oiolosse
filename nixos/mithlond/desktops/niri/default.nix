@@ -10,6 +10,7 @@
       xwayland-satellite
       fuzzel
       grim # screenshot functionality
+      hyprpicker
       swaynotificationcenter
       rofi-wayland
       waybar

@@ -9,7 +9,7 @@ any -> record<id: int, idx: int, name: string, output: string, is_active: bool, 
   niri msg --json workspaces | from json | where is_focused | get 0
 }
 
-  def non_floating_windows_on_workspace [workspace_id: int]: [
+def non_floating_windows_on_workspace [workspace_id: int]: [
     any -> table<id: int, title: string, app_id: string, pid: int, workspace_id: int, is_focused: bool, is_floating: bool>
   ] {
   niri msg --json windows | from json  | where workspace_id == $workspace_id | where not is_floating
@@ -35,6 +35,7 @@ export def main [
   seq 1 $number_of_windows | each {$percent}
 }
 
+niri msg action do-screen-transition --delay-ms=10
 $windows | zip $percents | each { set_column_width $in.0.id $in.1}
 niri msg action focus-window --id $focused_window.id
 }

@@ -9,7 +9,7 @@ def zero-pad [id] {
 }
 
 def trim-title [title] {
-  let cutoff = 20
+  let cutoff = 25
   let len = $title | str length
   if ($len) > $cutoff {
     [($title | str substring 0..$cutoff) "..."] | str join

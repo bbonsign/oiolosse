@@ -21,7 +21,6 @@ margin_top: 0
 # inhibit_compositor_keyboard_shortcuts: true
 
 menu:
-  "a": { desc: "Overview", cmd: niri msg action toggle-overview }
   "space": { desc: "Overview", cmd: niri msg action toggle-overview }
   "BackSpace": { desc: "close-all", cmd: swaync-client --close-all }
   "Tab": { desc: Windows, cmd: ~/.local/bin/niri-choose-window.nu }
@@ -43,13 +42,27 @@ menu:
       "h": { desc: Hibernate, cmd: systemctl hibernate }
       "R": { desc: Reboot, cmd: systemctl reboot }
       "S": { desc: Shutdown, cmd: systemctl poweroff }
+  "a": { desc: "Overview", cmd: niri msg action toggle-overview }
   "b":
     desc: Bar
     submenu:
       "b": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
       "r": { desc: Reload, cmd: pkill -SIGUSR2 waybar }
       "t": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
-
+  "c":
+    desc: Colorpicker
+    submenu:
+      "c": { desc: "Hex", cmd: hyprpicker --autocopy }
+      "r": { desc: "R G B", cmd: hyprpicker --autocopy --format=rgb }
+  "r":
+    desc: Run
+    submenu:
+      "b":
+        {
+          desc: "Btm",
+          cmd: /var/home/bbonsign/.local/kitty.app/bin/kitty --class kitty-btm btm,
+        }
+      "c": { desc: "Hex", cmd: hyprpicker --autocopy }
   "W":
     desc: Workspaces
     submenu:
@@ -119,7 +132,6 @@ menu:
         }
       "l": { desc: Focus right, cmd: niri msg action focus-column-right }
       "L": { desc: Move right, cmd: niri msg action move-column-right }
-
   "n":
     desc: Notifications
     submenu:
