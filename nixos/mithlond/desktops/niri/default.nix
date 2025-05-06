@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   config = {
@@ -6,7 +6,8 @@
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
     environment.systemPackages = with pkgs; [
       # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      niri
+      # niri
+      inputs.niri.packages.x86_64-linux.niri
       xwayland-satellite
       fuzzel
       grim # screenshot functionality

@@ -17,6 +17,7 @@
       # mako # notification system developed by swaywm maintainer
       networkmanagerapplet
       rofi-wayland
+      sway
       swappy # screenshot annotation tool 
       sway-contrib.grimshot
       swaynotificationcenter

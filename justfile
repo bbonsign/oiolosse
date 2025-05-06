@@ -7,7 +7,7 @@ format:
 
 alias sw := switch
 switch:
-  sudo nixos-rebuild switch --show-trace --fast --flake .#mithlond
+  sudo nixos-rebuild switch --fast --flake .#mithlond
 
 alias up := update
 update:
