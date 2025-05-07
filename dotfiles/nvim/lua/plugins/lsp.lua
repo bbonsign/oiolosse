@@ -105,6 +105,16 @@ return {
             },
           },
         },
+        -- snyk_ls = {
+        --   filetypes = {
+        --     "toml",
+        --     "requirements",
+        --   },
+        --   init_options = {
+        --     activateSnykCode = "true",
+        --     -- token = os.getenv("SNYK_TOKEN"),
+        --   },
+        -- },
       },
     },
   },
@@ -231,6 +241,21 @@ return {
         desc = "Hover",
       }
 
+      keys[#keys + 1] = {
+        "<leader>lI",
+        "<Cmd>LspInfo<CR>",
+        desc = "LspInfo",
+      }
+      keys[#keys + 1] = {
+        "<leader>lL",
+        "<Cmd>LspLog<CR>",
+        desc = "LspLog",
+      }
+      keys[#keys + 1] = {
+        "<leader>lS",
+        "<Cmd>LspStop<CR>",
+        desc = "LspStop",
+      }
       keys[#keys + 1] = {
         "<leader>lR",
         "<Cmd>LspRestart<CR>",

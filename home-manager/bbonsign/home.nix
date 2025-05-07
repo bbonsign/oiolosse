@@ -108,6 +108,7 @@
       p7zip
       pgcli
       ripgrep
+      snyk
       ssm-session-manager-plugin # For aws cli
       stylua
       tealdeer
