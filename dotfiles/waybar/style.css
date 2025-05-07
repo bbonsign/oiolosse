@@ -60,7 +60,7 @@ button:hover {
 
 #workspaces button.active,
 #taskbar button.active,
-#workspaces button#niri-workspace-scratch {
+#workspaces button#niri-workspace-z {
   background-color: rgba(0, 0, 0, 0.3);
   color: #f3f3ff;
   border-top: 2px solid #f3f3ff;
@@ -73,7 +73,7 @@ button:hover {
 }
 
 #workspaces button.empty:not(.active),
-#workspaces button#niri-workspace-scratch:not(.active) {
+#workspaces button#niri-workspace-z:not(.active) {
   /* hide empty workspaces */
   margin-left: -50px;
   margin-right: -50px;

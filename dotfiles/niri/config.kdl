@@ -21,7 +21,7 @@ workspace "browser" {
 workspace "chat" {
   open-on-output "eDP-1"
 }
-workspace "scratch"
+workspace "z"
 
 
 
@@ -441,7 +441,7 @@ window-rule {
 }
 window-rule {
   match app-id=r#"kitty-scratch"#
-  open-on-workspace "scratch"
+  open-on-workspace "z"
   open-floating true
   // Anchor to the top edge of the screen.
   default-floating-position x=0 y=0 relative-to="top"
@@ -527,7 +527,7 @@ binds {
   Mod+Tab hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
   Mod+Comma hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
   Mod+Period hotkey-overlay-title="Window Picker"{ spawn "~/.local/bin/niri-choose-window.nu"; }
-  Mod+Minus hotkey-overlay-title="Scratch Term"{ spawn "~/.local/bin/niri-scratch.nu"; }
+  Mod+Minus hotkey-overlay-title="Scratch Term" { spawn "~/.local/bin/niri-scratch.nu"; }
 
   Mod+Shift+Q { close-window; }
 
