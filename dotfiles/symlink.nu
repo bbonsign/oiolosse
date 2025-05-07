@@ -7,6 +7,7 @@ let DOTFILES = [$env.HOME "oiolosse" "dotfiles"] | path join
 let CONFIG_DIR = [$env.HOME ".config"] | path join
 let SERVICE_DIR = [$env.HOME ".config" "systemd" "user"] | path join
 let BIN_DIR = [$env.HOME ".local" "bin"] | path join
+let VIMIUM_DIR = [$env.HOME "code" "vimium"] | path join
 
 ^mkdir -p ([$SERVICE_DIR "niri.service.wants"] | path join)
 
@@ -57,5 +58,9 @@ create_symlink ./television/ ([$CONFIG_DIR "television"] | path join)
 create_symlink ./waybar ([$CONFIG_DIR "waybar"] | path join)
 create_symlink ./wlr-which-key ([$CONFIG_DIR "wlr-which-key"] | path join)
 create_symlink ./libinput-gestures.conf ([$CONFIG_DIR "libinput-gestures.conf"] | path join)
+
+
+create_symlink ./vimium/blank.html ([$VIMIUM_DIR "pages" "blank.html"] | path join)
+create_symlink ../home-manager/bbonsign/modules/wallpapers/jackson-hendry-eodA_8CTOFo-unsplash.jpg ([$VIMIUM_DIR "pages" "jackson-hendry-eodA_8CTOFo-unsplash.jpg"] | path join)
 
 print "===== Finished symlinking to dotfiles ====="
