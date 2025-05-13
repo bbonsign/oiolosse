@@ -21,7 +21,10 @@ workspace "browser" {
 workspace "chat" {
   open-on-output "eDP-1"
 }
-workspace "z"
+// Workspace for scratch windows:
+workspace "z" {
+  open-on-output "eDP-1"
+}
 
 
 
@@ -553,6 +556,7 @@ binds {
   Mod+E { expand-column-to-available-width; }
   Mod+F { maximize-column; }
   Mod+C { center-column; }
+  // Mod+Ctrl+C { center-visible-columns; }
   Mod+N { spawn "bash" "-c" "swaync-client --toggle-panel ; wlr-which-key notifications"; }
 
 
@@ -665,6 +669,7 @@ binds {
   Mod+7 { focus-workspace 7; }
   Mod+8 { focus-workspace 8; }
   Mod+9 { focus-workspace 9; }
+  Mod+0 { focus-workspace "z"; }
   Mod+Shift+1 { move-column-to-workspace "term"; }
   Mod+Shift+2 { move-column-to-workspace "browser"; }
   Mod+Shift+3 { move-column-to-workspace "chat"; }
@@ -674,6 +679,7 @@ binds {
   Mod+Shift+7 { move-column-to-workspace 7; }
   Mod+Shift+8 { move-column-to-workspace 8; }
   Mod+Shift+9 { move-column-to-workspace 9; }
+  Mod+Shift+0 { move-column-to-workspace "z"; }
 
   // Alternatively, there are commands to move just a single window:
   // Mod+Ctrl+1 { move-window-to-workspace 1; }
