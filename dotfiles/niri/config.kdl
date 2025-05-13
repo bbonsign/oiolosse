@@ -547,9 +547,9 @@ binds {
   Mod+K     { focus-window-or-workspace-up; }
   Mod+L     { focus-column-or-monitor-right; }
 
-  Mod+A     { toggle-overview; }
-  Mod+O     { focus-workspace-previous;}
-  Mod+I     { focus-window-previous;}
+  Mod+A  hotkey-overlay-title="Overview"   { toggle-overview; }
+  Mod+I  hotkey-overlay-title="Prev Workspace"   { focus-workspace-previous;}
+  Mod+O  hotkey-overlay-title="Prev Window"   { focus-window-previous;}
 
   // Expand the focused column to space not taken up by other fully visible columns.
   // Makes the column "fill the rest of the space".
