@@ -13,6 +13,7 @@
     ./git
     ./gtk.nix
     # ./kitty
+    ./kde-connect.nix
     ./lazygit.nix
     ./neovim
     ./nushell
