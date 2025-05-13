@@ -8,6 +8,7 @@ $env.PATH = (
   | append '/run/current-system/sw/bin'
   | append '/nix/var/nix/profiles/default/bin'
   | append ($env.HOME | path join .local bin)
+  | append ($env.HOME | path join .mix escripts)
   | uniq
 )
 
