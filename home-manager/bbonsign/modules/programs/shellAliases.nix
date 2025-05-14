@@ -1,6 +1,14 @@
 {
   "..." = "cd ../..";
   "...." = "cd ../../..";
+  ":app" = "cd ~/.local/share/applications";
+  ":desk" = "cd ~/Desktop";
+  ":dl" = "cd ~/Downloads";
+  ":bin" = "cd ~/.local/bin";
+  ":conf" = "cd ~/.config";
+  ":cnf" = "cd ~/.config";
+  ":doc" = "cd ~/Documents";
+  ":pic" = "cd ~/Pictures";
   bx = "cd ~/Dropbox";
   conf = "cd ~/.config";
   cp = "cp -v";
