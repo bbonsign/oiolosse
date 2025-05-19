@@ -35,6 +35,18 @@ return {
         lua_ls = {
           mason = false,
         },
+        yamlls = {
+          settings = {
+            yaml = {
+              -- used in cloudformation yamls
+              customTags = {
+                "!GetAtt",
+                "!Ref",
+                "!Sub",
+              },
+            },
+          },
+        },
         pyright = {
           settings = {
             pyright = {
