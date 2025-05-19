@@ -57,6 +57,7 @@
   gm = "git merge";
   gma = "git merge --abort";
   gmm = "git merge main";
+  gmv = "git branch --move";
   gnew = "git switch --create";
   gp = "git pull";
   gpp = "git push";

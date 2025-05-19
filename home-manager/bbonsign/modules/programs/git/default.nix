@@ -50,6 +50,8 @@
         m = "merge";
         ma = "merge --abort";
 
+        mv = "branch --move";
+
         new = "switch --create";
 
         p = "pull";
