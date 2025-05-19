@@ -59,6 +59,7 @@ return {
               enabled = package.loaded.lazy ~= nil,
             },
             { icon = " ", key = "m", desc = "Mason", action = ":Mason" },
+            { icon = " ", key = "b", desc = "Browse repo", action = ":lua Snacks.gitbrowse()" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
         },

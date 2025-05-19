@@ -63,6 +63,25 @@ menu:
           cmd: /var/home/bbonsign/.local/kitty.app/bin/kitty --class kitty-btm btm,
         }
       "c": { desc: "Hex", cmd: hyprpicker --autocopy }
+  "s":
+    desc: Share
+    submenu:
+      "c": { desc: "Clear", cmd: niri msg action clear-dynamic-cast-target }
+      "m":
+        {
+          desc: "Set Monitor",
+          cmd: niri msg action set-dynamic-cast-monitor --id $(niri msg --json pick-window | jq .id),
+        }
+      "s":
+        {
+          desc: "Set Window",
+          cmd: niri msg action set-dynamic-cast-window --id $(niri msg --json pick-window | jq .id),
+        }
+      "w":
+        {
+          desc: "Set Window",
+          cmd: niri msg action set-dynamic-cast-window --id $(niri msg --json pick-window | jq .id),
+        }
   "W":
     desc: Workspaces
     submenu:

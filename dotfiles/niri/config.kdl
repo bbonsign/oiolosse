@@ -21,6 +21,9 @@ workspace "browser" {
 workspace "chat" {
   open-on-output "eDP-1"
 }
+workspace "notes" {
+  open-on-output "eDP-1"
+}
 // Workspace for scratch windows:
 workspace "z" {
   open-on-output "eDP-1"
@@ -345,17 +348,17 @@ layout {
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
-spawn-at-startup "/usr/libexec/xdg-desktop-portal" "--replace"
+// spawn-at-startup "/usr/libexec/xdg-desktop-portal" "--replace"
 spawn-at-startup "bash" "-c" "swaybg --image $HOME/oiolosse/home-manager/bbonsign/modules/wallpapers/stsci-h-p1821a-m-1699x2000.png --mode fill"
 spawn-at-startup "pkill" "mako"
 spawn-at-startup "swaync"
 spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"
-// spawn-at-startup "kitty"
-spawn-at-startup "bash" "-c" "kitty || $HOME/.local/kitty.app/bin/kitty"
 // --silent opens to the system tray without showing the main window
 spawn-at-startup "1password" "--silent"
 spawn-at-startup "bash" "-c" "kitty --class kitty-scratch || $HOME/.local/kitty.app/bin/kitty --class kitty-scratch"
+// spawn-at-startup "kitty"
+spawn-at-startup "bash" "-c" "kitty || $HOME/.local/kitty.app/bin/kitty"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -432,6 +435,7 @@ window-rule {
   match app-id=r#"nm-connection-editor"# 
   match app-id=r#"blueman-manager"# 
   open-floating true
+  // baba-is-float true
   default-column-width {proportion 0.5;}
   default-window-height {proportion 0.75;}
 }
@@ -441,6 +445,11 @@ window-rule {
   match at-startup=true app-id=r#"kitty"#
   default-column-width {proportion 1.00;}
   open-on-workspace "term"
+}
+window-rule {
+  match app-id=r#"obsidian"#
+  default-column-width {proportion 1.00;}
+  open-on-workspace "notes"
 }
 window-rule {
   match app-id=r#"kitty-scratch"#
@@ -702,6 +711,7 @@ binds {
   Mod+Shift+R { switch-preset-window-height; }
   Mod+Ctrl+R { reset-window-height; }
   Mod+Shift+F { fullscreen-window; }
+  Mod+Ctrl+Shift+F { toggle-windowed-fullscreen; }
 
   // Finer width adjustments.
   // This command can also:

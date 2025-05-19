@@ -58,6 +58,7 @@
       # rustup
       # television
       # valent # KDE Connect client
+      # websocat
       # yazi
       # zig
       # zls # zig language server
@@ -104,6 +105,7 @@
       nodePackages.aws-cdk
       nodePackages.pnpm
       nodejs
+      ntfy-sh
       obsidian
       p7zip
       pgcli

@@ -101,7 +101,9 @@
         // (you need to configure them in niri)
         "browser": " ",
         "chat": "󰭹 ",
-        "term": " "
+        "term": " ",
+        "notes": " ",
+        "z": " "
 
         // Icons by state
         // "active": "",
