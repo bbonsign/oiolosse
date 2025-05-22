@@ -62,6 +62,7 @@
       # yazi
       # zig
       # zls # zig language server
+      age
       awscli2
       bat
       beam.packages.erlang_27.elixir_1_18
@@ -70,6 +71,8 @@
       brightnessctl
       cargo
       cowsay
+      cbonsai
+      cmatrix
       delta
       dnsutils # `dig` + `nslookup`
       duckdb
@@ -93,6 +96,7 @@
       jq
       just
       kanata
+      # kdePackages.polkit-kde-agent-1
       killall
       kitty
       lazygit
@@ -108,9 +112,11 @@
       ntfy-sh
       obsidian
       p7zip
+      # pantheon.pantheon-agent-polkit
       pgcli
       ripgrep
       snyk
+      sops
       ssm-session-manager-plugin # For aws cli
       stylua
       tealdeer

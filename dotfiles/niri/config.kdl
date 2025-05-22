@@ -171,7 +171,9 @@ layout {
   // - "always", the focused column will always be centered.
   // - "on-overflow", focusing a column will center it if it doesn't fit
   //   together with the previously focused column.
-  center-focused-column "never"
+  // center-focused-column "never"
+  center-focused-column "on-overflow"
+  always-center-single-column
 
   // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
   preset-column-widths {
@@ -348,16 +350,12 @@ layout {
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
-// spawn-at-startup "/usr/libexec/xdg-desktop-portal" "--replace"
-spawn-at-startup "bash" "-c" "swaybg --image $HOME/oiolosse/home-manager/bbonsign/modules/wallpapers/stsci-h-p1821a-m-1699x2000.png --mode fill"
+spawn-at-startup "/usr/libexec/xdg-desktop-portal" "--replace"
 spawn-at-startup "pkill" "mako"
 spawn-at-startup "swaync"
-spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"
-// --silent opens to the system tray without showing the main window
-spawn-at-startup "1password" "--silent"
+spawn-at-startup "1password" "--silent" // --silent opens to the system tray without showing the main window
 spawn-at-startup "bash" "-c" "kitty --class kitty-scratch || $HOME/.local/kitty.app/bin/kitty --class kitty-scratch"
-// spawn-at-startup "kitty"
 spawn-at-startup "bash" "-c" "kitty || $HOME/.local/kitty.app/bin/kitty"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
