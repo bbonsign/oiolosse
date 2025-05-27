@@ -11,6 +11,7 @@
     home.homeDirectory = "/home/bbonsign";
     home.sessionVariables = {
       EDITOR = "nvim";
+      SUDO_EDITOR = "nvim";
       VISUAL = "nvim";
       GRIM_DEFAULT_DIR = "$HOME/Pictures/Screenshots";
     };
@@ -21,6 +22,8 @@
     #     experimental-features = nix-command flakes pipe-operators
     #   '';
     # };
+
+    fonts.fontconfig.enable = true;
 
     home.shellAliases = import ./modules/programs/shellAliases.nix;
 
@@ -95,7 +98,6 @@
       jc # converts many command outputs/data types to json
       jq
       just
-      kanata
       # kdePackages.polkit-kde-agent-1
       killall
       kitty
@@ -104,6 +106,8 @@
       lua-language-server
       luarocks
       nautilus
+      nerd-fonts.fira-code
+      nerd-fonts.fantasque-sans-mono
       newman
       nix-output-monitor
       nodePackages.aws-cdk
@@ -119,6 +123,7 @@
       sops
       ssm-session-manager-plugin # For aws cli
       stylua
+      systemctl-tui
       tealdeer
       topiary # treesitter based formatter
       trashy

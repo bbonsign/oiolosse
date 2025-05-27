@@ -7,7 +7,7 @@ let DOTFILES = $env.HOME | path join oiolosse dotfiles
 let CONFIG_DIR = $env.HOME | path join .config
 let SERVICE_DIR = $env.HOME | path join .config systemd user
 let BIN_DIR = $env.HOME | path join .local bin
-let VIMIUM_DIR = $env.HOME | path join code vimium
+let VIMIUM_DIR = $env.HOME | path join code github.com philc vimium
 
 ^mkdir -p ($SERVICE_DIR | path join niri.service.wants)
 
@@ -21,7 +21,7 @@ def create_symlink [src dest] {
 # create_symlink "justfile" "$env.HOME/justfile"
 create_symlink rsync_excludes ($env.HOME | path join rsync_excludes)
 create_symlink dot_iex.exs ($env.HOME | path join .iex.exs)
-create_symlink ./ipython_config.py ($env.HOME | path join .ipython profile_default ipython_config.py)
+# create_symlink ./ipython_config.py ($env.HOME | path join .ipython profile_default ipython_config.py)
 create_symlink ./symlink.nu ($BIN_DIR | path join .f)
 
 let bin_files = ls ($DOTFILES | path join bin)

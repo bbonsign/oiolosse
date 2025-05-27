@@ -390,9 +390,9 @@ animations {
 
 window-rule {
   match app-id=r#"1Password"# 
-  default-column-width {proportion 0.25;}
-  default-window-height {proportion 0.8;}
-  open-floating true
+  default-column-width {proportion 0.5;}
+  // default-window-height {proportion 0.8;}
+  // open-floating true
   default-floating-position x=32 y=64 relative-to="top-left"
 
   block-out-from "screen-capture"
@@ -536,6 +536,7 @@ binds {
   // Mod+Return { spawn "kitty"; }
   Mod+Return { spawn "bash" "-c" "kitty || $HOME/.local/kitty.app/bin/kitty"; }
   Mod+D { spawn "fuzzel" "--show-actions" "--lines" "20" "--width" "80"; }
+  // Mod+D { spawn "rofi" "-show" "drun"; }
   Super+Alt+L { spawn "swaylock"; }
   Mod+Space { spawn "wlr-which-key"; }
   Mod+Tab hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }

@@ -12,6 +12,7 @@
     ./gammastep.nix
     ./git
     ./gtk.nix
+    ./kanata
     # ./kitty
     ./kde-connect.nix
     ./lazygit.nix

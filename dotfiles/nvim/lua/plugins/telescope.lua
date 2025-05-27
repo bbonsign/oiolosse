@@ -2,7 +2,7 @@ local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 
 return {
-  "telescope.nvim",
+  "nvim-telescope/telescope.nvim",
   dependencies = {
     {
       "nvim-telescope/telescope-fzf-native.nvim",

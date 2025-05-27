@@ -14,6 +14,7 @@
   ":nf" = "neofetch";
   ":r" = "rpm-ostree";
   ":rs" = "rpm-ostree status";
+  ":s" = "systemctl-tui";
   ":t" = "tmux attach -t";
   b = "bat";
   cl = "clear";

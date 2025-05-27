@@ -4,7 +4,7 @@ return {
   opts = {
     foldtextWithLineCount = {
       enabled = package.loaded["ufo"] == nil,
-      template = "    %s lines", -- `%s` gets the number of folded lines
+      -- template = "     %s lines", -- `%s` gets the number of folded lines
       hlgroupForCount = "Comment",
     },
 
