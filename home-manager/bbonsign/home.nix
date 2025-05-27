@@ -98,7 +98,6 @@
       jc # converts many command outputs/data types to json
       jq
       just
-      # kdePackages.polkit-kde-agent-1
       killall
       kitty
       lazygit
@@ -116,7 +115,6 @@
       ntfy-sh
       obsidian
       p7zip
-      # pantheon.pantheon-agent-polkit
       pgcli
       ripgrep
       snyk

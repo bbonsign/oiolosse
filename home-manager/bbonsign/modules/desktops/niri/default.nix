@@ -3,9 +3,9 @@
   config = {
     home.packages = with pkgs; [
       fuzzel
-      libsForQt5.polkit-kde-agent
-      # kdePackages.qtwayland
+      polkit_gnome
       rofi-wayland
+      soteria # polkit agent
       swappy # screenshot annotation tool
       swaybg
       swayidle
@@ -30,21 +30,21 @@
 
     systemd.user = {
       services = {
-        # niri-flake-polkit = {
-        #   Install.WantedBy = [ "niri.service" ];
-        #   Unit = {
-        #     Description = "PolicyKit Authentication Agent";
-        #     After = [ "graphical-session.target" ];
-        #     PartOf = [ "graphical-session.target" ];
-        #   };
-        #   Service = {
-        #     Type = "simple";
-        #     ExecStart = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
-        #     Restart = "on-failure";
-        #     RestartSec = 1;
-        #     TimeoutStopSec = 10;
-        #   };
-        # };
+        polkit-soteria = {
+          Install.WantedBy = [ "graphical-session.target" ];
+          Unit = {
+            Description = "Soteria, Polkit authentication agent for any desktop environment";
+            Wants = [ "graphical-session.target" ];
+            After = [ "graphical-session.target" ];
+          };
+          Service = {
+            Type = "simple";
+            ExecStart = "${pkgs.soteria}/bin/soteria";
+            Restart = "on-failure";
+            RestartSec = 1;
+            TimeoutStopSec = 10;
+          };
+        };
         swaybg = {
           Install.WantedBy = [ "niri.service" ];
           Unit = {
@@ -70,7 +70,6 @@
             ExecStart = "${pkgs.swayidle}/bin/swayidle";
           };
         };
-
       };
     };
   };

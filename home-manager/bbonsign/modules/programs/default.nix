@@ -12,9 +12,10 @@
     ./gammastep.nix
     ./git
     ./gtk.nix
-    ./kanata
+    # ./kanata
     # ./kitty
     ./kde-connect.nix
+    ./keyd
     ./lazygit.nix
     ./neovim
     ./nushell
