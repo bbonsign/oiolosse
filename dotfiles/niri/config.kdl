@@ -537,7 +537,7 @@ binds {
   Mod+Return { spawn "bash" "-c" "kitty || $HOME/.local/kitty.app/bin/kitty"; }
   Mod+D { spawn "fuzzel" "--show-actions" "--lines" "20" "--width" "80"; }
   // Mod+D { spawn "rofi" "-show" "drun"; }
-  Super+Alt+L { spawn "swaylock"; }
+  Super+Alt+L hotkey-overlay-title="Lock" { spawn "~/.local/bin/lock.sh"; }
   Mod+Space { spawn "wlr-which-key"; }
   Mod+Tab hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
   Mod+Comma hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }

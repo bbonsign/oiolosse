@@ -36,7 +36,7 @@ menu:
   "0":
     desc: Power
     submenu:
-      "l": { desc: Lock, cmd: "swaylock -f" }
+      "l": { desc: Lock, cmd: "~/.local/bin/lock.sh" }
       "e": { desc: Exit, cmd: niri msg action quit }
       "s": { desc: Suspend, cmd: systemctl suspend }
       "h": { desc: Hibernate, cmd: systemctl hibernate }
@@ -58,11 +58,9 @@ menu:
     desc: Run
     submenu:
       "b":
-        {
-          desc: "Btm",
-          cmd: /var/home/bbonsign/.local/kitty.app/bin/kitty --class kitty-btm btm,
-        }
+        { desc: "Btm", cmd: ~/.local/kitty.app/bin/kitty --class kitty-btm btm }
       "c": { desc: "Hex", cmd: hyprpicker --autocopy }
+      "p": { desc: "Power profiles", cmd: ~/.local/bin/power-profiles.nu }
   "s":
     desc: Share
     submenu:

@@ -4,6 +4,7 @@
     home.packages = with pkgs; [
       fuzzel
       polkit_gnome
+      power-profiles-daemon
       rofi-wayland
       soteria # polkit agent
       swappy # screenshot annotation tool

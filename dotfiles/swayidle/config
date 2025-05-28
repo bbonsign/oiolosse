@@ -18,9 +18,9 @@
 # Requires: swaylock
 # Requires: /usr/bin/pkill, /usr/bin/pgrep
 
-timeout 300 'swaylock -f'
+timeout 300 '$HOME/.local/bin/lock.sh'
 timeout 360 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors'
 timeout 60 "pgrep -xu $USER swaylock >/dev/null && niri msg action power-off-monitors" resume "pgrep -xu $USER swaylock >/dev/null && niri msg action power-on-monitors"
-before-sleep 'swaylock -f'
-lock 'swaylock -f'
+before-sleep '$HOME/.local/bin/lock.sh'
+lock '$HOME/.local/bin/lock.sh'
 unlock 'pkill -xu $USER -SIGUSR1 swaylock'

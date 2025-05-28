@@ -5,10 +5,10 @@ Requisite=graphical-session.target
 
 [Service]
 Restart=on-failure
-ExecStart=swayidle -w timeout 300 'swaylock -f' \
+ExecStart=swayidle -w timeout 300 '%h/.local/bin/lock.sh' \
           timeout 360 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' \
           timeout 60 "pgrep -xu $USER swaylock >/dev/null && niri msg action power-off-monitors" resume "pgrep -xu $USER swaylock >/dev/null && niri msg action power-on-monitors" \
-          before-sleep 'swaylock -f' \
-          lock 'swaylock -f' \
+          before-sleep '%h/.local/bin/lock.sh' \
+          lock '%h/.local/bin/lock.sh' \
           unlock 'pkill -xu $USER -SIGUSR1 swaylock'
 
