@@ -6,8 +6,10 @@
 .asdf
 .aws-sam
 .bash_completions
+.bun
 .cache
 .cargo
+.config/MQTTX
 .config/Code
 .config/Slack
 .config/chromium
