@@ -27,5 +27,6 @@
     ./zathura.nix
     # ./zellij
     ./zsh.nix
+    ./zoxide.nix
   ];
 }
