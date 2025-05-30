@@ -147,3 +147,31 @@ export def --env "set_aws_profile" [] {
 export alias ":ae" = set_aws_profile 
 export alias "dtfi" = datetime from int  
 
+
+
+def "lines escaped" [] {
+    let in_meta = (metadata $in)
+    $in | split chars | append { done: true } | generate { |char, acc={ escape: false, text: "" }
+        | match [$char, $acc.escape] {
+            [{ done: true }, _]       => { out: $acc.text }
+            ['\',  false]             => { out: null,      next: { escape: true,  text: ($acc.text + $char) } }
+            ["\n", false]             => { out: $acc.text, next: { escape: false, text: "" } }
+            [_, false] | ["\n", true] => { out: null,      next: { escape: false, text: ($acc.text + $char) } }
+            [$ch, true] => { error make { msg: $"encountered unknown escape: `\\($ch)`.", label: { text: "source of the offending value", span: $in_meta.span } } }
+        }
+    } | compact
+}
+
+# Parse systemd unit files
+export def "from systemd-ini" [] {
+    lines escaped
+    | split list --split before --regex '^\[.*\]$' # split into multiple lists, each containing all lines of a single section, including the header.
+    | skip 1 # we assume there's no global section.
+    | each { |group| {
+            name:     ($group | first | parse '[{name}]' | get 0.name), # unwrap the section name.
+            contents: ($group | skip 1 | parse '{key}={value}' | transpose --header-row --as-record --keep-all # parse the individual KV pairs.
+                | if ($in | describe | str starts-with "list<") { {} } else { $in } # this unpretty trickery is necessary because `[] | transpose --as-record` unfortunately returns an empty list in nushell.
+            )
+    } }
+    | reduce --fold={} { |sec, acc| $acc | upsert $sec.name { default {} | merge $sec.contents } } # merge all the sections while applying possible overrides.
+}

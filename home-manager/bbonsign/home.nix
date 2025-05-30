@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, system, ... }:
 
 {
   imports = [
@@ -69,7 +69,7 @@
       awscli2
       bat
       beam.packages.erlang_27.elixir_1_18
-      beam.packages.erlang_27.erlang
+      # beam.packages.erlang_27.erlang
       bottom
       brightnessctl
       cargo
@@ -116,9 +116,19 @@
       obsidian
       p7zip
       pgcli
+      # https://linkfrg.github.io/ignis/stable/user/nix.html#adding-ignis-to-system-python 
+      # inputs.ignis.packages.${system}.ignis
+      (python3.withPackages (ps: with ps; [
+        (inputs.ignis.packages.${pkgs.stdenv.hostPlatform.system}.ignis.override {
+          extraPackages = [
+            # Add extra packages if needed
+          ];
+        })
+      ]))
       ripgrep
       snyk
       sops
+      sqlite
       ssm-session-manager-plugin # For aws cli
       stylua
       systemctl-tui

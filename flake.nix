@@ -23,6 +23,11 @@
       url = "github:YaLTeR/niri";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ignis = {
+      url = "github:linkfrg/ignis";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ nixpkgs, home-manager, nix-formatter-pack, ... }:
@@ -62,7 +67,7 @@
           ];
 
           # Optionally use extraSpecialArgs to pass through arguments to home.nix
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = { inherit inputs system; };
         };
       };
 

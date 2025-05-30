@@ -16,9 +16,12 @@ workspace "term" {
   open-on-output "eDP-1"
 }
 workspace "browser" {
-  open-on-output "DP-1"
+  open-on-output "DP-3"
 }
 workspace "chat" {
+  open-on-output "eDP-1"
+}
+workspace "email" {
   open-on-output "eDP-1"
 }
 workspace "notes" {
@@ -450,6 +453,12 @@ window-rule {
   open-on-workspace "notes"
 }
 window-rule {
+  // Outlook PWA
+  match app-id=r#"vivaldi-faolnafnngnfdaknnbpnkhgohbobgegn-Default"#
+  default-column-width {proportion 1.00;}
+  open-on-workspace "email"
+}
+window-rule {
   match app-id=r#"kitty-scratch"#
   open-on-workspace "z"
   open-floating true
@@ -470,8 +479,14 @@ window-rule {
 }
 window-rule {
   match title=r#"Slack"#
+  // Discord PWA
+  match app-id=r#"vivaldi-mfhpbolkhgobaabcbabdlnhidbjpoogc-Default"#
+  default-column-width {proportion 1.00;}
   open-on-workspace "chat"
 }
+// window-rule {
+//   open-on-workspace "email"
+// }
 
 // Indicate screencasted windows with red colors.
 window-rule {
@@ -609,9 +624,6 @@ binds {
 
   // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
 
-  Mod+Shift+Comma  { move-workspace-to-monitor-left; }
-  Mod+Shift+Period  { move-workspace-to-monitor-right; }
-
   Mod+Page_Down      { focus-workspace-down; }
   Mod+Page_Up        { focus-workspace-up; }
   Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
@@ -623,8 +635,13 @@ binds {
 
   Mod+Shift+Page_Down { move-workspace-down; }
   Mod+Shift+Page_Up   { move-workspace-up; }
-  Mod+Shift+U         { move-workspace-down; }
-  Mod+Shift+I         { move-workspace-up; }
+  Mod+Shift+I         { move-workspace-down; }
+  Mod+Shift+O         { move-workspace-up; }
+  Mod+Shift+U  { move-workspace-to-monitor-left; }
+  Mod+Shift+P  { move-workspace-to-monitor-right; }
+  Mod+Shift+Comma  { move-workspace-to-monitor-left; }
+  Mod+Shift+Period  { move-workspace-to-monitor-right; }
+
 
   // You can bind mouse wheel scroll ticks using the following syntax.
   // These binds will change direction based on the natural-scroll setting.
@@ -671,8 +688,8 @@ binds {
   Mod+1 { focus-workspace "term"; }
   Mod+2 { focus-workspace "browser"; }
   Mod+3 { focus-workspace "chat"; }
-  Mod+4 { focus-workspace 4; }
-  Mod+5 { focus-workspace 5; }
+  Mod+4 { focus-workspace "email"; }
+  Mod+5 { focus-workspace "notes"; }
   Mod+6 { focus-workspace 6; }
   Mod+7 { focus-workspace 7; }
   Mod+8 { focus-workspace 8; }
@@ -681,8 +698,8 @@ binds {
   Mod+Shift+1 { move-column-to-workspace "term"; }
   Mod+Shift+2 { move-column-to-workspace "browser"; }
   Mod+Shift+3 { move-column-to-workspace "chat"; }
-  Mod+Shift+4 { move-column-to-workspace 4; }
-  Mod+Shift+5 { move-column-to-workspace 5; }
+  Mod+Shift+4 { move-column-to-workspace "email"; }
+  Mod+Shift+5 { move-column-to-workspace "notes"; }
   Mod+Shift+6 { move-column-to-workspace 6; }
   Mod+Shift+7 { move-column-to-workspace 7; }
   Mod+Shift+8 { move-column-to-workspace 8; }
@@ -764,7 +781,7 @@ binds {
 
   // Powers off the monitors. To turn them back on, do any input like
   // moving the mouse or pressing any other key.
-  Mod+Shift+P { power-off-monitors; }
+  Mod+Ctrl+Shift+P { power-off-monitors; }
 
   // Example volume keys mappings for PipeWire & WirePlumber.
   XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause";}
