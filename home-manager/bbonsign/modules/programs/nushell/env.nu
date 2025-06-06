@@ -12,6 +12,7 @@ $env.PATH = (
   | uniq
 )
 
+$env.ERL_AFLAGS = "-kernel shell_history enabled";
 $env.MANPAGER = 'nvim +Man!'
 $env.NIXPKGS_ALLOW_UNFREE = 1
 

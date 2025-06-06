@@ -14,6 +14,7 @@
       SUDO_EDITOR = "nvim";
       VISUAL = "nvim";
       GRIM_DEFAULT_DIR = "$HOME/Pictures/Screenshots";
+      ERL_AFLAGS = "-kernel shell_history enabled";
     };
 
     # nix = {
@@ -107,6 +108,7 @@
       nautilus
       nerd-fonts.fira-code
       nerd-fonts.fantasque-sans-mono
+      numbat # Scientific calculator/programming language
       newman
       nix-output-monitor
       nodePackages.aws-cdk
