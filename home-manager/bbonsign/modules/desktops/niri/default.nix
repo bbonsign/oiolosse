@@ -3,6 +3,7 @@
   config = {
     home.packages = with pkgs; [
       fuzzel
+      networkmanager_dmenu
       polkit_gnome
       power-profiles-daemon
       rofi-wayland
@@ -23,7 +24,7 @@
       waybar = {
         enable = true;
         systemd = {
-          enable = true;
+          enable = false;
           target = "niri.service";
         };
       };

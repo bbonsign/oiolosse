@@ -355,11 +355,12 @@ layout {
 // See the binds section below for more spawn examples.
 spawn-at-startup "/usr/libexec/xdg-desktop-portal" "--replace"
 spawn-at-startup "pkill" "mako"
+spawn-at-startup "ignis" "init"
 spawn-at-startup "swaync"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "1password" "--silent" // --silent opens to the system tray without showing the main window
-spawn-at-startup "bash" "-c" "kitty --class kitty-scratch || $HOME/.local/kitty.app/bin/kitty --class kitty-scratch"
 spawn-at-startup "bash" "-c" "kitty || $HOME/.local/kitty.app/bin/kitty"
+spawn-at-startup "bash" "-c" "kitty --title kitty-scratch || $HOME/.local/kitty.app/bin/kitty --title kitty-scratch"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -435,6 +436,7 @@ window-rule {
 window-rule {
   match app-id=r#"nm-connection-editor"# 
   match app-id=r#"blueman-manager"# 
+  match title="nmtui"
   open-floating true
   // baba-is-float true
   default-column-width {proportion 0.5;}
@@ -459,7 +461,7 @@ window-rule {
   open-on-workspace "email"
 }
 window-rule {
-  match app-id=r#"kitty-scratch"#
+  match title=r#"kitty-scratch"#
   open-on-workspace "z"
   open-floating true
   // Anchor to the top edge of the screen.
@@ -803,6 +805,7 @@ binds {
   XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
   XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
   XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+  Mod+M                allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
   XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
   XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "5%+"; }
 

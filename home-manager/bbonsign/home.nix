@@ -108,13 +108,14 @@
       nautilus
       nerd-fonts.fira-code
       nerd-fonts.fantasque-sans-mono
-      numbat # Scientific calculator/programming language
+      networkmanager
       newman
       nix-output-monitor
       nodePackages.aws-cdk
       nodePackages.pnpm
       nodejs
       ntfy-sh
+      numbat # Scientific calculator/programming language
       obsidian
       p7zip
       pgcli
