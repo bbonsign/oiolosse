@@ -100,7 +100,7 @@ $env.config.keybindings = (
     {
       name: fuzzy_tab
       modifier: control
-      keycode: char_j
+      keycode: char_n
       mode: $ALL_MODES
       event: {
         send: executehostcommand
@@ -137,7 +137,7 @@ $env.config.keybindings = (
     # {
     #   name: completion_menu
     #   modifier: control
-    #   keycode: char_j
+    #   keycode: char_n
     #   mode: $ALL_MODES
     #   event: {
     #     until: [
@@ -159,7 +159,7 @@ $env.config.keybindings = (
     {
       name: fuzzy_file_pwd
       modifier: control_alt
-      keycode: char_j
+      keycode: char_n
       mode: $ALL_MODES
       event: {
         send: executehostcommand

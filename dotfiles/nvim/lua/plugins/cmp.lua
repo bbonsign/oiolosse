@@ -6,7 +6,7 @@ return {
     -- build = vim.g.lazyvim_blink_main and "nix run .#build-plugin",
     opts = {
       fuzzy = {
-        implementation = 'prefer_rust',
+        implementation = "prefer_rust",
       },
       appearance = {
         -- sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -97,8 +97,8 @@ return {
         ["<C-c>"] = { "cancel", "fallback" },
         ["<Up>"] = { "select_prev" },
         ["<Down>"] = { "select_next" },
-        ["<C-k>"] = { "select_prev" },
-        ["<C-j>"] = { "show", "select_next" },
+        ["<C-p>"] = { "select_prev" },
+        ["<C-n>"] = { "show", "select_next" },
         ["<C-y>"] = { "select_and_accept" },
         ["<CR>"] = { "select_and_accept", "fallback" },
         ["<Tab>"] = {
@@ -131,8 +131,8 @@ return {
           ["<C-c>"] = { "cancel", "fallback" },
           ["<Up>"] = { "select_prev", "fallback" },
           ["<Down>"] = { "select_next", "fallback" },
-          ["<C-k>"] = { "select_prev", "fallback" },
-          ["<C-j>"] = { "show", "select_next", "fallback" },
+          ["<C-p>"] = { "select_prev", "fallback" },
+          ["<C-n>"] = { "show", "select_next", "fallback" },
           ["<C-y>"] = { "select_accept_and_enter" },
         },
       },
@@ -169,8 +169,8 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          -- ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          -- ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),

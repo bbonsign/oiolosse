@@ -39,8 +39,8 @@ vim.keymap.set({ "n", "v" }, "x", '"_x')
 -- To complement the default <C-y> for scrolling text up/down
 -- with out moving cursor
 vim.keymap.set("n", "<C-h>", "<C-e>")
-vim.keymap.set("n", "<C-j>", "<C-e>")
-vim.keymap.set("n", "<C-k>", "<C-y>")
+vim.keymap.set("n", "<C-l>", "<C-y>")
+-- vim.keymap.set("n", "<C-j>", "<C-e>")
 
 vim.keymap.set({ "n", "v" }, "<Leader>p", '"0p', { desc = "Paste last yank" })
 vim.keymap.set({ "n", "v" }, "<Leader>P", '"0P', { desc = "Paste last yank" })
