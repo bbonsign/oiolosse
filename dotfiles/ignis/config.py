@@ -141,6 +141,7 @@ def media() -> widgets.Box:
 def active_window_title(monitor_name) -> widgets.Label:
     return widgets.Label(
         ellipsize="end",
+        css_classes=["window_title"],
         max_width_chars=40,
         visible=niri.bind("active_output", lambda output: output == monitor_name),
         label=niri.active_window.bind("title"),
@@ -150,6 +151,7 @@ def active_window_title(monitor_name) -> widgets.Label:
 def active_window_app_id(monitor_name) -> widgets.Label:
     return widgets.Label(
         ellipsize="end",
+        css_classes=["window_title"],
         max_width_chars=40,
         visible=niri.bind("active_output", lambda output: output == monitor_name),
         label=niri.active_window.bind("app_id"),

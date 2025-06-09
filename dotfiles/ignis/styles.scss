@@ -1,6 +1,6 @@
 * {
   all: unset;
-  font-weight: bold;
+  font-size: 1rem;
 }
 
 $bg: #1a111288;
@@ -62,6 +62,10 @@ $unactive: #d7c1c3;
   // color: $fg;
 }
 
+.window_title {
+  // font-size: 12px;
+}
+
 .window {
   // border-radius: 1rem;
   padding: 0.25rem 0.25rem 0;
@@ -82,7 +86,7 @@ $unactive: #d7c1c3;
 }
 
 .clock {
-  // font-size: 1.1rem;
+  font-weight: bold;
   margin-right: 0.5rem;
 }
 

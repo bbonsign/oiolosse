@@ -142,6 +142,7 @@
       unzip
       usbutils # lsusb
       uv # python packaging and project manager
+      watchman
       which
       xz
       yarn

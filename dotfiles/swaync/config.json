@@ -1,6 +1,6 @@
 {
   "positionX": "right",
-  "positionY": "bottom",
+  "positionY": "top",
   "layer": "overlay",
   "control-center-layer": "top",
   "layer-shell": true,
@@ -45,7 +45,6 @@
       "max-lines": 1,
       "text": "Notification"
     },
-
     "mpris": {
       "image-size": 80,
       "image-radius": 0
@@ -68,7 +67,6 @@
           "command": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
           "type": "toggle"
         },
-
         {
           "label": " ",
           "command": "kitty --title nmtui nmtui"

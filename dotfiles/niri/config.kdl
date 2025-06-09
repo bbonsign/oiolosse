@@ -142,7 +142,7 @@ output "DP-1" {
 
 overview {
   backdrop-color "#0F1329"
-  zoom 0.95
+  zoom 0.75
   workspace-shadow {
     // off
   }
