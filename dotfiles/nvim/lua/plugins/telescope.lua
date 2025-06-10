@@ -129,22 +129,22 @@ return {
       },
       mappings = {
         i = {
-          -- ["<C-j>"] = function(...)
-          --   return actions.move_selection_next(...)
-          -- end,
-          -- ["<C-k>"] = function(...)
-          --   return actions.move_selection_previous(...)
-          -- end,
+          ["<C-j>"] = function(...)
+            return actions.move_selection_next(...)
+          end,
+          ["<C-k>"] = function(...)
+            return actions.move_selection_previous(...)
+          end,
           ["<C-space>"] = action_layout.toggle_preview,
         },
       },
       n = {
-        -- ["<C-j>"] = function(...)
-        --   return actions.move_selection_next(...)
-        -- end,
-        -- ["<C-k>"] = function(...)
-        --   return actions.move_selection_previous(...)
-        -- end,
+        ["<C-j>"] = function(...)
+          return actions.move_selection_next(...)
+        end,
+        ["<C-k>"] = function(...)
+          return actions.move_selection_previous(...)
+        end,
         ["<C-space>"] = action_layout.toggle_preview,
       },
     },

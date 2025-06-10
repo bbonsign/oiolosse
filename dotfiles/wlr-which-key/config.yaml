@@ -46,14 +46,9 @@ menu:
   "b":
     desc: Bar
     submenu:
-      "b": { desc: Toggle, cmd: ignis init || ignis quit }
-      "r": { desc: Reload, cmd: ignis reload }
-      "s": { desc: Toggle, cmd: ignis init }
-      "t": { desc: Toggle, cmd: ignis init || ignis quit }
-      "q": { desc: Toggle, cmd: ignis quit }
-      # "b": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
-      # "r": { desc: Reload, cmd: pkill -SIGUSR2 waybar }
-      # "t": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
+      "b": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
+      "r": { desc: Reload, cmd: pkill -SIGUSR2 waybar }
+      "t": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
   "c":
     desc: Colorpicker
     submenu:
