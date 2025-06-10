@@ -398,12 +398,12 @@ def center() -> widgets.Box:
     return widgets.Box(
         child=[
             clock(),
-            widgets.Separator(
-                vertical=True,
-                css_classes=["middle-separator"],
-                visible=mpris.bind("players", lambda value: len(value) > 0),
-            ),
-            media(),
+            # widgets.Separator(
+            #     vertical=True,
+            #     css_classes=["middle-separator"],
+            #     visible=mpris.bind("players", lambda value: len(value) > 0),
+            # ),
+            # media(),
         ],
         spacing=10,
     )
