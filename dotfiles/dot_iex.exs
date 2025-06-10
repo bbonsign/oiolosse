@@ -76,13 +76,13 @@ defmodule MyHelpers do
     |> Enum.map(&Mix.ensure_application!/1)
   end
 
-  @doc """
-  Shortcut to start observer
-  """
-  def obss do
-    obs()
-    :observer.start()
-  end
+  # @doc """
+  # Shortcut to start observer
+  # """
+  # def obss do
+  #   obs()
+  #   :observer.start()
+  # end
 end
 
 import MyHelpers

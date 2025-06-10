@@ -147,6 +147,13 @@ $env.config.keybindings = (
     #   }
     # },
     {
+      name: fuzzy_file_pwd
+      modifier: control
+      keycode: char_s
+      mode: $ALL_MODES
+      event: {send: Enter}
+    }
+    {
       name: fuzzy_file
       modifier: control
       keycode: char_t
