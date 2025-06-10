@@ -13,10 +13,8 @@ IO.puts("#{ANSI.blue()}  #{ANSI.magenta()}  Elixir IEx #{ANSI.blue()}�
 # Editor to open code in using `open` function
 System.put_env("ELIXIR_EDITOR", "kitty #{System.fetch_env!("EDITOR")} __FILE__ &")
 
-# Prevent dbg() from adding a breakpoint and dropping into pry
-Application.put_env(:elixir, :dbg_callback, {Macro, :dbg, []})
-
 IEx.configure(
+  auto_reload: true,
   colors: [
     syntax_colors: [
       number: :light_yellow,
@@ -72,7 +70,11 @@ defmodule MyHelpers do
   Load applications needed to run observer
   """
   def obs do
-    [:wx, :observer, :runtime_tools]
+    [
+      # :wx,            # Not necessary on Erlang/OTP 27+
+      # :runtime_tools  # Not necessary on Erlang/OTP 27+
+      :observer,
+    ]
     |> Enum.map(&Mix.ensure_application!/1)
   end
 

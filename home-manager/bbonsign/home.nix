@@ -70,7 +70,7 @@
       awscli2
       bat
       beam.packages.erlang_27.elixir_1_18
-      # beam.packages.erlang_27.erlang
+      beam.packages.erlang_27.erlang
       bottom
       brightnessctl
       cargo
