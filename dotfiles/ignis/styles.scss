@@ -22,6 +22,14 @@ $unactive: #d7c1c3;
   color: $fg;
 }
 
+tooltip {
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 1rem;
+  background-color: $bgsolid;
+  // width: min-content;
+}
+
 .middle-separator {
   background-color: gray;
   padding: 0 0.03rem;
@@ -81,13 +89,16 @@ $unactive: #d7c1c3;
   background-color: lighten($bg, 30%);
 }
 
+.tray {
+  margin-right: 1rem;
+}
+
 .tray-item {
   all: unset;
 }
 
 .clock {
   font-weight: bold;
-  margin-right: 0.5rem;
 }
 
 popover.menu {

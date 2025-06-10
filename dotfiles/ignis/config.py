@@ -74,6 +74,7 @@ def workspaces(monitor_name: str) -> widgets.EventBox:
 def window_button(window: NiriWindow) -> widgets.Button:
     buttons = widgets.Button(
         css_classes=["window"],
+        tooltip_text=f"{window.title} | {window.app_id}",
         on_click=lambda x: window.focus(),
         child=widgets.Icon(image=utils.get_app_icon_name(window.app_id), pixel_size=16),
     )
@@ -184,12 +185,28 @@ def active_window(monitor_name) -> widgets.Box:
 
 def clock() -> widgets.Label:
     # poll for current time every second
-    return widgets.Label(
-        css_classes=["clock"],
-        label=utils.Poll(
-            1_000,
-            lambda self: datetime.datetime.now().strftime("%Y %B %d  %H:%M  %I:%M %p"),
-        ).bind("output"),
+    return widgets.Box(
+        child=[
+            widgets.Label(
+                css_classes=["clock"],
+                label=utils.Poll(
+                    1_000,
+                    lambda self: datetime.datetime.now().strftime("%Y %B %d  %H:%M"),
+                ).bind("output"),
+            ),
+            widgets.Separator(
+                vertical=True,
+                css_classes=["middle-separator"],
+            ),
+            widgets.Label(
+                css_classes=["clock"],
+                label=utils.Poll(
+                    1_000,
+                    lambda self: datetime.datetime.now().strftime("%I:%M %p"),
+                ).bind("output"),
+            ),
+        ],
+        spacing=10,
     )
 
 
@@ -198,14 +215,38 @@ def battery() -> widgets.Label:
     return widgets.Box(
         child=[
             widgets.Label(
-                css_classes=["clock"],
                 label=utils.Poll(
                     10_000, lambda self: f"{int(upower.batteries[0].percent)}%"
                 ).bind("output"),
             ),
-            widgets.Icon(
-                image=upower.batteries[0].bind("icon_name"),
-                style="margin-right: 2px;",
+            widgets.Button(
+                on_click=lambda x: utils.exec_sh("~/.local/bin/power-profiles.nu"),
+                child=widgets.Icon(
+                    image=upower.batteries[0].bind("icon_name"),
+                    style="margin-right: 2px;",
+                ),
+            ),
+        ]
+    )
+
+
+def microphone() -> widgets.Box:
+    return widgets.Box(
+        child=[
+            widgets.Button(
+                on_click=lambda x: utils.exec_sh(
+                    "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+                ),
+                child=widgets.Icon(
+                    image=audio.microphone.bind("icon_name"),
+                    style="margin-right: 5px;",
+                ),
+            ),
+            widgets.Label(
+                label=audio.microphone.bind(
+                    "volume",
+                    transform=lambda value: str(value),
+                )
             ),
         ]
     )
@@ -252,8 +293,10 @@ def tray_item(item: SystemTrayItem) -> widgets.Button:
 
 def tray():
     return widgets.Box(
+        css_classes=["tray"],
         setup=lambda self: system_tray.connect(
-            "added", lambda x, item: self.append(tray_item(item))
+            "added",
+            lambda x, item: self.append(tray_item(item)),
         ),
         spacing=10,
     )
@@ -343,7 +386,11 @@ def power_menu() -> widgets.Button:
 
 def left(monitor_name: str) -> widgets.Box:
     return widgets.Box(
-        child=[windows(monitor_name), active_window(monitor_name)], spacing=10
+        child=[
+            windows(monitor_name),
+            # active_window(monitor_name),
+        ],
+        spacing=10,
     )
 
 
@@ -366,6 +413,7 @@ def right() -> widgets.Box:
     return widgets.Box(
         child=[
             tray(),
+            microphone(),
             volume(),
             volume_slider(),
             battery(),
