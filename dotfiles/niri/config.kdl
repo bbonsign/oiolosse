@@ -142,7 +142,7 @@ output "DP-1" {
 
 overview {
   backdrop-color "#0F1329"
-  zoom 0.75
+  zoom 0.5
   workspace-shadow {
     // off
   }
@@ -578,10 +578,8 @@ binds {
   Mod+L     { focus-column-or-monitor-right; }
 
   Mod+A  hotkey-overlay-title="Overview"   { toggle-overview; }
-  Mod+I  hotkey-overlay-title="Prev Workspace"   { focus-workspace-previous;}
-  Mod+O  hotkey-overlay-title="Prev Window"   { focus-window-previous;}
 
-  Mod+U hotkey-overlay-title="Focus Urgent Window"{ spawn "~/.local/bin/niri-focus-urgent.nu"; }
+  Mod+Ctrl+U hotkey-overlay-title="Focus Urgent Window"{ spawn "~/.local/bin/niri-focus-urgent.nu"; }
 
   // Expand the focused column to space not taken up by other fully visible columns.
   // Makes the column "fill the rest of the space".
@@ -633,21 +631,21 @@ binds {
 
   // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
 
+  Mod+U  hotkey-overlay-title="Workspace Down"   { focus-workspace-previous;}
+  Mod+I  hotkey-overlay-title="Workspace Up"   { focus-window-previous;}
   Mod+Page_Down      { focus-workspace-down; }
   Mod+Page_Up        { focus-workspace-up; }
   Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
   Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
-  Mod+Ctrl+U         { move-column-to-workspace-down; }
-  Mod+Ctrl+I         { move-column-to-workspace-up; }
+  // Mod+Ctrl+U         { move-column-to-workspace-down; }
+  // Mod+Ctrl+I         { move-column-to-workspace-up; }
 
 
 
   Mod+Shift+Page_Down { move-workspace-down; }
   Mod+Shift+Page_Up   { move-workspace-up; }
-  Mod+Shift+I         { move-workspace-down; }
-  Mod+Shift+O         { move-workspace-up; }
-  Mod+Shift+U  { move-workspace-to-monitor-left; }
-  Mod+Shift+P  { move-workspace-to-monitor-right; }
+  Mod+Shift+U         { move-workspace-down; }
+  Mod+Shift+I         { move-workspace-up; }
   Mod+Shift+Comma  { move-workspace-to-monitor-left; }
   Mod+Shift+Period  { move-workspace-to-monitor-right; }
 

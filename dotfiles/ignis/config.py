@@ -89,7 +89,7 @@ def windows(monitor_name: str) -> widgets.EventBox:
     return widgets.EventBox(
         # on_scroll_up=lambda x: scroll_workspaces("up", monitor_name),
         # on_scroll_down=lambda x: scroll_workspaces("down", monitor_name),
-        css_classes=["workspaces"],
+        css_classes=[],
         spacing=5,
         child=niri.bind(
             "windows",
@@ -446,22 +446,20 @@ def bar2(monitor_id: int = 0) -> widgets.Window:
         monitor=monitor_id,
         anchor=["top", "left", "bottom"],
         exclusivity="exclusive",
+        layer="top",
         child=widgets.CenterBox(
             vertical=True,
             css_classes=["bar2"],
             start_widget=widgets.Box(
-                child=[
-                    workspaces(monitor_name),
-                ],
-                # spacing=10,
+                child=[],
             ),
             center_widget=widgets.Box(
                 child=[],
-                # spacing=10,
             ),
             end_widget=widgets.Box(
-                child=[],
-                # spacing=10,
+                child=[
+                    workspaces(monitor_name),
+                ],
             ),
         ),
     )

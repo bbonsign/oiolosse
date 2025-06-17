@@ -3,6 +3,7 @@
   font-size: 1rem;
 }
 
+$transparent: #00000000;
 $bg: #1a111288;
 $bgsolid: #1a1112dd;
 $bg-light: #261d1e;
@@ -18,8 +19,14 @@ $unactive: #d7c1c3;
 .bar2 {
   padding: 0.5rem 0;
   margin: 0;
+  background-color: $transparent;
+  color: $fg;
+}
+
+.workspaces {
   background-color: $bg;
   color: $fg;
+  padding: .5rem 0;
 }
 
 tooltip {
