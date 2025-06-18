@@ -26,7 +26,9 @@ $unactive: #d7c1c3;
 .workspaces {
   background-color: $bg;
   color: $fg;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
+  border-radius: 5px;
+  margin: 0 0 3px 0px;
 }
 
 tooltip {
