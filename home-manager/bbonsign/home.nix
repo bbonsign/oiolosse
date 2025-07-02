@@ -127,6 +127,7 @@
           ];
         })
       ]))
+      pinentry-gtk2
       ripgrep
       snyk
       sops
