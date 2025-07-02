@@ -67,6 +67,13 @@ defmodule MyHelpers do
   end
 
   @doc """
+  Shortcut for:
+  `IEx.Helpers.recompile()`
+  """
+  def cc do
+    IEx.Helpers.recompile()
+  end
+  @doc """
   Load applications needed to run observer
   """
   def obs do

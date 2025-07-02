@@ -30,4 +30,4 @@ def _do [title: string, command: string] {
   }
 }
 
-_do "kitty-scratch" "bash -c 'kitty || $HOME/.local/kitty.app/bin/kitty --title kitty-scratch'"
+_do "kitty-scratch" "bash -c 'kitty || $HOME/.local/kitty.app/bin/kitty --override background_opacity=0.9 --title kitty-scratch'"

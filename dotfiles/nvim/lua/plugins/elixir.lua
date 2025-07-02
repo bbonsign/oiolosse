@@ -14,12 +14,13 @@ return {
         enable = true,
         settings = elixirls.settings({
           dialyzerEnabled = false,
-          enableTestLenses = false,
+          enableTestLenses = true,
         }),
         on_attach = function(client, bufnr)
           vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
           vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
           vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+          vim.keymap.set("n", "<space>lt", ":lua vim.lsp.codelens.run()<cr>", { buffer = true, noremap = true })
         end,
       },
     })

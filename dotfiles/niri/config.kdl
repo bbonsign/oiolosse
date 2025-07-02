@@ -156,13 +156,13 @@ layout {
   background-color "transparent"
 
   // Set gaps around windows in logical pixels.
-  gaps 4
+  gaps 8
 
   tab-indicator {
-    width 6
+    width 10
     // gap 8
     length total-proportion=0.5
-    // position "left"
+    // position "top"
     place-within-column
     gaps-between-tabs 8
     corner-radius  4
@@ -229,25 +229,9 @@ layout {
     // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
     // - CSS-like notation: "rgb(25, 17, 100)", rgba(), hsl() and a few others.
 
-    // active-color "#7dcfff"
     inactive-color "#414868"
-
-    active-gradient from="#7dcfff" to="#7aa2f7" angle=135
-    // active-gradient from="#7dcfff" to="#7aa2f7" angle=135 relative-to="workspace-view"
-    // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
-
-    // You can also use gradients. They take precedence over solid colors.
-    // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
-    // The angle is the same as in linear-gradient, and is optional,
-    // defaulting to 180 (top-to-bottom gradient).
-    // You can use any CSS linear-gradient tool on the web to set these up.
-    // Changing the color space is also supported, check the wiki for more info.
-    //
-
-    // You can also color the gradient relative to the entire view
-    // of the workspace, rather than relative to just the window itself.
-    // To do that, set relative-to="workspace-view".
-    //
+    active-gradient from="#7dcfff" to="#bb9af7" angle=135
+    // active-gradient from="#7dcfff" to="#bb9af7" angle=135 relative-to="workspace-view"
     // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
   }
 
@@ -285,9 +269,7 @@ layout {
     // off
 
     width 2
-    // active-color "#7dcfff"
     inactive-color "#414868"
-
     active-gradient from="#7dcfff" to="#bb9af7" angle=135
     // active-gradient from="#7dcfff" to="#bb9af7" angle=135 relative-to="workspace-view"
     // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
@@ -586,7 +568,7 @@ binds {
   Mod+E { expand-column-to-available-width; }
   Mod+F { maximize-column; }
   Mod+C { center-column; }
-  // Mod+Ctrl+C { center-visible-columns; }
+  Mod+Ctrl+C { center-visible-columns; }
   Mod+N { spawn "bash" "-c" "swaync-client --toggle-panel ; wlr-which-key notifications"; }
 
 
@@ -631,8 +613,9 @@ binds {
 
   // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
 
-  Mod+U  hotkey-overlay-title="Workspace Down"   { focus-workspace-previous;}
-  Mod+I  hotkey-overlay-title="Workspace Up"   { focus-window-previous;}
+  Mod+O  hotkey-overlay-title="Workspace Previous"   { focus-window-previous;}
+  Mod+U  hotkey-overlay-title="Workspace Down"   { focus-workspace-down;}
+  Mod+I  hotkey-overlay-title="Workspace Up"   { focus-workspace-up;}
   Mod+Page_Down      { focus-workspace-down; }
   Mod+Page_Up        { focus-workspace-up; }
   Mod+Ctrl+Page_Down { move-column-to-workspace-down; }

@@ -1,8 +1,9 @@
 return {
   "chrisgrieser/nvim-origami",
+  enabled = false,
   event = "VeryLazy",
   opts = {
-    foldtextWithLineCount = {
+    foldtext = {
       enabled = package.loaded["ufo"] == nil,
       -- template = "     %s lines", -- `%s` gets the number of folded lines
       hlgroupForCount = "Comment",

@@ -15,6 +15,7 @@ return {
         "c",
         "css",
         "dockerfile",
+        "eex",
         "elixir",
         "fish",
         "gitcommit",

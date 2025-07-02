@@ -63,7 +63,6 @@
       # television
       # valent # KDE Connect client
       # websocat
-      # yazi
       # zig
       # zls # zig language server
       age
@@ -146,6 +145,7 @@
       which
       xz
       yarn
+      yazi
       yq-go # yaml processer https://github.com/mikefarah/yq
       zig
       zip
