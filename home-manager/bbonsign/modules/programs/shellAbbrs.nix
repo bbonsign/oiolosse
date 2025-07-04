@@ -11,7 +11,7 @@
   ":ke" = "kitty +edit-config";
   ":ld" = "eza --all --long --group-directories-first --icons auto --only-dirs";
   ":ln" = "eza --all --long --group-directories-first --icons auto -s newest";
-  ":nf" = "neofetch";
+  ":ns" = "niri-session";
   ":r" = "rpm-ostree";
   ":rs" = "rpm-ostree status";
   ":s" = "systemctl-tui";

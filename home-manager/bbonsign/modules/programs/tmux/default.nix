@@ -12,6 +12,7 @@
       mouse = true;
       newSession = true;
       prefix = "C-Space";
+      # prefix = "`";
       sensibleOnTop = true;
       # shell = "${pkgs.fish}/bin/fish";
       shell = "${pkgs.nushell}/bin/nu";
@@ -54,16 +55,6 @@
         { plugin = tmuxPlugins.prefix-highlight; }
 
         {
-          plugin = tmuxPlugins.tmux-floax;
-          extraConfig = ''
-            set -g @floax-bind '-n M-p'
-            # set -g @floax-change-path 'false'
-            set -g @floax-session-name 'floax'
-            set -g @floax-text-color 'white'
-          '';
-        }
-
-        {
           plugin = tmuxPlugins.resurrect;
           extraConfig = ''
             set -g @resurrect-processes     'lazygit man nvim'
@@ -75,6 +66,16 @@
           plugin = tmuxPlugins.continuum;
           extraConfig = "set -g @continuum-restore 'on'";
         }
+
+        # {
+        #   plugin = tmuxPlugins.tmux-floax;
+        #   extraConfig = ''
+        #     set -g @floax-bind '-n M-p'
+        #     # set -g @floax-change-path 'false'
+        #     set -g @floax-session-name 'floax'
+        #     set -g @floax-text-color 'white'
+        #   '';
+        # }
 
         # {
         #   plugin = tmuxPlugins.mkTmuxPlugin {
