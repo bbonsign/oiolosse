@@ -8,6 +8,49 @@
       enable = true;
       userName = "Brian Bonsignore";
       userEmail = "bonsignore.brian@gmail.com";
+      includes = [
+        {
+          condition = "gitdir:~/mh/";
+          contents = {
+            user.email = "brian.bonsignore@i-qlair.com";
+            user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSFThjipGc4GEwPZD8uPgdeIf23SBJcv++8kfAaPqY5";
+            gpg.format = "ssh";
+            gpg.ssh.program = "/opt/1Password/op-ssh-sign";
+            gpg.ssh.allowedSignersFile = builtins.toString ./allowed_signers;
+            commit.gpgsign = true;
+          };
+        }
+      ];
+      extraConfig = {
+        core = {
+          editor = "nvim";
+          pager = "delta";
+        };
+        init.defaultBranch = "main";
+        merge.conflictstyle = "diff3";
+        interactive.diffFilter = "delta --color-only";
+        worktree.guessRemote = true;
+        # https://github.com/jesseduffield/lazygit/blob/master/docs/Stacked_Branches.md
+        rebase.updateRefs = true;
+        rerere.enabled = true;
+        color.decorate = {
+          head = "bold white";
+          branch = "bold magenta";
+          remotebranch = "blue";
+          tag = "bold red";
+        };
+
+        delta = {
+          navigate = true;
+          side-by-side = true;
+          features = "line-numbers decorations";
+          whitespace-error-style = "22 reverse";
+          decorations = {
+            "file-style" = "bold yellow ul";
+            "file-decoration-style" = "none";
+          };
+        };
+      };
       aliases = {
         a = "add";
         aa = "add --all";
@@ -76,36 +119,6 @@
         wta = "worktree add";
         wtl = "worktree list";
         wtr = "worktree remove";
-      };
-      extraConfig = {
-        core = {
-          editor = "nvim";
-          pager = "delta";
-        };
-        init.defaultBranch = "main";
-        merge.conflictstyle = "diff3";
-        interactive.diffFilter = "delta --color-only";
-        worktree.guessRemote = true;
-        # https://github.com/jesseduffield/lazygit/blob/master/docs/Stacked_Branches.md
-        rebase.updateRefs = true;
-        rerere.enabled = true;
-        color.decorate = {
-          head = "bold white";
-          branch = "bold magenta";
-          remotebranch = "blue";
-          tag = "bold red";
-        };
-
-        delta = {
-          navigate = true;
-          side-by-side = true;
-          features = "line-numbers decorations";
-          whitespace-error-style = "22 reverse";
-          decorations = {
-            "file-style" = "bold yellow ul";
-            "file-decoration-style" = "none";
-          };
-        };
       };
     };
   };
