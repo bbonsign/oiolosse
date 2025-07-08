@@ -1,0 +1,10 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+email = "bonsignore.brian@gmail.com"
+name = "Brian Bonsignore"
+username = "bbonsign"
+
+[ui]
+default-command = "log"
+editor = "nvim"

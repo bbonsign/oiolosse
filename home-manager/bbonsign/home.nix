@@ -97,6 +97,7 @@
       inotify-tools
       jc # converts many command outputs/data types to json
       jq
+      jujutsu
       just
       killall
       kitty
