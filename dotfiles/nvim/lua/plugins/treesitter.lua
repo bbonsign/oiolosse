@@ -5,7 +5,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = "nushell/tree-sitter-nu",
+    -- dependencies = "nushell/tree-sitter-nu",
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
