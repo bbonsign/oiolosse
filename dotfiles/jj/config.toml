@@ -6,5 +6,9 @@ name = "Brian Bonsignore"
 username = "bbonsign"
 
 [ui]
-default-command = "log"
+default-command = "st"
 editor = "nvim"
+
+[aliases]
+l = ["log"]
+s = ["status"]
