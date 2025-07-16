@@ -9,8 +9,8 @@
   ":gt" = "lazygit stash";
   ":k" = "kitty";
   ":ke" = "kitty +edit-config";
-  ":ld" = "eza --all --long --group-directories-first --icons auto --only-dirs";
-  ":ln" = "eza --all --long --group-directories-first --icons auto -s newest";
+  ":ld" = "eza --all --long --group-directories-first --icons auto --hyperlink --only-dirs";
+  ":ln" = "eza --all --long --group-directories-first --icons auto --hyperlink -s newest";
   ":ns" = "niri-session";
   ":r" = "rpm-ostree";
   ":rs" = "rpm-ostree status";
