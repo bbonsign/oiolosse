@@ -14,6 +14,7 @@ $env.PATH = (
 
 $env.ERL_AFLAGS = "-kernel shell_history enabled";
 $env.MANPAGER = 'nvim +Man!'
+$env.MANWIDTH = 150 # from vim help, prevents bad line wrapping
 $env.NIXPKGS_ALLOW_UNFREE = 1
 
 # $env.PROMPT_INDICATOR = "〉"
