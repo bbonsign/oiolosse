@@ -341,7 +341,7 @@ spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaync"
 spawn-at-startup "ignis" "init"
 spawn-at-startup "1password" "--silent" // --silent opens to the system tray without showing the main window
-spawn-at-startup "bash" "-c" "kitty || $HOME/.local/kitty.app/bin/kitty"
+spawn-at-startup "bash" "-c" "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance "
 spawn-at-startup "bash" "-c" "kitty --title kitty-scratch || $HOME/.local/kitty.app/bin/kitty --title kitty-scratch"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -538,7 +538,7 @@ binds {
   // Note: the entire command goes as a single argument in the end.
   // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
   // Mod+Return { spawn "kitty"; }
-  Mod+Return { spawn "bash" "-c" "kitty || $HOME/.local/kitty.app/bin/kitty"; }
+  Mod+Return { spawn "bash" "-c" "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance"; }
   Mod+D { spawn "fuzzel" "--show-actions" "--lines" "20" "--width" "80"; }
   // Mod+D { spawn "rofi" "-show" "drun"; }
   Super+Alt+L hotkey-overlay-title="Lock" { spawn "~/.local/bin/lock.sh"; }
