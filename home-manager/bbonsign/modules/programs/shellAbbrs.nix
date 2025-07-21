@@ -81,6 +81,8 @@
   ipy = "ipython";
   j = "just";
   jl = "just --list";
+  k = "kitty";
+  kn = "kitt +kitten";
   m = "mix";
   # moon = "curl wttr.in/moon";
   myip = "curl ifconfig.co";

@@ -32,8 +32,8 @@ def _draw_icon(screen: Screen, index: int, symbol: str = "") -> int:
         return 0
 
     fg, bg = screen.cursor.fg, screen.cursor.bg
-    screen.cursor.fg = as_rgb(color_as_int(Color(255, 250, 205)))
-    screen.cursor.bg = as_rgb(color_as_int(Color(60, 71, 77)))
+    screen.cursor.fg = as_rgb(color_as_int(Color(122, 162, 247)))
+    screen.cursor.bg = as_rgb(color_as_int(Color(22, 22, 30)))
     screen.draw(symbol)
     screen.cursor.fg, screen.cursor.bg = fg, bg
     screen.cursor.x = len(symbol)
@@ -83,35 +83,35 @@ def _draw_left_status(
 
 # more handy kitty tab_bar things:
 # REF: https://github.com/kovidgoyal/kitty/discussions/4447#discussioncomment-2183440
-def _draw_right_status(screen: Screen, is_last: bool) -> int:
-    if not is_last:
-        return 0
-
-    draw_attributed_string(Formatter.reset, screen)
-    date = datetime.datetime.now().strftime(" %H:%M")
-    utc_date = datetime.datetime.now(datetime.timezone.utc).strftime(" (UTC %H:%M)")
-
-    right_status_length = calc_draw_spaces(date + " " + utc_date + " ")
-
-    draw_spaces = screen.columns - screen.cursor.x - right_status_length
-    if draw_spaces > 0:
-        screen.draw(" " * draw_spaces)
-
-    cells = [
-        (Color(135, 192, 149), date),
-        (Color(113, 115, 116), utc_date),
-    ]
-
-    screen.cursor.fg = 0
-    for color, status in cells:
-        screen.cursor.fg = as_rgb(color_as_int(color))
-        screen.draw(status)
-    screen.cursor.bg = 0
-
-    if screen.columns - screen.cursor.x > right_status_length:
-        screen.cursor.x = screen.columns - right_status_length
-
-    return screen.cursor.x
+# def _draw_right_status(screen: Screen, is_last: bool) -> int:
+#     if not is_last:
+#         return 0
+#
+#     draw_attributed_string(Formatter.reset, screen)
+#     date = datetime.datetime.now().strftime(" %H:%M")
+#     utc_date = datetime.datetime.now(datetime.timezone.utc).strftime(" (UTC %H:%M)")
+#
+#     right_status_length = calc_draw_spaces(date + " " + utc_date + " ")
+#
+#     draw_spaces = screen.columns - screen.cursor.x - right_status_length
+#     if draw_spaces > 0:
+#         screen.draw(" " * draw_spaces)
+#
+#     cells = [
+#         (Color(135, 192, 149), date),
+#         (Color(113, 115, 116), utc_date),
+#     ]
+#
+#     screen.cursor.fg = 0
+#     for color, status in cells:
+#         screen.cursor.fg = as_rgb(color_as_int(color))
+#         screen.draw(status)
+#     screen.cursor.bg = 0
+#
+#     if screen.columns - screen.cursor.x > right_status_length:
+#         screen.cursor.x = screen.columns - right_status_length
+#
+#     return screen.cursor.x
 
 
 # REF: https://github.com/kovidgoyal/kitty/discussions/4447#discussioncomment-1940795
@@ -131,7 +131,7 @@ def draw_tab(
     is_last: bool,
     extra_data: ExtraData,
 ) -> int:
-    _draw_icon(screen, index, symbol="  \uf490  ")
+    _draw_icon(screen, index, symbol="     ")
     _draw_left_status(
         draw_data,
         screen,
@@ -142,9 +142,8 @@ def draw_tab(
         is_last,
         extra_data,
     )
-    _draw_right_status(
-        screen,
-        is_last,
-    )
-
+    # _draw_right_status(
+    #     screen,
+    #     is_last,
+    # )
     return screen.cursor.x

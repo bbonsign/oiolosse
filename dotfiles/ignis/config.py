@@ -205,6 +205,19 @@ def clock() -> widgets.Label:
                     lambda self: datetime.datetime.now().strftime("%I:%M %p"),
                 ).bind("output"),
             ),
+            widgets.Separator(
+                vertical=True,
+                css_classes=["middle-separator"],
+            ),
+            widgets.Label(
+                css_classes=["clock"],
+                label=utils.Poll(
+                    1_000,
+                    lambda self: datetime.datetime.now(datetime.timezone.utc).strftime(
+                        "UTC %H:%M"
+                    ),
+                ).bind("output"),
+            ),
         ],
         spacing=10,
     )
