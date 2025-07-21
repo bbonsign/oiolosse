@@ -3,6 +3,7 @@ import datetime
 
 from ignis import utils, widgets
 from ignis.app import IgnisApp
+from ignis.css_manager import CssInfoPath, CssManager
 from ignis.menu_model import IgnisMenuItem, IgnisMenuModel, IgnisMenuSeparator
 from ignis.services.audio import AudioService
 from ignis.services.mpris import MprisPlayer, MprisService
@@ -12,9 +13,16 @@ from ignis.services.niri import NiriService, NiriWindow, NiriWorkspace
 from ignis.services.system_tray import SystemTrayItem, SystemTrayService
 from ignis.services.upower import UPowerService
 
-app = IgnisApp.get_default()
+app = IgnisApp.get_initialized()
+css_manager = CssManager.get_default()
 
-app.apply_css(f"{utils.get_current_dir()}/styles.scss")
+css_manager.apply_css(
+    CssInfoPath(
+        name="main",
+        path=f"{utils.get_current_dir()}/styles.scss",
+        compiler_function=lambda path: utils.sass_compile(path=path),
+    )
+)
 
 
 audio = AudioService.get_default()
