@@ -1,3 +1,0 @@
-function exdocz --wraps=./exdoc\ \ \|\ fzf\ --preview\ \'./exdoc\ \{\}\'\ --height\ 90\%\ \ --bind=\'alt-n:preview-down,alt-p:preview-up\'\ \ \|\ xargs\ ./exdoc --wraps=exdoc\ \ \|\ fzf\ --preview\ \'./exdoc\ \{\}\'\ --height\ 90\%\ \ --bind=\'alt-n:preview-down,alt-p:preview-up\'\ \ \|\ xargs\ ./exdoc --wraps=exdoc\ \ \|\ fzf\ --preview\ \'exdoc\ \{\}\'\ --height\ 90\%\ \ --bind=\'alt-n:preview-down,alt-p:preview-up\'\ \ \|\ xargs\ exdoc --description alias\ exdocz=exdoc\ \ \|\ fzf\ --preview\ \'exdoc\ \{\}\'\ --height\ 90\%\ \ --bind=\'alt-n:preview-down,alt-p:preview-up\'\ \ \|\ xargs\ exdoc
-  exdoc  | fzf --preview 'exdoc {}' --height 90%  --bind='alt-n:preview-down,alt-p:preview-up'  | xargs exdoc $argv; 
-end

@@ -1,7 +1,0 @@
-{
-  "yaml.customTags": [
-    "!Ref",
-    "!Sub",
-    "!GetAtt"
-  ]
-}
