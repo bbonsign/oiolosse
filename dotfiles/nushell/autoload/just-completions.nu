@@ -1,41 +1,15 @@
 # official completion from `just --completion nushell`
-def get-recipes [] {
+def _get-just-recipes [] {
   (^just --unstable --dump --dump-format json | from json).recipes
   | transpose recipe data
   | flatten
   | where {|recipe| not $recipe.private }
 }
 
-def "nu-complete just" [] {
-  get-recipes
-  | select recipe doc parameters
-  | each {|recipe|
-    let name = $recipe.recipe
-    mut desc = $recipe.doc | default " "
-    for $p in $recipe.parameters {
-      if ($p.default | is-empty) {
-        $desc += $" [(ansi blue)($p.name)(ansi reset)]"
-      } else {
-        $desc += $" [(ansi blue)($p.name)='($p.default)'(ansi reset)]"
-      }
-    }
-    {value: $name description: ($desc | str trim)}
-  }
-}
-
-def "nu-complete args" [context: string, offset: int] {
-  let r = ($context | split row ' ')
-  let name = $r.1
-  # First two are 'just' and name, minus one because `get-just-args` is zero-indexed
-  let position = ($r | length) - 3
-
-  get-just-arg $name $position
-}
-
 # Provides argument of recipe $name at position $positions.
-def get-just-arg [name: string, position: int] {
+def _get-just-arg [name: string, position: int] {
   let recipes = (
-    get-recipes
+    _get-just-recipes
     | where {|r| $r.name == $name }
     | get parameters
     | flatten
@@ -66,6 +40,33 @@ def get-just-arg [name: string, position: int] {
     }
   }
 }
+
+def "nu-complete just" [] {
+  _get-just-recipes
+  | select recipe doc parameters
+  | each {|recipe|
+    let name = $recipe.recipe
+    mut desc = $recipe.doc | default " "
+    for $p in $recipe.parameters {
+      if ($p.default | is-empty) {
+        $desc += $" [(ansi blue)($p.name)(ansi reset)]"
+      } else {
+        $desc += $" [(ansi blue)($p.name)='($p.default)'(ansi reset)]"
+      }
+    }
+    {value: $name description: ($desc | str trim)}
+  }
+}
+
+def "nu-complete args" [context: string, offset: int] {
+  let r = ($context | split row ' ')
+  let name = $r.1
+  # First two are 'just' and name, minus one because `_get-just-args` is zero-indexed
+  let position = ($r | length) - 3
+
+  _get-just-arg $name $position
+}
+
 
 # Variables and Assignments are apparently the same thing...
 def "nu-complete just assignments" [] {

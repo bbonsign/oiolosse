@@ -24,6 +24,8 @@ niri = NiriService.get_default()
 mpris = MprisService.get_default()
 upower = UPowerService.get_default()
 
+# NOTE: Browse system icons with nix via `, icon-library`
+
 
 def workspace_button(workspace: NiriWorkspace) -> widgets.Button:
     # icons = {
@@ -72,11 +74,16 @@ def workspaces(monitor_name: str) -> widgets.EventBox:
 
 
 def window_button(window: NiriWindow) -> widgets.Button:
+    icon_name = (
+        _icon_name
+        if (_icon_name := utils.get_app_icon_name(window.app_id))
+        else "image-missing-symbolic"
+    )
     buttons = widgets.Button(
         css_classes=["window"],
         tooltip_text=f"{window.title} | {window.app_id}",
         on_click=lambda x: window.focus(),
-        child=widgets.Icon(image=utils.get_app_icon_name(window.app_id), pixel_size=16),
+        child=widgets.Icon(image=icon_name, pixel_size=16),
     )
     if window.is_focused:
         buttons.add_css_class("active")

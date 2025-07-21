@@ -1,0 +1,13 @@
+# Set the working directory for windows in the current tab
+cd ~/mh/aa_recommendation_engine/rec.git/
+title code
+launch
+
+new_tab iex
+cd ~/mh/aa_recommendation_engine/rec.git/
+launch --hold iex -S mix phx.server
+
+new_tab db
+cd ~/mh/aa_recommendation_engine/rec.git/
+
+# vim:ft=sh

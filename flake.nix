@@ -25,7 +25,7 @@
     };
 
     ignis = {
-      url = "github:linkfrg/ignis";
+      url = "github:linkfrg/ignis?tag=refs/tags/v0.5.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

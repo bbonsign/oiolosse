@@ -268,3 +268,33 @@ $env.config.keybindings = (
     }
   ]
 )
+
+export def fzy-get [
+  column: string = ""
+  query: string = ""
+]: table -> any {
+  let in_file = $in | table | as file
+  let columns = $in | columns
+  let column = if ($column | is-empty) {
+    gum filter --height (($columns | length) + 3 ) ...$columns
+  } else {
+    $column
+  }
+  let parser = $columns | each {$"\(?P<($in)>.*\)"} | str join "\t+"
+
+  $in 
+  | to tsv 
+  | ^column --table --separator "\t" --output-separator "\t" # align columns
+  | (fzf 
+    --query $query
+    --header-lines 1
+    --preview-window 'down:50%,hidden'
+    --preview $"bat ($in_file)"
+  )
+  | parse --regex $parser
+  | default {}
+  | get $column
+  | get 0?
+  | default ""
+  | str trim
+}
