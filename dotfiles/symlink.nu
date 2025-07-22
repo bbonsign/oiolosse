@@ -48,6 +48,7 @@ create_symlink ./networkmanager-dmenu ($CONFIG_DIR | path join networkmanager-dm
 create_symlink ./niri ($CONFIG_DIR | path join niri)
 create_symlink ./nushell/autoload ($CONFIG_DIR | path join nushell autoload)
 create_symlink ./nushell/scripts ($CONFIG_DIR | path join nushell scripts)
+create_symlink ./presenterm ($CONFIG_DIR | path join presenterm)
 create_symlink ./nvim ($CONFIG_DIR | path join nvim)
 create_symlink ./rofi ($CONFIG_DIR | path join rofi)
 create_symlink ./sway ($CONFIG_DIR | path join sway)

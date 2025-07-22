@@ -106,6 +106,7 @@
       litecli
       lua-language-server
       luarocks
+      mermaid-cli
       nautilus
       nerd-fonts.fira-code
       nerd-fonts.fantasque-sans-mono
@@ -131,6 +132,7 @@
         })
       ]))
       pinentry-gtk2
+      presenterm
       ripgrep
       snyk
       sops

@@ -14,8 +14,7 @@
   ":ld" = "eza --all --long --group-directories-first --icons auto --hyperlink --only-dirs";
   ":ln" = "eza --all --long --group-directories-first --icons auto --hyperlink -s newest";
   ":ns" = "niri-session";
-  ":r" = "rpm-ostree";
-  ":rs" = "rpm-ostree status";
+  ":r" = "just"; # i.e. "run"
   ":s" = "systemctl-tui";
   ":t" = "tmux attach -t";
   b = "bat";
