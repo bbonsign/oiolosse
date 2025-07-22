@@ -83,6 +83,7 @@
   ipy = "ipython";
   j = "jj";
   jl = "jj log";
+  js = "jj status";
   k = "kitty";
   kn = "kitt +kitten";
   m = "mix";

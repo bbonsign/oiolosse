@@ -11,8 +11,8 @@
       historyLimit = 1000000;
       mouse = true;
       newSession = true;
-      prefix = "C-Space";
-      # prefix = "`";
+      # prefix = "C-Space";
+      prefix = "`";
       sensibleOnTop = true;
       # shell = "${pkgs.fish}/bin/fish";
       shell = "${pkgs.nushell}/bin/nu";
