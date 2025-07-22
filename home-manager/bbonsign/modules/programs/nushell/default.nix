@@ -10,8 +10,8 @@
           {
             "h" = "help";
             ":h" = ":help";
-            "jl" = "job list";
-            "jf" = "job unfreeze";
+            # "jl" = "job list";
+            # "jf" = "job unfreeze";
             "jfg" = "job unfreeze";
           }) [ "ll" ];
       envFile.source = ./env.nu;

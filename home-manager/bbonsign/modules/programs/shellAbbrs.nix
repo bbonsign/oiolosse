@@ -7,6 +7,8 @@
   ":gl" = "lazygit log";
   ":gs" = "lazygit status";
   ":gt" = "lazygit stash";
+  ":j" = "just";
+  ":jl" = "just --list";
   ":k" = "kitty";
   ":ke" = "kitty +edit-config";
   ":ld" = "eza --all --long --group-directories-first --icons auto --hyperlink --only-dirs";
@@ -79,8 +81,8 @@
   gwtl = "git worktree list";
   gwtr = "git worktree remove";
   ipy = "ipython";
-  j = "just";
-  jl = "just --list";
+  j = "jj";
+  jl = "jj log";
   k = "kitty";
   kn = "kitt +kitten";
   m = "mix";
