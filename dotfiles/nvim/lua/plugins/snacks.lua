@@ -58,6 +58,7 @@ return {
               action = ":LazyExtras",
               enabled = package.loaded.lazy ~= nil,
             },
+            { icon = "", key = "h", desc = "Lazy", action = ":lua Snacks.dashboard.pick('help')" },
             { icon = " ", key = "m", desc = "Mason", action = ":Mason" },
             { icon = " ", key = "b", desc = "Browse repo", action = ":lua Snacks.gitbrowse()" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
