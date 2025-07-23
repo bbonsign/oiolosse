@@ -72,6 +72,7 @@
       beam.packages.erlang_27.erlang
       bottom
       brightnessctl
+      bun
       cargo
       cowsay
       cbonsai
