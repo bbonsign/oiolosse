@@ -5,10 +5,25 @@ email = "bonsignore.brian@gmail.com"
 name = "Brian Bonsignore"
 username = "bbonsign"
 
-[ui]
-default-command = "log"
-editor = "nvim"
+[snapshot]
+auto-track = "none()"
 
 [aliases]
 l = ["log"]
 s = ["status"]
+ui = ["util", "exec", "--", "jjui"]
+
+[ui]
+default-command = "log"
+editor = "nvim"
+diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+diff-instructions = false
+show-cryptographic-signatures = true                            # default is false
+
+[template-aliases]
+'format_short_cryptographic_signature(sig)' = '''
+  if(sig,
+    sig.status(),
+    "(no sig)",
+  )
+'''

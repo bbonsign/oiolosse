@@ -1,0 +1,16 @@
+# Set the working directory for windows in the current tab
+cd ~/mh/streametric/backend-v2.git/wts/dev/
+title dev
+launch
+
+new_tab alt
+cd ~/mh/streametric/backend-v2.git/wts/alt/
+launch 
+
+new_tab fe
+cd ~/mh/streametric/backend-v2.git/wts/alt/
+launch --title "fe-code"
+launch --title "fe-server"
+
+
+# vim:ft=sh

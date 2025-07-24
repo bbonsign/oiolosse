@@ -121,6 +121,7 @@
       numbat # Scientific calculator/programming language
       obsidian
       p7zip
+      pandoc
       pgadmin4
       pgcli
       # https://linkfrg.github.io/ignis/stable/user/nix.html#adding-ignis-to-system-python 

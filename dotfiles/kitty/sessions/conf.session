@@ -1,0 +1,16 @@
+# Set the working directory for windows in the current tab
+cd ~/oiolosse/
+title oiolosse
+launch --title "oiolosse"
+
+new_tab telperion
+cd ~/telperion/
+launch --title "telperion"
+
+new_tab conf
+cd ~/.config/
+launch --title "conf"
+
+
+
+# vim:ft=sh

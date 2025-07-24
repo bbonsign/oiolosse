@@ -83,6 +83,8 @@
   j = "jj";
   jl = "jj log";
   js = "jj status";
+  ju = "jj ui";
+  jui = "jj ui";
   k = "kitty";
   kn = "kitt +kitten";
   m = "mix";
@@ -100,6 +102,8 @@
   pipi = "python -m pip install";
   pyhton = "python";
   pyhttp = "python -m http.server";
+  r = "just"; # i.e. "run"
+
   # rg search with quick-fix compatible output
   qf = "rg --column --line-number --no-heading";
   # open nvim with quick-fix from rg search

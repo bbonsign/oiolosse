@@ -1,0 +1,19 @@
+# Set the working directory for windows in the current tab
+cd ~/mh/qlair/backend.git/wt-main/
+title code
+launch
+
+new_tab ipy
+cd ~/mh/qlair/backend.git/wt-main/
+launch
+
+new_tab fe
+cd ~/mh/qlair/webportal.git/main/
+launch
+
+new_tab fe-server
+cd ~/mh/qlair/webportal.git/main/
+launch --title "fe-server"
+
+
+# vim:ft=sh
