@@ -1,0 +1,164 @@
+experimental_log_batching_enabled = false
+limit = 0
+
+[leader.bn]
+help = "Set new bookmark"
+send = [
+  "$",
+  "jj bookmark set -r $change_id $(gum input --placeholder \"Name of the new bookmark\")",
+  "enter",
+]
+
+[keys]
+up = ["up", "k"]
+down = ["down", "j"]
+jump_to_parent = ["J"]
+jump_to_children = ["K"]
+jump_to_working_copy = ["@"]
+apply = ["enter"]
+cancel = ["esc"]
+toggle_select = [" "]
+new = ["n"]
+commit = ["c"]
+refresh = ["ctrl+r"]
+abandon = ["a"]
+diff = ["d"]
+quit = ["q"]
+help = ["?"]
+describe = ["D"]
+edit = ["e"]
+diffedit = ["E"]
+absorb = ["A"]
+split = ["s"]
+undo = ["u"]
+evolog = ["v"]
+revset = ["L", "R"]
+exec_jj = [":"]
+exec_shell = ["$"]
+file_search = ["ctrl+t"]
+quick_search = ["/"]
+quick_search_cycle = ["'"]
+custom_commands = ["x"]
+leader = ["\\"]
+suspend = ["ctrl+z"]
+
+[keys.rebase]
+mode = ["r"]
+revision = ["r"]
+source = ["s"]
+branch = ["B"]
+after = ["a"]
+before = ["b"]
+onto = ["d"]
+insert = ["i"]
+
+
+[keys.duplicate]
+mode = ["y"]
+after = ["a"]
+before = ["b"]
+onto = ["d"]
+
+[keys.squash]
+mode = ["S"]
+keep_emptied = ["e"]
+interactive = ["i"]
+
+[keys.details]
+mode = ["l"]
+close = ["h"]
+split = ["s"]
+restore = ["r"]
+absorb = ["A"]
+diff = ["d"]
+select = ["m", " "]
+revisions_changing_file = ["*"]
+
+[keys.preview]
+mode = ["p"]
+scroll_up = ["ctrl+p"]
+scroll_down = ["ctrl+n"]
+half_page_down = ["ctrl+d", "ctrl+f"]
+half_page_up = ["ctrl+u", "ctrl+b"]
+expand = ["ctrl+h"]
+shrink = ["ctrl+l"]
+
+[keys.bookmark]
+mode = ["b"]
+set = ["B"]
+delete = ["d"]
+move = ["m"]
+forget = ["f"]
+track = ["t"]
+untrack = ["u"]
+
+[keys.inline_describe]
+mode = ["enter"]
+accept = ["alt+enter", "ctrl+s"]
+
+[keys.git]
+mode = ["g"]
+push = ["p"]
+fetch = ["f"]
+
+[keys.oplog]
+mode = ["o"]
+restore = ["r"]
+
+[ui]
+theme = ""
+auto_refresh_interval = 0
+
+[ui.colors]
+text = "#c0caf5"
+dimmed = "#565f89"
+"title" = { fg = "#73daca", bold = true }
+error = "#f7768e"
+success = "#9ece6a"
+change_id = "#7aa2f7"
+border = "#414868"
+
+"selected" = { fg = "#c0caf5", bg = "#292e42", bold = true }
+"menu selected" = { fg = "#c0caf5", bg = "#414868" }
+"details selected" = { bg = "#792d41" }
+"matched" = { fg = "#ff9e64", underline = true, bold = true }
+"menu matched" = { fg = "#ff9e64", bold = true }
+
+"shortcut" = { fg = "#ff9e64", bold = true }
+"menu shortcut" = { fg = "#ff9e64" }
+"help shortcut" = { fg = "#ff9e64" }
+"status shortcut" = { fg = "#ff9e64" }
+
+"source_marker" = { fg = "#1a1b26", bg = "#e0af68" }
+"target_marker" = { fg = "#1a1b26", bg = "#f7768e" }
+
+"status title" = { fg = "#1a1b26", bg = "#7aa2f7", bold = true }
+"menu title" = { fg = "#1a1b26", bg = "#bb9af7", bold = true }
+
+"confirmation text" = { fg = "#bb9af7", bold = true }
+"confirmation selected" = { fg = "#1a1b26", bg = "#9ece6a", bold = true }
+"confirmation dimmed" = "#565f89"
+"help title" = { fg = "#73daca", bold = true, underline = true }
+"help text" = "#c0caf5"
+"revset title" = { fg = "#bb9af7" }
+"revset text" = { fg = "#c0caf5" }
+"details added" = "#9ece6a"
+"details deleted" = "#f7768e"
+"details modified" = "#e0af68"
+"details renamed" = "#7aa2f7"
+
+"preview" = { fg = "#c0caf5" }
+
+[preview]
+revision_command = ["show", "--color", "always", "-r", "$change_id"]
+oplog_command = ["op", "show", "$operation_id", "--color", "always"]
+file_command = ["diff", "--color", "always", "-r", "$change_id", "$file"]
+show_at_start = false
+width_percentage = 50.0
+width_increment_percentage = 5.0
+
+[oplog]
+limit = 200
+
+[graph]
+batch_size = 50
