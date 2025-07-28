@@ -30,8 +30,9 @@ $bin_files | each {|x|
   create_symlink $x.name ($BIN_DIR | path join ($x.name | path basename))
 }
 
+mkdir ([$CONFIG_DIR] | path join direnv)
 create_symlink ./direnv/direnvrc ([$CONFIG_DIR] | path join direnv direnvrc)
-create_symlink ./dunst/ ($CONFIG_DIR | path join dunst)
+create_symlink ./dunst ($CONFIG_DIR | path join dunst)
 # create_symlink dygma/  ($CONFIG_DIR  | path join dygma)
 create_symlink ./eww ($CONFIG_DIR | path join eww)
 create_symlink ./foot ($CONFIG_DIR | path join foot)
@@ -52,6 +53,7 @@ create_symlink ./nushell/scripts ($CONFIG_DIR | path join nushell scripts)
 create_symlink ./presenterm ($CONFIG_DIR | path join presenterm)
 create_symlink ./nvim ($CONFIG_DIR | path join nvim)
 create_symlink ./rofi ($CONFIG_DIR | path join rofi)
+create_symlink ./starship.toml ($CONFIG_DIR | path join starship.toml)
 create_symlink ./sway ($CONFIG_DIR | path join sway)
 # create_symlink  ($SERVICE_DIR | path join swayidle.service )
 # ln -s ($SERVICE_DIR  | path join swayidle.service) ($SERVICE_DIR | path join niri.service.wants/ ) | complete

@@ -14,7 +14,7 @@ update:
   nix flake update
 
 hm *cmd="switch":
-  NIXPKGS_ALLOW_UNFREE=1 nix run home-manager -- --flake . --impure {{cmd}} 
+  NIXPKGS_ALLOW_UNFREE=1 nix run home-manager -- --flake . --impure -b hm-backup {{cmd}} 
 
 gc days="50":
   sudo nix store gc

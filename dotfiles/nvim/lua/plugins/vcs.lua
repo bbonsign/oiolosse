@@ -14,7 +14,7 @@ return {
           toggle_file = { "a", " " },
         },
         diff = {
-          toggle_line = { "a", " " },
+          toggle_line = { "a" },
           prev_hunk = { "[h", "[g" },
           next_hunk = { "]h", "]g" },
         },

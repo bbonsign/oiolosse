@@ -10,7 +10,7 @@ export def add [
   #   return 1
   # fi
 
-  let icon_dir = $"($env.HOME)/.local/share/applications/icons"
+  let icon_dir = $"($env.HOME)/.local/share/icons"
   let desktop_file_path = $"($env.HOME)/.local/share/applications/($app_name).desktop"
   let icon_path = [ $icon_dir $"($app_name).png" ] | path join
 
@@ -25,7 +25,7 @@ export def add [
 Version=1.0
 Name=($app_name)
 Comment=($app_name)
-Exec=vivaldi --new-window --ozone-platform=wayland --profile-directory=Default --app=($app_url) --name=($app_name) --class=($app_name)
+Exec=vivaldi --profile-directory=Default --app-id=($app_name) --app=($app_url) --name=($app_name) --class=($app_name)
 Terminal=false
 Type=Application
 Icon=($icon_path)
@@ -45,7 +45,7 @@ export def "remove" [
   #   return 1
   # fi
 
-  let icon_dir = $"($env.HOME)/.local/share/applications/icons"
+  let icon_dir = $"($env.HOME)/.local/share/icons"
   let desktop_file_path = $"($env.HOME)/.local/share/applications/($app_name).desktop"
   let icon_path = [ $icon_dir $app_name ".png" ] | path join
 

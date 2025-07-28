@@ -1,0 +1,191 @@
+add_newline = true
+format = """
+$username\
+$hostname\
+$localip\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$direnv\
+$env_var\
+$crystal\
+$sudo\
+$fill\
+${custom.jj}\
+$aws\
+$azure\
+$gcloud\
+$container\
+$shell\
+$shlvl\
+$cmd_duration\
+$time\
+$line_break\
+$jobs\
+$battery\
+$status\
+$os\
+$character\
+"""
+
+[aws]
+format = "[$symbol(|$profile)(|$region)(|$duration)]($style) "
+symbol = " "
+
+[aws.region_aliases]
+us-east-1 = "use1"
+us-east-2 = "use2"
+us-west-1 = "usw1"
+us-west-2 = "usw2"
+
+[character]
+error_symbol = "[λ](bold red)"
+success_symbol = "[λ](bold blue)"
+
+[container]
+style = "purple"
+
+[custom.jj]
+ignore_timeout = true
+description = "The current jj status"
+detect_folders = [".jj"]
+style = "purple"
+format = "[$symbol](blue bold)[$output ](purple)"
+symbol = " "
+command = '''
+jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
+  separate(" ",
+    stringify(change_id.shortest(6)),
+    bookmarks,
+    "|",
+    concat(
+      if(conflict, "💥"),
+      if(divergent, "🚧"),
+      if(hidden, "👻"),
+      if(immutable, "🔒"),
+    ),
+    if(empty, "(empty)"),
+    coalesce(
+      truncate_end(29, description.first_line(), "…"),
+      "(no desc) ",
+    ),
+  )
+'
+'''
+
+[docker_context]
+symbol = " "
+
+[elixir]
+style = "#5e3f9e"
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fill]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[line_break]
+disabled = false
+
+[lua]
+symbol = " "
+
+[python]
+symbol = " "
+
+[rlang]
+style = "blue bold"
+symbol = "  "
+
+[rust]
+symbol = " "
+
+[shell]
+disabled = false
+style = "bold"
+
+[shlvl]
+disabled = false
+format = "($shlvl) "
+style = "bold"
+symbol = ""
+threshold = 4
+
+[time]
+disabled = false
+format = " [$time]($style) "
+style = "blue"
+
+[zig]
+symbol = " "

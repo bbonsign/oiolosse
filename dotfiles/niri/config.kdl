@@ -335,8 +335,9 @@ layout {
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
-// spawn-at-startup "/usr/libexec/xdg-desktop-portal" "--replace"
+spawn-at-startup "/usr/libexec/xdg-desktop-portal" "--replace"
 spawn-at-startup "pkill" "mako"
+spawn-at-startup "pkill" "dunst"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaync"
 spawn-at-startup "ignis" "init"

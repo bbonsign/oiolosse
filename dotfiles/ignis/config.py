@@ -5,7 +5,8 @@ from ignis import utils, widgets
 from ignis.app import IgnisApp
 from ignis.css_manager import CssInfoPath, CssManager
 from ignis.menu_model import IgnisMenuItem, IgnisMenuModel, IgnisMenuSeparator
-from ignis.services.audio import AudioService
+
+# from ignis.services.audio import AudioService
 from ignis.services.mpris import MprisPlayer, MprisService
 from ignis.services.niri import NiriService, NiriWindow, NiriWorkspace
 
@@ -25,7 +26,7 @@ css_manager.apply_css(
 )
 
 
-audio = AudioService.get_default()
+# audio = AudioService.get_default()
 system_tray = SystemTrayService.get_default()
 niri = NiriService.get_default()
 # notifications = NotificationService.get_default()
@@ -258,44 +259,44 @@ def battery() -> widgets.Label:
     )
 
 
-def microphone() -> widgets.Box:
-    return widgets.Box(
-        child=[
-            widgets.Button(
-                on_click=lambda x: utils.exec_sh(
-                    "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-                ),
-                child=widgets.Icon(
-                    image=audio.microphone.bind("icon_name"),
-                    style="margin-right: 5px;",
-                ),
-            ),
-            widgets.Label(
-                label=audio.microphone.bind(
-                    "volume",
-                    transform=lambda value: str(value),
-                )
-            ),
-        ]
-    )
-
-
-def volume() -> widgets.Box:
-    return widgets.Box(
-        child=[
-            widgets.Button(
-                on_click=lambda x: utils.exec_sh(
-                    "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-                ),
-                child=widgets.Icon(
-                    image=audio.speaker.bind("icon_name"), style="margin-right: 5px;"
-                ),
-            ),
-            widgets.Label(
-                label=audio.speaker.bind("volume", transform=lambda value: str(value))
-            ),
-        ]
-    )
+# def microphone() -> widgets.Box:
+#     return widgets.Box(
+#         child=[
+#             widgets.Button(
+#                 on_click=lambda x: utils.exec_sh(
+#                     "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+#                 ),
+#                 child=widgets.Icon(
+#                     image=audio.microphone.bind("icon_name"),
+#                     style="margin-right: 5px;",
+#                 ),
+#             ),
+#             widgets.Label(
+#                 label=audio.microphone.bind(
+#                     "volume",
+#                     transform=lambda value: str(value),
+#                 )
+#             ),
+#         ]
+#     )
+#
+#
+# def volume() -> widgets.Box:
+#     return widgets.Box(
+#         child=[
+#             widgets.Button(
+#                 on_click=lambda x: utils.exec_sh(
+#                     "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+#                 ),
+#                 child=widgets.Icon(
+#                     image=audio.speaker.bind("icon_name"), style="margin-right: 5px;"
+#                 ),
+#             ),
+#             widgets.Label(
+#                 label=audio.speaker.bind("volume", transform=lambda value: str(value))
+#             ),
+#         ]
+#     )
 
 
 def tray_item(item: SystemTrayItem) -> widgets.Button:
@@ -330,15 +331,15 @@ def tray():
     )
 
 
-def volume_slider() -> widgets.Scale:
-    return widgets.Scale(
-        min=0,
-        max=100,
-        step=1,
-        value=audio.speaker.bind("volume"),
-        on_change=lambda x: audio.speaker.set_volume(x.value),
-        css_classes=["volume-slider"],  # we will customize style in style.css
-    )
+# def volume_slider() -> widgets.Scale:
+#     return widgets.Scale(
+#         min=0,
+#         max=100,
+#         step=1,
+#         value=audio.speaker.bind("volume"),
+#         on_change=lambda x: audio.speaker.set_volume(x.value),
+#         css_classes=["volume-slider"],  # we will customize style in style.css
+#     )
 
 
 def create_exec_task(cmd: str) -> None:
@@ -441,9 +442,9 @@ def right() -> widgets.Box:
     return widgets.Box(
         child=[
             tray(),
-            microphone(),
-            volume(),
-            volume_slider(),
+            # microphone(),
+            # volume(),
+            # volume_slider(),
             battery(),
             power_menu(),
         ],

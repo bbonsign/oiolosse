@@ -28,6 +28,11 @@
       url = "github:linkfrg/ignis?tag=refs/tags/v0.5.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    jjui = {
+      url = "github:idursun/jjui";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ nixpkgs, home-manager, nix-formatter-pack, ... }:

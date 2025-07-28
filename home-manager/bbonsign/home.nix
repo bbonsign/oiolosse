@@ -98,7 +98,9 @@
       inotify-tools
       jc # converts many command outputs/data types to json
       jq
-      jjui
+      # jjui
+      inputs.jjui.packages.x86_64-linux.jjui
+      # inputs.starship-jj.packages.x86_64-linux.starship-jj
       jujutsu
       just
       killall
