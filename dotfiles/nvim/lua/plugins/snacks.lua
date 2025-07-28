@@ -112,7 +112,7 @@ return {
         desc = "Resume",
       },
       {
-        "<Leader>-",
+        "<Leader>_",
         function()
           Snacks.scratch()
         end,
