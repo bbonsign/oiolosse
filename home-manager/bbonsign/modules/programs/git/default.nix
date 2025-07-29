@@ -64,6 +64,10 @@
         };
       };
       aliases = {
+        # https://duncanlock.net/blog/2021/11/01/git-up-alias-that-works-for-any-default-branch/
+        head-branch = ''!git remote show origin | grep 'HEAD branch' | cut -d' ' -f5'';
+        up = ''!git switch $(git head-branch) && git fetch --all --prune --progress && git pull'';
+
         a = "add";
         aa = "add --all";
         au = "add -u";
