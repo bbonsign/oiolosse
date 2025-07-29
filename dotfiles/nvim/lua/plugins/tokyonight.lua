@@ -8,13 +8,12 @@ return {
     styles = {
       style = "night",
       sidebars = "dark", -- style for sidebars, see below
-      floats = "transparent",
-      -- floats = "dark", -- style for floating windows
+      -- floats = "transparent",
+      floats = "dark", -- style for floating windows
       -- sidebars = "transparent",
     },
     -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
     sidebars = {
-      "qf",
       "neo-tree",
       "vista_kind",
       "terminal",

@@ -73,6 +73,12 @@ return {
       scoll = { enabled = false },
       toggle = { enabled = true },
       picker = require("bb.snacks_picker"),
+      terminal = {
+        shell = "nu",
+        win = {
+          border = "double",
+        },
+      },
     },
 
     keys = {

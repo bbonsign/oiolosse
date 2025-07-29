@@ -16,6 +16,7 @@ ui = ["util", "exec", "--", "jjui"]
 [ui]
 default-command = "log"
 editor = "nvim"
+diff-formatter = ["delta", "--width=180", "$left", "$right"]
 diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 diff-instructions = false
 show-cryptographic-signatures = true                            # default is false
@@ -27,3 +28,10 @@ show-cryptographic-signatures = true                            # default is fal
     "(no sig)",
   )
 '''
+
+[colors]
+# Highlight hunks with background
+"diff removed token" = { bg = "#221111", underline = false }
+"diff added token" = { bg = "#002200", underline = false }
+# Alternatively, swap colors
+"diff token" = { reverse = true, underline = false }

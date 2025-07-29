@@ -41,6 +41,7 @@ return {
         end
 
     -- stylua: ignore start
+    map("n", "<leader>gj", function() Snacks.terminal.toggle("jjui") end, "jjui")
     map("n", "]g", gs.next_hunk, "Next Hunk")
     map("n", "[g", gs.prev_hunk, "Prev Hunk")
     map("n", "]h", gs.next_hunk, "Next Hunk")

@@ -1,6 +1,9 @@
 experimental_log_batching_enabled = false
 limit = 0
 
+[leader.b]
+help = "Bookmarks"
+
 [leader.bn]
 help = "Set new bookmark"
 send = [
@@ -8,6 +11,11 @@ send = [
   "jj bookmark set -r $change_id $(gum input --placeholder \"Name of the new bookmark\")",
   "enter",
 ]
+
+[leader.e]
+context = ["$file", "$change_id"]
+help = "Edit file in change"
+send = ["$", "jj edit $change_id && $EDITOR $file", "enter"]
 
 [keys]
 up = ["up", "k"]
@@ -17,7 +25,7 @@ jump_to_children = ["K"]
 jump_to_working_copy = ["@"]
 apply = ["enter"]
 cancel = ["esc"]
-toggle_select = [" "]
+# toggle_select = [" "]
 new = ["n"]
 commit = ["c"]
 refresh = ["ctrl+r"]
@@ -79,6 +87,7 @@ absorb = ["A"]
 diff = ["d"]
 select = ["m", " "]
 revisions_changing_file = ["*"]
+# edit = ["alt+e"]  # Doesn't work yet, use leader+e
 
 [keys.preview]
 mode = ["p"]
@@ -160,7 +169,8 @@ revision_command = ["show", "--color", "always", "-r", "$change_id"]
 oplog_command = ["op", "show", "$operation_id", "--color", "always"]
 file_command = ["diff", "--color", "always", "-r", "$change_id", "$file"]
 show_at_start = true
-width_percentage = 50.0
+show_at_bottom = true
+width_percentage = 60.0
 width_increment_percentage = 5.0
 
 [oplog]

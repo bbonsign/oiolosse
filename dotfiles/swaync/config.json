@@ -57,12 +57,12 @@
     "buttons-grid": {
       "actions": [
         {
-          "label": "󰝟 ",
+          "label": "󰝟",
           "command": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
           "type": "toggle"
         },
         {
-          "label": "󰍭 ",
+          "label": "󰍭",
           "command": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
           "type": "toggle"
         },
@@ -71,7 +71,7 @@
           "command": "kitty --title nmtui nmtui"
         },
         {
-          "label": " ",
+          "label": "",
           "command": "blueman-manager"
         },
         {
