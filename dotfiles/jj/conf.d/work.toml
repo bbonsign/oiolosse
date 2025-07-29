@@ -7,9 +7,9 @@ email = "brian.bonsignore@i-qlair.com"
 [signing]
 behavior = "drop"
 backend = "ssh"
-gpg.ssh.program = "/opt/1Password/op-ssh-sign"
+backends.ssh.program = "/opt/1Password/op-ssh-sign"
 backends.ssh.allowed-signers = "~/oiolosse/home-manager/bbonsign/modules/programs/git/allowed_signers"
-user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSFThjipGc4GEwPZD8uPgdeIf23SBJcv++8kfAaPqY5"
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSFThjipGc4GEwPZD8uPgdeIf23SBJcv++8kfAaPqY5"
 
 [git]
 sign-on-push = true
