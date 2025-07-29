@@ -1,4 +1,4 @@
-_:
+{ config, ... }:
 
 {
   config = {
@@ -8,7 +8,7 @@ _:
       enableCompletion = true;
 
       defaultKeymap = "emacs";
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
 
       syntaxHighlighting.enable = true;
 
