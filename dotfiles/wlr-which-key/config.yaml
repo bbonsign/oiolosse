@@ -66,6 +66,7 @@ menu:
         { desc: "Btm", cmd: ~/.local/kitty.app/bin/kitty --class kitty-btm btm }
       "c": { desc: "Hex", cmd: hyprpicker --autocopy }
       "f": { desc: "Files", cmd: nautilus }
+      "k": { desc: "Kitty Session", cmd: ~/.local/bin/kitty-switch-fuzzel.nu }
       "p": { desc: "Power profiles", cmd: ~/.local/bin/power-profiles.nu }
   "s":
     desc: Share
