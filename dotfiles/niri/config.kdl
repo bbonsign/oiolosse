@@ -440,6 +440,8 @@ window-rule {
 window-rule {
   // Outlook PWA
   match app-id=r#"vivaldi-faolnafnngnfdaknnbpnkhgohbobgegn-Default"#
+  // Teams PWA
+  match app-id=r#"vivaldi-cifhbcnohmdccbgoicgdjpfamggdegmo-Default"#
   default-column-width {proportion 1.00;}
   open-on-workspace "email"
 }
