@@ -64,6 +64,26 @@ export def "ky tabs" [] {
   # | flatten
 }
 
+export def "ky sessions" [] {
+  kitty @ ls
+  | from json
+  | select wm_class is_active
+  | each {|os_window|
+    mut x = $os_window
+    $x.session = $os_window.wm_class | str replace "kitty-" ""
+    $x.session_is_active = $os_window.is_active | into bool 
+    $x
+  }
+  | flatten
+  | where {not  $in.session_is_active}
+  | select session session_is_active
+  # | flatten
+}
+
+export def "ky session ls" [] {
+  ky sessions
+}
+
 export def "ky session start" [session_name: string@"_sessions_files"] {
   let session_path = $sessions_dir | path join $session_name
   if (not ($session_path | path exists)) {
