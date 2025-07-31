@@ -82,6 +82,7 @@
   ipy = "ipython";
   j = "jj";
   jl = "jj log";
+  jjm = "jj-jump merge"; # open qflist of conflicts
   js = "jj status";
   ju = "jj ui";
   jui = "jj ui";
