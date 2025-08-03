@@ -1,83 +1,80 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>New Tab</title>
-    <script src="../lib/utils.js"></script>
-    <script src="../lib/keyboard_utils.js"></script>
-    <script src="../lib/dom_utils.js"></script>
-    <script src="../lib/rect.js"></script>
-    <script src="../lib/handler_stack.js"></script>
-    <script src="../lib/settings.js"></script>
-    <script src="../lib/find_mode_history.js"></script>
-    <script src="../content_scripts/mode.js"></script>
-    <script src="../content_scripts/ui_component.js"></script>
-    <script src="../content_scripts/link_hints.js"></script>
-    <script src="../content_scripts/vomnibar.js"></script>
-    <script src="../content_scripts/scroller.js"></script>
-    <script src="../content_scripts/marks.js"></script>
-    <script src="../content_scripts/mode_insert.js"></script>
-    <script src="../content_scripts/mode_find.js"></script>
-    <script src="../content_scripts/mode_key_handler.js"></script>
-    <script src="../content_scripts/mode_visual.js"></script>
-    <script src="../content_scripts/hud.js"></script>
-    <script src="../content_scripts/mode_normal.js"></script>
-    <script src="../content_scripts/vimium_frontend.js"></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../content_scripts/vimium.css"
-    />
-  </head>
-  <body class="vimiumBody">
-    <section id="links">
-      <p><a href="https://app.fastmail.com/">Fastmail</a></p>
-      <p><a href="https://mail.google.com/mail/u/0/#inbox">Gmail</a></p>
-      <p>
-        <a
-          href="https://outlook.office.com/mail/https://outlook.office.com/mail/?login_hint=brian.bonsignore@i-qlair.com"
-        >
-          Outlook qlair
-        </a>
-      </p>
-      <p>
-        <a
-          href="https://outlook.office.com/mail/https://outlook.office.com/mail/?login_hint=brian.bonsignore@i-2-m.com"
-        >
-          Outlook i2m</a
-        >
-      </p>
-      <p><a href="https://en.wikipedia.org/">Wikipedia</a></p>
-      <p><a href="https://github.com/">GitHub</a></p>
-      <p><a href="https://kagi.com/">Kagi</a></p>
-    </section>
-    <style>
-      body {
-        height: 98vh;
-        /* background-image: url("./Sunset-Of-The-Gods_by_Isaac-Sloan__smaller.jpg"); */
-        background-image: url("./jackson-hendry-eodA_8CTOFo-unsplash.jpg");
-        /* background-image: url("./Sunset-Of-The-Gods_by_Isaac-Sloan__smaller.jpg"); */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        display: flex;
-        flex-direction: column-reverse;
-      }
-      section#links {
-        align-content: flex-start;
-        align-items: flex-start;
-        display: flex;
-        flex-direction: column;
-        font-size: medium;
-        font-weight: 600;
-        /* margin: auto; */
-        margin: 0 1rem;
-        padding: 4rem 0;
-        width: 90%;
-      }
-      section#links a {
-        text-decoration: none;
-        color: #7aa2f7;
-      }
-    </style>
-  </body>
+
+<head>
+  <title>New Tab</title>
+  <script src="../lib/utils.js"></script>
+  <script src="../lib/keyboard_utils.js"></script>
+  <script src="../lib/dom_utils.js"></script>
+  <script src="../lib/rect.js"></script>
+  <script src="../lib/handler_stack.js"></script>
+  <script src="../lib/settings.js"></script>
+  <script src="../lib/find_mode_history.js"></script>
+  <script src="../content_scripts/mode.js"></script>
+  <script src="../content_scripts/ui_component.js"></script>
+  <script src="../content_scripts/link_hints.js"></script>
+  <script src="../content_scripts/vomnibar.js"></script>
+  <script src="../content_scripts/scroller.js"></script>
+  <script src="../content_scripts/marks.js"></script>
+  <script src="../content_scripts/mode_insert.js"></script>
+  <script src="../content_scripts/mode_find.js"></script>
+  <script src="../content_scripts/mode_key_handler.js"></script>
+  <script src="../content_scripts/mode_visual.js"></script>
+  <script src="../content_scripts/hud.js"></script>
+  <script src="../content_scripts/mode_normal.js"></script>
+  <script src="../content_scripts/vimium_frontend.js"></script>
+  <link rel="stylesheet" type="text/css" href="../content_scripts/vimium.css" />
+</head>
+
+<body class="vimiumBody">
+  <section id="links">
+    <p><a href="https://app.fastmail.com/">Fastmail</a></p>
+    <p><a href="https://mail.google.com/mail/u/0/#inbox">Gmail</a></p>
+    <p>
+      <a
+        href="https://outlook.office.com/mail/https://outlook.office.com/mail/?login_hint=brian.bonsignore@i-qlair.com">
+        Outlook qlair
+      </a>
+    </p>
+    <p>
+      <a href="https://outlook.office.com/mail/https://outlook.office.com/mail/?login_hint=brian.bonsignore@i-2-m.com">
+        Outlook i2m</a>
+    </p>
+    <p><a href="https://en.wikipedia.org/">Wikipedia</a></p>
+    <p><a href="https://github.com/">GitHub</a></p>
+    <p><a href="https://kagi.com/">Kagi</a></p>
+  </section>
+  <style>
+    html {
+      background-image: url("./jackson-hendry-eodA_8CTOFo-unsplash.jpg");
+      /* background-image: url("./Sunset-Of-The-Gods_by_Isaac-Sloan__smaller.jpg"); */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column-reverse;
+      height: 95vh;
+    }
+
+    section#links {
+      align-content: flex-start;
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      font-size: medium;
+      font-weight: 600;
+      padding: 0 2rem;
+    }
+
+    section#links a {
+      text-decoration: none;
+      color: #7aa2f7;
+    }
+  </style>
+</body>
+
 </html>

@@ -142,7 +142,7 @@ output "DP-1" {
 
 overview {
   backdrop-color "#0F1329"
-  zoom 0.5
+  zoom 0.55
   workspace-shadow {
     // off
   }
@@ -271,7 +271,7 @@ layout {
     width 2
     inactive-color "#414868"
     active-gradient from="#7dcfff" to="#bb9af7" angle=135
-    // active-gradient from="#7dcfff" to="#bb9af7" angle=135 relative-to="workspace-view"
+    // active-gradient from="#ee7c78" to="#ea76cb" angle=45 in="oklch longer hue" // Rainbow
     // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
   }
 

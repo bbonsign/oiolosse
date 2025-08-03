@@ -12,6 +12,9 @@ $env.PATH = (
   | uniq
 )
 
+# Echo chosen directory when using zoxide
+$env._ZO_ECHO = "1";
+
 $env.ERL_AFLAGS = "-kernel shell_history enabled";
 $env.MANPAGER = 'nvim +Man!'
 $env.MANWIDTH = 150 # from vim help, prevents bad line wrapping
