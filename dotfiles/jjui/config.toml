@@ -39,7 +39,7 @@ diffedit = ["E"]
 absorb = ["A"]
 split = ["s"]
 undo = ["u"]
-evolog = ["v"]
+# evolog = ["v"]
 revset = ["L", "R"]
 exec_jj = [":"]
 exec_shell = ["$"]
@@ -123,6 +123,8 @@ restore = ["r"]
 [ui]
 theme = ""
 auto_refresh_interval = 0
+
+tracer.enabled = true
 
 [ui.colors]
 text = "#c0caf5"

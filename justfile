@@ -17,9 +17,9 @@ hm *cmd="switch":
   NIXPKGS_ALLOW_UNFREE=1 nix run home-manager -- --flake . --impure -b hm-backup {{cmd}} 
 
 gc days="50":
-  sudo nix store gc
+  nix store gc
   nix-collect-garbage --delete-older-than {{days}}d
-  sudo nix-collect-garbage --delete-older-than {{days}}d
+  nix-collect-garbage --delete-older-than {{days}}d
 
 # Symlink non-home-manager dotfiles
 dots:

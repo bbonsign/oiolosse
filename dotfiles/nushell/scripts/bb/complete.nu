@@ -40,7 +40,7 @@ export def multi_completer [spans: list<string>, cursor_pos: int = 0] {
 
   let expanded_alias = scope aliases
   | where name == $cmd
-  | get --ignore-errors 0.expansion
+  | get --optional 0.expansion
 
   let cmd = if $expanded_alias != null {
     $expanded_alias | str trim
