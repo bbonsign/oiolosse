@@ -59,6 +59,9 @@ menu:
     submenu:
       "c": { desc: "Hex", cmd: hyprpicker --autocopy }
       "r": { desc: "R G B", cmd: hyprpicker --autocopy --format=rgb }
+  "k":
+    desc: "Kitty Session"
+    cmd: ~/.local/bin/kitty-switch-fuzzel.nu
   "r":
     desc: Run
     submenu:

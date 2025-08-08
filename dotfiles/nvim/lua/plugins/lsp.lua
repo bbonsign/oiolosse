@@ -263,6 +263,12 @@ return {
         "<Cmd>LspLog<CR>",
         desc = "LspLog",
       }
+      -- Defined in ../config/keymaps.lua
+      -- keys[#keys + 1] = {
+      --   "<leader>ls",
+      --   "<Cmd>Outline<CR>",
+      --   desc = "LspStop",
+      -- }
       keys[#keys + 1] = {
         "<leader>lS",
         "<Cmd>LspStop<CR>",

@@ -118,10 +118,15 @@ return {
           },
         },
         lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {
+        lualine_x = {
           { symbols.get, cond = symbols.has },
+        },
+        lualine_z = {
+          {
+            "tabs",
+            separator = "",
+            section_separators = { left = "", right = "" },
+          },
         },
       },
       sections = {

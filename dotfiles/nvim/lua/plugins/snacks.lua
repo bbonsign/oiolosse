@@ -53,6 +53,15 @@ return {
               desc = "Config",
               action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
             },
+            {
+              icon = "󰒲 ",
+              key = "L",
+              desc = "LazyVim Changelog",
+              action = function()
+                LazyVim.news.changelog()
+              end,
+              enabled = package.loaded.lazy ~= nil,
+            },
             { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
             {
               icon = "󰒲 ",

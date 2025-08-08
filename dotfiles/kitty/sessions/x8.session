@@ -1,10 +1,10 @@
 # Set the working directory for windows in the current tab
-cd ~/mh/x8/agritech-frontend/default.git.jj
+cd ~/mh/x8/microfrontend/default.git.jj/
 title x8-default
 launch --title x8-default
 
 new_tab fe-server
-cd ~/mh/x8/agritech-frontend/default.git.jj
+cd ~/mh/x8/microfrontend/default.git.jj/
 launch --title "fe-server"
 
 
