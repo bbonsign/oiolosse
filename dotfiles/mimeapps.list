@@ -1,7 +1,17 @@
-
 [Default Applications]
+text/english=nvim.desktop
+text/plain=nvim.desktop
 text/html=vivaldi-stable.desktop
 x-scheme-handler/http=vivaldi-stable.desktop
 x-scheme-handler/https=vivaldi-stable.desktop
 x-scheme-handler/about=vivaldi-stable.desktop
 x-scheme-handler/unknown=vivaldi-stable.desktop
+x-scheme-handler/terminal=kitty.desktop
+application/json=nvim.desktop
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
+
+[Added Associations]
+video/mp4=imv.desktop;
+text/markdown=nvim.desktop;
+application/json=nvim.desktop;
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;

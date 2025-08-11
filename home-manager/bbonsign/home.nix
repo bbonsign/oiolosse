@@ -13,6 +13,7 @@
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       VISUAL = "nvim";
+      TERMINAL = "kitty";
       GRIM_DEFAULT_DIR = "$HOME/Pictures/Screenshots";
       ERL_AFLAGS = "-kernel shell_history enabled";
     };
@@ -115,6 +116,7 @@
       nerd-fonts.fantasque-sans-mono
       networkmanager
       newman
+      nh
       nix-output-monitor
       nodePackages.aws-cdk
       nodePackages.pnpm
@@ -182,6 +184,19 @@
       ssh-agent.enable = true;
       # https://nixos.wiki/wiki/Bluetooth#Using_Bluetooth_headset_buttons_to_control_media_player
       mpris-proxy.enable = true;
+    };
+
+    xdg.terminal-exec = {
+      enable = true;
+      settings = {
+        # GNOME = [
+        #   "com.raggesilver.BlackBox.desktop"
+        #   "org.gnome.Terminal.desktop"
+        # ];
+        default = [
+          "kitty.desktop"
+        ];
+      };
     };
 
     xdg.portal = {

@@ -156,7 +156,7 @@ layout {
   background-color "transparent"
 
   // Set gaps around windows in logical pixels.
-  gaps 8
+  gaps 5
 
   tab-indicator {
     width 10
@@ -324,8 +324,8 @@ layout {
   // Top and bottom struts will simply add outer gaps in addition to the area occupied by
   // layer-shell panels and regular gaps.
   struts {
-    left 5
-    right 5
+    left 0
+    right 0
     top 0
     bottom 2
   }
