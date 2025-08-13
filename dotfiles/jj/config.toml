@@ -5,8 +5,8 @@ email = "bonsignore.brian@gmail.com"
 name = "Brian Bonsignore"
 username = "bbonsign"
 
-[snapshot]
-auto-track = "none()"
+# [snapshot]
+# auto-track = "none()"
 
 [aliases]
 l = ["log"]

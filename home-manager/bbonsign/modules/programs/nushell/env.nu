@@ -14,6 +14,9 @@ $env.PATH = (
 
 # Echo chosen directory when using zoxide
 $env._ZO_ECHO = "1";
+#
+# https://github.com/andyl/plug_editor_launch
+$env.PLUG_EDITOR = "plug-edit:__FILE__:__LINE__:neovim:kitty"
 
 $env.ERL_AFLAGS = "-kernel shell_history enabled";
 $env.MANPAGER = 'nvim +Man!'
