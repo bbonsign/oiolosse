@@ -37,13 +37,13 @@
     };
 
 
-    # Link configs that don't have home-manager modules
-    home.file = {
-      ".local/bin" = {
-        source = ./local-bin;
-        recursive = true;
-      };
-    };
+    # # Link configs that don't have home-manager modules
+    # home.file = {
+    #   ".local/bin" = {
+    #     source = ./local-bin;
+    #     recursive = true;
+    #   };
+    # };
 
     # home.shellAliases = import ../programs/shellAliases.nix;
 
