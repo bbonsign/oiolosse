@@ -12,6 +12,7 @@ username = "bbonsign"
 l = ["log"]
 s = ["status"]
 ui = ["util", "exec", "--", "jjui"]
+clone = ["util", "exec", "--", "jj-clone"]
 
 [ui]
 default-command = "log"
