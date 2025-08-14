@@ -10,9 +10,13 @@ username = "bbonsign"
 
 [aliases]
 l = ["log"]
+la = ["log", "-r", "all()"]
 s = ["status"]
 ui = ["util", "exec", "--", "jjui"]
 clone = ["util", "exec", "--", "jj-clone"]
+
+[revset-aliases]
+'trunk_to(revset)' = 'trunk()..revset'
 
 [ui]
 default-command = "log"

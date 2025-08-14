@@ -1,6 +1,27 @@
 experimental_log_batching_enabled = false
 limit = 0
 
+[custom_commands]
+"show all" = { revset = "all()" }
+"show default" = { revset = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())" }
+
+[preview]
+revision_command = ["show", "--color", "always", "-r", "$change_id"]
+oplog_command = ["op", "show", "$operation_id", "--color", "always"]
+file_command = ["diff", "--color", "always", "-r", "$change_id", "$file"]
+show_at_start = false
+show_at_bottom = true
+width_percentage = 60.0
+width_increment_percentage = 5.0
+
+[oplog]
+limit = 200
+
+[graph]
+batch_size = 50
+
+[leader.a]
+help = "Bookmarks"
 [leader.b]
 help = "Bookmarks"
 
@@ -165,18 +186,3 @@ border = "#414868"
 "details renamed" = "#7aa2f7"
 
 "preview" = { fg = "#c0caf5" }
-
-[preview]
-revision_command = ["show", "--color", "always", "-r", "$change_id"]
-oplog_command = ["op", "show", "$operation_id", "--color", "always"]
-file_command = ["diff", "--color", "always", "-r", "$change_id", "$file"]
-show_at_start = true
-show_at_bottom = true
-width_percentage = 60.0
-width_increment_percentage = 5.0
-
-[oplog]
-limit = 200
-
-[graph]
-batch_size = 50

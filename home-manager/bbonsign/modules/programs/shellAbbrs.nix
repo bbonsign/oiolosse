@@ -114,5 +114,6 @@
   tp = "trash put";
   # weather = "curl wttr.in";
   wlc = "wl-copy";
+  xo = "xdg-open";
   y = "yazi";
 }

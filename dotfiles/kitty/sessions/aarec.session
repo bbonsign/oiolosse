@@ -1,13 +1,13 @@
 # Set the working directory for windows in the current tab
-cd ~/mh/aa_recommendation_engine/default.git.jj/
+cd ~/mh/aa_recommendation_engine/rec.repo/default.git.jj/
 title code
 launch
 
 new_tab iex
-cd ~/mh/aa_recommendation_engine/default.git.jj/
+cd ~/mh/aa_recommendation_engine/rec.repo/default.git.jj/
 launch --hold iex -S mix phx.server
 
 new_tab db
-cd ~/mh/aa_recommendation_engine/default.git.jj/
+cd ~/mh/aa_recommendation_engine/rec.repo/default.git.jj/
 
 # vim:ft=sh
