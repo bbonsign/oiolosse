@@ -4,6 +4,7 @@
   imports = [
     ./modules
     inputs.nix-index-database.homeModules.nix-index
+    inputs.ignis.homeManagerModules.default
   ];
 
   config = {
@@ -128,15 +129,6 @@
       pandoc
       pgadmin4
       pgcli
-      # https://linkfrg.github.io/ignis/stable/user/nix.html#adding-ignis-to-system-python 
-      # inputs.ignis.packages.${system}.ignis
-      (python3.withPackages (ps: with ps; [
-        (inputs.ignis.packages.${pkgs.stdenv.hostPlatform.system}.ignis.override {
-          extraPackages = [
-            # Add extra packages if needed
-          ];
-        })
-      ]))
       pinentry-gtk2
       presenterm
       ripgrep
@@ -179,6 +171,32 @@
 
     programs.nix-index.enable = true;
     programs.nix-index-database.comma.enable = true;
+
+    programs.ignis = {
+      enable = true;
+      # Add Ignis to the Python environment (useful for LSP support)
+      addToPythonEnv = true;
+      # Put a config directory from your flake into ~/.config/ignis
+      # NOTE: Home Manager will copy this directory to /nix/store
+      # and create a symbolic link to the copy.
+      configDir = ../../dotfiles/ignis;
+      # Enable dependencies required by certain services.
+      # NOTE: This won't affect your NixOS system configuration.
+      # For example, to use NetworkService, you must also enable
+      # NetworkManager in your NixOS configuration:
+      #   networking.networkmanager.enable = true;
+      services = {
+        bluetooth.enable = true;
+        recorder.enable = true;
+        audio.enable = true;
+        network.enable = true;
+      }; 
+      # Enable Sass support
+      sass = {
+        enable = true;
+        useDartSass = true;
+      };
+    };
 
     services = {
       ssh-agent.enable = true;
