@@ -4,6 +4,10 @@ local hl_str = function(hl, str)
   return "%#" .. hl .. "#" .. str .. "%*"
 end
 
+local bg_color = function()
+  return Snacks.util.color("StatusLine", "bg")
+end
+
 -- insert grouping separators in numbers
 -- viml regex: https://stackoverflow.com/a/42911668
 -- lua pattern: stolen from Akinsho
@@ -86,12 +90,13 @@ return {
       format = "{kind_icon}{symbol.name:Normal}",
       -- The following line is needed to fix the background color
       -- Set it to the lualine section you want to use
-      hl_group = "lualine_c_normal",
+      -- hl_group = "StatusLine",
     })
 
     return {
       options = {
-        theme = "auto",
+        -- theme = "tokyonight",
+        -- color = { bg = bg_color() },
         globalstatus = true,
         disabled_filetypes = {
           statusline = { "snacks_dashboard", "dashboard", "alpha" },
@@ -106,7 +111,7 @@ return {
             function()
               return " "
             end,
-            color = "lualine_c_normal",
+            color = { bg = bg_color() },
           },
         },
         lualine_b = {
@@ -114,12 +119,20 @@ return {
             function()
               return get_fileinfo_widget()
             end,
-            color = "lualine_c_normal",
+            color = { bg = bg_color() },
           },
         },
-        lualine_c = {},
+        lualine_c = {
+          {
+            color = { bg = bg_color() },
+          },
+        },
         lualine_x = {
-          { symbols.get, cond = symbols.has },
+          {
+            symbols.get,
+            cond = symbols.has,
+            color = { bg = bg_color() },
+          },
         },
         lualine_z = {
           {
@@ -136,7 +149,7 @@ return {
               return " "
             end,
             padding = { left = 0, right = 0 },
-            color = {},
+            -- color = { bg = bg_color() },
             cond = nil,
             on_click = function()
               vim.cmd.write()
@@ -156,6 +169,7 @@ return {
             on_click = function()
               Snacks.picker.git_status()
             end,
+            color = { bg = bg_color() },
           },
 
           {
@@ -170,6 +184,7 @@ return {
             on_click = function()
               Snacks.picker.git_status()
             end,
+            color = { bg = bg_color() },
           },
         },
 
@@ -192,6 +207,7 @@ return {
             icon_only = true,
             separator = "",
             padding = { left = 1, right = 0 },
+            -- color = { bg = bg_color() },
           },
           {
             "filename",
@@ -203,6 +219,7 @@ return {
               -- unnamed = "[No Name]", -- Text to show for unnamed buffers.
               newfile = "[New]", -- Text to show for new created file before first writting
             },
+            color = { bg = bg_color() },
           },
         },
 
@@ -214,8 +231,7 @@ return {
             cond = function()
               return package.loaded["noice"] and require("noice").api.status.mode.has()
             end,
-            -- color = Util.ui.fg("Constant"),
-            color = { fg = Snacks.util.color("Constant") },
+            color = { fg = Snacks.util.color("Constant"), bg = bg_color() },
           },
           {
             function()
@@ -224,12 +240,12 @@ return {
             cond = function()
               return package.loaded["dap"] and require("dap").status() ~= ""
             end,
-            color = { fg = Snacks.util.color("Debug") },
+            color = { fg = Snacks.util.color("Debug"), bg = bg_color() },
           },
           {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
-            color = { fg = Snacks.util.color("Special") },
+            color = { fg = Snacks.util.color("Special"), bg = bg_color() },
             on_click = function()
               require("lazy").home()
             end,
@@ -240,17 +256,13 @@ return {
           {
             "location",
             padding = { left = 1, right = 1 },
-            color = "lualine_c_normal",
-            -- color = {
-            --   fg = Snacks.util.color("lualine_c_normal", "fg"),
-            --   bg = Snacks.util.color("lualine_c_normal", "bg"),
-            -- },
+            color = { fg = Snacks.util.color("Special"), bg = bg_color() },
           },
           {
             get_scrollbar_widget,
             padding = { left = 0, right = 0 },
             -- color = { fg = Snacks.util.color("Constant") },
-            color = "lualine_a_inactive",
+            color = { fg = Snacks.util.color("StatusLine"), bg = bg_color() },
             cond = nil,
             on_click = function()
               vim.cmd.write()
@@ -258,7 +270,7 @@ return {
           },
           {
             "progress",
-            color = "lualine_a_inactive",
+            color = { fg = Snacks.util.color("StatusLine"), bg = bg_color() },
             padding = { left = 1, right = 0 },
           },
         },
@@ -266,7 +278,7 @@ return {
         lualine_z = {
           {
             "fileformat",
-            color = "lualine_a_inactive",
+            color = { fg = Snacks.util.color("StatusLine"), bg = bg_color() },
             padding = { left = 1, right = 1 },
           },
         },

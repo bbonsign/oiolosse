@@ -70,5 +70,6 @@ create_symlink ./libinput-gestures.conf ($CONFIG_DIR | path join libinput-gestur
 
 create_symlink ./vimium/blank.html ($VIMIUM_DIR | path join pages blank.html)
 create_symlink ../home-manager/bbonsign/modules/wallpapers/jackson-hendry-eodA_8CTOFo-unsplash.jpg ($VIMIUM_DIR | path join pages jackson-hendry-eodA_8CTOFo-unsplash.jpg)
+create_symlink ../home-manager/bbonsign/modules/wallpapers/phil-botha-a0TJ3hy-UD8-unsplash.jpg ($VIMIUM_DIR | path join pages phil-botha-a0TJ3hy-UD8-unsplash.jpg)
 
 print "===== Finished symlinking to dotfiles ====="

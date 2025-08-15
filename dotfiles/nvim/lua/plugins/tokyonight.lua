@@ -4,7 +4,7 @@ return {
   opts = {
     transparent = true,
     dim_inactive = true,
-    use_background = true, -- can be light/dark/auto. When auto, background will be set to vim.o.background
+    -- use_background = "dark", -- can be light/dark/auto. When auto, background will be set to vim.o.background
     styles = {
       style = "night",
       sidebars = "dark", -- style for sidebars, see below
@@ -25,6 +25,7 @@ return {
 
     on_colors = function(colors)
       colors.border = colors.blue7
+      colors.bg_statusline = "#010C20"
     end,
     on_highlights = function(hl, colors)
       hl.FloatBorder.fg = colors.blue7
@@ -32,6 +33,9 @@ return {
       -- hl.LspFloatWinNormal.fg = colors.blue7
       hl.LspInfoBorder.fg = colors.blue7
       -- hl.CmpDocumentationBorder.fg = colors.blue7
+      hl.CursorLine.bg = "#010C20"
+      -- hl.StatusLine.bg = "#010C20"
+      -- hl.StatusLineNC.bg = "#010C20"
     end,
   },
 }

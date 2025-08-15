@@ -56,7 +56,8 @@
           };
           Service = {
             Restart = lib.mkForce "on-failure";
-            ExecStart = "${pkgs.swaybg}/bin/swaybg --image %h/oiolosse/home-manager/bbonsign/modules/wallpapers/stsci-h-p1821a-m-1699x2000.png --mode fill";
+            # ExecStart = "${pkgs.swaybg}/bin/swaybg --image %h/oiolosse/home-manager/bbonsign/modules/wallpapers/stsci-h-p1821a-m-1699x2000.png --mode fill";
+            ExecStart = "${pkgs.swaybg}/bin/swaybg --image %h/oiolosse/home-manager/bbonsign/modules/wallpapers/phil-botha-a0TJ3hy-UD8-unsplash.jpg --mode fill";
           };
         };
         swayidle = {
