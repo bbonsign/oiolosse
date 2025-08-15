@@ -84,13 +84,14 @@ export def main [] {
     shape_variable: '#bb9af7'
 
     foreground: '#c0caf5'
-    background: '#1a1b26'
+    background: '#010c20'
+    # background: '#1a1b26'
     # cursor: '#c0caf5'
     cursor: '#7aa2f7'
 
     empty: '#7aa2f7'
     header: {fg: '#9ece6a' attr: 'b'}
-    hints: '#414868'
+    hints: '#8991b6'
     leading_trailing_space_bg: {attr: 'n'}
     row_index: {fg: '#9ece6a' attr: 'b'}
     search_result: {fg: '#f7768e' bg: '#a9b1d6'}

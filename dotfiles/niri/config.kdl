@@ -24,9 +24,9 @@ workspace "chat" {
 workspace "email" {
   open-on-output "eDP-1"
 }
-workspace "notes" {
-  open-on-output "eDP-1"
-}
+// workspace "notes" {
+//   open-on-output "eDP-1"
+// }
 // Workspace for scratch windows:
 workspace "z" {
   open-on-output "eDP-1"

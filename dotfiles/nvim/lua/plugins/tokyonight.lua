@@ -24,6 +24,10 @@ return {
     },
 
     on_colors = function(colors)
+      colors.bg = "#010C20"
+      colors.bg_dark = "#010C20"
+      colors.bg_popup = "#010C20"
+      colors.bg_sidebar = "#010C20"
       colors.border = colors.blue7
       colors.bg_statusline = "#010C20"
     end,

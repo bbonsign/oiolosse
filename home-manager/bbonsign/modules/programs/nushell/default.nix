@@ -10,8 +10,8 @@
           {
             "h" = "help";
             ":h" = ":help";
-            # "jl" = "job list";
-            # "jf" = "job unfreeze";
+            cleancontainers = "docker rm -v ...(docker ps -a -q -f status=exited | lines)";
+            cleanimages = "docker rmi ...(docker images -q -f dangling=true | lines)";
             "jfg" = "job unfreeze";
           }) [ "ll" ];
       envFile.source = ./env.nu;

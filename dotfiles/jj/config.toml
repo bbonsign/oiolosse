@@ -9,6 +9,7 @@ username = "bbonsign"
 # auto-track = "none()"
 
 [aliases]
+e = ["edit"]
 l = ["log"]
 la = ["log", "-r", "all()"]
 s = ["status"]

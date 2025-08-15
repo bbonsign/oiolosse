@@ -156,7 +156,7 @@ success = "#9ece6a"
 change_id = "#7aa2f7"
 border = "#414868"
 
-"selected" = { fg = "#c0caf5", bg = "#292e42", bold = true }
+"selected" = { fg = "#c0caf5", bg = "#1a1b26", bold = true }
 "menu selected" = { fg = "#c0caf5", bg = "#414868" }
 "details selected" = { bg = "#792d41" }
 "matched" = { fg = "#ff9e64", underline = true, bold = true }
