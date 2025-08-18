@@ -7,10 +7,10 @@ return {
     -- use_background = "dark", -- can be light/dark/auto. When auto, background will be set to vim.o.background
     styles = {
       style = "night",
-      sidebars = "dark", -- style for sidebars, see below
-      -- floats = "transparent",
-      floats = "dark", -- style for floating windows
-      -- sidebars = "transparent",
+      floats = "transparent",
+      sidebars = "transparent",
+      -- floats = "dark", -- style for floating windows
+      -- sidebars = "dark", -- style for sidebars, see below
     },
     -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
     sidebars = {
@@ -24,14 +24,15 @@ return {
     },
 
     on_colors = function(colors)
-      colors.bg = "#010C20"
-      colors.bg_dark = "#010C20"
-      colors.bg_popup = "#010C20"
-      colors.bg_sidebar = "#010C20"
+      -- colors.bg = "#010C20"
+      -- colors.bg_dark = "#010C20"
+      -- colors.bg_popup = "#010C20"
+      -- colors.bg_sidebar = "#010C20"
       colors.border = colors.blue7
-      colors.bg_statusline = "#010C20"
+      -- colors.bg_statusline = "#010C20"
     end,
     on_highlights = function(hl, colors)
+      -- hl.NormalFloat.bg = colors.bg_dark
       hl.FloatBorder.fg = colors.blue7
       -- hl.LspFloatWinBorder.fg = colors.blue7
       -- hl.LspFloatWinNormal.fg = colors.blue7

@@ -13,6 +13,8 @@ vim.keymap.del("n", "<A-b>")
 -- vim.keymap.del("n", "<A-k>")
 -- vim.keymap.del("n", "<A-l>")
 
+vim.keymap.set("n", "<M-q>", ":qa<CR>", { desc = "Quit All" })
+
 -- https://nanotipsforvim.prose.sh/motion-setup--hjkl-as-amplified-hjkl
 -- HJKL as amplified versions of hjkl
 -- vim.keymap.set("n", "J", "6j")
