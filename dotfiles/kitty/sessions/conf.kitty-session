@@ -9,10 +9,10 @@ new_tab telperion
 cd ~/telperion/
 launch --title "telperion"
 
-new_tab conf 
+new_tab conf
 cd ~/.config/
 launch --title "conf"
 
-focus_matching_window title:oiolosse and session:.
+launch kitten @ focus-tab --match 'title:oiolosse and session:.'
 
 # vim:ft=sh

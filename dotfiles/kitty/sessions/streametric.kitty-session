@@ -5,14 +5,13 @@ launch --title code
 
 new_tab alt
 cd ~/mh/streametric/backend-v2.git/wts/alt/
-launch 
+launch
 
 new_tab fe
 cd ~/mh/streametric/backend-v2.git/wts/alt/
 launch --title "fe-code"
 launch --title "fe-server"
 
-focus_matching_window title:code and session:.
-
+launch kitten @ focus-tab --match 'title:code and session:.'
 
 # vim:ft=sh

@@ -17,6 +17,6 @@ new_tab fe-server
 cd ~/mh/qlair/webportal.git/main/
 launch --title "fe-server"
 
-focus_matching_window title:code and session:.
+launch kitten @ focus-tab --match 'title:code and session:.'
 
 # vim:ft=sh

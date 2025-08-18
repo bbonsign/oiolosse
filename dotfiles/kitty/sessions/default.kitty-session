@@ -1,0 +1,7 @@
+os_window_title default
+
+cd ~
+title home
+launch --title "home"
+
+# vim:ft=sh

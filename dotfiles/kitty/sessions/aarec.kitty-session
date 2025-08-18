@@ -22,6 +22,6 @@ new_tab marketplace-server
 cd ~/mh/dare/dare_marketplace.repo/default.git.jj/src/marketplace_landing_page/
 launch
 
-focus_matching_window title:code and session:.
+launch kitten @ focus-tab --match 'title:code and session:.'
 
 # vim:ft=sh

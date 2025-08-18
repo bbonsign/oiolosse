@@ -7,6 +7,6 @@ new_tab fe-server
 cd ~/mh/x8/microfrontend/default.git.jj/
 launch --title "fe-server"
 
-focus_matching_window title:x8-default and session:.
+launch kitten @ focus-tab --match 'title:x8-default and session:.'
 
 # vim:ft=sh
