@@ -116,6 +116,7 @@
       nerd-fonts.fira-code
       nerd-fonts.fantasque-sans-mono
       networkmanager
+      networkmanager-openvpn
       newman
       nh
       nix-output-monitor
@@ -133,6 +134,7 @@
       presenterm
       ripgrep
       snyk
+      snowflake-cli
       sops
       sqlite
       ssm-session-manager-plugin # For aws cli

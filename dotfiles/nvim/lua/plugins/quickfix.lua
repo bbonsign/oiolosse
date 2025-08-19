@@ -6,6 +6,7 @@ return {
       edit = { enabled = false },
     },
   },
+
   {
     "kevinhwang91/nvim-bqf",
     name = "bqf",

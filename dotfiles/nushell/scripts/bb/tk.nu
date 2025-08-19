@@ -217,3 +217,36 @@ export def "from systemd-ini" [] {
   } }
   | reduce --fold={} { |sec, acc| $acc | upsert $sec.name { default {} | merge $sec.contents } } # merge all the sections while applying possible overrides.
 }
+
+
+# Search env vars
+export def "search env" [query: string] {
+  debug env | transpose key value | find $query
+}
+
+export alias ":fe" = search env
+export alias ":se" = search env
+
+# ripgrep->fzf->vim [QUERY] https://junegunn.github.io/fzf/tips/ripgrep-integration/#wrap-up
+export def rg-fzf-nvim [query = ""] {
+  $env.SHELL = 'nu'
+  let RELOAD = 'rg --column --color=always --smart-case {q}'
+  let OPENER = '
+  if $env.FZF_SELECT_COUNT == 0 {
+    nvim {1} +{2}     # No selection. Open the current line in Vim.
+    } else {
+    nvim +cw -q {+f}  # Build quickfix list for the selected items.
+  }
+  '
+  ( fzf --disabled --ansi --multi
+    --bind $"start:reload:($RELOAD)" --bind $"change:reload:($RELOAD)"
+    --bind $"enter:become:($OPENER)" --bind $"ctrl-o:execute:($OPENER)"
+    --bind 'ctrl-a:select-all,ctrl-d:deselect-all'
+    --delimiter ':'
+    --preview 'bat --style=full --color=always --highlight-line {2} {1}'
+    --preview-window '~4,+{2}+4/3,<80(up)'
+    --query $query )
+}
+export alias ":ef" = rg-fzf-nvim
+
+export alias ":en" = exec nu

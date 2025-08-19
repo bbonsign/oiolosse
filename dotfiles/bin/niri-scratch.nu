@@ -30,4 +30,4 @@ def _do [title: string, command: string] {
   }
 }
 
-_do "kitty-scratch" "bash -c 'kitty --override allow_remote_control=no --override background_opacity=0.8 || $HOME/.local/kitty.app/bin/kitty --override allow_remote_control=no --override background_opacity=0.8 --title kitty-scratch'"
+_do "kitty-scratch" "bash -c 'kitty --single-instance --override allow_remote_control=no --override background_opacity=0.8 --title kitty-scratch || $HOME/.local/kitty.app/bin/kitty --single-instance --override allow_remote_control=no --override background_opacity=0.8 --title kitty-scratch'"

@@ -59,6 +59,9 @@ menu:
     submenu:
       "c": { desc: "Hex", cmd: hyprpicker --autocopy }
       "r": { desc: "R G B", cmd: hyprpicker --autocopy --format=rgb }
+  "d":
+    desc: Fuzzel
+    cmd: "fuzzel --show-actions --lines 20 --width 80"
   "k":
     desc: "Kitty Session"
     cmd: ~/.local/bin/kitty-switch-fuzzel.nu
@@ -159,6 +162,9 @@ menu:
         }
       "l": { desc: Focus right, cmd: niri msg action focus-column-right }
       "L": { desc: Move right, cmd: niri msg action move-column-right }
+  "N":
+    desc: Network dmenu
+    cmd: "networkmanager_dmenu"
   "n":
     desc: Notifications
     submenu:

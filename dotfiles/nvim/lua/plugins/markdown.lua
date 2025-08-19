@@ -44,8 +44,9 @@ return {
     opts = {
       code = {
         sign = false,
-        -- width = "block",
+        border = "thick",
         right_pad = 1,
+        conceal_delimiters = false,
       },
     },
     ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
