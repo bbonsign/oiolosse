@@ -42,10 +42,10 @@ return {
         ["<A-h>"] = { "toggle_hidden", mode = { "i", "n" } },
         ["<A-i>"] = { "toggle_ignored", mode = { "i", "n" } },
         ["<A-m>"] = { "toggle_maximize", mode = { "i", "n" } },
-        ["<C-z>p"] = { "focus_preview", mode = { "i", "n" } },
-        ["<C-z><C-p>"] = { "focus_preview", mode = { "i", "n" } },
-        ["<C-z>m"] = { "toggle_maximize", mode = { "i", "n" } },
-        ["<C-z><C-m>"] = { "toggle_maximize", mode = { "i", "n" } },
+        ["<C-l>p"] = { "focus_preview", mode = { "i", "n" } },
+        ["<C-l><C-p>"] = { "focus_preview", mode = { "i", "n" } },
+        ["<C-l>m"] = { "toggle_maximize", mode = { "i", "n" } },
+        ["<C-l><C-m>"] = { "toggle_maximize", mode = { "i", "n" } },
         ["<C-space>"] = { "toggle_preview", mode = { "i", "n" } },
         ["<A-w>"] = { "cycle_win", mode = { "i", "n" } },
         ["<C-a>"] = { "select_all", mode = { "n", "i" } },
@@ -61,40 +61,40 @@ return {
         ["<C-q>"] = { "qflist", mode = { "i", "n" } },
         ["<C-s>"] = { "edit_split", mode = { "i", "n" } },
         ["<C-v>"] = { "edit_vsplit", mode = { "i", "n" } },
-        ["<C-z>d"] = {
+        ["<C-l>d"] = {
           function()
             set_layout("default")
           end,
           mode = { "i", "n" },
           desc = "layout_default",
         },
-        ["<C-z><C-d>"] = {
+        ["<C-l><C-d>"] = {
           function()
             set_layout("default")
           end,
           mode = { "i", "n" },
           desc = "layout_default",
         },
-        ["<C-z>h"] = { "layout_left", mode = { "i", "n" } },
-        ["<C-z><C-h>"] = { "layout_left", mode = { "i", "n" } },
-        ["<C-z>j"] = {
+        ["<C-l>h"] = { "layout_left", mode = { "i", "n" } },
+        ["<C-l><C-h>"] = { "layout_left", mode = { "i", "n" } },
+        ["<C-l>j"] = {
           function()
             set_layout("ivy")
           end,
           mode = { "i", "n" },
           desc = "layout_ivy",
         },
-        ["<C-z><C-j>"] = {
+        ["<C-l><C-j>"] = {
           function()
             set_layout("ivy")
           end,
           mode = { "i", "n" },
           desc = "layout_ivy",
         },
-        ["<C-z>k"] = { "layout_top", mode = { "i", "n" } },
-        ["<C-z><C-k>"] = { "layout_top", mode = { "i", "n" } },
-        ["<C-z>l"] = { "layout_right", mode = { "i", "n" } },
-        ["<C-z><C-l>"] = { "layout_right", mode = { "i", "n" } },
+        ["<C-l>k"] = { "layout_top", mode = { "i", "n" } },
+        ["<C-l><C-k>"] = { "layout_top", mode = { "i", "n" } },
+        ["<C-l>l"] = { "layout_right", mode = { "i", "n" } },
+        ["<C-l><C-l>"] = { "layout_right", mode = { "i", "n" } },
         ["?"] = "toggle_help_input",
         ["G"] = "list_bottom",
         ["gg"] = "list_top",
@@ -119,11 +119,11 @@ return {
         ["<A-f>"] = "toggle_follow",
         ["<A-h>"] = "toggle_hidden",
         ["<A-i>"] = "toggle_ignored",
-        ["<C-z>p"] = { "focus_preview", mode = { "i", "n" } },
-        ["<C-z><C-p>"] = { "focus_preview", mode = { "i", "n" } },
+        ["<C-l>p"] = { "focus_preview", mode = { "i", "n" } },
+        ["<C-l><C-p>"] = { "focus_preview", mode = { "i", "n" } },
         ["<A-m>"] = { "toggle_maximize", mode = { "i", "n" } },
-        ["<C-z>m"] = { "toggle_maximize", mode = { "i", "n" } },
-        ["<C-z><C-m>"] = { "toggle_maximize", mode = { "i", "n" } },
+        ["<C-l>m"] = { "toggle_maximize", mode = { "i", "n" } },
+        ["<C-l><C-m>"] = { "toggle_maximize", mode = { "i", "n" } },
         ["<C-space>"] = { "toggle_preview", mode = { "i", "n" } },
         ["<A-w>"] = "cycle_win",
         ["<C-a>"] = "select_all",
@@ -137,40 +137,40 @@ return {
         ["<C-p>"] = "list_up",
         ["<C-s>"] = "edit_split",
         ["<C-v>"] = "edit_vsplit",
-        ["<C-z>d"] = {
+        ["<C-l>d"] = {
           function()
             set_layout("default")
           end,
           mode = { "i", "n" },
           desc = "layout_default",
         },
-        ["<C-z><C-d>"] = {
+        ["<C-l><C-d>"] = {
           function()
             set_layout("default")
           end,
           mode = { "i", "n" },
           desc = "layout_default",
         },
-        ["<C-z>h"] = { "layout_left", mode = { "i", "n" } },
-        ["<C-z><C-h>"] = { "layout_left", mode = { "i", "n" } },
-        ["<C-z>j"] = {
+        ["<C-l>h"] = { "layout_left", mode = { "i", "n" } },
+        ["<C-l><C-h>"] = { "layout_left", mode = { "i", "n" } },
+        ["<C-l>j"] = {
           function()
             set_layout("ivy")
           end,
           mode = { "i", "n" },
           desc = "layout_ivy",
         },
-        ["<C-z><C-j>"] = {
+        ["<C-l><C-j>"] = {
           function()
             set_layout("ivy")
           end,
           mode = { "i", "n" },
           desc = "layout_ivy",
         },
-        ["<C-z>k"] = { "layout_top", mode = { "i", "n" } },
-        ["<C-z><C-k>"] = { "layout_top", mode = { "i", "n" } },
-        ["<C-z>l"] = { "layout_right", mode = { "i", "n" } },
-        ["<C-z><C-l>"] = { "layout_right", mode = { "i", "n" } },
+        ["<C-l>k"] = { "layout_top", mode = { "i", "n" } },
+        ["<C-l><C-k>"] = { "layout_top", mode = { "i", "n" } },
+        ["<C-l>l"] = { "layout_right", mode = { "i", "n" } },
+        ["<C-l><C-l>"] = { "layout_right", mode = { "i", "n" } },
         ["?"] = "toggle_help_list",
         ["G"] = "list_bottom",
         ["gg"] = "list_top",

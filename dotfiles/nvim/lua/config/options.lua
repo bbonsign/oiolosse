@@ -2,8 +2,9 @@
 -- Default options that are always set:
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 
-vim.g.maplocalleader = ";"
-vim.g.VM_leader = ";" -- for "mg979/vim-visual-multi" in plugins/multicursors.lua
+-- ctrl+L for localleader
+vim.g.maplocalleader = ""
+vim.g.VM_leader = "" -- for "mg979/vim-visual-multi" in plugins/multicursors.lua
 
 local opt = vim.opt
 
