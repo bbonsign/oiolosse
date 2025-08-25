@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
 {
   config = {
     home.packages = with pkgs; [
@@ -32,6 +32,7 @@
 
     systemd.user = {
       services = {
+
         polkit-soteria = {
           Install.WantedBy = [ "graphical-session.target" ];
           Unit = {
@@ -47,6 +48,7 @@
             TimeoutStopSec = 10;
           };
         };
+
         swaybg = {
           Install.WantedBy = [ "niri.service" ];
           Unit = {
@@ -60,6 +62,7 @@
             ExecStart = "${pkgs.swaybg}/bin/swaybg --image %h/oiolosse/home-manager/bbonsign/modules/wallpapers/phil-botha-a0TJ3hy-UD8-unsplash.jpg --mode fill";
           };
         };
+
         swayidle = {
           Install.WantedBy = [ "niri.service" ];
           Unit = {
@@ -71,6 +74,19 @@
             Type = "simple";
             Restart = lib.mkForce "on-failure";
             ExecStart = "${pkgs.swayidle}/bin/swayidle";
+          };
+        };
+
+        swaync = {
+          Install.WantedBy = [ "niri.service" ];
+          Unit = {
+            After = [ "graphical-session.target" ];
+            PartOf = [ "graphical-session.target" ];
+            Requisite = [ "graphical-session.target" ];
+          };
+          Service = {
+            Restart = lib.mkForce "on-failure";
+            ExecStart = "${pkgs.swaynotificationcenter}/bin/swaync";
           };
         };
       };

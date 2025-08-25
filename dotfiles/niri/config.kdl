@@ -339,7 +339,7 @@ spawn-at-startup "/usr/libexec/xdg-desktop-portal" "--replace"
 spawn-at-startup "pkill" "mako"
 spawn-at-startup "pkill" "dunst"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "swaync"
+// spawn-at-startup "swaync"
 spawn-at-startup "ignis" "init"
 spawn-at-startup "1password" "--silent" // --silent opens to the system tray without showing the main window
 spawn-at-startup "bash" "-c" "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance "
