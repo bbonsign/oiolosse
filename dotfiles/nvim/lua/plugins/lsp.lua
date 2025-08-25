@@ -1,6 +1,9 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    -- init = function()
+    --   vim.lsp.enable("expert")
+    -- end,
     opts = {
       -- see above keymap to toggle inlay_hints
       inlay_hints = { enabled = false },

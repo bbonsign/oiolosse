@@ -6,7 +6,8 @@ return {
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
     ft = "markdown",
-    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in
+    -- your vault:
     -- event = {
     --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
     --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
@@ -34,11 +35,24 @@ return {
   },
 
   {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    enabled = false,
+    -- For `nvim-treesitter` users.
+    priority = 49,
+    -- For blink.cmp's completion source
+    dependencies = {
+      "saghen/blink.cmp",
+    },
+  },
+
+  {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
-    }, -- if you prefer nvim-web-devicons
+    },
+    enabled = true,
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {

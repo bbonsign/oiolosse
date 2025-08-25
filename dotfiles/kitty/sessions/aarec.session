@@ -5,9 +5,19 @@ launch
 
 new_tab iex
 cd ~/mh/aa_recommendation_engine/rec.repo/default.git.jj/
-launch --hold iex -S mix phx.server
+# launch --hold iex -S mix phx.server
+launch
 
-new_tab db
-cd ~/mh/aa_recommendation_engine/rec.repo/default.git.jj/
+new_tab snowflake-test
+cd ~/mh/aa_recommendation_engine/snowflake_connector_test/
+launch
+
+new_tab marketplace
+cd ~/mh/dare/dare_marketplace.repo/default.git.jj/src/marketplace_landing_page/
+launch
+
+new_tab marketplace-server
+cd ~/mh/dare/dare_marketplace.repo/default.git.jj/src/marketplace_landing_page/
+launch
 
 # vim:ft=sh

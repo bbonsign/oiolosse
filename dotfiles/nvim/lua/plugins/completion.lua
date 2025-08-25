@@ -6,49 +6,9 @@ return {
     -- build = vim.g.lazyvim_blink_main and "nix run .#build-plugin",
     opts = {
       fuzzy = {
-        implementation = 'prefer_rust',
+        implementation = "prefer_rust",
       },
-      appearance = {
-        -- sets the fallback highlight groups to nvim-cmp's highlight groups
-        -- useful for when your theme doesn't support blink.cmp
-        -- will be removed in a future release, assuming themes add support
-        -- use_nvim_cmp_as_default = false,
-        -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-        -- adjusts spacing to ensure icons are aligned
-        nerd_font_variant = "normal",
-        kind_icons = {
-          Text = "󰉿 ",
-          Method = "󰊕",
-          Function = "󰊕",
-          Constructor = "󰒓 ",
 
-          Field = "󰜢 ",
-          Variable = "󰆦 ",
-          Property = "󰖷 ",
-
-          Class = "󱡠 ",
-          Interface = "󱡠 ",
-          Struct = "󱡠 ",
-          Module = "󰅩 ",
-
-          Unit = "󰪚 ",
-          Value = " ",
-          Enum = " ",
-          EnumMember = " ",
-
-          Keyword = "󰻾",
-          Constant = "󰏿",
-
-          Snippet = " ",
-          Color = "󰏘 ",
-          File = "󰈔",
-          Reference = "󰬲 ",
-          Folder = "󰉋 ",
-          Event = "󱐋",
-          Operator = "󰪚 ",
-          TypeParameter = "󰬛 ",
-        },
-      },
       completion = {
         list = {
           selection = { auto_insert = true, preselect = false },
@@ -70,13 +30,7 @@ return {
             border = "rounded",
           },
         },
-        -- ghost_text = {
-        --   enabled = vim.g.ai_cmp,
-        -- },
       },
-
-      -- experimental signature help support
-      -- signature = { enabled = true },
 
       sources = {
         -- adding any nvim-cmp sources here will enable them with blink.compat
@@ -88,6 +42,9 @@ return {
             module = "render-markdown.integ.blink",
             fallbacks = { "lsp" },
           },
+        },
+        per_filetype = {
+          codecompanion = { "codecompanion" },
         },
       },
 
@@ -134,6 +91,47 @@ return {
           ["<C-k>"] = { "select_prev", "fallback" },
           ["<C-j>"] = { "show", "select_next", "fallback" },
           ["<C-y>"] = { "select_accept_and_enter" },
+        },
+      },
+      appearance = {
+        -- sets the fallback highlight groups to nvim-cmp's highlight groups
+        -- useful for when your theme doesn't support blink.cmp
+        -- will be removed in a future release, assuming themes add support
+        -- use_nvim_cmp_as_default = false,
+        -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+        -- adjusts spacing to ensure icons are aligned
+        nerd_font_variant = "normal",
+        kind_icons = {
+          Text = "󰉿 ",
+          Method = "󰊕",
+          Function = "󰊕",
+          Constructor = "󰒓 ",
+
+          Field = "󰜢 ",
+          Variable = "󰆦 ",
+          Property = "󰖷 ",
+
+          Class = "󱡠 ",
+          Interface = "󱡠 ",
+          Struct = "󱡠 ",
+          Module = "󰅩 ",
+
+          Unit = "󰪚 ",
+          Value = " ",
+          Enum = " ",
+          EnumMember = " ",
+
+          Keyword = "󰻾",
+          Constant = "󰏿",
+
+          Snippet = " ",
+          Color = "󰏘 ",
+          File = "󰈔",
+          Reference = "󰬲 ",
+          Folder = "󰉋 ",
+          Event = "󱐋",
+          Operator = "󰪚 ",
+          TypeParameter = "󰬛 ",
         },
       },
     },

@@ -32,15 +32,9 @@ return {
       -- colors.bg_statusline = "#010C20"
     end,
     on_highlights = function(hl, colors)
-      -- hl.NormalFloat.bg = colors.bg_dark
       hl.FloatBorder.fg = colors.blue7
-      -- hl.LspFloatWinBorder.fg = colors.blue7
-      -- hl.LspFloatWinNormal.fg = colors.blue7
       hl.LspInfoBorder.fg = colors.blue7
-      -- hl.CmpDocumentationBorder.fg = colors.blue7
-      hl.CursorLine.bg = "#010C20"
-      -- hl.StatusLine.bg = "#010C20"
-      -- hl.StatusLineNC.bg = "#010C20"
+      hl.CursorLine.bg = "#1E2030"
     end,
   },
 }

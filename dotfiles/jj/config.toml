@@ -5,11 +5,15 @@ email = "bonsignore.brian@gmail.com"
 name = "Brian Bonsignore"
 username = "bbonsign"
 
-# [snapshot]
-# auto-track = "none()"
+[snapshot]
+auto-track = "none()"
 
 [aliases]
 e = ["edit"]
+en = ["next", "--edit"]
+ne = ["next", "--edit"]
+ep = ["prev", "--edit"]
+pe = ["prev", "--edit"]
 l = ["log"]
 la = ["log", "-r", "all()"]
 s = ["status"]

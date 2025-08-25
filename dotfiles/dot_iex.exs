@@ -50,6 +50,21 @@ IEx.configure(
 )
 
 defmodule MyHelpers do
+  def cb(term) do
+    text =
+      if is_binary(term) do
+        term
+      else
+        inspect(term, limit: :infinity, pretty: true)
+      end
+
+    port = Port.open({:spawn, "wl-copy"}, [])
+    true = Port.command(port, text)
+    true = Port.close(port)
+
+    :ok
+  end
+
   def cl do
     IEx.Helpers.clear()
   end

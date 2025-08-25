@@ -26,6 +26,7 @@
   dc = "docker compose";
   dce = "docker compose exec";
   dcr = "docker compose run";
+  ddb = "duckdb";
   dk = "docker kill";
   dps = "docker ps";
   dpsa = "docker ps -a";

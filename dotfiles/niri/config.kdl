@@ -7,6 +7,11 @@ hotkey-overlay {
   skip-at-startup
 }
 
+// TODO
+// xwayland-satellite {
+//     path "~/source/rs/xwayland-satellite/target/release/xwayland-satellite"
+// }
+
 environment {
   DISPLAY ":0"
 }
@@ -31,9 +36,6 @@ workspace "email" {
 workspace "z" {
   open-on-output "eDP-1"
 }
-
-
-
 
 
 // Input device configuration.

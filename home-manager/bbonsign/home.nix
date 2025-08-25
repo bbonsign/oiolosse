@@ -89,6 +89,7 @@
       flyctl
       gcc
       gh # GitHub cli
+      git-extras
       glow # terminal markdown previewer
       gnumake
       gnupg

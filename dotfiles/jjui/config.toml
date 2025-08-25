@@ -4,6 +4,15 @@ limit = 0
 [custom_commands]
 "show all" = { revset = "all()" }
 "show default" = { revset = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())" }
+"new commit after here" = { args = [
+  "new",
+  "--no-edit",
+  "--insert-after",
+  "$change_id",
+] }
+
+[revisions]
+template = 'builtin_log_oneline'
 
 [preview]
 revision_command = ["show", "--color", "always", "-r", "$change_id"]

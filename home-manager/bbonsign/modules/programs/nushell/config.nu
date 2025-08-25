@@ -91,6 +91,53 @@ $env.config.menus = (
         | each {|it| {value: $"($it.expansion) "} }
       }
     }
+    # https://discord.com/channels/601130461678272522/1412981516514103379/1412981611024089151
+    #     This menu adds smart completions for the last command in your pipeline.
+    # It looks at your history and suggests all the variants you’ve actually used — including flags and further pipelines.
+    #
+    # Features:
+    #     •    Matches the last segment of your current pipeline, even inside groups and sub-pipelines.
+    #     •    Filters history for commands starting with your current segment.
+    #     •    Deduplicates and presents results in a clean, scrollable list (page_size: 25).
+    #     •    Styled for readability: green for text, yellow for descriptions.
+    #
+    # Use this when you want to quickly recall and reuse the exact command forms you’ve typed before, instead of guessing or re-typing flags and arguments from memory.#
+    {
+      name: pipe_completions_menu
+      only_buffer_difference: false # Search is done on the text written after activating the menu
+      marker: ""
+      type: { layout: list page_size: 25 }
+      style: { text: green selected_text: green_reverse description_text: yellow }
+      source: {|buffer position|
+
+        let esc_regex: closure = {|input|
+          # regex special symbols
+          [
+            '\' '.' '^' '$' '*'
+            '+' '?' '{' '}' '('
+            ')' '[' ']' '|' '/'
+          ]
+          | reduce -f $input {|i acc| $acc | str replace -a $i $'\($i)' }
+        }
+
+
+        let segments = $buffer | split row -r '(\s\|\s)|\(|;|(\{\|\w\| )'
+        let last_segment = $segments | last
+        let last_segment_length = $last_segment | str length
+        let last_segment_esc = do $esc_regex $last_segment
+        let smt = $buffer | str replace -r $'($last_segment_esc)$' ' '
+
+        history
+        | get command
+        | uniq
+        | where $it =~ $last_segment_esc
+        | str replace -a (char nl) ' '
+        | str replace -r $'.*($last_segment_esc)' $last_segment
+        | reverse
+        | uniq
+        | each {|it| { value: $it span: { start: ($position - $last_segment_length) end: ($position) } } }
+      }
+    }
   ]
 )
 
@@ -147,6 +194,14 @@ $env.config.keybindings = (
     #   }
     # },
     {
+      name: pipe_completions_menu
+      modifier: alt
+      keycode: char_p
+      mode: $ALL_MODES
+      event: {send: menu name: pipe_completions_menu}
+    }
+
+    {
       name: fuzzy_file_pwd
       modifier: control
       keycode: char_s
@@ -160,7 +215,7 @@ $env.config.keybindings = (
       mode: $ALL_MODES
       event: {
         send: executehostcommand
-        cmd: "commandline edit --insert (fzf-tmux)"
+        cmd: "commandline edit --insert (fzf-tmux -- --multi | lines | each {'\"' + $in + '\"'} | str join ' ')"
       }
     }
     {
@@ -180,7 +235,7 @@ $env.config.keybindings = (
       mode: $ALL_MODES
       event: {
         send: executehostcommand
-        cmd: "commandline edit --insert (fg status)"
+        cmd: "commandline edit --insert ('\"' + (fg status) + '\"')"
       }
     }
     {
