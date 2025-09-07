@@ -133,6 +133,7 @@ export def fzy-get [
   column: string = ""
   query: string = ""
   --preview_group_by (-g): string = ""
+  --nth: string = ".." # forwared to fzf --nth param, ".." is the default for searching all fields
 ]: table -> any {
   let in_table = $in
   let in_file = if ($preview_group_by | is-not-empty) {
@@ -156,6 +157,8 @@ export def fzy-get [
   | to tsv 
   | ^column --table --separator "\t" --output-separator "\t" # align columns
   | (fzf 
+    --delimiter "\t"
+    --nth $nth
     --query $query
     --header-lines 1
     --preview-window 'down,hidden'
