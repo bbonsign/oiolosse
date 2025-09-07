@@ -27,6 +27,8 @@ clone = ["util", "exec", "--", "jj-clone"]
 default-command = "log"
 editor = "nvim"
 diff-formatter = ["delta", "--width=180", "$left", "$right"]
+# Default diff-editor is `scm-editor`
+# use `--tool :buildin` to override the setting below and use the building `scm-editor`
 diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 diff-instructions = false
 show-cryptographic-signatures = true                            # default is false

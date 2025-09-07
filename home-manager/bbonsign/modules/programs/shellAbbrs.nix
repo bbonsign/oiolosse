@@ -17,6 +17,7 @@
   ":r" = "just"; # i.e. "run"
   ":s" = "systemctl-tui";
   ":t" = "tmux attach -t";
+  ":xo" = "xdg-open";
   b = "bat";
   cl = "clear";
   cleancontainers = "docker rm -v (docker ps -a -q -f status=exited)";

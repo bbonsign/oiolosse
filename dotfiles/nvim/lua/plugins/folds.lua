@@ -6,7 +6,7 @@ return {
     foldtext = {
       enabled = package.loaded["ufo"] == nil,
       -- template = "     %s lines", -- `%s` gets the number of folded lines
-      hlgroupForCount = "Comment",
+      hlgroupForCount = "@string",
     },
 
     foldKeymaps = {

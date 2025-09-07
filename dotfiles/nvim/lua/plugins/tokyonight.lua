@@ -35,6 +35,7 @@ return {
       hl.FloatBorder.fg = colors.blue7
       hl.LspInfoBorder.fg = colors.blue7
       hl.CursorLine.bg = "#1E2030"
+      hl.Folded.bg = "#1E2030"
     end,
   },
 }
