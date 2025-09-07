@@ -28,7 +28,7 @@ return {
   },
 
   {
-    "mikesmithgh/kitty-scrollback.nvim",
+    "bbonsign/kitty-scrollback.nvim",
     enabled = true,
     lazy = true,
     cmd = {
@@ -37,6 +37,7 @@ return {
       "KittyScrollbackGenerateCommandLineEditing",
     },
     event = { "User KittyScrollbackLaunch" },
+    branch = "feature/open-scrollback-in-kitty-tab",
     -- version = '*', -- latest stable version, may have breaking changes if major version changed
     -- version = '^6.0.0', -- pin major version, include fixes and features that do not have breaking changes
     config = function()
