@@ -1,6 +1,6 @@
 return {
   "chrisgrieser/nvim-origami",
-  enabled = false,
+  -- enabled = false,
   event = "VeryLazy",
   opts = {
     foldtext = {

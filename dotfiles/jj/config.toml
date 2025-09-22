@@ -6,7 +6,7 @@ name = "Brian Bonsignore"
 username = "bbonsign"
 
 [snapshot]
-auto-track = "none()"
+# auto-track = "none()"
 
 [aliases]
 e = ["edit"]
