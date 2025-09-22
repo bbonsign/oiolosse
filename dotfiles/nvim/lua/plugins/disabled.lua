@@ -10,12 +10,12 @@ return {
   },
 
   {
-    "echasnovski/mini.indentscope",
+    "nvim-mini/mini.indentscope",
     enabled = false,
   },
 
   {
-    "echasnovski/mini.comment",
+    "nvim-mini/mini.comment",
     enabled = false,
   },
 

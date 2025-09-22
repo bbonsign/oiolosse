@@ -1,5 +1,5 @@
 -- Inlcuded by default in LazyVim
 return {
-  "echasnovski/mini.pairs",
+  "nvim-mini/mini.pairs",
   enabled = true,
 }
