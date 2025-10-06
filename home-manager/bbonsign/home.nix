@@ -76,9 +76,10 @@
       brightnessctl
       bun
       cargo
-      cowsay
       cbonsai
       cmatrix
+      codex
+      cowsay
       delta
       dnsutils # `dig` + `nslookup`
       duckdb
