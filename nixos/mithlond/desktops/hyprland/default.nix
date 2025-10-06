@@ -10,7 +10,7 @@
       grim # screenshot functionality
       # mako # notification system developed by swaywm maintainer
       swaynotificationcenter
-      rofi-wayland
+      rofi
       slurp # screenshot functionality
       waybar
       wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout

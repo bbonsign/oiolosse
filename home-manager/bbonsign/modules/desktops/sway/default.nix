@@ -3,7 +3,7 @@
   config = {
     home.packages = with pkgs; [
       fuzzel
-      rofi-wayland
+      rofi
       slurp # screen selection functionality
       swappy # screenshot annotation tool
       sway-contrib.grimshot

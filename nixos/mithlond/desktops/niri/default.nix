@@ -13,7 +13,7 @@
       grim # screenshot functionality
       hyprpicker
       swaynotificationcenter
-      rofi-wayland
+      rofi
       waybar
       swaybg
       wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout

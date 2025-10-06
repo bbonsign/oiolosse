@@ -16,7 +16,7 @@
       fuzzel
       # mako # notification system developed by swaywm maintainer
       networkmanagerapplet
-      rofi-wayland
+      rofi
       sway
       swappy # screenshot annotation tool 
       sway-contrib.grimshot

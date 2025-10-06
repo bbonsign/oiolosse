@@ -6,7 +6,7 @@
       networkmanager_dmenu
       polkit_gnome
       power-profiles-daemon
-      rofi-wayland
+      rofi
       soteria # polkit agent
       swappy # screenshot annotation tool
       swaybg
