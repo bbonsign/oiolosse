@@ -5,6 +5,12 @@
     ./modules
     inputs.nix-index-database.homeModules.nix-index
     inputs.ignis.homeManagerModules.default
+
+    {
+      nixpkgs.overlays = [
+        inputs.neovim-nightly-overlay.overlays.default
+      ];
+    }
   ];
 
   config = {
@@ -68,7 +74,7 @@
       # zig
       # zls # zig language server
       age
-      awscli2
+      # awscli2
       bat
       beam.packages.erlang_27.elixir_1_18
       beam.packages.erlang_27.erlang
@@ -136,7 +142,7 @@
       presenterm
       ripgrep
       snyk
-      snowflake-cli
+      # snowflake-cli
       sops
       sqlite
       ssm-session-manager-plugin # For aws cli

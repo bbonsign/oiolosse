@@ -1,3 +1,5 @@
+os_window_title aarec
+
 # Set the working directory for windows in the current tab
 cd ~/mh/aa_recommendation_engine/rec.repo/default.git.jj/
 title code
@@ -19,5 +21,7 @@ launch
 new_tab marketplace-server
 cd ~/mh/dare/dare_marketplace.repo/default.git.jj/src/marketplace_landing_page/
 launch
+
+focus_matching_window title:code and session:.
 
 # vim:ft=sh

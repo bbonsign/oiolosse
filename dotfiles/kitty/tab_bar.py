@@ -2,7 +2,8 @@
 
 import datetime
 
-from kitty.fast_data_types import Screen
+from kitty.boss import get_boss
+from kitty.fast_data_types import Screen, add_timer
 from kitty.rgb import Color
 from kitty.tab_bar import (
     DrawData,
@@ -50,7 +51,7 @@ def _draw_left_status(
     is_last: bool,
     extra_data: ExtraData,
 ) -> int:
-    print(extra_data)
+    # print(extra_data)
     if draw_data.leading_spaces:
         screen.draw(" " * draw_data.leading_spaces)
 
@@ -81,44 +82,14 @@ def _draw_left_status(
     return end
 
 
-# more handy kitty tab_bar things:
-# REF: https://github.com/kovidgoyal/kitty/discussions/4447#discussioncomment-2183440
-# def _draw_right_status(screen: Screen, is_last: bool) -> int:
-#     if not is_last:
-#         return 0
-#
-#     draw_attributed_string(Formatter.reset, screen)
-#     date = datetime.datetime.now().strftime(" %H:%M")
-#     utc_date = datetime.datetime.now(datetime.timezone.utc).strftime(" (UTC %H:%M)")
-#
-#     right_status_length = calc_draw_spaces(date + " " + utc_date + " ")
-#
-#     draw_spaces = screen.columns - screen.cursor.x - right_status_length
-#     if draw_spaces > 0:
-#         screen.draw(" " * draw_spaces)
-#
-#     cells = [
-#         (Color(135, 192, 149), date),
-#         (Color(113, 115, 116), utc_date),
-#     ]
-#
-#     screen.cursor.fg = 0
-#     for color, status in cells:
-#         screen.cursor.fg = as_rgb(color_as_int(color))
-#         screen.draw(status)
-#     screen.cursor.bg = 0
-#
-#     if screen.columns - screen.cursor.x > right_status_length:
-#         screen.cursor.x = screen.columns - right_status_length
-#
-#     return screen.cursor.x
+REFRESH_TIME = 5
+timer_id = None
 
 
-# REF: https://github.com/kovidgoyal/kitty/discussions/4447#discussioncomment-1940795
-# def redraw_tab_bar():
-#     tm = get_boss().active_tab_manager
-#     if tm is not None:
-#         tm.mark_tab_bar_dirty()
+def _redraw_tab_bar(_) -> None:
+    tm = get_boss().active_tab_manager
+    if tm is not None:
+        tm.mark_tab_bar_dirty()
 
 
 def draw_tab(
@@ -131,7 +102,11 @@ def draw_tab(
     is_last: bool,
     extra_data: ExtraData,
 ) -> int:
-    _draw_icon(screen, index, symbol="     ")
+    global timer_id
+    if timer_id is None:
+        timer_id = add_timer(_redraw_tab_bar, REFRESH_TIME, True)
+
+    _draw_icon(screen, index, symbol=f"     {tab.session_name} ")
     _draw_left_status(
         draw_data,
         screen,

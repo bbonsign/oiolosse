@@ -2,7 +2,9 @@ _: {
   config = {
     programs.git.difftastic = {
       enable = false;
-      display = "side-by-side";
+      options = {
+        display = "side-by-side";
+      };
     };
   };
 }

@@ -2,7 +2,7 @@ return {
   {
     "jake-stewart/multicursor.nvim",
     branch = "1.0",
-    enabled = false,
+    -- enabled = false,
     config = function()
       local mc = require("multicursor-nvim")
       mc.setup()
@@ -11,14 +11,15 @@ return {
 
       -- stylua: ignore start
       -- Add or skip cursor above/below the main cursor.
-      set({ "n", "x" }, "<leader><up>", function() mc.lineSkipCursor(-1) end)
-      set({ "n", "x" }, "<leader><down>", function() mc.lineSkipCursor(1) end)
+      set({ "n", "x" }, "<localleader><up>", function() mc.lineSkipCursor(-1) end)
+      set({ "n", "x" }, "<localleader><down>", function() mc.lineSkipCursor(1) end)
+      set({ "n", "x" }, "<localleader>a", function() mc.alignCursors() end, {desc="Align Cursors"})
 
       -- Add or skip adding a new cursor by matching word/selection
       set({ "n", "x" }, "<C-n>", function() mc.matchAddCursor(1) end)
-      set({ "n", "x" }, "<leader>s", function() mc.matchSkipCursor(1) end)
+      set({ "n", "x" }, "<localleader>s", function() mc.matchSkipCursor(1) end)
       set({ "n", "x" }, "<C-S-n>", function() mc.matchAddCursor(-1) end)
-      set({ "n", "x" }, "<leader>S", function() mc.matchSkipCursor(-1) end)
+      set({ "n", "x" }, "<localleader>S", function() mc.matchSkipCursor(-1) end)
 
       -- Add and remove cursors with control + left click.
       set("n", "<c-leftmouse>", mc.handleMouse)
@@ -37,7 +38,7 @@ return {
         layerSet({ "n", "x" }, "<right>", mc.nextCursor)
 
         -- Delete the main cursor.
-        layerSet({ "n", "x" }, "<leader>x", mc.deleteCursor)
+        layerSet({ "n", "x" }, "<localleader>x", mc.deleteCursor)
 
         -- Enable and clear cursors using escape.
         layerSet("n", "<esc>", function()
@@ -60,10 +61,11 @@ return {
       hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
     end,
   },
+
   {
     "mg979/vim-visual-multi",
     branch = "master",
-    -- enabled = false,
+    enabled = false,
     config = function()
       vim.cmd([[
         let g:VM_theme = 'nord'

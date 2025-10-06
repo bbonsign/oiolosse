@@ -15,7 +15,7 @@ def non_floating_windows_on_workspace [workspace_id: int]: [
   niri msg --json windows | from json  | where workspace_id == $workspace_id | where not is_floating
 }
 
-  def set_column_width [window_id: int, width_percent: float] {
+def set_column_width [window_id: int, width_percent: float] {
   niri msg action focus-window --id $window_id
   niri msg action set-column-width $"($width_percent)%"
 }

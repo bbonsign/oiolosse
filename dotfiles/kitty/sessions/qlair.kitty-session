@@ -1,11 +1,13 @@
+os_window_title qlair
+
 # Set the working directory for windows in the current tab
 cd ~/mh/qlair/backend.git/wt-main/
 title code
-launch
+launch --title code
 
 new_tab ipy
 cd ~/mh/qlair/backend.git/wt-main/
-launch
+launch --title ipy
 
 new_tab fe
 cd ~/mh/qlair/webportal.git/main/
@@ -15,5 +17,6 @@ new_tab fe-server
 cd ~/mh/qlair/webportal.git/main/
 launch --title "fe-server"
 
+focus_matching_window title:code and session:.
 
 # vim:ft=sh

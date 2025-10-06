@@ -83,6 +83,7 @@
   gwtr = "git worktree remove";
   ipy = "ipython";
   j = "jj";
+  jgf = "jj git fetch";
   jl = "jj log";
   jjm = "jj-jump merge"; # open qflist of conflicts
   js = "jj status";

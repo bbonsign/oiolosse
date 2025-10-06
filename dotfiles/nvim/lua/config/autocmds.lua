@@ -13,3 +13,6 @@
 --     (vim.hl or vim.highlight).on_yank()
 --   end,
 -- })
+vim.api.nvim_create_user_command("TermHl", function()
+  vim.api.nvim_open_term(0, {})
+end, { desc = "Highlights ANSI termcodes in curbuf" })

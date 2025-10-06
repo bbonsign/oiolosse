@@ -1,3 +1,5 @@
+os_window_title conf
+
 # Set the working directory for windows in the current tab
 cd ~/oiolosse/
 title oiolosse
@@ -7,10 +9,10 @@ new_tab telperion
 cd ~/telperion/
 launch --title "telperion"
 
-new_tab conf
+new_tab conf 
 cd ~/.config/
 launch --title "conf"
 
-
+focus_matching_window title:oiolosse and session:.
 
 # vim:ft=sh
