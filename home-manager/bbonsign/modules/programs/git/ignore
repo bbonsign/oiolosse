@@ -47,9 +47,6 @@ node_modules
 Session.vim
 .vim/*
 
-# Place for me to put some local files in a project that I don't want to commit
-**/.misc/*
-
 # Project level settings for projectile in emacs
 .projectile
 
@@ -64,3 +61,8 @@ deps
 zig-cache
 
 .markdownlint-cli2.jsonc
+
+# Place for me to put some local files in a project that I don't want to commit
+**/.misc/*
+**/_bb/*
+
