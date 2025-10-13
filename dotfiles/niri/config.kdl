@@ -456,7 +456,7 @@ window-rule {
   // Half of the screen high.
   default-window-height { proportion 0.75; }
   // 80% of the screen wide.
-  default-column-width { proportion 0.75; }
+  default-column-width { proportion 0.95; }
   border {
     active-gradient from="#bb9af7" to="#7dcfff" angle=135
   }
