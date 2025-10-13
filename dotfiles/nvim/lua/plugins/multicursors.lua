@@ -6,6 +6,12 @@ return {
     keys = {
       "<C-up>",
       "<C-down>",
+      "<C-S-up>",
+      "<C-S-down>",
+      -- "<C-j>",
+      -- "<C-k>",
+      -- "<C-S-j>",
+      -- "<C-S-k>",
       "<C-n>",
     },
     config = function()
@@ -16,15 +22,12 @@ return {
 
       -- stylua: ignore start
       -- Add or skip cursor above/below the main cursor.
-      set({"n", "x"}, "<C-Up>", function() mc.lineAddCursor(-1) end)
-      set({"n", "x"}, "<C-Down>", function() mc.lineAddCursor(1) end)
-      set({ "n", "x" }, "<Up>", function() mc.lineSkipCursor(-1) end)
-      set({ "n", "x" }, "<Down>", function() mc.lineSkipCursor(1) end)
+      set({"n", "x"}, "<C-up>", function() mc.lineAddCursor(-1) end, {desc="Add Cursor Above"})
+      set({"n", "x"}, "<C-down>", function() mc.lineAddCursor(1) end, {desc="Add Cursor Below"})
       set({ "n", "x" }, "<localleader>a", function() mc.alignCursors() end, {desc="Align Cursors"})
 
       -- Add or skip adding a new cursor by matching word/selection
-      set({ "n", "x" }, "<C-n>", function() mc.matchAddCursor(1) end)
-      set({ "n", "x" }, "<localleader>s", function() mc.matchSkipCursor(1) end)
+      set({ "n", "x" }, "<C-n>", function() mc. matchAddCursor(1) end)
       set({ "n", "x" }, "<C-S-n>", function() mc.matchAddCursor(-1) end)
       set({ "n", "x" }, "<localleader>S", function() mc.matchSkipCursor(-1) end)
 
@@ -35,7 +38,6 @@ return {
 
       -- Disable and enable cursors.
       set({ "n", "x" }, "<a-q>", mc.toggleCursor)
-      -- stylua: ignore end
 
       -- Mappings defined in a keymap layer only apply when there are
       -- multiple cursors. This lets you have overlapping mappings.
@@ -43,6 +45,12 @@ return {
         -- Select a different cursor as the main one.
         layerSet({ "n", "x" }, "<left>", mc.prevCursor)
         layerSet({ "n", "x" }, "<right>", mc.nextCursor)
+
+        set({ "n", "x" }, "n", function() mc.matchSkipCursor(1) end)
+        set({ "n", "x" }, "N", function() mc.matchSkipCursor(-1) end)
+
+        set({ "n", "x" }, "<C-S-up>", function() mc.lineSkipCursor(-1) end, { desc = "Remove Cursor Above" })
+        set({ "n", "x" }, "<C-S-down>", function() mc.lineSkipCursor(1) end, { desc = "Remove Cursors" })
 
         -- Delete the main cursor.
         layerSet({ "n", "x" }, "<localleader>x", mc.deleteCursor)
@@ -56,6 +64,7 @@ return {
           end
         end)
       end)
+      -- stylua: ignore end
 
       -- Customize how cursors look.
       local hl = vim.api.nvim_set_hl

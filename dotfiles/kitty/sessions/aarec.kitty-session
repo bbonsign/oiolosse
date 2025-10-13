@@ -1,12 +1,12 @@
 os_window_title aarec
 
 new_tab marketplace
-cd ~/mh/dare/dare_marketplace.repo/default.git.jj/src/marketplace_landing_page/
+cd ~/mh/dare/repo.git.jj/src/marketplace_landing_page/
 title code
 launch
 
 new_tab marketplace-server
-cd ~/mh/dare/dare_marketplace.repo/default.git.jj/src/marketplace_landing_page/
+cd ~/mh/dare/repo.git.jj/src/marketplace_landing_page/
 launch
 
 new_tab snowflake-test
