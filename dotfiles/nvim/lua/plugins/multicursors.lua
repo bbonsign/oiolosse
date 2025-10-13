@@ -28,8 +28,7 @@ return {
 
       -- Add or skip adding a new cursor by matching word/selection
       set({ "n", "x" }, "<C-n>", function() mc. matchAddCursor(1) end)
-      set({ "n", "x" }, "<C-S-n>", function() mc.matchAddCursor(-1) end)
-      set({ "n", "x" }, "<localleader>S", function() mc.matchSkipCursor(-1) end)
+      set({ "n", "x" }, "<C-m>", function() mc.matchAddCursor(-1) end)
 
       -- Add and remove cursors with control + left click.
       set("n", "<c-leftmouse>", mc.handleMouse)
