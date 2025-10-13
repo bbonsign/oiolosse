@@ -1,7 +1,6 @@
 # Set the working directory for windows in the current tab
 os_window_title kitty-scratch
 cd ~
-title scratch
-launch --title "scratch"
+launch
 
 # vim:ft=sh

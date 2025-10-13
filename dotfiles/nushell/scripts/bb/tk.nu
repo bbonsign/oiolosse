@@ -161,6 +161,7 @@ export def fzy-get [
     --nth $nth
     --query $query
     --header-lines 1
+    # --header-border
     --preview-window 'down,hidden'
     --preview $"bat ($in_file)"
   )
@@ -241,7 +242,7 @@ export def rg-fzf-nvim [query = ""] {
     nvim +cw -q {+f}  # Build quickfix list for the selected items.
   }
   '
-  ( fzf --disabled --ansi --multi
+  ( fzf --disabled --ansi --multi --style=full
     --bind $"start:reload:($RELOAD)" --bind $"change:reload:($RELOAD)"
     --bind $"enter:become:($OPENER)" --bind $"ctrl-o:execute:($OPENER)"
     --bind 'ctrl-a:select-all,ctrl-d:deselect-all'
@@ -251,5 +252,6 @@ export def rg-fzf-nvim [query = ""] {
     --query $query )
 }
 export alias ":ef" = rg-fzf-nvim
+export alias "rfv" = rg-fzf-nvim
 
 export alias ":en" = exec nu
