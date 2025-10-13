@@ -3,6 +3,11 @@ return {
     "jake-stewart/multicursor.nvim",
     branch = "1.0",
     -- enabled = false,
+    keys = {
+      "<C-up>",
+      "<C-down>",
+      "<C-n>",
+    },
     config = function()
       local mc = require("multicursor-nvim")
       mc.setup()
@@ -11,8 +16,10 @@ return {
 
       -- stylua: ignore start
       -- Add or skip cursor above/below the main cursor.
-      set({ "n", "x" }, "<localleader><up>", function() mc.lineSkipCursor(-1) end)
-      set({ "n", "x" }, "<localleader><down>", function() mc.lineSkipCursor(1) end)
+      set({"n", "x"}, "<C-Up>", function() mc.lineAddCursor(-1) end)
+      set({"n", "x"}, "<C-Down>", function() mc.lineAddCursor(1) end)
+      set({ "n", "x" }, "<Up>", function() mc.lineSkipCursor(-1) end)
+      set({ "n", "x" }, "<Down>", function() mc.lineSkipCursor(1) end)
       set({ "n", "x" }, "<localleader>a", function() mc.alignCursors() end, {desc="Align Cursors"})
 
       -- Add or skip adding a new cursor by matching word/selection
