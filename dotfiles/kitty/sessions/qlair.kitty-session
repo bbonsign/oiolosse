@@ -1,6 +1,5 @@
 os_window_title qlair
 
-# Set the working directory for windows in the current tab
 cd ~/mh/qlair/backend.git/wt-main/
 title code
 launch --title code

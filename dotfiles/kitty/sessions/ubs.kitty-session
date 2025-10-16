@@ -1,0 +1,22 @@
+os_window_title ubs
+
+cd ~/mh/ubs-dashboard.git/main
+title main
+launch --title main
+
+new_tab cbre
+cd ~/mh/ubs-dashboard.git/cbre
+launch --title cbre
+
+new_tab ubs
+cd ~/mh/ubs-dashboard.git/ubs
+launch --title ubs
+
+new_tab backend
+cd ~/mh/qlair/bms.git/main
+launch --title backend
+
+
+launch kitten @ focus-tab --match 'title:main and session:.'
+
+# vim:ft=sh
