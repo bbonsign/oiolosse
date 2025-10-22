@@ -1,4 +1,18 @@
+local format = function()
+  require("lazyvim.util").format({ force = true })
+end
+
 return {
+  {
+    "mason-org/mason.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = {}
+      opts.ui = { border = "single" }
+      return opts
+    end,
+  },
+
+  -- LSP keybinds in a separate config section below
   {
     "neovim/nvim-lspconfig",
     -- init = function()
@@ -177,121 +191,107 @@ return {
   {
     "neovim/nvim-lspconfig",
     -- https://www.lazyvim.org/plugins/lsp#%EF%B8%8F-customizing-lsp-keymaps
-    opts = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      local format = function()
-        require("lazyvim.util").format({ force = true })
-      end
-
-      keys[#keys + 1] = {
-        "<leader>lf",
-        format,
-        desc = "Format Document",
-      }
-
-      keys[#keys + 1] = {
-        "<leader>lr",
-        vim.lsp.buf.rename,
-        desc = "Rename",
-        has = "rename",
-      }
-
-      keys[#keys + 1] = {
-        "<leader>la",
-        vim.lsp.buf.code_action,
-        desc = "Code Action",
-        mode = { "n", "v" },
-        has = "codeAction",
-      }
-
-      keys[#keys + 1] = {
-        "<leader>lA",
-        function()
-          vim.lsp.buf.code_action({
-            context = {
-              only = {
-                "source",
-              },
-              diagnostics = {},
+    opts = {
+      servers = {
+        ["*"] = {
+          keys = {
+            {
+              "<leader>lf",
+              format,
+              desc = "Format Document",
             },
-          })
-        end,
-        desc = "Source Action",
-        has = "codeAction",
-      }
 
-      keys[#keys + 1] = {
-        "<leader>li",
-        function()
-          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-        end,
-        desc = "Toggle Inlay Hints",
-        mode = { "n", "v" },
-        has = "inlay",
-      }
-      -- disable a keymap
-      -- keys[#keys + 1] = { "K", false }
-      keys[#keys + 1] = {
-        "<leader>hh",
-        vim.lsp.buf.hover,
-        desc = "Hover",
-      }
-      keys[#keys + 1] = {
-        "<leader>lh",
-        vim.lsp.buf.hover,
-        desc = "Hover",
-      }
-      keys[#keys + 1] = {
-        "<leader>lk",
-        vim.lsp.buf.hover,
-        desc = "Hover",
-      }
-      keys[#keys + 1] = {
-        "<leader>ch",
-        vim.lsp.buf.hover,
-        desc = "Hover",
-      }
-      keys[#keys + 1] = {
-        "<leader>ck",
-        vim.lsp.buf.hover,
-        desc = "Hover",
-      }
+            {
+              "<leader>lr",
+              vim.lsp.buf.rename,
+              desc = "Rename",
+              has = "rename",
+            },
 
-      keys[#keys + 1] = {
-        "<leader>lI",
-        "<Cmd>LspInfo<CR>",
-        desc = "LspInfo",
-      }
-      keys[#keys + 1] = {
-        "<leader>lL",
-        "<Cmd>LspLog<CR>",
-        desc = "LspLog",
-      }
-      -- Defined in ../config/keymaps.lua
-      -- keys[#keys + 1] = {
-      --   "<leader>ls",
-      --   "<Cmd>Outline<CR>",
-      --   desc = "LspStop",
-      -- }
-      keys[#keys + 1] = {
-        "<leader>lS",
-        "<Cmd>LspStop<CR>",
-        desc = "LspStop",
-      }
-      keys[#keys + 1] = {
-        "<leader>lR",
-        "<Cmd>LspRestart<CR>",
-        desc = "LspRestart",
-      }
-    end,
-  },
+            {
+              "<leader>la",
+              vim.lsp.buf.code_action,
+              desc = "Code Action",
+              mode = { "n", "v" },
+              has = "codeAction",
+            },
 
-  {
-    "mason-org/mason.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = {}
-      opts.ui = { border = "single" }
-      return opts
-    end,
+            {
+              "<leader>lA",
+              function()
+                vim.lsp.buf.code_action({
+                  context = {
+                    only = {
+                      "source",
+                    },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Source Action",
+              has = "codeAction",
+            },
+
+            {
+              "<leader>li",
+              function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+              end,
+              desc = "Toggle Inlay Hints",
+              mode = { "n", "v" },
+              has = "inlay",
+            },
+
+            {
+              "<leader>hh",
+              vim.lsp.buf.hover,
+              desc = "Hover",
+            },
+            {
+              "<leader>lh",
+              vim.lsp.buf.hover,
+              desc = "Hover",
+            },
+            {
+              "<leader>lk",
+              vim.lsp.buf.hover,
+              desc = "Hover",
+            },
+            {
+              "<leader>ch",
+              vim.lsp.buf.hover,
+              desc = "Hover",
+            },
+            {
+              "<leader>ck",
+              vim.lsp.buf.hover,
+              desc = "Hover",
+            },
+
+            {
+              "<leader>lI",
+              "<Cmd>LspInfo<CR>",
+              desc = "LspInfo",
+            },
+            {
+              "<leader>lL",
+              "<Cmd>LspLog<CR>",
+              desc = "LspLog",
+            },
+
+            {
+              "<leader>lS",
+              "<Cmd>LspStop<CR>",
+              desc = "LspStop",
+            },
+            {
+              "<leader>lR",
+              "<Cmd>LspRestart<CR>",
+              desc = "LspRestart",
+            },
+          },
+        },
+      },
+    },
   },
 }
