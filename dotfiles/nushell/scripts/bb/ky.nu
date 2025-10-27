@@ -1,7 +1,7 @@
 const sessions_dir = "~/.config/kitty/sessions" | path expand
 
 def _sessions_files [] {
-  ls $sessions_dir | get name | path basename 
+  ls $sessions_dir | get name | path basename
 }
 
 export def main [] {
@@ -9,7 +9,7 @@ export def main [] {
 }
 
 export def "ky socket" [] {
-  let kitty_socket = ls /tmp | get name | where {$in like "kitty"} | get 0
+  let kitty_socket = ls /tmp | get name | where { $in like "kitty" } | get 0
   $"unix:($kitty_socket)"
 }
 export def "ky windows" [] {
@@ -19,15 +19,15 @@ export def "ky windows" [] {
   | each {|os_window|
     $os_window.tabs
     | each {|tab|
-      let tab_windows = $tab.windows 
+      let tab_windows = $tab.windows
       | select id title is_active
-      | rename --column {id: win_id, title: win_title}
+      | rename --column {id: win_id title: win_title}
       | each {|win|
         mut w = $win
         $w.session = $os_window.wm_class | str replace "kitty-" ""
-        $w.session_is_active = $os_window.is_active | into bool 
-        $w.tab_is_active = $tab.is_active | into bool 
-        $w.win_is_active = $win.is_active | into bool 
+        $w.session_is_active = $os_window.is_active | into bool
+        $w.tab_is_active = $tab.is_active | into bool
+        $w.win_is_active = $win.is_active | into bool
         $w.tab_id = $tab.id
         $w.tab_title = $tab.title
         $w
@@ -37,7 +37,7 @@ export def "ky windows" [] {
   }
   | flatten
   | flatten
-  | where {not ($in.tab_is_active and $in.session_is_active and $in.win_is_active)}
+  | where { not ($in.tab_is_active and $in.session_is_active and $in.win_is_active) }
   | select session tab_title win_title tab_is_active win_is_active session_is_active tab_id win_id
   | flatten
 }
@@ -51,16 +51,18 @@ export def "ky tabs" [] {
     | each {|tab|
       mut t = $tab
       $t.session = $os_window.wm_class | str replace "kitty-" ""
-      $t.session_is_active = $os_window.is_active | into bool 
-      $t.tab_is_active = $tab.is_active | into bool 
+      $t.session_is_active = $os_window.is_active | into bool
+      $t.tab_is_active = $tab.is_active | into bool
+      $t.tab_is_focused = $tab.is_focused | into bool
       $t.tab_id = $tab.id
       $t.tab_title = $tab.title
+      $t.active_window_id = $tab.windows | where is_active | get 0.id
       $t
     }
   }
   | flatten
-  | where {not ($in.tab_is_active and $in.session_is_active)}
-  | select tab_id tab_title tab_is_active session session_is_active
+  # | where { not ($in.tab_is_active and $in.session_is_active) }
+  | select tab_id tab_title tab_is_active session session_is_active active_window_id
   # | flatten
 }
 
@@ -71,11 +73,11 @@ export def "ky sessions" [] {
   | each {|os_window|
     mut x = $os_window
     $x.session = $os_window.wm_class | str replace "kitty-" ""
-    $x.session_is_active = $os_window.is_active | into bool 
+    $x.session_is_active = $os_window.is_active | into bool
     $x
   }
   | flatten
-  | where {not  $in.session_is_active}
+  | where { not $in.session_is_active }
   | select session session_is_active
   # | flatten
 }
