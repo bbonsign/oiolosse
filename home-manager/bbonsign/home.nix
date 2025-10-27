@@ -135,8 +135,8 @@
       nautilus
       nerd-fonts.fira-code
       nerd-fonts.fantasque-sans-mono
-      networkmanager
-      networkmanager-openvpn
+      # networkmanager
+      # networkmanager-openvpn
       newman
       nh
       nix-output-monitor
