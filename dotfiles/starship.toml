@@ -81,7 +81,6 @@ $shlvl\
 $cmd_duration\
 $time\
 $line_break\
-$jobs\
 $battery\
 $status\
 $os\

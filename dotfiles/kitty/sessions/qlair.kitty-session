@@ -17,5 +17,6 @@ cd ~/mh/qlair/webportal.git/main/
 launch --title "fe-server"
 
 launch kitten @ focus-tab --match 'title:code and session:.'
+# focus_tab title:code and session:.
 
 # vim:ft=sh
