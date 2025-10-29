@@ -444,6 +444,7 @@ window-rule {
   match app-id=r#"vivaldi-faolnafnngnfdaknnbpnkhgohbobgegn-Default"#
   // Teams PWA
   match app-id=r#"vivaldi-cifhbcnohmdccbgoicgdjpfamggdegmo-Default"#
+  match app-id=r#"Fastmail"#
   default-column-width {proportion 1.00;}
   open-on-workspace "email"
 }
