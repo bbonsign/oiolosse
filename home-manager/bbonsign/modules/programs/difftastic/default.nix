@@ -1,6 +1,6 @@
 _: {
   config = {
-    programs.git.difftastic = {
+    programs.difftastic = {
       enable = false;
       options = {
         display = "side-by-side";
