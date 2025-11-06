@@ -45,8 +45,8 @@ return {
         layerSet({ "n", "x" }, "<left>", mc.prevCursor)
         layerSet({ "n", "x" }, "<right>", mc.nextCursor)
 
-        set({ "n", "x" }, "n", function() mc.matchSkipCursor(1) end)
-        set({ "n", "x" }, "N", function() mc.matchSkipCursor(-1) end)
+        set({ "n", "x" }, "<localleader><C-n>", function() mc.matchSkipCursor(1) end)
+        set({ "n", "x" }, "<localleader><C-m>", function() mc.matchSkipCursor(-1) end)
 
         set({ "n", "x" }, "<C-S-up>", function() mc.lineSkipCursor(-1) end, { desc = "Remove Cursor Above" })
         set({ "n", "x" }, "<C-S-down>", function() mc.lineSkipCursor(1) end, { desc = "Remove Cursors" })

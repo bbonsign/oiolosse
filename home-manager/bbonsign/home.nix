@@ -74,7 +74,7 @@
       # zig
       # zls # zig language server
       age
-      # awscli2
+      awscli2
       bat
       beam.packages.erlang_27.elixir_1_18
       beam.packages.erlang_27.erlang
