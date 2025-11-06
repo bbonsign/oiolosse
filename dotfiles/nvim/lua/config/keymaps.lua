@@ -130,6 +130,10 @@ vim.keymap.set("n", "<Leader>|", ":vsplit<CR>", { desc = "Veritcal split" })
 vim.keymap.set("n", "<Leader>wW", "<C-w>W", { desc = "Other window <-" })
 vim.keymap.set("n", "<Leader>ww", "<C-w>w", { desc = "Other window ->" })
 
+vim.keymap.set("n", "<leader>gj", function()
+  Snacks.terminal.toggle("jjui")
+end, { desc = "jjui" })
+
 -- -- lewis6991/hover.nvim,
 -- vim.keymap.set("n", "<C-p>", function()
 --   require("hover").hover_switch("previous")

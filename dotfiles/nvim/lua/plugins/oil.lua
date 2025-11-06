@@ -65,6 +65,7 @@ return {
         "size",
         -- "mtime",
       },
+      confirmation = { border = "rounded" },
       view_options = {
         is_hidden_file = function(name, bufnr)
           local dir = require("oil").get_current_dir(bufnr)
