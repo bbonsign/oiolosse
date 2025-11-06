@@ -66,6 +66,7 @@ create_symlink ./television/ ($CONFIG_DIR | path join television)
 # create_symlink tridactyl/ ($CONFIG_DIR  | path join tridactyl)
 create_symlink ./waybar ($CONFIG_DIR | path join waybar)
 create_symlink ./wlr-which-key ($CONFIG_DIR | path join wlr-which-key)
+create_symlink ./yazi ($CONFIG_DIR | path join yazi)
 create_symlink ./libinput-gestures.conf ($CONFIG_DIR | path join libinput-gestures.conf)
 
 create_symlink ./vimium/blank.html ($VIMIUM_DIR | path join pages blank.html)

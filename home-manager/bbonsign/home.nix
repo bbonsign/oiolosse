@@ -91,6 +91,7 @@
       duckdb
       duf
       eww
+      exiftool
       eza
       file
       flyctl
