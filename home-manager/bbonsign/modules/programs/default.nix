@@ -23,6 +23,7 @@
     ./starship.nix
     ./topiary
     ./tmux
+    ./vicinae.nix
     ./wezterm
     ./zathura.nix
     # ./zellij

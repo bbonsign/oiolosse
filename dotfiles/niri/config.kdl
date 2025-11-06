@@ -344,7 +344,7 @@ spawn-at-startup "xwayland-satellite"
 // spawn-at-startup "swaync"
 spawn-at-startup "ignis" "init"
 spawn-at-startup "1password" "--silent" // --silent opens to the system tray without showing the main window
-spawn-at-startup "bash" "-c" "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance"
+spawn-sh-at-startup "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance"
 // spawn-at-startup "~/.local/bin/niri-scratch.nu"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -542,18 +542,23 @@ binds {
 
   // You can also use a shell. Do this if you need pipes, multiple commands, etc.
   // Note: the entire command goes as a single argument in the end.
-  // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
+  // Mod+T { spawn-sh "notify-send hello && exec alacritty"; }
   // Mod+Return { spawn "kitty"; }
-  Mod+Return { spawn "bash" "-c" "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance"; }
+  Mod+Return { spawn-sh "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance"; }
   Mod+D { spawn "fuzzel" "--show-actions" "--lines" "20" "--width" "80"; }
-  // Mod+D { spawn "rofi" "-show" "drun"; }
+  Mod+Ctrl+D { spawn-sh "vicinae vicinae://toggle"; }
+  Mod+E repeat=false { spawn-sh "vicinae vicinae://extensions/vicinae/vicinae/search-emojis"; }
+  Mod+R repeat=false { spawn-sh "vicinae vicinae://extensions/vicinae/clipboard/history"; }
   Super+Alt+L hotkey-overlay-title="Lock" { spawn "~/.local/bin/lock.sh"; }
   Mod+Space { spawn "wlr-which-key"; }
-  Mod+Tab hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
-  Mod+Comma hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
-  Mod+Period hotkey-overlay-title="Window Picker"{ spawn "~/.local/bin/niri-choose-window.nu"; }
+  Mod+Tab repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
+  Mod+Comma repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
+  Mod+Period repeat=false hotkey-overlay-title="Window Picker"{ spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
+  // Mod+Tab hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
+  // Mod+Comma hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
+  // Mod+Period hotkey-overlay-title="Window Picker"{ spawn "~/.local/bin/niri-choose-window.nu"; }
   Mod+Minus hotkey-overlay-title="Scratch Term" { spawn "~/.local/bin/niri-scratch.nu"; }
-  // Mod+Minus hotkey-overlay-title="Scratch Term" { spawn "bash" "-c" "kitten quick-access-terminal"; }
+  // Mod+Minus hotkey-overlay-title="Scratch Term" { spawn-sh "kitten quick-access-terminal"; }
   
 
   Mod+Shift+Q { close-window; }
@@ -596,11 +601,11 @@ binds {
 
   // Expand the focused column to space not taken up by other fully visible columns.
   // Makes the column "fill the rest of the space".
-  Mod+E { expand-column-to-available-width; }
-  Mod+F { maximize-column; }
-  Mod+C { center-column; }
+  Mod+Ctrl+E hotkey-overlay-title="Expand Available Width" { expand-column-to-available-width; }
+  Mod+F hotkey-overlay-title="Maximize Column" { maximize-column; }
+  Mod+C hotkey-overlay-title="Center Column" { center-column; }
   Mod+Ctrl+C { center-visible-columns; }
-  Mod+N { spawn "bash" "-c" "swaync-client --toggle-panel ; wlr-which-key notifications"; }
+  Mod+N { spawn-sh "swaync-client --toggle-panel ; wlr-which-key notifications"; }
 
 
   Mod+Shift+Left  { move-column-left; }
@@ -727,7 +732,7 @@ binds {
   // Expel the bottom window from the focused column to the right.
   // Mod+Period { expel-window-from-column; }
 
-  Mod+R { switch-preset-column-width; }
+  Mod+Shift+R { switch-preset-column-width; }
   Mod+Ctrl+R { switch-preset-window-height; }
   Mod+Ctrl+Shift+R { reset-window-height; }
 
