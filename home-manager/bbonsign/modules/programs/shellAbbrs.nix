@@ -88,6 +88,7 @@
   jjm = "jj-jump merge"; # open qflist of conflicts
   js = "jj status";
   j = "jj ui";
+  ju = "jj ui";
   jui = "jj ui";
   k = "kitty";
   kn = "kitt +kitten";
