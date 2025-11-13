@@ -82,12 +82,12 @@
   gwtl = "git worktree list";
   gwtr = "git worktree remove";
   ipy = "ipython";
-  j = "jj";
+  # j = "jj";
   jgf = "jj git fetch";
   jl = "jj log";
   jjm = "jj-jump merge"; # open qflist of conflicts
   js = "jj status";
-  ju = "jj ui";
+  j = "jj ui";
   jui = "jj ui";
   k = "kitty";
   kn = "kitt +kitten";

@@ -7,7 +7,12 @@ return {
     { "nvim-lua/plenary.nvim", lazy = true },
   },
   keys = {
-    -- 👇 in this section, choose your own keymappings!
+    {
+      "<leader>e",
+      mode = { "n", "v" },
+      "<cmd>Yazi toggle<cr>",
+      desc = "Resume the last yazi session",
+    },
     {
       "<leader>yy",
       mode = { "n", "v" },
