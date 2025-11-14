@@ -74,6 +74,7 @@
       # zig
       # zls # zig language server
       age
+      amp-cli
       awscli2
       bat
       beam.packages.erlang_27.elixir_1_18
@@ -94,7 +95,7 @@
       exiftool
       eza
       file
-      flyctl
+      # flyctl
       gcc
       gh # GitHub cli
       git-extras
@@ -137,7 +138,7 @@
       obsidian
       p7zip
       pandoc
-      pgadmin4
+      # pgadmin4
       pgcli
       pinentry-gtk2
       presenterm

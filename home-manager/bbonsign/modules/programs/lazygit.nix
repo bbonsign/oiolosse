@@ -30,10 +30,12 @@ _:
           # };
         };
         git = {
-          paging = {
-            colorArg = "always";
-            pager = "delta --dark --paging=never --no-gitconfig";
-          };
+          pagers = [
+            {
+              colorArg = "always";
+              pager = "delta --dark --paging=never --no-gitconfig";
+            }
+          ];
 
           autoFetch = false;
 
@@ -127,7 +129,7 @@ _:
             viewResetOptions = "D";
             fetch = "f";
             toggleTreeView = "`";
-            openMergeTool = "M";
+            openMergeOptions = "M";
             openStatusFilter = "<c-b>";
             collapseAll = "_";
             expandAll = "+";
