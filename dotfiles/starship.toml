@@ -9,11 +9,12 @@ $directory\
 $vcsh\
 $fossil_branch\
 $fossil_metrics\
-$git_branch\
-$git_commit\
-$git_state\
-$git_metrics\
-$git_status\
+${custom.git_branch}\
+${custom.git_commit}\
+${custom.git_state}\
+${custom.git_metrics}\
+${custom.git_status}\
+${custom.jj}\
 $hg_branch\
 $pijul_channel\
 $docker_context\
@@ -39,7 +40,6 @@ $kotlin\
 $gradle\
 $lua\
 $nim\
-$nodejs\
 $ocaml\
 $opa\
 $perl\
@@ -71,7 +71,6 @@ $env_var\
 $crystal\
 $sudo\
 $fill\
-${custom.jj}\
 $aws\
 $azure\
 $gcloud\
@@ -108,29 +107,90 @@ style = "purple"
 ignore_timeout = true
 description = "The current jj status"
 detect_folders = [".jj"]
-style = "purple"
-format = "[$symbol](blue bold)[$output ](purple)"
+when = "jj --ignore-working-copy root"
+style = "blue"
+format = "[$symbol$output ](blue)"
 symbol = " "
 command = '''
-jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
+jj log -r @ --no-graph --limit 1 --color always --template '
   separate(" ",
-    stringify(change_id.shortest(6)),
-    bookmarks,
-    "|",
-    concat(
-      if(conflict, "💥"),
-      if(divergent, "🚧"),
-      if(hidden, "👻"),
-      if(immutable, "🔒"),
-    ),
-    if(empty, "(empty)"),
+    if(empty, "∅"),
     coalesce(
       truncate_end(29, description.first_line(), "…"),
-      "(no desc) ",
+      "(no desc)",
     ),
-  )
-'
+    if(bookmarks, bookmarks)
+  )'
 '''
+# command = '''
+# jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
+#   separate(" ",
+#     stringify(change_id.shortest(6)),
+#     bookmarks,
+#     "|",
+#     concat(
+#       if(conflict, "💥"),
+#       if(divergent, "🚧"),
+#       if(hidden, "👻"),
+#       if(immutable, "🔒"),
+#     ),
+#     if(empty, "(empty)"),
+#     coalesce(
+#       truncate_end(29, description.first_line(), "…"),
+#       "(no desc) ",
+#     ),
+#   )
+# '
+# '''
+# optionally disable git modules when JJ is found.
+# note that you'll need to add ${custom.git_branch}, ${custom.git_commit} etc
+# into format: https://starship.rs/config/#default-prompt-format
+
+[git_status]
+disabled = true
+
+[custom.git_status]
+shell = "bash"
+when = "! jj --ignore-working-copy root"
+command = "starship module git_status"
+description = "Only show git_status if we're not in a jj repo"
+
+[git_state]
+disabled = true
+
+[custom.git_state]
+shell = "bash"
+when = "! jj --ignore-working-copy root"
+command = "starship module git_state"
+description = "Only show git_status if we're not in a jj repo"
+
+[git_commit]
+disabled = true
+
+[custom.git_commit]
+shell = "bash"
+when = "! jj --ignore-working-copy root"
+command = "starship module git_commit"
+description = "Only show git_commit if we're not in a jj repo"
+
+[git_metrics]
+disabled = true
+
+[custom.git_metrics]
+shell = "bash"
+when = "! jj --ignore-working-copy root"
+command = "starship module git_metrics"
+description = "Only show git_metrics if we're not in a jj repo"
+
+[git_branch]
+disabled = true
+
+[custom.git_branch]
+shell = "bash"
+when = "! jj --ignore-working-copy root"
+command = "starship module git_branch"
+description = "Only show git_branch if we're not in a jj repo"
+symbol = " "
 
 [docker_context]
 symbol = " "
@@ -145,8 +205,8 @@ symbol = " "
 [fill]
 symbol = " "
 
-[git_branch]
-symbol = " "
+# [git_branch]
+# symbol = " "
 
 [golang]
 symbol = " "
