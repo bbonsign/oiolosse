@@ -18,8 +18,8 @@ return {
       title_pos = "center",
     },
   },
+  -- input window
   win = {
-    -- input window
     input = {
       keys = {
         -- to close the picker on ESC instead of going to normal mode,
@@ -61,6 +61,7 @@ return {
         ["<C-q>"] = { "qflist", mode = { "i", "n" } },
         ["<C-s>"] = { "edit_split", mode = { "i", "n" } },
         ["<C-v>"] = { "edit_vsplit", mode = { "i", "n" } },
+        ["<C-y>"] = { "yazi_copy_relative_path", mode = { "i", "n" } },
         ["<C-l>d"] = {
           function()
             set_layout("default")

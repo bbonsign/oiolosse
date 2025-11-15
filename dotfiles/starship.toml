@@ -116,7 +116,7 @@ jj log -r @ --no-graph --limit 1 --color always --template '
   separate(" ",
     if(empty, "∅"),
     coalesce(
-      truncate_end(29, description.first_line(), "…"),
+      truncate_end(40, description.first_line(), "…"),
       "(no desc)",
     ),
     if(bookmarks, bookmarks)
@@ -190,7 +190,10 @@ shell = "bash"
 when = "! jj --ignore-working-copy root"
 command = "starship module git_branch"
 description = "Only show git_branch if we're not in a jj repo"
-symbol = " "
+# symbol = ""
+
+[direnv]
+disabled = true
 
 [docker_context]
 symbol = " "

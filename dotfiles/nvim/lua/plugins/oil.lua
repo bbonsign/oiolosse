@@ -87,6 +87,7 @@ return {
         q = "actions.close",
         ["?"] = "actions.show_help",
         ["<CR>"] = "actions.select",
+        ["l"] = "actions.select",
         ["<C-v>"] = "actions.select_vsplit",
         ["<C-s>"] = "actions.select_split",
         ["<C-t>"] = "actions.select_tab",

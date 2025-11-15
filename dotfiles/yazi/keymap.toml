@@ -1,9 +1,28 @@
 [[mgr.prepend_keymap]]
 on = "!"
 for = "unix"
-run = 'shell "$SHELL" --block'
+run = 'shell "nu" --block'
 desc = "Open $SHELL here"
 
 [[mgr.prepend_keymap]]
 on = ["g", "r"]
 run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"'
+
+[[mgr.prepend_keymap]]
+on = "T"
+run = "plugin smart-tab"
+desc = "Create a tab and enter the hovered directory"
+
+
+[[mgr.prepend_keymap]]
+on = "-"
+run = "leave"
+desc = "Back to the parent directory"
+
+[[mgr.prepend_keymap]]
+on = "<C-k>"
+run = "plugin parent-arrow -1"
+
+[[mgr.prepend_keymap]]
+on = "<C-j>"
+run = "plugin parent-arrow 1"

@@ -20,7 +20,12 @@ return {
 
   { "tpope/vim-unimpaired" },
 
-  { "mbbill/undotree" },
+  {
+    "mbbill/undotree",
+    keys = {
+      { "<leader>uu", "<Cmd>UndotreeToggle<CR>" },
+    },
+  },
 
   {
     "NvChad/nvim-colorizer.lua",

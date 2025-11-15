@@ -135,7 +135,7 @@
       nodejs
       ntfy-sh
       numbat # Scientific calculator/programming language
-      obsidian
+      # obsidian # Using flatpak for now
       p7zip
       pandoc
       # pgadmin4

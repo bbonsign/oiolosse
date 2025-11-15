@@ -552,6 +552,7 @@ binds {
   Mod+R repeat=false { spawn-sh "vicinae vicinae://extensions/vicinae/clipboard/history"; }
   Super+Alt+L hotkey-overlay-title="Lock" { spawn "~/.local/bin/lock.sh"; }
   Mod+Space { spawn "wlr-which-key"; }
+  Alt+Tab repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
   Mod+Tab repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
   Mod+Comma repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
   Mod+Period repeat=false hotkey-overlay-title="Window Picker"{ spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
