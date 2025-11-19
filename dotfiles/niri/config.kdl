@@ -465,6 +465,7 @@ window-rule {
 }
 window-rule {
   match app-id=r#"kitty-btm"#
+  match app-id=r#"kitty-btop"#
   // open-floating true
 }
 window-rule {

@@ -68,8 +68,13 @@ menu:
   "r":
     desc: Run
     submenu:
+      "B":
+        { desc: "btm", cmd: ~/.local/kitty.app/bin/kitty --class kitty-btm btm }
       "b":
-        { desc: "Btm", cmd: ~/.local/kitty.app/bin/kitty --class kitty-btm btm }
+        {
+          desc: "btop",
+          cmd: ~/.local/kitty.app/bin/kitty --class kitty-btop btop,
+        }
       "c": { desc: "Hex", cmd: hyprpicker --autocopy }
       "f": { desc: "Files", cmd: nautilus }
       "k": { desc: "Kitty Session", cmd: ~/.local/bin/kitty-switch-fuzzel.nu }

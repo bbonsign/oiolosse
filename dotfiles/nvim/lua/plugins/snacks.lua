@@ -89,6 +89,7 @@ return {
       indent = { enabled = false },
       lazygit = { enabled = true },
       scoll = { enabled = false },
+      scratch = { enabled = false },
       toggle = { enabled = true },
       picker = require("bb.snacks_picker"),
       terminal = {
@@ -139,13 +140,13 @@ return {
         end,
         desc = "Resume",
       },
-      {
-        "<Leader>_",
-        function()
-          Snacks.scratch()
-        end,
-        desc = "Toggle Scratch Buffer",
-      },
+      -- {
+      --   "<Leader>_",
+      --   function()
+      --     Snacks.scratch()
+      --   end,
+      --   desc = "Toggle Scratch Buffer",
+      -- },
       {
         "<leader><BS>",
         function()

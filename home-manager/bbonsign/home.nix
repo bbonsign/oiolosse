@@ -81,6 +81,7 @@
       beam.packages.erlang_27.erlang
       bottom
       brightnessctl
+      btop
       bun
       cargo
       cbonsai
@@ -141,10 +142,11 @@
       # pgadmin4
       pgcli
       pinentry-gtk2
+      postgresql
       presenterm
       ripgrep
       snyk
-      # snowflake-cli
+      snowsql
       sops
       sqlite
       ssm-session-manager-plugin # For aws cli
@@ -159,6 +161,7 @@
       uv # python packaging and project manager
       watchman
       which
+      xdg-desktop-portal-termfilechooser
       xz
       yarn
       yazi

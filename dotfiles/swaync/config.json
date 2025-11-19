@@ -76,7 +76,7 @@
         },
         {
           "label": " ",
-          "command": "kitty bash -i -c 'btm'"
+          "command": "kitty bash -i -c 'btop'"
         },
         {
           "label": "",

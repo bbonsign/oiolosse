@@ -4,6 +4,10 @@ return {
     version = not vim.g.lazyvim_blink_main and "*",
     -- build = vim.g.lazyvim_blink_main and "cargo build --release",
     -- build = vim.g.lazyvim_blink_main and "nix run .#build-plugin",
+    dependencies = {
+      "moyiz/blink-emoji.nvim",
+      { "disrupted/blink-cmp-conventional-commits" },
+    },
     opts = {
       fuzzy = {
         implementation = "prefer_rust",
@@ -36,15 +40,54 @@ return {
         -- adding any nvim-cmp sources here will enable them with blink.compat
         -- compat = {},
         default = { "lsp", "path", "snippets", "buffer", "markdown" },
+        per_filetype = {
+          sql = { "lsp", "dadbod", "path", "snippets", "buffer", "markdown" },
+          gitcommit = { "conventional_commits", "emoji", "lsp", "path", "snippets", "buffer" },
+          jjdescription = { "conventional_commits", "emoji", "lsp", "path", "snippets", "buffer" },
+          markdown = { "lsp", "path", "emoji", "snippets", "markdown", "buffer" },
+          codecompanion = { "codecompanion" },
+        },
         providers = {
+          dadbod = {
+            name = "Dadbod",
+            module = "vim_dadbod_completion.blink",
+            opts = {
+              vim_dadbod_completion_lowercase_keywords = 1,
+            },
+          },
           markdown = {
             name = "RenderMarkdown",
             module = "render-markdown.integ.blink",
             fallbacks = { "lsp" },
           },
-        },
-        per_filetype = {
-          codecompanion = { "codecompanion" },
+          emoji = {
+            module = "blink-emoji",
+            name = "Emoji",
+            -- score_offset = 15, -- Tune by preference
+            opts = {
+              insert = true, -- Insert emoji (default) or complete its name
+              ---@type string|table|fun():table
+              trigger = function()
+                return { ":" }
+              end,
+            },
+            should_show_items = function()
+              return vim.tbl_contains(
+                -- Enable emoji completion only for git commits and markdown.
+                -- By default, enabled for all file-types.
+                { "jjdescription", "gitcommit", "markdown" },
+                vim.o.filetype
+              )
+            end,
+          },
+          conventional_commits = {
+            name = "Conventional Commits",
+            module = "blink-cmp-conventional-commits",
+            enabled = function()
+              return vim.bo.filetype == "gitcommit" or vim.bo.filetype == "jjdescription"
+            end,
+            opts = {}, -- none so far
+          },
         },
       },
 
