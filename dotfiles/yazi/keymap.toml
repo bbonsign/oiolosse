@@ -20,9 +20,37 @@ run = "leave"
 desc = "Back to the parent directory"
 
 [[mgr.prepend_keymap]]
+on = "<C-h>"
+run = "back"
+
+[[mgr.prepend_keymap]]
+on = "<C-l>"
+run = "forward"
+
+[[mgr.prepend_keymap]]
 on = "<C-k>"
 run = "plugin parent-arrow -1"
 
 [[mgr.prepend_keymap]]
 on = "<C-j>"
 run = "plugin parent-arrow 1"
+
+[[mgr.prepend_keymap]]
+on = "H"
+run = "plugin duckdb -1"
+desc = "Scroll one column to the left"
+
+[[mgr.prepend_keymap]]
+on = "L"
+run = "plugin duckdb +1"
+desc = "Scroll one column to the right"
+
+[[mgr.prepend_keymap]]
+on = ["g", "u"]
+run = "plugin duckdb -open"
+desc = "open with duckdb"
+
+[[mgr.prepend_keymap]]
+on = ["g", "U"]
+run = "plugin duckdb -ui"
+desc = "open with duckdb ui"

@@ -10,3 +10,6 @@ end, 3300, Status.LEFT)
 
 require("full-border"):setup()
 require("folder-rules"):setup()
+require("duckdb"):setup({
+  mode = "standard",
+})

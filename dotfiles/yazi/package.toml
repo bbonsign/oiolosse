@@ -3,6 +3,11 @@ use = "yazi-rs/plugins:full-border"
 rev = "8f1d971"
 hash = "3996fc74044bc44144b323686f887e1"
 
+[[plugin.deps]]
+use = "wylie102/duckdb"
+rev = "3f8c863"
+hash = "87b9233a74325e95011670ed20bbd0d4"
+
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
 rev = "5f56364"

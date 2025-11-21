@@ -44,7 +44,12 @@ return {
             { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
             { icon = "󰝒 ", key = "n", desc = "New File", action = ":ene | startinsert" },
             { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-            -- { icon = "󰠮 ", key = "S", desc = "Scratch Buffers", action = ":lua Snacks.scratch.select()" },
+            {
+              icon = " ",
+              key = "S",
+              desc = "Git Status Files",
+              action = ":lua Snacks.dashboard.pick('git_status')",
+            },
             { icon = " ", key = "G", desc = "Lazygit", action = ":lua Snacks.lazygit()" },
             { icon = " ", key = "J", desc = "JJUI", action = ":lua Snacks.terminal.toggle('jjui')" },
             { icon = " ", key = "b", desc = "Browse repo", action = ":lua Snacks.gitbrowse()" },
