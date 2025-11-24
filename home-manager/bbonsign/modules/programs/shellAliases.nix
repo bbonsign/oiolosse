@@ -16,6 +16,7 @@
   # dul = "du -h -d1 | sort -hr";
   cdr = "cd (git rev-parse --show-toplevel)";
   gcd = "cd (git rev-parse --show-toplevel)";
+  zr = "cd (git rev-parse --show-toplevel)";
   icat = "kitty +kitten icat";
   l = "eza --all --long --group-directories-first --hyperlink --icons auto";
   lg = "eza --all l --group-directories-first --hyperlink --icons auto --git";

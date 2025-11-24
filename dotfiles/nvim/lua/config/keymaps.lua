@@ -108,6 +108,7 @@ vim.keymap.set("n", "<Leader>fR", ":earlier 1f<CR>", { desc = "Revert to last wr
 
 vim.keymap.set("n", "<Leader>w=", "<C-w>=", { desc = "Balance splits" })
 vim.keymap.set("n", "<Leader>wc", "<C-w>c", { desc = "Close window" })
+vim.keymap.set("n", "<Leader>wf", "<Cmd>fc<CR>", { desc = "Close floating windows" })
 vim.keymap.set("n", "<Leader>wH", "<C-w>H", { desc = "Move left" })
 vim.keymap.set("n", "<Leader>wh", "<C-w>h", { desc = "Change left" })
 vim.keymap.set("n", "<Leader>wJ", "<C-w>J", { desc = "Move down" })

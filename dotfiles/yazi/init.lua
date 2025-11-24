@@ -8,6 +8,7 @@ Status:children_add(function(self)
   end
 end, 3300, Status.LEFT)
 
+require("smart-enter"):setup({})
 require("full-border"):setup()
 require("folder-rules"):setup()
 require("duckdb"):setup({

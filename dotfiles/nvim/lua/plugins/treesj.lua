@@ -1,8 +1,8 @@
 return {
   "Wansmer/treesj",
   keys = {
-    "<space>m",
-    "<space>j",
+    "<space>M",
+    "<space>J",
   },
   dependencies = { "nvim-treesitter/nvim-treesitter" },
   config = function()
@@ -27,7 +27,7 @@ return {
       langs = langs,
     })
 
-    vim.keymap.set("n", "<leader>j", require("treesj").toggle, { desc = "Treesj" })
-    vim.keymap.set("n", "<leader>m", require("treesj").toggle, { desc = "Treesj" })
+    vim.keymap.set("n", "<leader>J", require("treesj").toggle, { desc = "Treesj" })
+    vim.keymap.set("n", "<leader>M", require("treesj").toggle, { desc = "Treesj" })
   end,
 }

@@ -266,3 +266,17 @@ export alias ":ef" = rg-fzf-nvim
 export alias "rfv" = rg-fzf-nvim
 
 export alias ":en" = exec nu
+
+export def --env ":dare" [] {
+  let env_string = aws configure export-credentials --format env
+  let _envs = $env_string | lines | each { $in | parse "export {key}={value}" | get 0 }
+  mut envs = {}
+  for x in $_envs {
+    $envs = $envs | insert $x.key $x.value
+  }
+  $env.AWS_ACCESS_KEY_ID = $envs.AWS_ACCESS_KEY_ID
+  $env.AWS_SECRET_ACCESS_KEY = $envs.AWS_SECRET_ACCESS_KEY
+  $env.AWS_SESSION_TOKEN = $envs.AWS_SESSION_TOKEN
+  # $env.AWS_CREDENTIAL_EXPIRATION = $envs.AWS_CREDENTIAL_EXPIRATION
+  hide-env AWS_PROFILE
+}

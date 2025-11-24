@@ -89,6 +89,7 @@
       codex
       cowsay
       delta
+      difftastic
       dnsutils # `dig` + `nslookup`
       duckdb
       duf
