@@ -350,19 +350,19 @@ def logout() -> None:
     create_exec_task("niri msg action quit")
 
 
-def swaync():
-    return widgets.Button(
-        child=widgets.Box(
-            child=[
-                widgets.Icon(
-                    image="system-shutdown-symbolic",
-                    pixel_size=16,
-                ),
-                menu,
-            ]
-        ),
-        on_click=lambda x: menu.popup(),
-    )
+# def swaync():
+#     return widgets.Button(
+#         child=widgets.Box(
+#             child=[
+#                 widgets.Icon(
+#                     image="system-shutdown-symbolic",
+#                     pixel_size=16,
+#                 ),
+#                 menu,
+#             ]
+#         ),
+#         on_click=lambda x: menu.popup(),
+#     )
 
 
 def power_menu() -> widgets.Button:
@@ -456,6 +456,7 @@ def bar(monitor_id: int = 0) -> widgets.Window:
     return widgets.Window(
         namespace=f"ignis_bar_{monitor_id}",
         monitor=monitor_id,
+        # anchor=["left", "top", "right"],
         anchor=["left", "bottom", "right"],
         exclusivity="exclusive",
         child=widgets.CenterBox(

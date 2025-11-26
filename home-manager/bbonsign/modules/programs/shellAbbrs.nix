@@ -81,6 +81,7 @@
   gwta = "git worktree add";
   gwtl = "git worktree list";
   gwtr = "git worktree remove";
+  hg = "kitten hyperlinked-grep";
   ipy = "ipython";
   # j = "jj";
   jgf = "jj git fetch";

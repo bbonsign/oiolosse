@@ -106,43 +106,7 @@ return {
         section_separators = { left = "", right = "" },
       },
       tabline = {
-        lualine_a = {
-          {
-            function()
-              return " "
-            end,
-            color = { bg = bg_color() },
-          },
-        },
-        lualine_b = {
-          {
-            function()
-              return get_fileinfo_widget()
-            end,
-            color = { bg = bg_color() },
-          },
-        },
-        lualine_c = {
-          {
-            color = { bg = bg_color() },
-          },
-        },
-        lualine_x = {
-          {
-            symbols.get,
-            cond = symbols.has,
-            color = { bg = bg_color() },
-          },
-        },
-        lualine_z = {
-          {
-            "tabs",
-            separator = "",
-            section_separators = { left = "", right = "" },
-          },
-        },
-      },
-      sections = {
+
         lualine_a = {
           {
             function()
@@ -280,6 +244,43 @@ return {
             "fileformat",
             color = { fg = Snacks.util.color("StatusLine"), bg = bg_color() },
             padding = { left = 1, right = 1 },
+          },
+        },
+      },
+      sections = {
+        lualine_a = {
+          {
+            function()
+              return " "
+            end,
+            color = { bg = bg_color() },
+          },
+        },
+        lualine_b = {
+          {
+            function()
+              return get_fileinfo_widget()
+            end,
+            color = { bg = bg_color() },
+          },
+        },
+        lualine_c = {
+          {
+            color = { bg = bg_color() },
+          },
+        },
+        lualine_x = {
+          {
+            symbols.get,
+            cond = symbols.has,
+            color = { bg = bg_color() },
+          },
+        },
+        lualine_z = {
+          {
+            "tabs",
+            separator = "",
+            section_separators = { left = "", right = "" },
           },
         },
       },

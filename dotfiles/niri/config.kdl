@@ -152,7 +152,7 @@ overview {
   backdrop-color "#0F1329"
   zoom 0.55
   workspace-shadow {
-    // off
+    off
   }
 }
 
@@ -279,7 +279,8 @@ layout {
     width 2
     inactive-color "#414868"
     active-gradient from="#7dcfff" to="#bb9af7" angle=135
-    // active-gradient from="#ee7c78" to="#ea76cb" angle=45 in="oklch longer hue" // Rainbow
+    // Rainbow
+    // active-gradient from="#ee7c78" to="#ea76cb" angle=45 in="oklch longer hue" 
     // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
   }
 
@@ -351,7 +352,7 @@ spawn-at-startup "xwayland-satellite"
 spawn-at-startup "ignis" "init"
 spawn-at-startup "1password" "--silent" // --silent opens to the system tray without showing the main window
 spawn-sh-at-startup "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance"
-// spawn-at-startup "~/.local/bin/niri-scratch.nu"
+spawn-at-startup "~/.local/bin/niri-scratch.nu"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -567,8 +568,9 @@ binds {
   // Mod+Comma hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
   // Mod+Period hotkey-overlay-title="Window Picker"{ spawn "~/.local/bin/niri-choose-window.nu"; }
   Mod+Minus hotkey-overlay-title="Scratch Term" { spawn "~/.local/bin/niri-scratch.nu"; }
-  // Mod+Minus hotkey-overlay-title="Scratch Term" { spawn-sh "kitten quick-access-terminal"; }
-  
+  // the kitty quick-access-terminal only can be shown on one output monitor at the moment
+  // Mod+Minus hotkey-overlay-title="Scratch Term" { spawn-sh "/var/home/bbonsign/.local/kitty.app/bin/kitten quick-access-terminal -o lines=40 -o tab_bar_style=hidden"; }
+  // Mod+Equal  { spawn-sh "/var/home/bbonsign/.local/kitty.app/bin/kitten panel --listen-on=--layer overlay --margin-left 200 --margin-right 200 --margin-bottom 200 --margin-top 200 --edge center --override tab_bar_style=hidden -o background_opacity=.95 btm"; }
 
   Mod+Shift+Q { close-window; }
 

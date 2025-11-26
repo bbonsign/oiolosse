@@ -4,6 +4,7 @@ _:
   config = {
     programs.lazygit = {
       enable = true;
+      enableBashIntegration = false;
       settings = {
         # to exit immediately if run outside of the Git repository
         notARepository = "quit";
