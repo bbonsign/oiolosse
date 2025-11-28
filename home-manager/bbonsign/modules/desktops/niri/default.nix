@@ -1,5 +1,9 @@
 { pkgs, lib, inputs, ... }:
 {
+  imports = [
+    ../dms
+  ];
+
   config = {
     home.packages = with pkgs; [
       fuzzel
@@ -49,20 +53,6 @@
           };
         };
 
-        swaybg = {
-          Install.WantedBy = [ "niri.service" ];
-          Unit = {
-            After = [ "graphical-session.target" ];
-            PartOf = [ "graphical-session.target" ];
-            Requisite = [ "graphical-session.target" ];
-          };
-          Service = {
-            Restart = lib.mkForce "on-failure";
-            # ExecStart = "${pkgs.swaybg}/bin/swaybg --image %h/oiolosse/home-manager/bbonsign/modules/wallpapers/stsci-h-p1821a-m-1699x2000.png --mode fill";
-            ExecStart = "${pkgs.swaybg}/bin/swaybg --image %h/oiolosse/home-manager/bbonsign/modules/wallpapers/phil-botha-a0TJ3hy-UD8-unsplash.jpg --mode fill";
-          };
-        };
-
         swayidle = {
           Install.WantedBy = [ "niri.service" ];
           Unit = {
@@ -77,18 +67,36 @@
           };
         };
 
-        swaync = {
-          Install.WantedBy = [ "niri.service" ];
-          Unit = {
-            After = [ "graphical-session.target" ];
-            PartOf = [ "graphical-session.target" ];
-            Requisite = [ "graphical-session.target" ];
-          };
-          Service = {
-            Restart = lib.mkForce "on-failure";
-            ExecStart = "${pkgs.swaynotificationcenter}/bin/swaync";
-          };
-        };
+
+        # handled by DMS
+        # swaybg = {
+        #   Install.WantedBy = [ "niri.service" ];
+        #   Unit = {
+        #     After = [ "graphical-session.target" ];
+        #     PartOf = [ "graphical-session.target" ];
+        #     Requisite = [ "graphical-session.target" ];
+        #   };
+        #   Service = {
+        #     Restart = lib.mkForce "on-failure";
+        #     # ExecStart = "${pkgs.swaybg}/bin/swaybg --image %h/oiolosse/home-manager/bbonsign/modules/wallpapers/stsci-h-p1821a-m-1699x2000.png --mode fill";
+        #     ExecStart = "${pkgs.swaybg}/bin/swaybg --image %h/oiolosse/home-manager/bbonsign/modules/wallpapers/phil-botha-a0TJ3hy-UD8-unsplash.jpg --mode fill";
+        #   };
+        # };
+
+        # handled by DMS
+        # swaync = {
+        #   Install.WantedBy = [ "niri.service" ];
+        #   Unit = {
+        #     After = [ "graphical-session.target" ];
+        #     PartOf = [ "graphical-session.target" ];
+        #     Requisite = [ "graphical-session.target" ];
+        #   };
+        #   Service = {
+        #     Restart = lib.mkForce "on-failure";
+        #     ExecStart = "${pkgs.swaynotificationcenter}/bin/swaync";
+        #   };
+        # };
+
       };
     };
   };

@@ -39,7 +39,7 @@ _:
 
         "bg+" = "#1a1b26";
         "bg" = "-1"; # Default terminal foreground/background color
-        "border" = "#27a1b9";
+        "border" = "#7aa2f7";
         "fg" = "#c0caf5";
         "gutter" = "#16161e";
         "header" = "#ff9e64";
