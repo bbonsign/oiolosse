@@ -1,0 +1,25 @@
+workspace "term" {
+  open-on-output "eDP-1"
+}
+
+workspace "browser" {
+  open-on-output "DP-3"
+}
+
+workspace "chat" {
+  open-on-output "eDP-1"
+}
+
+workspace "email" {
+  open-on-output "eDP-1"
+}
+
+// workspace "notes" {
+//   open-on-output "eDP-1"
+// }
+
+// Workspace for scratch windows:
+workspace "z" {
+  open-on-output "eDP-1"
+}
+

@@ -22,6 +22,8 @@
       TERMINAL = "kitty";
       GRIM_DEFAULT_DIR = "$HOME/Pictures/Screenshots";
       ERL_AFLAGS = "-kernel shell_history enabled";
+      # Hint electron apps to use wayland:
+      NIXOS_OZONE_WL = "1";
     };
 
     # nix = {
@@ -42,6 +44,12 @@
       size = 24;
     };
 
+    nixpkgs = {
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = (pkg: true);
+      };
+    };
 
     # # Link configs that don't have home-manager modules
     # home.file = {
