@@ -1,0 +1,42 @@
+{
+    "closeOnFocusLoss": false,
+    "considerPreedit": false,
+    "faviconService": "twenty",
+    "font": {
+        "normal": "FiraCode Nerd Font Med",
+        "size": 10.5
+    },
+    "keybinding": "default",
+    "keybinds": {
+        "action.copy": "control+shift+C",
+        "action.copy-name": "control+shift+.",
+        "action.copy-path": "control+shift+,",
+        "action.dangerous-remove": "control+shift+X",
+        "action.duplicate": "control+D",
+        "action.edit": "control+E",
+        "action.edit-secondary": "control+shift+E",
+        "action.move-down": "control+shift+O",
+        "action.move-up": "control+shift+,",
+        "action.new": "control+N",
+        "action.open": "control+O",
+        "action.pin": "control+shift+P",
+        "action.refresh": "control+R",
+        "action.remove": "control+X",
+        "action.save": "control+S",
+        "open-search-filter": "control+/",
+        "open-settings": "control+,",
+        "toggle-action-panel": "control+B"
+    },
+    "popToRootOnClose": true,
+    "rootSearch": {
+        "searchFiles": false
+    },
+    "theme": {
+        "name": "tokyo-night"
+    },
+    "window": {
+        "csd": false,
+        "opacity": 0.8,
+        "rounding": 10
+    }
+}
