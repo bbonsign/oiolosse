@@ -14,8 +14,8 @@
       soteria # polkit agent
       swappy # screenshot annotation tool
       swaybg
-      swayidle
-      swaynotificationcenter
+      # swayidle
+      # swaynotificationcenter
       wev
       wl-clipboard
       wlprop
@@ -24,14 +24,20 @@
       xwayland-satellite
     ];
 
+    # handled by DMS
     programs = {
       waybar = {
-        enable = true;
+        enable = false;
         systemd = {
           enable = false;
           target = "niri.service";
         };
       };
+    };
+
+    services.hypridle = {
+      enable = true;
+      systemdTarget = "graphical-session.target";
     };
 
     systemd.user = {
@@ -53,19 +59,19 @@
           };
         };
 
-        swayidle = {
-          Install.WantedBy = [ "niri.service" ];
-          Unit = {
-            After = [ "niri.service" ];
-            PartOf = [ "graphical-session.target" ];
-            Requisite = [ "graphical-session.target" ];
-          };
-          Service = {
-            Type = "simple";
-            Restart = lib.mkForce "on-failure";
-            ExecStart = "${pkgs.swayidle}/bin/swayidle";
-          };
-        };
+        # swayidle = {
+        #   Install.WantedBy = [ "niri.service" ];
+        #   Unit = {
+        #     After = [ "niri.service" ];
+        #     PartOf = [ "graphical-session.target" ];
+        #     Requisite = [ "graphical-session.target" ];
+        #   };
+        #   Service = {
+        #     Type = "simple";
+        #     Restart = lib.mkForce "on-failure";
+        #     ExecStart = "${pkgs.swayidle}/bin/swayidle";
+        #   };
+        # };
 
 
         # handled by DMS

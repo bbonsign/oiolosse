@@ -38,7 +38,10 @@ binds {
   // Mod+Minus hotkey-overlay-title="Scratch Term" { spawn-sh "/var/home/bbonsign/.local/kitty.app/bin/kitten quick-access-terminal -o lines=40 -o tab_bar_style=hidden"; }
   // Mod+Equal  { spawn-sh "/var/home/bbonsign/.local/kitty.app/bin/kitten panel --listen-on=--layer overlay --margin-left 200 --margin-right 200 --margin-bottom 200 --margin-top 200 --edge center --override tab_bar_style=hidden -o background_opacity=.95 btm"; }
 
-  Mod+W hotkey-overlay-title="Browse Wallpapers" {
+  Mod+W hotkey-overlay-title="Toggle Overview" {
+        spawn "dms" "ipc" "call" "dash" "toggle" "overview";
+      }
+  Mod+Shift+W hotkey-overlay-title="Toggle Weather" {
         spawn "dms" "ipc" "call" "dash" "toggle" "weather";
       }
   Mod+Ctrl+W hotkey-overlay-title="Browse Wallpapers" {
