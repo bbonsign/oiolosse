@@ -17,7 +17,7 @@ binds {
   // Mod+T { spawn-sh "notify-send hello && exec alacritty"; }
   // Mod+Return { spawn "kitty"; }
   Mod+Return { spawn-sh "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance"; }
-  Mod+Ctrl+B { spawn-sh "dms ipc bar toggle 1"; }
+  Mod+Ctrl+B { spawn-sh "dms ipc call bar toggle name 'Main Bar'"; }
   Mod+Ctrl+D { spawn "fuzzel" "--show-actions" "--lines" "20" "--width" "80"; }
   Mod+D { spawn-sh "vicinae vicinae://toggle"; }
   Mod+Grave { spawn-sh "kitty --single-instance yazi || $HOME/.local/kitty.app/bin/kitty yazi"; }
