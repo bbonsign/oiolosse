@@ -36,7 +36,7 @@ menu:
   "0":
     desc: Power
     submenu:
-      "l": { desc: Lock, cmd: "~/.local/bin/lock.sh" }
+      "l": { desc: Lock, cmd: "hyprlock" }
       "e": { desc: Exit, cmd: niri msg action quit }
       "s": { desc: Suspend, cmd: systemctl suspend }
       "h": { desc: Hibernate, cmd: systemctl hibernate }

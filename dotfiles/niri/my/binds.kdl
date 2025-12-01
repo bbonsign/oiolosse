@@ -24,7 +24,8 @@ binds {
   Mod+E repeat=false { spawn-sh "vicinae vicinae://extensions/vicinae/vicinae/search-emojis"; }
   Mod+R repeat=false { spawn-sh "vicinae vicinae://extensions/vicinae/clipboard/history"; }
   Mod+Alt+L hotkey-overlay-title="Lock" { spawn "hyprlock"; }
-  Mod+Ctrl+Space { spawn "wlr-which-key"; }
+  Mod+Space { spawn "wlr-which-key"; }
+  // Mod+Ctrl+Space { spawn "wlr-which-key"; }
   Mod+Shift+Semicolon { spawn "wlr-which-key"; }
   // Alt+Tab repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
   Mod+Tab repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }

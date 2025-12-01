@@ -42,8 +42,12 @@ output "DP-1" {
 output "DP-3" {
   position x=1920 y=0
 }
-output "DP-4" {
+// output "DP-4" {
+//   position x=1920 y=0
+// }
+
+// manufacturer, model, and serial, separated by a single space each
+output "HP Inc. HP E243i CNK0192YR2"{
   position x=1920 y=0
 }
-
 

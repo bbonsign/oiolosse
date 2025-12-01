@@ -3,6 +3,7 @@ limit = 0
 
 [custom_commands]
 "show all" = { revset = "all()" }
+"show tracked" = { revset = "tracked_remote_bookmarks()::@" }
 "show default" = { revset = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())" }
 "new commit after here" = { args = [
   "new",
