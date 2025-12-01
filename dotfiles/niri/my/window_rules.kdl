@@ -137,6 +137,7 @@ window-rule {
     match app-id=r#"org.quickshell$"#
     match app-id=r#"nwg-look"#
     open-floating true
+    default-column-width {proportion 0.50;}
 }
 
 window-rule {

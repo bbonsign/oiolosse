@@ -91,6 +91,10 @@ binds {
   // Makes the column "fill the rest of the space".
   Mod+Ctrl+E hotkey-overlay-title="Expand Available Width" { expand-column-to-available-width; }
   Mod+F hotkey-overlay-title="Maximize Column" { maximize-column; }
+  Mod+Shift+F { fullscreen-window; }
+  Mod+Ctrl+Shift+F hotkey-overlay-title="Maximize to Edges" { maximize-window-to-edges; }
+  Mod+Alt+Shift+F { toggle-windowed-fullscreen; }
+
   Mod+C hotkey-overlay-title="Center Column" { center-column; }
   Mod+Ctrl+C { center-visible-columns; }
   // Mod+N { spawn-sh "swaync-client --toggle-panel ; wlr-which-key notifications"; }
@@ -223,9 +227,6 @@ binds {
   Mod+Shift+R { switch-preset-column-width; }
   Mod+Ctrl+R { switch-preset-window-height; }
   Mod+Ctrl+Shift+R { reset-window-height; }
-
-  Mod+Shift+F { fullscreen-window; }
-  Mod+Ctrl+Shift+F { toggle-windowed-fullscreen; }
 
   // Finer width adjustments.
   // This command can also:
