@@ -1,7 +1,7 @@
 { pkgs, lib, inputs, ... }:
 {
   imports = [
-    ../dms
+    # ../dms
   ];
 
   config = {
@@ -24,7 +24,7 @@
       xwayland-satellite
     ];
 
-    # handled by DMS
+    # handled by Shell
     programs = {
       waybar = {
         enable = false;
@@ -59,6 +59,7 @@
           };
         };
 
+        # TODO: move to separate module
         # swayidle = {
         #   Install.WantedBy = [ "niri.service" ];
         #   Unit = {
@@ -74,7 +75,7 @@
         # };
 
 
-        # handled by DMS
+        # handled by Shell
         # swaybg = {
         #   Install.WantedBy = [ "niri.service" ];
         #   Unit = {
@@ -89,7 +90,7 @@
         #   };
         # };
 
-        # handled by DMS
+        # handled by Shell
         # swaync = {
         #   Install.WantedBy = [ "niri.service" ];
         #   Unit = {

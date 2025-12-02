@@ -6,7 +6,7 @@
 
   config = {
     programs.dankMaterialShell = {
-      enable = true;
+      enable = false;
       quickshell.package = inputs.quickshell.packages.${system}.default;
 
       systemd = {

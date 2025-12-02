@@ -17,7 +17,6 @@ binds {
   // Mod+T { spawn-sh "notify-send hello && exec alacritty"; }
   // Mod+Return { spawn "kitty"; }
   Mod+Return { spawn-sh "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance"; }
-  Mod+Ctrl+B { spawn-sh "dms ipc call bar toggle name 'Main Bar'"; }
   Mod+Ctrl+D { spawn "fuzzel" "--show-actions" "--lines" "20" "--width" "80"; }
   Mod+D { spawn-sh "vicinae vicinae://toggle"; }
   Mod+Grave { spawn-sh "kitty --single-instance yazi || $HOME/.local/kitty.app/bin/kitty yazi"; }
@@ -26,7 +25,7 @@ binds {
   Mod+Alt+L hotkey-overlay-title="Lock" { spawn "hyprlock"; }
   Mod+Space { spawn "wlr-which-key"; }
   // Mod+Ctrl+Space { spawn "wlr-which-key"; }
-  Mod+Shift+Semicolon { spawn "wlr-which-key"; }
+  // Mod+Shift+Semicolon { spawn "wlr-which-key"; }
   // Alt+Tab repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
   Mod+Tab repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
   // Mod+Comma repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
@@ -38,17 +37,6 @@ binds {
   // the kitty quick-access-terminal only can be shown on one output monitor at the moment
   // Mod+Minus hotkey-overlay-title="Scratch Term" { spawn-sh "/var/home/bbonsign/.local/kitty.app/bin/kitten quick-access-terminal -o lines=40 -o tab_bar_style=hidden"; }
   // Mod+Equal  { spawn-sh "/var/home/bbonsign/.local/kitty.app/bin/kitten panel --listen-on=--layer overlay --margin-left 200 --margin-right 200 --margin-bottom 200 --margin-top 200 --edge center --override tab_bar_style=hidden -o background_opacity=.95 btm"; }
-
-  Mod+W hotkey-overlay-title="Toggle Overview" {
-        spawn "dms" "ipc" "call" "dash" "toggle" "overview";
-      }
-  Mod+Shift+W hotkey-overlay-title="Toggle Weather" {
-        spawn "dms" "ipc" "call" "dash" "toggle" "weather";
-      }
-  Mod+Ctrl+W hotkey-overlay-title="Browse Wallpapers" {
-        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
-      }
-
 
   Mod+Shift+Q { close-window; }
 
@@ -284,22 +272,22 @@ binds {
   Mod+Ctrl+Shift+P { power-off-monitors; }
 
   // Example volume keys mappings for PipeWire & WirePlumber.
-  // XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause";}
-  // XF86AudioPause allow-when-locked=true { spawn "playerctl" "pause";}
-  // XF86AudioStop allow-when-locked=true { spawn "playerctl" "stop";}
-  // XF86AudioForward allow-when-locked=true { spawn "playerctl" "position" "+10";}
-  // XF86AudioNext allow-when-locked=true { spawn "playerctl" "next";}
-  // XF86AudioPrev allow-when-locked=true { spawn "playerctl" "previous";}
-  // XF86AudioRewind allow-when-locked=true { spawn "playerctl" "position" "-10";}
-  //
-  // XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
-  // XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
-  // XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-  // XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-  Mod+M                allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
+  XF86AudioPlay allow-when-locked=true    { spawn-sh "playerctl play-pause";}
+  XF86AudioPause allow-when-locked=true   { spawn-sh "playerctl pause";}
+  XF86AudioStop allow-when-locked=true    { spawn-sh "playerctl stop";}
+  XF86AudioForward allow-when-locked=true { spawn-sh "playerctl position +10";}
+  XF86AudioNext allow-when-locked=true    { spawn-sh "playerctl next";}
+  XF86AudioPrev allow-when-locked=true    { spawn-sh "playerctl previous";}
+  XF86AudioRewind allow-when-locked=true  { spawn-sh "playerctl position -10";}
+
+  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+  XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+  XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+  Mod+M                allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+
   // XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
   // XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "5%+"; }
-  Mod+Shift+Ctrl+Alt+B                allow-when-locked=true { spawn "dms" "kill"; }
 
 }
 

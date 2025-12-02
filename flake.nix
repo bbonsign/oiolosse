@@ -36,14 +36,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dankMaterialShell = {
-      url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.dgop.follows = "dgop";
-    };
-    quickshell = {
-      # add ?ref=<tag> to track a tag
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    # dankMaterialShell = {
+    #   url = "github:AvengeMedia/DankMaterialShell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.dgop.follows = "dgop";
+    # };
+    # quickshell = {
+    #   # add ?ref=<tag> to track a tag
+    #   url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

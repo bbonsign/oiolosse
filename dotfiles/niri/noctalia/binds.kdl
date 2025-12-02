@@ -1,0 +1,26 @@
+binds {
+  // Core Noctalia binds
+  Mod+Shift+Semicolon { spawn-sh  "noctalia-shell ipc call launcher toggle"; }
+  Mod+S { spawn-sh  "noctalia-shell ipc call controlCenter toggle"; }
+  Mod+Comma { spawn-sh  "noctalia-shell ipc call settings toggle"; }
+
+  // // Audio controls
+  // XF86AudioRaiseVolume { spawn-sh  "noctalia-shell ipc call volume increase"; }
+  // XF86AudioLowerVolume { spawn-sh  "noctalia-shell ipc call volume decrease"; }
+  // XF86AudioMute { spawn-sh  "noctalia-shell ipc call volume muteOutput"; }
+
+  // Brightness controls
+  XF86MonBrightnessUp { spawn-sh  "noctalia-shell ipc call brightness increase"; }
+  XF86MonBrightnessDown { spawn-sh  "noctalia-shell ipc call brightness decrease"; }
+
+  // Utility shortcuts
+  Mod+N { spawn-sh  "noctalia-shell ipc call notifications toggleHistory"; }
+  Mod+BackSpace { spawn-sh  "noctalia-shell ipc call notifications clear"; }
+  Mod+V { spawn-sh  "noctalia-shell ipc call launcher clipboard"; }
+
+  Mod+Ctrl+B hotkey-overlay-title="Toggle Bar" { spawn-sh "noctalia-shell ipc call bar toggle"; }
+
+  Mod+W hotkey-overlay-title="Toggle Overview" { spawn-sh "noctalia-shell ipc call controlCenter toggle" ; }
+  Mod+Shift+W hotkey-overlay-title="Toggle Weather" { spawn-sh "noctalia-shell ipc call calendar toggle" ; }
+  Mod+Ctrl+W hotkey-overlay-title="Browse Wallpapers" { spawn-sh "noctalia-shell ipc call wallpaper toggle"; }
+}

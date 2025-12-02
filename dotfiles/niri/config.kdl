@@ -20,7 +20,8 @@ environment {
   DMS_DISABLE_POLKIT "1"
 }
 
-include "dms/includes.kdl"
+// include "dms/includes.kdl"
+include "noctalia/includes.kdl"
 include "my/includes.kdl"
 
 // Add lines like this to spawn processes at startup.
@@ -29,7 +30,7 @@ include "my/includes.kdl"
 // See the binds section below for more spawn examples.
 spawn-at-startup "/usr/libexec/xdg-desktop-portal" "--replace"
 spawn-sh-at-startup "wl-paste --watch cliphist store &"
-spawn-at-startup "nixGL" "dms" "run"
+// spawn-at-startup "nixGL" "noctalia-shell"
 // spawn-at-startup "swaync"
 // spawn-at-startup "ignis" "init"
 spawn-at-startup "1password" "--silent" // --silent opens to the system tray without showing the main window
