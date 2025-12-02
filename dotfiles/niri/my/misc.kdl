@@ -1,6 +1,6 @@
 overview {
   backdrop-color "#0F1329"
-  zoom 0.55
+  zoom 0.45
   workspace-shadow {
     off
   }
