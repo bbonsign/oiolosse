@@ -56,7 +56,8 @@ window-rule {
 // Open on named workspace, if it runs at niri startup.
 window-rule {
   match at-startup=true app-id=r#"kitty"#
-  default-column-width {proportion 1.00;}
+  // default-column-width {proportion 1.00;}
+  open-maximized-to-edges true
   open-on-workspace "term"
 }
 window-rule {
