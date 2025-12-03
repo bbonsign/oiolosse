@@ -59,6 +59,22 @@
           };
         };
 
+        xdg-desktop-portal-gnome = {
+          Install.WantedBy = [ "niri.service" ];
+          Unit = {
+            Description = "Portal service (GNOME implementation)";
+            PartOf = ["graphical-session.target"];
+            After = ["graphical-session.target"];
+            Requisite=["graphical-session.target"];
+          };
+          Service = {
+            Type = "dbus";
+            BusName = "org.freedesktop.impl.portal.desktop.gnome";
+            ExecStart = "%h/.nix-profile/libexec/xdg-desktop-portal-gnome";
+            Restart = "on-failure";
+          };
+        };
+
         # TODO: move to separate module
         # swayidle = {
         #   Install.WantedBy = [ "niri.service" ];

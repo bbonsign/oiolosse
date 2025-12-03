@@ -169,7 +169,7 @@
       uv # python packaging and project manager
       watchman
       which
-      xdg-desktop-portal-termfilechooser
+      xdg-desktop-portal-gnome
       xz
       yarn
       yazi
@@ -200,6 +200,7 @@
       ssh-agent.enable = true;
       # https://nixos.wiki/wiki/Bluetooth#Using_Bluetooth_headset_buttons_to_control_media_player
       mpris-proxy.enable = true;
+      gnome-keyring.enable = true;
     };
 
     xdg.terminal-exec = {
@@ -221,7 +222,8 @@
         pkgs.xdg-desktop-portal-gtk
         pkgs.xdg-desktop-portal-gnome
       ];
-      config.common.default = [ "gtk;wlr" ];
+      config.common.default = [ "gnome" "gtk" ];
     };
+
   };
 }
