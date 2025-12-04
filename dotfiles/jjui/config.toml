@@ -11,9 +11,20 @@ limit = 0
   "--insert-after",
   "$change_id",
 ] }
+[custom_commands."move commit down"]
+key = ["J"]
+args = ["rebase", "-r", "$checked_commit_ids", "--insert-before", "$change_id"]
+
+[custom_commands."move commit up"]
+key = ["K"]
+args = ["rebase", "-r", "$checked_commit_ids", "--insert-after", "$change_id"]
 
 [revisions]
 template = 'builtin_log_oneline'
+
+[suggest]
+[suggest.exec]
+mode = "fuzzy" # Accepted values: "off" (default), "regex", "fuzzy".
 
 [preview]
 revision_command = [
