@@ -20,7 +20,7 @@
       enableVPN = true;                  # VPN management widget
       enableBrightnessControl = true;    # Backlight/brightness controls
       enableColorPicker = true;          # Color picker tool
-      enableDynamicTheming = false;       # Wallpaper-based theming (matugen)
+      enableDynamicTheming = false;      # Wallpaper-based theming (matugen)
     };
   };
 }

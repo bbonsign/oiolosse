@@ -115,7 +115,8 @@
       go
       gum # charm cli scripting helper
       htop
-      httpie
+      # httpie
+      hyprpicker
       inotify-tools
       jc # converts many command outputs/data types to json
       jq
@@ -152,6 +153,7 @@
       pinentry-gtk2
       postgresql
       presenterm
+      quickshell
       ripgrep
       snyk
       snowsql

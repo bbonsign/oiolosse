@@ -29,13 +29,13 @@ return {
       -- colors.bg_popup = "#010C20"
       -- colors.bg_sidebar = "#010C20"
       colors.border = colors.blue7
-      -- colors.bg_statusline = "#010C20"
+      colors.bg_statusline = "#010C21"
     end,
     on_highlights = function(hl, colors)
       hl.FloatBorder.fg = colors.blue7
       hl.LspInfoBorder.fg = colors.blue7
-      hl.CursorLine.bg = "#1E2030"
-      hl.Folded.bg = "#1E2030"
+      hl.CursorLine.bg = "#010C21"
+      hl.Folded.bg = "#16161E"
     end,
   },
 }

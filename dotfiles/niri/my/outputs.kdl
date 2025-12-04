@@ -49,7 +49,7 @@ output "Dell Inc. DELL P2419H BTZ7Q33" {
   position x=1920 y=0
 }
 // Work
-output "HP Inc. HP E243i CNK0192YR2"{
+output "HP Inc. HP E243i CNK0192YR2" {
   position x=1920 y=0
 }
 

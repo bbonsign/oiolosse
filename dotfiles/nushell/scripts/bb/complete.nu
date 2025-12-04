@@ -7,7 +7,7 @@ export def fish_completer [spans: list<string>] {
 
 # Replicate completion action of nu for completing nu aliases and commands
 # Doesn't handle arguments or options
-export def nu_completer [spans: list<string>, cursor_pos: int = 0] {
+export def nu_completer [spans: list<string> cursor_pos: int = 0] {
   # print nu-comp
   # print $spans
   let cmd = $spans.0? | str trim
@@ -24,15 +24,15 @@ export def nu_completer [spans: list<string>, cursor_pos: int = 0] {
   }
 }
 
-export def carapace_completer [spans: list<string>, cursor_pos: int = 0] {
+export def carapace_completer [spans: list<string> cursor_pos: int = 0] {
   # print carapace-comp
   carapace $spans.0 nushell ...$spans
   | from json
-  | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
+  | if ($in | default [] | any {|| $in.display | str starts-with "ERR" }) { null } else { null }
 }
 
 # This completer will use carapace by default
-export def multi_completer [spans: list<string>, cursor_pos: int = 0] {
+export def multi_completer [spans: list<string> cursor_pos: int = 0] {
   let cmd = $spans.0? | str trim
   if ($cmd == "") {
     return (nu_completer $spans)
@@ -61,7 +61,7 @@ export def multi_completer [spans: list<string>, cursor_pos: int = 0] {
   return $carapace_completions
 }
 
-export def fzf-complete [buffer: string, position: int = 0] {
+export def fzf-complete [buffer: string position: int = 0] {
   let tokens = $buffer | split row -r '\s+'
   # use the last word on the commandline to only complete the remain selected part
   let last_word = $tokens | last
@@ -97,7 +97,7 @@ export def fzf-complete [buffer: string, position: int = 0] {
   $tokens | slice 0..-2 | append $"($last_word)($completed_end)" | str join " "
 }
 
-export def fzf_menu_source [buffer: string, position: int] {
+export def fzf_menu_source [buffer: string position: int] {
   let result = (fzf-complete $buffer $position)
   | do { {value: $in} }
   # expects a table
