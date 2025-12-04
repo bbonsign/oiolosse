@@ -44,15 +44,28 @@ return {
             { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
             { icon = "󰝒 ", key = "n", desc = "New File", action = ":ene | startinsert" },
             { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-            {
-              icon = " ",
-              key = "S",
-              desc = "Git Status Files",
-              action = ":lua Snacks.dashboard.pick('git_status')",
-            },
-            { icon = " ", key = "G", desc = "Lazygit", action = ":lua Snacks.lazygit()" },
-            { icon = " ", key = "J", desc = "JJUI", action = ":lua Snacks.terminal.toggle('jjui')" },
-            { icon = " ", key = "b", desc = "Browse repo", action = ":lua Snacks.gitbrowse()" },
+            function()
+              local in_git = Snacks.git.get_root() ~= nil
+              if not in_git then
+                return {
+                  { key = "S", action = function() end, hidden = true },
+                  { key = "G", action = function() end, hidden = true },
+                  { key = "J", action = function() end, hidden = true },
+                  { key = "b", action = function() end, hidden = true },
+                }
+              end
+              return {
+                {
+                  icon = " ",
+                  key = "S",
+                  desc = "Git Status Files",
+                  action = ":lua Snacks.dashboard.pick('git_status')",
+                },
+                { icon = " ", key = "G", desc = "Lazygit", action = ":lua Snacks.lazygit()" },
+                { icon = " ", key = "J", desc = "JJUI", action = ":lua Snacks.terminal.toggle('jjui')" },
+                { icon = " ", key = "b", desc = "Browse repo", action = ":lua Snacks.gitbrowse()" },
+              }
+            end,
             {
               icon = " ",
               key = "c",
