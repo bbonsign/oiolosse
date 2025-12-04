@@ -5,6 +5,7 @@
 echo "===== Symlinking dotfiles ====="
 let DOTFILES = $env.HOME | path join oiolosse dotfiles
 let CONFIG_DIR = $env.HOME | path join .config
+let WALLPAPER_DIR = $env.HOME | path join Pictures wallpapers
 let SERVICE_DIR = $env.HOME | path join .config systemd user
 let BIN_DIR = $env.HOME | path join .local bin
 let VIMIUM_DIR = $env.HOME | path join code github.com philc vimium
@@ -71,7 +72,7 @@ create_symlink ./yazi ($CONFIG_DIR | path join yazi)
 create_symlink ./libinput-gestures.conf ($CONFIG_DIR | path join libinput-gestures.conf)
 
 create_symlink ./vimium/blank.html ($VIMIUM_DIR | path join pages blank.html)
-create_symlink ../home-manager/bbonsign/modules/wallpapers/jackson-hendry-eodA_8CTOFo-unsplash.jpg ($VIMIUM_DIR | path join pages jackson-hendry-eodA_8CTOFo-unsplash.jpg)
-create_symlink ../home-manager/bbonsign/modules/wallpapers/phil-botha-a0TJ3hy-UD8-unsplash.jpg ($VIMIUM_DIR | path join pages phil-botha-a0TJ3hy-UD8-unsplash.jpg)
+create_symlink ($WALLPAPER_DIR | path join jackson-hendry-eodA_8CTOFo-unsplash.jpg) ($VIMIUM_DIR | path join pages jackson-hendry-eodA_8CTOFo-unsplash.jpg)
+create_symlink ($WALLPAPER_DIR | path join phil-botha-a0TJ3hy-UD8-unsplash.jpg) ($VIMIUM_DIR | path join pages phil-botha-a0TJ3hy-UD8-unsplash.jpg)
 
 print "===== Finished symlinking to dotfiles ====="

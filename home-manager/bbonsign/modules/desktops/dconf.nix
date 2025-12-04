@@ -7,10 +7,10 @@
       "org/gnome/desktop/background" = {
         color-shading-type = "solid";
         picture-options = "zoom";
-        picture-uri =
-          "file://${../wallpapers/stsci-h-p1821a-m-1699x2000.png}";
-        picture-uri-dark =
-          "file://${../wallpapers/stsci-h-p1821a-m-1699x2000.png}";
+        # picture-uri =
+        #   "file://${../wallpapers/stsci-h-p1821a-m-1699x2000.png}";
+        # picture-uri-dark =
+        #   "file://${../wallpapers/stsci-h-p1821a-m-1699x2000.png}";
         primary-color = "#000000000000";
         secondary-color = "#000000000000";
       };

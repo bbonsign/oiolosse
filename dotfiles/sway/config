@@ -67,7 +67,7 @@ client.background       $black
 
 ### Output configuration
 output {
-  *      bg $HOME/oiolosse/home-manager/bbonsign/modules/wallpapers/stsci-h-p1821a-m-1699x2000.png fill
+  *      bg $HOME/Pictures/wallpapers/stsci-h-p1821a-m-1699x2000.png fill
   # eDP-1 is laptop screen
   eDP-1  pos    0 0
   DP-1   pos 1920 0
