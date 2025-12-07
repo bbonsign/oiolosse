@@ -31,11 +31,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dgop = {
-      url = "github:AvengeMedia/dgop";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    # dgop = {
+    #   url = "github:AvengeMedia/dgop";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # dankMaterialShell = {
     #   url = "github:AvengeMedia/DankMaterialShell";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -90,7 +89,7 @@
 
       homeConfigurations = {
         "bbonsign" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = nixpkgs.legacyPackages.${system};
 
           # Specify your home configuration modules here, for example, the path to your home.nix.
           modules = [
