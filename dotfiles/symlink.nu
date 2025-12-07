@@ -8,7 +8,7 @@ let CONFIG_DIR = $env.HOME | path join .config
 let WALLPAPER_DIR = $env.HOME | path join Pictures wallpapers
 let SERVICE_DIR = $env.HOME | path join .config systemd user
 let BIN_DIR = $env.HOME | path join .local bin
-let VIMIUM_DIR = $env.HOME | path join code github.com philc vimium
+let VIMIUM_DIR = $env.HOME | path join code philc vimium
 
 ^mkdir -p ($SERVICE_DIR | path join niri.service.wants)
 

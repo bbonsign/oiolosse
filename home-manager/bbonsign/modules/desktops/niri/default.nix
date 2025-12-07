@@ -1,8 +1,6 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, ... }:
 {
-  imports = [
-    # ../dms
-  ];
+  imports = [ ];
 
   config = {
     home.packages = with pkgs; [
@@ -63,9 +61,9 @@
           Install.WantedBy = [ "niri.service" ];
           Unit = {
             Description = "Portal service (GNOME implementation)";
-            PartOf = ["graphical-session.target"];
-            After = ["graphical-session.target"];
-            Requisite=["graphical-session.target"];
+            PartOf = [ "graphical-session.target" ];
+            After = [ "graphical-session.target" ];
+            Requisite = [ "graphical-session.target" ];
           };
           Service = {
             Type = "dbus";

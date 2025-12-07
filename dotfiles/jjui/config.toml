@@ -1,16 +1,25 @@
 # experimental_log_batching_enabled = false
 limit = 0
 
-[custom_commands]
-"show all" = { revset = "all()" }
-"show tracked" = { revset = "tracked_remote_bookmarks()::" }
-"show default" = { revset = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())" }
-"new commit after here" = { args = [
-  "new",
-  "--no-edit",
-  "--insert-after",
-  "$change_id",
-] }
+[custom_commands."show all"]
+key_sequence = [" ", "v", "a"]
+revset = "all()"
+desc = "show all revisions"
+
+[custom_commands."show tracked"]
+key_sequence = [" ", "v", "t"]
+revset = "tracked_remote_bookmarks()::"
+desc = "show tracked remote bookmarks"
+
+[custom_commands."show default"]
+key_sequence = [" ", "v", "d"]
+revset = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"
+desc = "show default revisions"
+
+[custom_commands."new commit after here"]
+key_sequence = [" ", "n"]
+args = ["new", "--no-edit", "--insert-after", "$change_id"]
+
 [custom_commands."move commit down"]
 key = ["J"]
 args = ["rebase", "-r", "$checked_commit_ids", "--insert-before", "$change_id"]
@@ -66,33 +75,15 @@ limit = 200
 [graph]
 batch_size = 50
 
-[leader.a]
-help = "Bookmarks"
-[leader.b]
-help = "Bookmarks"
-
-[leader.bn]
-help = "Set new bookmark"
-send = [
-  "$",
-  "jj bookmark set -r $change_id $(gum input --placeholder \"Name of the new bookmark\")",
-  "enter",
-]
-
-[leader.e]
-context = ["$file", "$change_id"]
-help = "Edit file in change"
-send = ["$", "jj edit $change_id && $EDITOR $file", "enter"]
-
 [keys]
 up = ["up", "k"]
 down = ["down", "j"]
-jump_to_parent = ["J"]
-jump_to_children = ["K"]
+jump_to_parent = ["ctrl+j"]
+jump_to_children = ["ctrl+k"]
 jump_to_working_copy = ["@"]
 apply = ["enter"]
 cancel = ["esc"]
-# toggle_select = [" "]
+toggle_select = ["v"]
 new = ["ctrl+n"]
 commit = ["c"]
 refresh = ["ctrl+r"]
@@ -106,14 +97,12 @@ diffedit = ["E"]
 absorb = ["A"]
 split = ["s"]
 undo = ["u"]
-# evolog = ["v"]
-revset = ["L", "R"]
+revset = ["ctrl+l"]
 exec_jj = [":"]
 exec_shell = ["$"]
 quick_search = ["/"]
 quick_search_cycle = ["n"]
-custom_commands = ["x"]
-leader = ["\\"]
+custom_commands = ["X"]
 suspend = ["ctrl+z"]
 
 [keys.file_search]
@@ -122,6 +111,9 @@ up = ["up", "ctrl+k"]
 down = ["down", "ctrl+j"]
 accept = ["enter"]
 edit = ["alt+e"]
+
+[keys.evolog]
+mode = ["V"]
 
 [keys.rebase]
 mode = ["r"]
@@ -154,7 +146,6 @@ absorb = ["A"]
 diff = ["d"]
 select = ["m", " "]
 revisions_changing_file = ["*"]
-# edit = ["alt+e"]  # Doesn't work yet, use leader+e
 
 [keys.preview]
 mode = ["p"]

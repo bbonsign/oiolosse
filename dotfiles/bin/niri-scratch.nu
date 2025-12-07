@@ -35,7 +35,7 @@ def _do [title: string, command: string] {
   (
     ["bash -c"
       "'kitty --single-instance"
-      "--override background_opacity=0.8 --session ~/.config/kitty/sessions/scratch.kitty-session'"
+      "--override background_opacity=0.9 --session ~/.config/kitty/sessions/scratch.kitty-session'"
     ]
     | str join " "
   )

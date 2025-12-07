@@ -1,4 +1,4 @@
-{inputs, system, ...}: 
+{ inputs, config, lib, system, ... }:
 {
   imports = [
     inputs.dankMaterialShell.homeModules.dankMaterialShell.default
@@ -6,21 +6,35 @@
 
   config = {
     programs.dankMaterialShell = {
-      enable = false;
-      quickshell.package = inputs.quickshell.packages.${system}.default;
+      enable = true;
+      # quickshell.package = inputs.quickshell.packages.${system}.default;
 
       systemd = {
-        enable = false;             # Systemd service for auto-start
-        restartIfChanged = true;   # Auto-restart dms.service when dankMaterialShell changes
+        enable = false; # Systemd service for auto-start
+        restartIfChanged = true; # Auto-restart dms.service when dankMaterialShell changes
       };
 
       # Core features
-      enableSystemMonitoring = true;     # System monitoring widgets (dgop)
-      enableClipboard = true;            # Clipboard history manager
-      enableVPN = true;                  # VPN management widget
-      enableBrightnessControl = true;    # Backlight/brightness controls
-      enableColorPicker = true;          # Color picker tool
-      enableDynamicTheming = false;      # Wallpaper-based theming (matugen)
+      enableSystemMonitoring = true; # System monitoring widgets (dgop)
+      enableVPN = true; # VPN management widget
+      enableDynamicTheming = false; # Wallpaper-based theming (matugen)
     };
+
+    # systemd.user.services.dms = {
+    #   Unit = {
+    #     Description = "DankMaterialShell";
+    #     PartOf = [ config.wayland.systemd.target ];
+    #     After = [ config.wayland.systemd.target ];
+    #   };
+    #
+    #   Service = {
+    #     ExecStart = "%h/.nix-profile/bin/nixGL dms run --session";
+    #     Restart = "on-failure";
+    #   };
+    #
+    #   Install.WantedBy = [ config.wayland.systemd.target ];
+    # };
+
   };
+
 }

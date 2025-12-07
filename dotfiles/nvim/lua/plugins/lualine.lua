@@ -167,16 +167,20 @@ return {
             end,
           },
           {
-            "filetype",
-            icon_only = true,
-            separator = "",
-            padding = { left = 1, right = 0 },
+            function()
+              return " "
+            end,
+            padding = { left = 2, right = 0 },
             -- color = { bg = bg_color() },
+            cond = nil,
+            on_click = function()
+              vim.cmd.write()
+            end,
           },
           {
             "filename",
             path = 1,
-            padding = { left = 1, right = 0 },
+            padding = { left = 0, right = 0 },
             symbols = {
               modified = " ", -- Text to show when the file is modified.
               readonly = " ", -- Text to show when the file is non-modifiable or readonly.
@@ -184,6 +188,13 @@ return {
               newfile = "[New]", -- Text to show for new created file before first writting
             },
             color = { bg = bg_color() },
+          },
+          {
+            "filetype",
+            -- icon_only = true,
+            separator = "",
+            padding = { left = 1, right = 0 },
+            -- color = { bg = bg_color() },
           },
         },
 
@@ -249,6 +260,14 @@ return {
       },
       sections = {
         lualine_a = {
+          -- {
+          --   function()
+          --     local proc = vim.system({"jj", "log", "--limit", "1", "--template", [[change_id.shortest() ++ ": " ++ description]]})
+          --     local res = proc:wait(300)
+          --     return string.gsub(res.stdout, "%s+", "")
+          --   end,
+          --   -- color = { bg = bg_color() },
+          -- },
           {
             function()
               return " "

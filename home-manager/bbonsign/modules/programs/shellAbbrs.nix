@@ -18,6 +18,7 @@
   ":s" = "systemctl-tui";
   ":t" = "tmux attach -t";
   ":xo" = "xdg-open";
+  ":y" = "yazi";
   b = "bat";
   cl = "clear";
   cleancontainers = "docker rm -v (docker ps -a -q -f status=exited)";

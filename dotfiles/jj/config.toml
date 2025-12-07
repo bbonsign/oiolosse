@@ -36,6 +36,7 @@ clone = ["util", "exec", "--", "jj-clone"]
 [ui]
 default-command = "log"
 editor = "nvim"
+revsets-use-glob-by-default = true
 # Works for jj diff, but not well in jjui diff yet, but does work in jjui preview:
 # pager = "delta"
 # diff-formatter = ":git"
@@ -46,7 +47,6 @@ diff-formatter = ["difft", "--color=always", "$left", "$right"]
 # diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 diff-instructions = false
 show-cryptographic-signatures = true # default is false
-
 [template-aliases]
 'format_short_cryptographic_signature(sig)' = '''
   if(sig,

@@ -17,6 +17,7 @@
             cleancontainers = "docker rm -v ...(docker ps -a -q -f status=exited | lines)";
             cleanimages = "docker rmi ...(docker images -q -f dangling=true | lines)";
             "jfg" = "job unfreeze";
+            "ls2" = "ls */*"; # flat list of files at most one directory below pwd
           }) [ "ll" ];
       envFile.source = ./env.nu;
       configFile.source = ./config.nu;

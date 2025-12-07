@@ -1,4 +1,4 @@
-{ inputs, pkgs, system, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -47,7 +47,7 @@
     nixpkgs = {
       config = {
         allowUnfree = true;
-        allowUnfreePredicate = (pkg: true);
+        allowUnfreePredicate = _pkg: true;
       };
     };
 
@@ -153,8 +153,9 @@
       pinentry-gtk2
       postgresql
       presenterm
-      quickshell
+      # quickshell
       ripgrep
+      rustfmt
       snyk
       snowsql
       sops

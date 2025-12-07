@@ -1,4 +1,4 @@
-{inputs, ...}:
+{ inputs, ... }:
 
 {
   imports = [
@@ -24,7 +24,7 @@
         recorder.enable = true;
         audio.enable = true;
         network.enable = true;
-      }; 
+      };
       # Enable Sass support
       sass = {
         enable = true;

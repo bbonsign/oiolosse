@@ -83,6 +83,8 @@ vim.keymap.set("c", "<C-e>", "<End>", { desc = "End of line" })
 vim.keymap.set("c", "<C-a>", "<Home>", { desc = "Beg of line" })
 vim.keymap.set("c", "<C-b>", "<Left>", { desc = "Left" })
 vim.keymap.set("c", "<C-f>", "<Right>", { desc = "Right" })
+vim.keymap.set("c", "<C-p>", "<Up>", { desc = "Prev" })
+vim.keymap.set("c", "<C-n>", "<Up>", { desc = "Next" })
 
 -- -- toggle options
 -- vim.keymap.set("n", "<Leader>uc", ":set cursorline!<CR>", { desc = "Toggle cursorline" })
