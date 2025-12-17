@@ -280,3 +280,13 @@ export def --env ":dare" [] {
   # $env.AWS_CREDENTIAL_EXPIRATION = $envs.AWS_CREDENTIAL_EXPIRATION
   hide-env AWS_PROFILE
 }
+
+
+export def --wrapped nmtui [...rest] {
+  if (which ^nmtui | is-empty) {
+    error make {msg: "nmtui not installed"}
+  } else {
+    $env.NEWT_COLORS = "root=#FFFFFF,#15161e00 border=#BB9AF7,#15161e00 window=#15161e00,#15161e00 shadow=#15161e00,#15161e00 title=#BB9AF7,#15161e00 button=#15161e,#BB9AF7 button_active=#15161e,#e0af68 actbutton=#e0af68,#15161e compactbutton=#e0af68,#15161e checkbox=#f7768e,#15161e entry=#9ece6a,#15161e disentry=#15161e,#15161e textbox=#9ece6a,#15161e00 acttextbox=#BB9AF7,#15161e label=#7dcfff,#15161e listbox=#9ece6a,#15161e actlistbox=#BB9AF7,#15161e sellistbox=#f7768e,#15161e actsellistbox=#15161e,#e0af68"
+    ^nmtui ...$rest
+  }
+}

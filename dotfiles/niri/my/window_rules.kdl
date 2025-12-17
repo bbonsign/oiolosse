@@ -79,7 +79,7 @@ window-rule {
   open-on-workspace "z"
   open-floating true
   // Anchor to the top edge of the screen.
-  default-floating-position x=0 y=0 relative-to="top"
+  // default-floating-position x=0 y=0 relative-to="top"
   // Half of the screen high.
   default-window-height { proportion 0.75; }
   // 80% of the screen wide.

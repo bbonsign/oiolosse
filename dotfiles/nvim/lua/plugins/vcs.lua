@@ -1,5 +1,9 @@
 return {
   {
+    "rafikdraoui/jj-diffconflicts",
+  },
+
+  {
     "nicolasgb/jj.nvim",
     dependencies = {
       "folke/snacks.nvim",

@@ -110,7 +110,7 @@ detect_folders = [".jj"]
 when = "jj --ignore-working-copy root"
 style = "blue"
 format = "[$symbol$output ](blue)"
-symbol = " "
+symbol = " "
 command = '''
 jj log -r @ --no-graph --limit 1 --color always --template '
   separate(" ",

@@ -9,11 +9,11 @@ cd ~/mh/qlair/backend.git/wt-main/
 launch --title ipy
 
 new_tab fe
-cd ~/mh/qlair/webportal.git/main/
+cd ~/mh/qlair/webportal.git/main.git.jj/
 launch
 
 new_tab fe-server
-cd ~/mh/qlair/webportal.git/main/
+cd ~/mh/qlair/webportal.git/main.git.jj/
 launch --title "fe-server"
 
 launch kitten @ focus-tab --match 'title:code and session:.'

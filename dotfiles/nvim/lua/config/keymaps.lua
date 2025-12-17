@@ -137,6 +137,28 @@ vim.keymap.set("n", "<leader>gj", function()
   Snacks.terminal.toggle("jjui")
 end, { desc = "jjui" })
 
+vim.keymap.set("n", "<leader>fY", function()
+  local filepath = vim.fn.expand("%:p")
+  vim.fn.setreg("+", filepath)
+  vim.notify("Copied: " .. filepath, vim.log.levels.INFO)
+end, {
+  noremap = true,
+  silent = true,
+  desc = "Yank absolute file path",
+})
+
+vim.keymap.set("n", "<leader>fy", function()
+  local filepath = vim.fn.expand("%:p")
+  local root = vim.fn.getcwd()
+  local relative = filepath:sub(#root + 2)
+  vim.fn.setreg("+", relative)
+  vim.notify("Copied: " .. relative, vim.log.levels.INFO)
+end, {
+  noremap = true,
+  silent = true,
+  desc = "Yank relative file path",
+})
+
 -- -- lewis6991/hover.nvim,
 -- vim.keymap.set("n", "<C-p>", function()
 --   require("hover").hover_switch("previous")

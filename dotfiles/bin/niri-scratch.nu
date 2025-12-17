@@ -7,6 +7,7 @@ def _do [title: string, command: string] {
   let windows = (niri msg --json windows | from json)
   let workspaces = (niri msg --json workspaces | from json)
   let window = ($windows | where title == $title | get 0?)
+  print ($window | is-not-empty)
   let scratch_workspace = ($workspaces | where name == "z" | first)
   let focused_workspace = ($workspaces | where is_focused | first)
   let focused_workspace_location = if ($focused_workspace.name | is-not-empty) {$focused_workspace.name } else {$focused_workspace.idx}
@@ -32,11 +33,5 @@ def _do [title: string, command: string] {
 
 (_do 
   "kitty-scratch" 
-  (
-    ["bash -c"
-      "'kitty --single-instance"
-      "--override background_opacity=0.9 --session ~/.config/kitty/sessions/scratch.kitty-session'"
-    ]
-    | str join " "
-  )
+  "~/.local/bin/kitty --app-id kitty-scratch --title kitty-scratch --override background_opacity=0.9 --session ~/.config/kitty/sessions/scratch.kitty-session"
 )
