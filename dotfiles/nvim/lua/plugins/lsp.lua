@@ -64,20 +64,20 @@ return {
             },
           },
         },
-        pyright = {
-          settings = {
-            pyright = {
-              disableOrganizeImports = true, -- Using Ruff
-              disableTaggedHints = true,
-            },
-            python = {
-              analysis = {
-                -- ignore = { "*" }, -- Using Ruff
-                -- typeCheckingMode = "off", -- Using mypy
-              },
-            },
-          },
-        },
+        -- pyright = {
+        --   settings = {
+        --     pyright = {
+        --       disableOrganizeImports = true, -- Using Ruff
+        --       disableTaggedHints = true,
+        --     },
+        --     python = {
+        --       analysis = {
+        --         -- ignore = { "*" }, -- Using Ruff
+        --         -- typeCheckingMode = "off", -- Using mypy
+        --       },
+        --     },
+        --   },
+        -- },
         ruff_lsp = {
           keys = {
             {
@@ -270,24 +270,24 @@ return {
 
             {
               "<leader>lI",
-              "<Cmd>LspInfo<CR>",
-              desc = "LspInfo",
+              "<Cmd>checkhealth vim.lsp<CR>",
+              desc = "Lsp Info",
             },
             {
-              "<leader>lL",
-              "<Cmd>LspLog<CR>",
-              desc = "LspLog",
+              "<leader>lm",
+              "<Cmd>Mason<CR>",
+              desc = "Mason",
             },
 
             {
               "<leader>lS",
-              "<Cmd>LspStop<CR>",
-              desc = "LspStop",
+              "<Cmd>lsp stop<CR>",
+              desc = "Lsp Stop",
             },
             {
               "<leader>lR",
-              "<Cmd>LspRestart<CR>",
-              desc = "LspRestart",
+              "<Cmd>lsp restart<CR>",
+              desc = "Lsp Restart",
             },
           },
         },

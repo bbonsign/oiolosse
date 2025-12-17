@@ -21,3 +21,5 @@ opt.foldlevel = 100
 vim.g.snacks_animate = false
 
 -- vim.opt.foldtext = "v:lua.require'bb.foldtext'.foldtext()"
+
+vim.g.lazyvim_python_lsp = "ty"
