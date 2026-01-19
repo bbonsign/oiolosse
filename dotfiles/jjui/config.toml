@@ -1,6 +1,39 @@
 # experimental_log_batching_enabled = false
 limit = 0
 
+[custom_commands."edit file"]
+key_sequence = [" ", "e"]
+desc = "edit file under cursor"
+lua = '''
+local file = context.file()
+if not file then
+    flash("No file selected")
+    return
+end
+exec_shell("$EDITOR " .. file)
+'''
+
+[custom_commands."new at trunk"]
+key_sequence = [" ", "n", "t"]
+args = ["new", "trunk()"]
+
+[custom_commands."new commit after here"]
+key_sequence = [" ", "n", "n"]
+args = ["new", "--no-edit", "--insert-after", "$change_id"]
+
+
+[custom_commands."deltadiff"]
+key = ["d"]
+args = [
+  "util",
+  "exec",
+  "--",
+  "bash",
+  "-c",
+  """jj diff --summary --git --color always -r $change_id $file | delta --pager 'less -R'""",
+]
+show = "interactive"
+
 [custom_commands."show all"]
 key_sequence = [" ", "v", "a"]
 revset = "all()"
@@ -15,10 +48,6 @@ desc = "show tracked remote bookmarks"
 key_sequence = [" ", "v", "d"]
 revset = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"
 desc = "show default revisions"
-
-[custom_commands."new commit after here"]
-key_sequence = [" ", "n"]
-args = ["new", "--no-edit", "--insert-after", "$change_id"]
 
 [custom_commands."move commit down"]
 key = ["J"]
@@ -37,13 +66,20 @@ mode = "fuzzy" # Accepted values: "off" (default), "regex", "fuzzy".
 
 [preview]
 revision_command = [
-  "show",
-  "--color",
-  "always",
-  "-r",
-  "$change_id",
-  "--tool",
-  "difft",
+  "util",
+  "exec",
+  "--",
+  "bash",
+  "-c",
+  """jj show --summary --color always --git -r $change_id | delta --side-by-side --width $preview_width""",
+]
+file_command = [
+  "util",
+  "exec",
+  "--",
+  "bash",
+  "-c",
+  """jj diff --color always --git -r $change_id '$file' | delta --side-by-side --width $preview_width""",
 ]
 oplog_command = [
   "op",
@@ -51,16 +87,6 @@ oplog_command = [
   "$operation_id",
   "--color",
   "always",
-  "--tool",
-  "difft",
-]
-file_command = [
-  "diff",
-  "--color",
-  "always",
-  "-r",
-  "$change_id",
-  "$file",
   "--tool",
   "difft",
 ]
@@ -88,7 +114,7 @@ new = ["ctrl+n"]
 commit = ["c"]
 refresh = ["ctrl+r"]
 abandon = ["a"]
-diff = ["d"]
+# diff = ["d"]
 quit = ["q"]
 help = ["?"]
 describe = ["alt+d"]
@@ -181,7 +207,7 @@ restore = ["r"]
 [ui]
 theme = ""
 auto_refresh_interval = 0
-
+flash_message_display_seconds = 0
 tracer.enabled = true
 
 [ui.colors]

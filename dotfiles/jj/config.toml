@@ -37,16 +37,33 @@ clone = ["util", "exec", "--", "jj-clone"]
 default-command = "log"
 editor = "nvim"
 revsets-use-glob-by-default = true
-# Works for jj diff, but not well in jjui diff yet, but does work in jjui preview:
-# pager = "delta"
-# diff-formatter = ":git"
+conflict-marker-style = "snapshot"
+
+# merge-editor = [
+#   "flatpak",
+#   "run",
+#   "--file-forwarding",
+#   "--filesystem=/tmp",
+#   "org.gnome.meld",
+#   "$left",
+#   "$base",
+#   "$right",
+#   "-o",
+#   "$output",
+# ]
+
+pager = "delta"
+# diff.format = ":git"
+diff-formatter = ":git"
 # Works the same in jj and jjui:
-diff-formatter = ["difft", "--color=always", "$left", "$right"]
-# Default diff-editor is `scm-editor`
-# use `--tool :buildin` to override the setting below and use the building `scm-editor`
+# diff-formatter = ["difft", "--color=always", "$left", "$right"]
+
+# Default diff-editor is `scm-record`
+# use `--tool :buildin` to override the setting below and use the buildin `scm-diff-editor` https://github.com/arxanas/scm-record
 # diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 diff-instructions = false
 show-cryptographic-signatures = true # default is false
+
 [template-aliases]
 'format_short_cryptographic_signature(sig)' = '''
   if(sig,
