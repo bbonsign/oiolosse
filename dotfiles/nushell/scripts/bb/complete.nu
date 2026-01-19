@@ -28,7 +28,7 @@ export def carapace_completer [spans: list<string> cursor_pos: int = 0] {
   # print carapace-comp
   carapace $spans.0 nushell ...$spans
   | from json
-  | if ($in | default [] | any {|| $in.display | str starts-with "ERR" }) { null } else { null }
+  | if ($in | default [] | any {|| $in.display | str starts-with "ERR" }) { null } else { $in }
 }
 
 # This completer will use carapace by default
@@ -49,7 +49,7 @@ export def multi_completer [spans: list<string> cursor_pos: int = 0] {
   }
 
   let spans = $spans | skip 1 | prepend ($cmd | split row ' ')
-  let carapace_completions = carapace_completer $spans
+  let carapace_completions = carapace_completer $spans $cursor_pos
 
   if ($carapace_completions | is-empty) {
     let nu_completions = nu_completer $spans
