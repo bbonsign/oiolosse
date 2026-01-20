@@ -29,6 +29,7 @@ la = ["log", "-r", "all()"]
 s = ["status"]
 ui = ["util", "exec", "--", "jjui"]
 clone = ["util", "exec", "--", "jj-clone"]
+init = ["util", "exec", "--", "jj-init"]
 
 [revset-aliases]
 'trunk_to(revset)' = 'trunk()..revset'
