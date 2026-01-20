@@ -56,8 +56,7 @@
     };
 
     jjui = {
-      # FIX: unpin the commit used when upstream fixes vendor hashes
-      url = "github:idursun/jjui/e6dd7df5b4c7a1e857be9b2d6ffa44a3fea7297c";
+      url = "github:idursun/jjui";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
