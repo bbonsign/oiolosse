@@ -19,8 +19,22 @@ args = ["new", "trunk()"]
 
 [custom_commands."new commit after here"]
 key_sequence = [" ", "n", "n"]
-args = ["new", "--no-edit", "--insert-after", "$change_id"]
+args = ["new", "$change_id"]
 
+[custom_commands."new at branch"]
+key_sequence = [" ", "n", "b"]
+desc = "edit file under cursor"
+lua = '''
+  local output, err = jj("bookmark", "list",  "-T", "name ++ '\n'")
+  choice = choose({options = split_lines(output), title="choose a bookmark"})
+  if choice then
+    jj("new", "--insert-after", choice)
+    revisions.refresh()
+    revisions.refresh()
+  else
+    flash("none selected")
+  end
+  '''
 
 [custom_commands."deltadiff"]
 key = ["d"]
