@@ -35,3 +35,6 @@ spawn-sh-at-startup "1password --silent" // --silent opens to the system tray wi
 spawn-sh-at-startup "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance"
 spawn-at-startup "~/.local/bin/niri-scratch.nu"
 
+debug {
+    keep-laptop-panel-on-when-lid-is-closed
+}
