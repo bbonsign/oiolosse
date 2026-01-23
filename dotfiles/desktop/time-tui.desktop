@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=World Clock TUI
+Comment=Display world times in a terminal UI
+Exec=/var/home/bbonsign/.local/bin/time-tui
+Icon=preferences-system-time
+Terminal=true
+Categories=Utility;Clock;
+Keywords=time;clock;world;timezone;

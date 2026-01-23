@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Restore terminal to normal state on exit (cursor visible, normal screen, echo on)
+cleanup() {
+  tput cnorm        # show cursor
+  tput rmcup        # leave alternate screen, restore original content
+  stty "$saved_tty" # restore original terminal settings
+  exit 0
+}
+
+# Ensure cleanup runs on normal exit, Ctrl+C, or termination
+trap cleanup EXIT INT TERM
+
+# Save terminal state so we can restore it later
+saved_tty=$(stty -g)
+
+# Configure terminal for TUI:
+# -echo: don't display typed characters
+# -icanon: read input immediately (don't wait for Enter)
+stty -echo -icanon
+
+# Switch to alternate screen buffer (preserves scrollback history)
+tput smcup
+# Hide cursor for cleaner display
+tput civis
+# Clear screen once at startup
+tput clear
+
+while true; do
+  # Render frame to buffer; append ESC[K to each line to clear leftover characters
+  # This prevents artifacts when new content is shorter than previous
+  frame="$(nu "$(dirname "$0")/time-tui.nu" | sed $'s/$/\x1b[K/')"
+
+  # Flicker-free repaint:
+  # ESC[H = move cursor to top-left (home)
+  # ESC[J = clear from cursor to end of screen (removes stale lines below)
+  # Printing in one write avoids partial-redraw flicker
+  printf '\x1b[H%s\x1b[J' "$frame"
+
+  # Wait up to 10s for keypress; returns immediately if key is pressed
+  # This allows responsive quit while still refreshing periodically
+  if IFS= read -rsn1 -t 10 key; then
+    case "$key" in
+      q|Q) break ;;
+    esac
+  fi
+done

@@ -84,13 +84,15 @@ window-rule {
   default-window-height { proportion 0.75; }
   // 80% of the screen wide.
   default-column-width { proportion 0.95; }
-  border {
-    width 2
-    inactive-color "#414868"
-    active-gradient from="#bb9af7" to="#7dcfff" angle=135
-  }
-
 }
+window-rule {
+  match title=r#"time-tui"#
+  match app-id=r#"time-tui"#
+  open-floating true
+  default-window-height { proportion 0.25; }
+  default-column-width { proportion 0.35; }
+}
+
 window-rule {
   match app-id=r#"kitty-btm"#
   match app-id=r#"kitty-btop"#

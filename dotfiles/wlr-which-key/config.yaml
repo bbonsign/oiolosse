@@ -113,6 +113,9 @@ menu:
         { desc: "Clear Target", cmd: niri msg action clear-dynamic-cast-target }
       "x":
         { desc: "Clear Target", cmd: niri msg action clear-dynamic-cast-target }
+  "t":
+    desc: World Clock
+    cmd: ~/.local/kitty.app/bin/kitty --class time-tui -e ~/.local/bin/time-tui
   "W":
     desc: Workspaces
     submenu:

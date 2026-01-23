@@ -8,6 +8,7 @@ let CONFIG_DIR = $env.HOME | path join .config
 let WALLPAPER_DIR = $env.HOME | path join Pictures wallpapers
 let SERVICE_DIR = $env.HOME | path join .config systemd user
 let BIN_DIR = $env.HOME | path join .local bin
+let DESKTOP_DIR = $env.HOME | path join .local share applications
 let VIMIUM_DIR = $env.HOME | path join code philc vimium
 
 ^mkdir -p ($SERVICE_DIR | path join niri.service.wants)
@@ -26,9 +27,13 @@ create_symlink dot_iex.exs ($env.HOME | path join .iex.exs)
 create_symlink ./symlink.nu ($BIN_DIR | path join .f)
 
 let bin_files = ls ($DOTFILES | path join bin)
-
 $bin_files | each {|x|
   create_symlink $x.name ($BIN_DIR | path join ($x.name | path basename))
+}
+
+let desktop_files = ls ($DOTFILES | path join desktop)
+$desktop_files | each {|x|
+  create_symlink $x.name ($DESKTOP_DIR | path join ($x.name | path basename))
 }
 
 mkdir ([$CONFIG_DIR] | path join direnv)
