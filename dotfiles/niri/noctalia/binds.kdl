@@ -5,9 +5,9 @@ binds {
   Mod+Comma { spawn-sh  "noctalia-shell ipc call settings toggle"; }
 
   // // Audio controls
-  // XF86AudioRaiseVolume { spawn-sh  "noctalia-shell ipc call volume increase"; }
-  // XF86AudioLowerVolume { spawn-sh  "noctalia-shell ipc call volume decrease"; }
-  // XF86AudioMute { spawn-sh  "noctalia-shell ipc call volume muteOutput"; }
+  XF86AudioRaiseVolume { spawn-sh  "noctalia-shell ipc call volume increase"; }
+  XF86AudioLowerVolume { spawn-sh  "noctalia-shell ipc call volume decrease"; }
+  XF86AudioMute { spawn-sh  "noctalia-shell ipc call volume muteOutput"; }
 
   // Brightness controls
   XF86MonBrightnessUp allow-when-locked=true { spawn-sh  "noctalia-shell ipc call brightness increase"; }
