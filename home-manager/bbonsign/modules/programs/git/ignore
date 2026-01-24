@@ -65,4 +65,8 @@ zig-cache
 # Place for me to put some local files in a project that I don't want to commit
 **/.misc/*
 **/_bb/*
+.mise.local.toml
+.mise.*.local.toml
+mise.local.toml
+mise.*.local.toml
 

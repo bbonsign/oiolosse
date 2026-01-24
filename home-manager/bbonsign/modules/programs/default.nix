@@ -18,6 +18,7 @@
     ./kde-connect.nix
     ./keyd
     ./lazygit.nix
+    ./mise.nix
     ./neovim
     ./nushell
     ./ssh.nix

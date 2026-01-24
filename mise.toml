@@ -1,0 +1,36 @@
+[tasks.default]
+description = "Choose a task to run"
+run = "mise tasks ls | fzf --header-lines=0 | awk '{print $1}' | xargs -r mise run"
+
+[tasks.format]
+description = "nix fmt"
+alias = "f"
+run = "nix fmt"
+
+[tasks.switch]
+description = "Nixos switch"
+alias = "sw"
+run = "sudo nixos-rebuild switch --fast --flake .#mithlond"
+
+[tasks.update]
+description = "Update Flake"
+alias = "up"
+run = "nix flake update"
+
+[tasks.hm]
+description = "Home manager"
+usage = '''
+  arg "cmd" default="switch"
+'''
+run = "NIXPKGS_ALLOW_UNFREE=1 nix run home-manager -- --flake . --impure -b hm-backup $usage_cmd"
+
+[tasks.gc]
+description = "Nix Garbage Collection"
+usage = '''
+  arg "days" default="50"
+'''
+run = ["nix store gc", "nix-collect-garbage --delete-older-than ${usage_days}d"]
+
+[tasks.dots]
+description = "Symlink non-home-manager dotfiles"
+run = "./dotfiles/symlink.nu"

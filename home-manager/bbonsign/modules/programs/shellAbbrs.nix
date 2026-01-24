@@ -109,7 +109,8 @@
   pipi = "python -m pip install";
   pyhton = "python";
   pyhttp = "python -m http.server";
-  r = "just"; # i.e. "run"
+  r = "mise run"; # i.e. "run"
+  rj = "just"; # i.e. "run"
 
   # rg search with quick-fix compatible output
   qf = "rg --column --line-number --no-heading";
