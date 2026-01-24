@@ -1,4 +1,4 @@
-{ inputs, config, lib, system, ... }:
+{ inputs, ... }:
 {
   imports = [
     inputs.dankMaterialShell.homeModules.dankMaterialShell.default
