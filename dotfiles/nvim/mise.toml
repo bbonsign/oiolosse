@@ -1,0 +1,8 @@
+
+[tasks.format]
+description = "stylua"
+alias = "f"
+run = "stylua ."
+
+[tools]
+stylua = "latest"

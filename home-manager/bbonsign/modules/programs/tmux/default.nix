@@ -1,9 +1,9 @@
 { pkgs, ... }: {
   config = {
 
-    # home.packages = [
-    #   pkgs.smug # tmux session manager
-    # ];
+    home.packages = [
+      # pkgs.sesh # tmux session manager
+    ];
     programs.tmux = {
       enable = true;
       baseIndex = 1;
@@ -11,8 +11,7 @@
       historyLimit = 1000000;
       mouse = true;
       newSession = true;
-      # prefix = "C-Space";
-      prefix = "`";
+      prefix = "C-x";
       sensibleOnTop = true;
       # shell = "${pkgs.fish}/bin/fish";
       shell = "${pkgs.nushell}/bin/nu";

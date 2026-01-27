@@ -53,7 +53,7 @@ conflict-marker-style = "snapshot"
 #   "$output",
 # ]
 
-pager = "delta"
+pager = "diffnav"
 # diff.format = ":git"
 diff-formatter = ":git"
 # Works the same in jj and jjui:

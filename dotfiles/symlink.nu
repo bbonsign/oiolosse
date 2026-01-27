@@ -38,6 +38,7 @@ $desktop_files | each {|x|
 
 mkdir ([$CONFIG_DIR] | path join direnv)
 create_symlink ./direnv/direnvrc ([$CONFIG_DIR] | path join direnv direnvrc)
+create_symlink ./diffnav ($CONFIG_DIR | path join diffnav)
 create_symlink ./dunst ($CONFIG_DIR | path join dunst)
 # create_symlink dygma/  ($CONFIG_DIR  | path join dygma)
 create_symlink ./eww ($CONFIG_DIR | path join eww)

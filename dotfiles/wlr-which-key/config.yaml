@@ -46,10 +46,13 @@ menu:
   "b":
     desc: Bar
     submenu:
-      "b": { desc: Toggle, cmd: dms ipc bar toggle 1 }
-      "r": { desc: Reload, cmd: dms restart }
-      "s": { desc: Toggle, cmd: dms ipc bar toggle 1 }
-      "t": { desc: Toggle, cmd: dms ipc bar toggle 1 }
+      "b": { desc: Toggle, cmd: noctalia-shell ipc call bar toggle }
+      "s": { desc: Toggle, cmd: noctalia-shell ipc call bar toggle }
+      "t": { desc: Toggle, cmd: noctalia-shell ipc call bar toggle }
+      # "b": { desc: Toggle, cmd: dms ipc bar toggle 1 }
+      # "r": { desc: Reload, cmd: dms restart }
+      # "s": { desc: Toggle, cmd: dms ipc bar toggle 1 }
+      # "t": { desc: Toggle, cmd: dms ipc bar toggle 1 }
       # "b": { desc: Toggle, cmd: ignis init || ignis quit }
       # "r": { desc: Reload, cmd: ignis reload }
       # "s": { desc: Toggle, cmd: ignis init }

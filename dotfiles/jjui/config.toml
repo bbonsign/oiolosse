@@ -10,20 +10,20 @@ if not file then
     flash("No file selected")
     return
 end
-exec_shell("$EDITOR " .. file)
+exec_shell("$EDITOR " .. '"' .. file .. '"')
 '''
 
-[custom_commands."new at trunk"]
+[custom_commands."new change at trunk"]
 key_sequence = [" ", "n", "t"]
 args = ["new", "trunk()"]
 
-[custom_commands."new commit after here"]
+[custom_commands."new change from here"]
 key_sequence = [" ", "n", "n"]
 args = ["new", "$change_id"]
 
 [custom_commands."new at branch"]
 key_sequence = [" ", "n", "b"]
-desc = "edit file under cursor"
+desc = "new change at branch"
 lua = '''
   local output, err = jj("bookmark", "list",  "-T", "name ++ '\n'")
   choice = choose({options = split_lines(output), title="choose a bookmark"})
@@ -44,7 +44,7 @@ args = [
   "--",
   "bash",
   "-c",
-  """jj diff --summary --git --color always -r $change_id $file | delta --pager 'less -R'""",
+  """jj diff --summary --git --color always -r $change_id $file | diffnav""",
 ]
 show = "interactive"
 

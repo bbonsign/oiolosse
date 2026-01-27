@@ -83,6 +83,7 @@
       age
       amp-cli
       awscli2
+      ast-grep
       bat
       beam.packages.erlang_28.elixir_1_19
       beam.packages.erlang_28.erlang
@@ -96,6 +97,7 @@
       codex
       cowsay
       delta
+      diffnav # Delta + file tree
       difftastic
       dnsutils # `dig` + `nslookup`
       duckdb
@@ -160,7 +162,7 @@
       snowsql
       sops
       sqlite
-      ssm-session-manager-plugin # For aws cli
+      # ssm-session-manager-plugin # For aws cli
       stylua
       systemctl-tui
       tealdeer

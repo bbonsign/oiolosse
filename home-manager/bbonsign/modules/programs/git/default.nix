@@ -43,9 +43,11 @@
         };
 
         delta = {
+          dark = true;
+          features = "line-numbers decorations";
           navigate = true;
           side-by-side = true;
-          features = "line-numbers decorations";
+          tabs = 2;
           whitespace-error-style = "22 reverse";
           decorations = {
             "file-style" = "bold yellow ul";

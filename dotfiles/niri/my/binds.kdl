@@ -14,6 +14,7 @@ binds {
 
   // You can also use a shell. Do this if you need pipes, multiple commands, etc.
   // Note: the entire command goes as a single argument in the end.
+  Mod+T { spawn-sh "~/.local/kitty.app/bin/kitty --class time-tui -e ~/.local/bin/time-tui"; }
   // Mod+T { spawn-sh "notify-send hello && exec alacritty"; }
   // Mod+Return { spawn "kitty"; }
   Mod+Return { spawn-sh "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance"; }

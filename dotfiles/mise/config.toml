@@ -1,2 +1,6 @@
 [settings]
 lockfile = true
+
+# https://mise.jdx.dev/mise-cookbook/python.html#mise-uv
+# Make mise use the virtual environment created by uv
+python.uv_venv_auto = true
