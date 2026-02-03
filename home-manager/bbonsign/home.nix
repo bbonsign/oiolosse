@@ -81,7 +81,7 @@
       # zig
       # zls # zig language server
       age
-      amp-cli
+      # amp-cli
       awscli2
       ast-grep
       bat

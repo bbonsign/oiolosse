@@ -21,6 +21,10 @@ cd ~/mh/breeze-tco/tco_backend.repo/default.git.jj/
 title code
 launch
 
+new_tab waf
+cd ~/mh/mh-common/waf.repo/default.git.jj
+title waf
+launch
 
 launch kitten @ focus-tab --match 'title:fe and session:.'
 
