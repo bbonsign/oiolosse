@@ -6,6 +6,7 @@ name = "Brian Bonsignore"
 username = "bbonsign"
 
 [snapshot]
+# Uncomment below to prevent new files from being tracked by default
 # auto-track = "none()"
 
 [git]
@@ -27,6 +28,7 @@ pe = ["prev", "--edit"]
 l = ["log"]
 la = ["log", "-r", "all()"]
 s = ["status"]
+st = ["status"]
 ui = ["util", "exec", "--", "jjui"]
 clone = ["util", "exec", "--", "jj-clone"]
 init = ["util", "exec", "--", "jj-init"]
@@ -37,8 +39,8 @@ init = ["util", "exec", "--", "jj-init"]
 [ui]
 default-command = "log"
 editor = "nvim"
-revsets-use-glob-by-default = true
-conflict-marker-style = "snapshot"
+# revsets-use-glob-by-default = true
+# conflict-marker-style = "snapshot"
 
 # merge-editor = [
 #   "flatpak",
@@ -53,11 +55,8 @@ conflict-marker-style = "snapshot"
 #   "$output",
 # ]
 
-pager = "diffnav"
-# diff.format = ":git"
+pager = "delta"
 diff-formatter = ":git"
-# Works the same in jj and jjui:
-# diff-formatter = ["difft", "--color=always", "$left", "$right"]
 
 # Default diff-editor is `scm-record`
 # use `--tool :buildin` to override the setting below and use the buildin `scm-diff-editor` https://github.com/arxanas/scm-record
