@@ -4,17 +4,17 @@ new_tab fe
 cd ~/mh/breeze-tco/tco_frontend.repo/default.git.jj/
 launch
 
-new_tab fe-server
-cd ~/mh/breeze-tco/tco_frontend.repo/default.git.jj/
-launch
+# new_tab fe-server
+# cd ~/mh/breeze-tco/tco_frontend.repo/default.git.jj/
+# launch
 
 new_tab fe-admin
 cd ~/mh/breeze-tco/tco_frontend_admin.repo/default.git.jj/
 launch
 
-new_tab fe-admin-server
-cd ~/mh/breeze-tco/tco_frontend_admin.repo/default.git.jj/
-launch
+# new_tab fe-admin-server
+# cd ~/mh/breeze-tco/tco_frontend_admin.repo/default.git.jj/
+# launch
 
 new_tab backend
 cd ~/mh/breeze-tco/tco_backend.repo/default.git.jj/

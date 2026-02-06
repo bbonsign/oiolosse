@@ -1,4 +1,20 @@
 [[mgr.prepend_keymap]]
+on = ["v"]
+run = ["toggle", "arrow 1"]
+
+[[mgr.prepend_keymap]]
+on = ["<space>", "?"]
+run = "help"
+
+[[mgr.prepend_keymap]]
+on = ["g", "?"]
+run = "help"
+
+[[help.prepend_keymap]]
+on = ["/"]
+run = "filter"
+
+[[mgr.prepend_keymap]]
 on = "!"
 for = "unix"
 run = 'shell "nu" --block'
