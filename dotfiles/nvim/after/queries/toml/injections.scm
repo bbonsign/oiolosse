@@ -1,6 +1,13 @@
 ; extends
 
 (pair
+  (bare_key) @_key (#eq? @_key "lua")
+  (string) @injection.content
+  (#offset! @injection.content 0 3 0 -3)
+  (#set! injection.language "lua")
+)
+
+(pair
   (bare_key) @key (#eq? @key "run")
   (string) @injection.content @injection.language
 

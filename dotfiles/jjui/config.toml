@@ -1,14 +1,86 @@
 # experimental_log_batching_enabled = false
 limit = 0
 
+[custom_commands."tag current change"]
+key_sequence = [" ", "t", "t"]
+desc = "tag change under cursor"
+lua = '''
+---@diagnostic disable: undefined-global
+local change_id = context.change_id()
+if not change_id then
+  flash("No change_id")
+  return
+end
+local user_input = input({
+  title = "Tag name",
+  prompt = "Enter a tag_name: ",
+}) or ""
+
+local tag_name = string.gsub(user_input, "%s", "")
+if not tag_name then
+  flash("No tag_name")
+  return
+end
+jj("tag", "set", "-r", change_id, tag_name)
+revisions.refresh()
+'''
+
+[custom_commands."delete tag"]
+key_sequence = [" ", "t", "d"]
+lua = '''
+local output, err = jj("tag", "list", "-T", "name ++ '\n'")
+local choice = choose({
+  title = "Choose a tag",
+  options = split_lines(output),
+})
+if not choice then
+  flash("none selected")
+  return
+end
+jj("tag", "delete", choice)
+revisions.refresh()
+'''
+
+[custom_commands."diff to bookmark"]
+key_sequence = [" ", "d", "d"]
+lua = '''
+local change_id = context.change_id()
+if not change_id then
+  flash("No change_id")
+  return
+end
+local bookmarks, err = jj("bookmark", "list", "-T", "name ++ '\n'")
+local bookmark = choose({
+  title = "Choose a bookmark",
+  options = split_lines(bookmarks),
+})
+if not bookmark then
+  flash("None selected")
+  return
+end
+exec_shell("jj diff --from " .. change_id .. " --to " .. bookmark .. " | diffnav")
+'''
+
+[custom_commands."diff to trunk"]
+key_sequence = [" ", "d", "t"]
+lua = '''
+local change_id = context.change_id()
+if not change_id then
+  flash("No change_id")
+  return
+end
+exec_shell("jj diff --from " .. change_id .. " --to 'trunk()' | diffnav")
+'''
+
 [custom_commands."edit file"]
 key_sequence = [" ", "e"]
 desc = "edit file under cursor"
 lua = '''
+---@diagnostic disable: undefined-global
 local file = context.file()
 if not file then
-    flash("No file selected")
-    return
+  flash("No file selected")
+  return
 end
 exec_shell("$EDITOR " .. '"' .. file .. '"')
 '''
@@ -21,19 +93,27 @@ args = ["new", "trunk()"]
 key_sequence = [" ", "n", "n"]
 args = ["new", "$change_id"]
 
+[custom_commands."new change after here"]
+key_sequence = [" ", "n", "a"]
+args = ["new", "--insert-after", "$change_id"]
+
+[custom_commands."new change before here"]
+key_sequence = [" ", "n", "b"]
+args = ["new", "--insert-before", "$change_id"]
+
 [custom_commands."new at branch"]
 key_sequence = [" ", "n", "b"]
 desc = "new change at branch"
 lua = '''
-  local output, err = jj("bookmark", "list",  "-T", "name ++ '\n'")
-  choice = choose({options = split_lines(output), title="choose a bookmark"})
-  if choice then
-    jj("new", "--insert-after", choice)
-    revisions.refresh()
-    revisions.refresh()
-  else
-    flash("none selected")
-  end
+---@diagnostic disable: undefined-global
+local output, err = jj("bookmark", "list", "-T", "name ++ '\n'")
+bookmark = choose({ options = split_lines(output), title = "choose a bookmark" })
+if bookmark then
+  jj("new", "--insert-after", bookmark)
+  revisions.refresh()
+else
+  flash("none selected")
+end
   '''
 
 [custom_commands."deltadiff"]
@@ -127,14 +207,14 @@ toggle_select = ["v"]
 new = ["ctrl+n"]
 commit = ["c"]
 refresh = ["ctrl+r"]
-abandon = ["a"]
+abandon = ["A"]
 # diff = ["d"]
 quit = ["q"]
 help = ["?"]
 describe = ["alt+d"]
 edit = ["e"]
 diffedit = ["E"]
-absorb = ["A"]
+absorb = []
 split = ["s"]
 undo = ["u"]
 revset = ["ctrl+l"]

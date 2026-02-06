@@ -189,6 +189,7 @@ return {
         fish = { "fish_indent" },
         python = { "ruff_organize_imports", "ruff_format" },
         nu = { "topiary_nu" },
+        toml = { "taplo", "injected" },
         -- -- You can customize some of the format options for the filetype (:help conform.format)
         -- rust = { "rustfmt", lsp_format = "fallback" },
         -- -- Conform will run the first available formatter
