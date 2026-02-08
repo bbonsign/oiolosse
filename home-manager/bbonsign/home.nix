@@ -172,7 +172,7 @@
       unzip
       usbutils # lsusb
       uv # python packaging and project manager
-      watchman
+      # watchman
       which
       xdg-desktop-portal-gnome
       xz

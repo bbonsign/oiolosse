@@ -14,17 +14,25 @@ run = "sudo nixos-rebuild switch --fast --flake .#mithlond"
 
 [tasks.update]
 description = "Update Flake"
-alias = "up"
+alias = ["up", "u"]
 run = "nix flake update"
 
-[tasks.hm]
+[tasks.hm-old]
 description = "Home manager"
 usage = '''
   arg "cmd" default="switch"
 '''
 run = "NIXPKGS_ALLOW_UNFREE=1 nix run home-manager -- --flake . --impure -b hm-backup $usage_cmd"
 
-[tasks.gc]
+[tasks.hm]
+description = "Home manager NH"
+run = "nh home switch . -c bbonsign"
+
+[tasks."gc"]
+description = "Nix Garbage Collection with nh"
+run = "nh clean user"
+
+[tasks.gc-old]
 description = "Nix Garbage Collection"
 usage = '''
   arg "days" default="50"
