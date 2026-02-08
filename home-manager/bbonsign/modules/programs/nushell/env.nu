@@ -7,9 +7,9 @@ $env.PATH = (
   | append '/etc/profiles/per-user/$env.USER/bin'
   | append '/run/current-system/sw/bin'
   | append '/nix/var/nix/profiles/default/bin'
-  | append ($env.HOME | path join .local bin)
-  | append ($env.HOME | path join .mix escripts)
-  | append ($env.HOME | path join .bun bin)
+  | prepend ($env.HOME | path join .local bin)
+  | prepend ($env.HOME | path join .mix escripts)
+  | prepend ($env.HOME | path join .bun bin)
   | uniq
 )
 

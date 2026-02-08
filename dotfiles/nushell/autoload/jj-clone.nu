@@ -1,11 +1,10 @@
-#!/usr/bin/env nu
 # Inspired by:
 # From: https://morgan.cugerone.com/blog/workarounds-to-git-worktree-using-bare-repository-and-cannot-fetch-remote-branches/
 
 # Examples of call:
 # jj-clone git@github.com:name/repo.git <directory_name>
 # => Clones to a <directory_name>.repo/default.git.jj directory
-def --env main [
+def --env jj-clone [
   url: string
   directory_name: string = ""
 ] {

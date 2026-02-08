@@ -175,15 +175,15 @@ file_command = [
   "-c",
   """jj diff --color always --git -r $change_id '$file' | delta --side-by-side --width $preview_width""",
 ]
-oplog_command = [
-  "op",
-  "show",
-  "$operation_id",
-  "--color",
-  "always",
-  "--tool",
-  "difft",
-]
+# oplog_command = [
+#   "op",
+#   "show",
+#   "$operation_id",
+#   "--color",
+#   "always",
+#   "--tool",
+#   "difft",
+# ]
 show_at_start = false
 position = "bottom"
 width_percentage = 50.0

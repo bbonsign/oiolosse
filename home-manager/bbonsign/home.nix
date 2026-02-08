@@ -63,23 +63,14 @@
 
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
-      # asdf-vm
-      # copilot-cli # AWS ECS cli 
       # devbox
       # ghostty
-      # jless
-      # nixfmt
       # podman
       # podman-compose
       # podman-tui
-      # python312Packages.ipython
       # qutebrowser
-      # rustup
-      # television
       # valent # KDE Connect client
       # websocat
-      # zig
-      # zls # zig language server
       age
       # amp-cli
       awscli2
@@ -97,12 +88,11 @@
       codex
       cowsay
       delta
-      diffnav # Delta + file tree
-      difftastic
+      # diffnav # Delta + file tree -- installed from local clone for now
+      # difftastic
       dnsutils # `dig` + `nslookup`
       duckdb
       duf
-      eww
       exiftool
       eza
       file
@@ -117,16 +107,14 @@
       go
       gum # charm cli scripting helper
       htop
-      # httpie
       hyprpicker
       inotify-tools
       jc # converts many command outputs/data types to json
       jq
       # jjui
       inputs.jjui.packages.x86_64-linux.jjui
-      # inputs.starship-jj.packages.x86_64-linux.starship-jj
       jujutsu
-      just
+      # just
       killall
       kitty
       lazygit
@@ -139,10 +127,8 @@
       nerd-fonts.fantasque-sans-mono
       # networkmanager
       # networkmanager-openvpn
-      newman
       nh
       nix-output-monitor
-      nodePackages.aws-cdk
       nodePackages.pnpm
       nodejs
       ntfy-sh
@@ -157,7 +143,6 @@
       presenterm
       # quickshell
       ripgrep
-      rustfmt
       snyk
       snowsql
       sops
@@ -179,9 +164,7 @@
       yarn
       yazi
       yq-go # yaml processer https://github.com/mikefarah/yq
-      zig
       zip
-      zls # zig language server
     ];
 
     # This value determines the home Manager release that your
