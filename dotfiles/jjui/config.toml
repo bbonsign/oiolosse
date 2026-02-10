@@ -107,10 +107,19 @@ args = ["new", "--insert-after", "$change_id"]
 
 [custom_commands."new change before here"]
 key_sequence = [" ", "n", "b"]
-args = ["new", "--insert-before", "$change_id"]
+lua = '''
+---@diagnostic disable: undefined-global
+local change_id = context.change_id()
+if not change_id then
+  flash("No change_id")
+  return
+end
+jj("new", "--insert-before", change_id)
+revisions.refresh()
+'''
 
 [custom_commands."new at branch"]
-key_sequence = [" ", "n", "b"]
+key_sequence = [" ", "n", "shift+b"]
 desc = "new change at branch"
 lua = '''
 ---@diagnostic disable: undefined-global
@@ -160,7 +169,8 @@ key = ["K"]
 args = ["rebase", "-r", "$checked_commit_ids", "--insert-after", "$change_id"]
 
 [revisions]
-template = 'builtin_log_oneline'
+template = 'custom_log_oneline'
+# template = 'builtin_log_oneline'
 
 [suggest]
 [suggest.exec]
