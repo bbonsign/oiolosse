@@ -1,18 +1,19 @@
 # Theming
 font: FiraCode Nerd Font Medium 10
+separator: " ➜ "
 background: "#292e42"
 color: "#c0caf5"
 border: "#7aa2f7"
-separator: "  ➜  "
 border_width: 2
 corner_r: 10
-padding: 15 # Defaults to corner_r
+padding: 30
+rows_per_column: 7
 
 # Anchor and margin
 anchor: bottom # One of center, left, right, top, bottom, bottom-left, top-left, etc.
 # Only relevant when anchor is not center
 margin_right: 0
-margin_bottom: 0
+margin_bottom: 40
 margin_left: 0
 margin_top: 0
 
@@ -21,185 +22,273 @@ margin_top: 0
 # inhibit_compositor_keyboard_shortcuts: true
 
 menu:
-  "space": { desc: "vicinae", cmd: vicinae vicinae://toggle }
-  "BackSpace": { desc: "close-all", cmd: swaync-client --close-all }
-  "Tab": { desc: Windows, cmd: ~/.local/bin/niri-choose-window.nu }
-  "1": { desc: Workspace 1, cmd: niri msg action focus-workspace 1 }
-  "2": { desc: Workspace 2, cmd: niri msg action focus-workspace 2 }
-  "3": { desc: Workspace 3, cmd: niri msg action focus-workspace 3 }
-  "4": { desc: Workspace 4, cmd: niri msg action focus-workspace 4 }
-  "5": { desc: Workspace 5, cmd: niri msg action focus-workspace 5 }
-  "6": { desc: Workspace 6, cmd: niri msg action focus-workspace 6 }
-  "7": { desc: Workspace 7, cmd: niri msg action focus-workspace 7 }
-  "8": { desc: Workspace 8, cmd: niri msg action focus-workspace 8 }
-  "9": { desc: Workspace 9, cmd: niri msg action focus-workspace 9 }
-  "0":
+  - key: "space"
+    desc: "vicinae"
+    cmd: vicinae vicinae://toggle
+  - key: "BackSpace"
+    desc: "close-all"
+    cmd: swaync-client --close-all
+  - key: "Tab"
+    desc: Windows
+    cmd: ~/.local/bin/niri-choose-window.nu
+  - key: "1"
+    desc: Workspace 1
+    cmd: niri msg action focus-workspace 1
+  - key: "2"
+    desc: Workspace 2
+    cmd: niri msg action focus-workspace 2
+  - key: "3"
+    desc: Workspace 3
+    cmd: niri msg action focus-workspace 3
+  - key: "4"
+    desc: Workspace 4
+    cmd: niri msg action focus-workspace 4
+  - key: "5"
+    desc: Workspace 5
+    cmd: niri msg action focus-workspace 5
+  - key: "6"
+    desc: Workspace 6
+    cmd: niri msg action focus-workspace 6
+  - key: "7"
+    desc: Workspace 7
+    cmd: niri msg action focus-workspace 7
+  - key: "8"
+    desc: Workspace 8
+    cmd: niri msg action focus-workspace 8
+  - key: "9"
+    desc: Workspace 9
+    cmd: niri msg action focus-workspace 9
+  - key: "0"
     desc: Power
     submenu:
-      "l": { desc: Lock, cmd: "hyprlock" }
-      "e": { desc: Exit, cmd: niri msg action quit }
-      "s": { desc: Suspend, cmd: systemctl suspend }
-      "h": { desc: Hibernate, cmd: systemctl hibernate }
-      "R": { desc: Reboot, cmd: systemctl reboot }
-      "S": { desc: Shutdown, cmd: systemctl poweroff }
-  "a": { desc: "Overview", cmd: niri msg action toggle-overview }
-  "b":
+      - key: "l"
+        desc: Lock
+        cmd: hyprlock
+      - key: "e"
+        desc: Exit
+        cmd: niri msg action quit
+      - key: "s"
+        desc: Suspend
+        cmd: systemctl suspend
+      - key: "h"
+        desc: Hibernate
+        cmd: systemctl hibernate
+      - key: "R"
+        desc: Reboot
+        cmd: systemctl reboot
+      - key: "S"
+        desc: Shutdown
+        cmd: systemctl poweroff
+  - key: "a"
+    desc: "Overview"
+    cmd: niri msg action toggle-overview
+  - key: "b"
     desc: Bar
     submenu:
-      "b": { desc: Toggle, cmd: noctalia-shell ipc call bar toggle }
-      "s": { desc: Toggle, cmd: noctalia-shell ipc call bar toggle }
-      "t": { desc: Toggle, cmd: noctalia-shell ipc call bar toggle }
-      # "b": { desc: Toggle, cmd: dms ipc bar toggle 1 }
-      # "r": { desc: Reload, cmd: dms restart }
-      # "s": { desc: Toggle, cmd: dms ipc bar toggle 1 }
-      # "t": { desc: Toggle, cmd: dms ipc bar toggle 1 }
-      # "b": { desc: Toggle, cmd: ignis init || ignis quit }
-      # "r": { desc: Reload, cmd: ignis reload }
-      # "s": { desc: Toggle, cmd: ignis init }
-      # "t": { desc: Toggle, cmd: ignis init || ignis quit }
-      # "q": { desc: Toggle, cmd: ignis quit }
-      # "b": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
-      # "r": { desc: Reload, cmd: pkill -SIGUSR2 waybar }
-      # "t": { desc: Toggle, cmd: pkill -SIGUSR1 waybar }
-  "c":
+      - key: "b"
+        desc: Toggle
+        cmd: noctalia-shell ipc call bar toggle
+      - key: "s"
+        desc: Toggle
+        cmd: noctalia-shell ipc call bar toggle
+      - key: "t"
+        desc: Toggle
+        cmd: noctalia-shell ipc call bar toggle
+      # - key: "b"
+      #   desc: Toggle
+      #   cmd: dms ipc bar toggle 1
+      # - key: "r"
+      #   desc: Reload
+      #   cmd: dms restart
+      # - key: "s"
+      #   desc: Toggle
+      #   cmd: dms ipc bar toggle 1
+      # - key: "t"
+      #   desc: Toggle
+      #   cmd: dms ipc bar toggle 1
+      # - key: "b"
+      #   desc: Toggle
+      #   cmd: ignis init || ignis quit
+      # - key: "r"
+      #   desc: Reload
+      #   cmd: ignis reload
+      # - key: "s"
+      #   desc: Toggle
+      #   cmd: ignis init
+      # - key: "t"
+      #   desc: Toggle
+      #   cmd: ignis init || ignis quit
+      # - key: "q"
+      #   desc: Toggle
+      #   cmd: ignis quit
+      # - key: "b"
+      #   desc: Toggle
+      #   cmd: pkill -SIGUSR1 waybar
+      # - key: "r"
+      #   desc: Reload
+      #   cmd: pkill -SIGUSR2 waybar
+      # - key: "t"
+      #   desc: Toggle
+      #   cmd: pkill -SIGUSR1 waybar
+  - key: "c"
     desc: Colorpicker
     submenu:
-      "c": { desc: "Hex", cmd: hyprpicker --autocopy }
-      "r": { desc: "R G B", cmd: hyprpicker --autocopy --format=rgb }
-  "d":
+      - key: "c"
+        desc: "Hex"
+        cmd: hyprpicker --autocopy
+      - key: "r"
+        desc: "R G B"
+        cmd: hyprpicker --autocopy --format=rgb
+  - key: "d"
     desc: Fuzzel
     cmd: "fuzzel --show-actions --lines 20 --width 80"
-  "k":
+  - key: "k"
     desc: "Kitty Session"
     cmd: ~/.local/bin/kitty-switch-fuzzel.nu
-  "r":
+  - key: "r"
     desc: Run
     submenu:
-      "B":
-        { desc: "btm", cmd: ~/.local/kitty.app/bin/kitty --class kitty-btm btm }
-      "b":
-        {
-          desc: "btop",
-          cmd: ~/.local/kitty.app/bin/kitty --class kitty-btop btop,
-        }
-      "c": { desc: "Hex", cmd: hyprpicker --autocopy }
-      "f": { desc: "Files", cmd: nautilus }
-      "k": { desc: "Kitty Session", cmd: ~/.local/bin/kitty-switch-fuzzel.nu }
-      "p": { desc: "Power profiles", cmd: ~/.local/bin/power-profiles.nu }
-  "s":
+      - key: "B"
+        desc: "btm"
+        cmd: ~/.local/kitty.app/bin/kitty --class kitty-btm btm
+      - key: "b"
+        desc: "btop"
+        cmd: ~/.local/kitty.app/bin/kitty --class kitty-btop btop
+      - key: "c"
+        desc: "Hex"
+        cmd: hyprpicker --autocopy
+      - key: "f"
+        desc: "Files"
+        cmd: nautilus
+      - key: "k"
+        desc: "Kitty Session"
+        cmd: ~/.local/bin/kitty-switch-fuzzel.nu
+      - key: "p"
+        desc: "Power profiles"
+        cmd: ~/.local/bin/power-profiles.nu
+  - key: "s"
     desc: Share
     submenu:
-      "c": { desc: "Clear", cmd: niri msg action clear-dynamic-cast-target }
-      "m":
-        {
-          desc: "Set Monitor",
-          cmd: "niri msg action set-dynamic-cast-monitor $(niri msg --json outputs | jq --raw-output .[].name | fuzzel --dmenu )",
-        }
-      "o":
-        {
-          desc: "Set Monitor",
-          cmd: "niri msg action set-dynamic-cast-monitor $(niri msg --json outputs | jq --raw-output .[].name | fuzzel --dmenu )",
-        }
-      "s":
-        {
-          desc: "Set Window",
-          cmd: niri msg action set-dynamic-cast-window --id $(niri msg --json pick-window | jq .id),
-        }
-      "w":
-        {
-          desc: "Set Window",
-          cmd: niri msg action set-dynamic-cast-window --id $(niri msg --json pick-window | jq .id),
-        }
-      "k":
-        { desc: "Clear Target", cmd: niri msg action clear-dynamic-cast-target }
-      "q":
-        { desc: "Clear Target", cmd: niri msg action clear-dynamic-cast-target }
-      "x":
-        { desc: "Clear Target", cmd: niri msg action clear-dynamic-cast-target }
-  "t":
+      - key: "c"
+        desc: "Clear"
+        cmd: niri msg action clear-dynamic-cast-target
+      - key: "m"
+        desc: "Set Monitor"
+        cmd: niri msg action set-dynamic-cast-monitor $(niri msg --json outputs | jq --raw-output .[].name | fuzzel --dmenu )
+      - key: "o"
+        desc: "Set Monitor"
+        cmd: niri msg action set-dynamic-cast-monitor $(niri msg --json outputs | jq --raw-output .[].name | fuzzel --dmenu )
+      - key: "s"
+        desc: "Set Window"
+        cmd: niri msg action set-dynamic-cast-window --id $(niri msg --json pick-window | jq .id)
+      - key: "w"
+        desc: "Set Window"
+        cmd: niri msg action set-dynamic-cast-window --id $(niri msg --json pick-window | jq .id)
+      - key: "k"
+        desc: "Clear Target"
+        cmd: niri msg action clear-dynamic-cast-target
+      - key: "q"
+        desc: "Clear Target"
+        cmd: niri msg action clear-dynamic-cast-target
+      - key: "x"
+        desc: "Clear Target"
+        cmd: niri msg action clear-dynamic-cast-target
+  - key: "t"
     desc: World Clock
     cmd: ~/.local/kitty.app/bin/kitty --class time-tui -e ~/.local/bin/time-tui
-  "W":
+  - key: "W"
     desc: Workspaces
     submenu:
-      "H":
-        {
-          desc: Move to monitor left,
-          cmd: niri msg action move-workspace-to-monitor-left,
-        }
-      "h":
-        {
-          desc: Move to monitor left,
-          cmd: niri msg action move-workspace-to-monitor-left,
-        }
-      "J": { desc: Move down, cmd: niri msg action move-workspace-down }
-      "j": { desc: Move down, cmd: niri msg action move-workspace-down }
-      "K": { desc: Move up, cmd: niri msg action move-workspace-up }
-      "k": { desc: Move up, cmd: niri msg action move-workspace-up }
-      "L":
-        {
-          desc: Move to monitor left,
-          cmd: niri msg action move-workspace-to-monitor-right,
-        }
-      "l":
-        {
-          desc: Move to monitor left,
-          cmd: niri msg action move-workspace-to-monitor-right,
-        }
-  "w":
+      - key: "H"
+        desc: Move to monitor left
+        cmd: niri msg action move-workspace-to-monitor-left
+      - key: "h"
+        desc: Move to monitor left
+        cmd: niri msg action move-workspace-to-monitor-left
+      - key: "J"
+        desc: Move down
+        cmd: niri msg action move-workspace-down
+      - key: "j"
+        desc: Move down
+        cmd: niri msg action move-workspace-down
+      - key: "K"
+        desc: Move up
+        cmd: niri msg action move-workspace-up
+      - key: "k"
+        desc: Move up
+        cmd: niri msg action move-workspace-up
+      - key: "L"
+        desc: Move to monitor right
+        cmd: niri msg action move-workspace-to-monitor-right
+      - key: "l"
+        desc: Move to monitor right
+        cmd: niri msg action move-workspace-to-monitor-right
+  - key: "w"
     desc: Windows
     submenu:
-      "b":
+      - key: "b"
         desc: Balance windows
         submenu:
-          "2":
+          - key: "2"
             desc: Two-thirds
             cmd: ~/.local/bin/niri-balance-windows.nu --two-thirds-main
-          "b":
+          - key: "b"
             desc: Equal
             cmd: ~/.local/bin/niri-balance-windows.nu
-          "e":
+          - key: "e"
             desc: Equal
             cmd: ~/.local/bin/niri-balance-windows.nu
-          "t":
+          - key: "t"
             desc: Two-thirds
             cmd: ~/.local/bin/niri-balance-windows.nu --two-thirds-main
-      "c":
+      - key: "c"
         desc: WindowColumn
         submenu:
-          "J":
-            {
-              desc: Workspace 9,
-              cmd: niri msg action move-column-to-workspace-down,
-            }
-      "h": { desc: Focus left, cmd: niri msg action focus-column-left }
-      "H": { desc: Move left, cmd: niri msg action move-column-left }
-      "j": { desc: Focus down, cmd: niri msg action focus-window-down }
-      "J":
-        {
-          desc: Move down,
-          cmd: niri msg action move-window-down-or-to-workspace-down,
-        }
-      "k": { desc: Focus up, cmd: niri msg action focus-window-up }
-      "K":
-        {
-          desc: Move up,
-          cmd: niri msg action move-window-up-or-to-workspace-up,
-        }
-      "l": { desc: Focus right, cmd: niri msg action focus-column-right }
-      "L": { desc: Move right, cmd: niri msg action move-column-right }
-  "N":
+          - key: "J"
+            desc: Workspace 9
+            cmd: niri msg action move-column-to-workspace-down
+      - key: "h"
+        desc: Focus left
+        cmd: niri msg action focus-column-left
+      - key: "H"
+        desc: Move left
+        cmd: niri msg action move-column-left
+      - key: "j"
+        desc: Focus down
+        cmd: niri msg action focus-window-down
+      - key: "J"
+        desc: Move down
+        cmd: niri msg action move-window-down-or-to-workspace-down
+      - key: "k"
+        desc: Focus up
+        cmd: niri msg action focus-window-up
+      - key: "K"
+        desc: Move up
+        cmd: niri msg action move-window-up-or-to-workspace-up
+      - key: "l"
+        desc: Focus right
+        cmd: niri msg action focus-column-right
+      - key: "L"
+        desc: Move right
+        cmd: niri msg action move-column-right
+  - key: "N"
     desc: Network dmenu
     cmd: "networkmanager_dmenu"
-  "n":
+  - key: "n"
     desc: Notifications
     submenu:
-      "n":
-        {
-          desc: "Notifications",
-          cmd: swaync-client --toggle-panel ; wlr-which-key notifications,
-        }
-      "t": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
-      "c": { desc: "close-all", cmd: swaync-client --close-all }
-      "C": { desc: "close-all", cmd: swaync-client --close-all }
-      "D": { desc: "toggle-dnd", cmd: swaync-client --toggle-dnd }
+      - key: "n"
+        desc: "Notifications"
+        cmd: noctalia-shell ipc call notifications toggleHistory
+      - key: "t"
+        desc: "toggle-panel"
+        cmd: swaync-client --toggle-panel
+      - key: "c"
+        desc: "close-all"
+        cmd: noctalia-shell ipc call notifications clear
+      - key: "C"
+        desc: "close-all"
+        cmd: noctalia-shell ipc call notifications clear
+      - key: "D"
+        desc: "toggle-dnd"
+        cmd: swaync-client --toggle-dnd

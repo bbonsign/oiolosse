@@ -21,11 +21,27 @@ margin_top: 0
 # inhibit_compositor_keyboard_shortcuts: true
 
 menu:
-  "BackSpace": { desc: "close-all", cmd: swaync-client --close-all }
-  "o": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
-  "n": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
-  "t": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
-  "q": { desc: "toggle-panel", cmd: swaync-client --toggle-panel }
-  "c": { desc: "close-all", cmd: swaync-client --close-all }
-  "C": { desc: "close-all", cmd: swaync-client --close-all }
-  "D": { desc: "toggle-dnd", cmd: swaync-client --toggle-dnd }
+  - key: "BackSpace"
+    desc: "close-all"
+    cmd: swaync-client --close-all
+  - key: "o"
+    desc: "toggle-panel"
+    cmd: swaync-client --toggle-panel
+  - key: "n"
+    desc: "toggle-panel"
+    cmd: swaync-client --toggle-panel
+  - key: "t"
+    desc: "toggle-panel"
+    cmd: swaync-client --toggle-panel
+  - key: "q"
+    desc: "toggle-panel"
+    cmd: swaync-client --toggle-panel
+  - key: "c"
+    desc: "close-all"
+    cmd: swaync-client --close-all
+  - key: "C"
+    desc: "close-all"
+    cmd: swaync-client --close-all
+  - key: "D"
+    desc: "toggle-dnd"
+    cmd: swaync-client --toggle-dnd
