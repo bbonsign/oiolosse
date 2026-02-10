@@ -85,6 +85,14 @@ end
 exec_shell("$EDITOR " .. '"' .. file .. '"')
 '''
 
+[custom_commands."rebase onto multiple targets"]
+key_sequence = [" ", "r", "m"]
+args = ["rebase", "-s", "$change_id", "--onto", "$checked_commit_ids"]
+
+[custom_commands."megamerge"]
+key_sequence = [" ", "m"]
+args = ["new", "$checked_commit_ids"]
+
 [custom_commands."new change at trunk"]
 key_sequence = [" ", "n", "t"]
 args = ["new", "trunk()"]
