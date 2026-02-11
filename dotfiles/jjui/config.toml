@@ -119,7 +119,7 @@ revisions.refresh()
 '''
 
 [custom_commands."new at branch"]
-key_sequence = [" ", "n", "shift+b"]
+key_sequence = [" ", "n", "ctrl+b"]
 desc = "new change at branch"
 lua = '''
 ---@diagnostic disable: undefined-global
@@ -280,7 +280,7 @@ mode = ["l"]
 close = ["h"]
 split = ["s"]
 restore = ["r"]
-absorb = ["A"]
+absorb = []
 diff = ["d"]
 select = ["v", " "]
 revisions_changing_file = ["*"]
@@ -325,7 +325,7 @@ tracer.enabled = true
 [ui.colors]
 text = "#c0caf5"
 dimmed = "#565f89"
-"title" = { fg = "#73daca", bold = true }
+title = { fg = "#73daca", bold = true }
 error = "#f7768e"
 success = "#9ece6a"
 change_id = "#7aa2f7"

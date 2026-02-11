@@ -11,7 +11,7 @@ def get_emoji [hour: int] {
 def format_tz [tz: string label: string] {
   let dt = (date now | date to-timezone $tz)
   let hour = ($dt | format date "%H" | into int)
-  let formatted = ($dt | format date "%d-%m-%Y %H:%M")
+  let formatted = ($dt | format date "%Y-%m-%d %H:%M")
   let ampm = ($dt | format date "%I:%M %p")
   $"($label):  ($formatted)  ($ampm)  (get_emoji $hour)"
 }

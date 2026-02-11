@@ -111,30 +111,30 @@ return {
             },
           },
         },
-        emmet_ls = {
-          filetypes = {
-            "html",
-            -- "elixir",
-            "heex",
-            "typescriptreact",
-            "javascriptreact",
-            "css",
-            "sass",
-            "scss",
-            "less",
-            "javascript",
-            "typescript",
-            -- "markdown",
-          },
-          init_options = {
-            html = {
-              options = {
-                -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L26
-                ["bem.enabled"] = true,
-              },
-            },
-          },
-        },
+        -- emmet_ls = {
+        --   filetypes = {
+        --     "html",
+        --     -- "elixir",
+        --     "heex",
+        --     "typescriptreact",
+        --     "javascriptreact",
+        --     "css",
+        --     "sass",
+        --     "scss",
+        --     "less",
+        --     "javascript",
+        --     "typescript",
+        --     -- "markdown",
+        --   },
+        --   init_options = {
+        --     html = {
+        --       options = {
+        --         -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L26
+        --         ["bem.enabled"] = true,
+        --       },
+        --     },
+        --   },
+        -- },
         -- tailwindcss = {
         --   -- exclude a filetype from the default_config
         --   -- filetypes_exclude = { "markdown" },
