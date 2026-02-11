@@ -4,7 +4,7 @@ return {
   },
 
   {
-    "nicolasgb/jj.nvim",
+    dir = "/var/home/bbonsign/code/NicolasGB/jj.nvim.repo/default.git.jj",
     dependencies = {
       "folke/snacks.nvim",
     },
