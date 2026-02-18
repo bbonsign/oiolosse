@@ -1,172 +1,4 @@
-# experimental_log_batching_enabled = false
 limit = 0
-
-[custom_commands."tag current change"]
-key_sequence = [" ", "t", "t"]
-desc = "tag change under cursor"
-lua = '''
----@diagnostic disable: undefined-global
-local change_id = context.change_id()
-if not change_id then
-  flash("No change_id")
-  return
-end
-local user_input = input({
-  title = "Tag name",
-  prompt = "Enter a tag_name: ",
-}) or ""
-
-local tag_name = string.gsub(user_input, "%s", "")
-if not tag_name then
-  flash("No tag_name")
-  return
-end
-jj("tag", "set", "-r", change_id, tag_name)
-revisions.refresh()
-'''
-
-[custom_commands."delete tag"]
-key_sequence = [" ", "t", "d"]
-lua = '''
-local output, err = jj("tag", "list", "-T", "name ++ '\n'")
-local choice = choose({
-  title = "Choose a tag",
-  options = split_lines(output),
-})
-if not choice then
-  flash("none selected")
-  return
-end
-jj("tag", "delete", choice)
-revisions.refresh()
-'''
-
-[custom_commands."diff to bookmark"]
-key_sequence = [" ", "d", "d"]
-lua = '''
-local change_id = context.change_id()
-if not change_id then
-  flash("No change_id")
-  return
-end
-local bookmarks, err = jj("bookmark", "list", "-T", "name ++ '\n'")
-local bookmark = choose({
-  title = "Choose a bookmark",
-  options = split_lines(bookmarks),
-})
-if not bookmark then
-  flash("None selected")
-  return
-end
-exec_shell("jj diff --from " .. change_id .. " --to " .. bookmark .. " | diffnav")
-'''
-
-[custom_commands."diff to trunk"]
-key_sequence = [" ", "d", "t"]
-lua = '''
-local change_id = context.change_id()
-if not change_id then
-  flash("No change_id")
-  return
-end
-exec_shell("jj diff --from " .. change_id .. " --to 'trunk()' | diffnav")
-'''
-
-[custom_commands."edit file"]
-key_sequence = [" ", "e"]
-desc = "edit file under cursor"
-lua = '''
----@diagnostic disable: undefined-global
-local file = context.file()
-if not file then
-  flash("No file selected")
-  return
-end
-exec_shell("$EDITOR " .. '"' .. file .. '"')
-'''
-
-[custom_commands."rebase onto multiple targets"]
-key_sequence = [" ", "r", "m"]
-args = ["rebase", "-s", "$change_id", "--onto", "$checked_commit_ids"]
-
-[custom_commands."megamerge"]
-key_sequence = [" ", "m"]
-args = ["new", "$checked_commit_ids"]
-
-[custom_commands."new change at trunk"]
-key_sequence = [" ", "n", "t"]
-args = ["new", "trunk()"]
-
-[custom_commands."new change from here"]
-key_sequence = [" ", "n", "n"]
-args = ["new", "$change_id"]
-
-[custom_commands."new change after here"]
-key_sequence = [" ", "n", "a"]
-args = ["new", "--insert-after", "$change_id"]
-
-[custom_commands."new change before here"]
-key_sequence = [" ", "n", "b"]
-lua = '''
----@diagnostic disable: undefined-global
-local change_id = context.change_id()
-if not change_id then
-  flash("No change_id")
-  return
-end
-jj("new", "--insert-before", change_id)
-revisions.refresh()
-'''
-
-[custom_commands."new at branch"]
-key_sequence = [" ", "n", "ctrl+b"]
-desc = "new change at branch"
-lua = '''
----@diagnostic disable: undefined-global
-local output, err = jj("bookmark", "list", "-T", "name ++ '\n'")
-bookmark = choose({ options = split_lines(output), title = "choose a bookmark" })
-if bookmark then
-  jj("new", "--insert-after", bookmark)
-  revisions.refresh()
-else
-  flash("none selected")
-end
-  '''
-
-[custom_commands."deltadiff"]
-key = ["d"]
-args = [
-  "util",
-  "exec",
-  "--",
-  "bash",
-  "-c",
-  """jj diff --summary --git --color always -r $change_id $file | diffnav""",
-]
-show = "interactive"
-
-[custom_commands."show all"]
-key_sequence = [" ", "v", "a"]
-revset = "all()"
-desc = "show all revisions"
-
-[custom_commands."show tracked"]
-key_sequence = [" ", "v", "t"]
-revset = "tracked_remote_bookmarks()::"
-desc = "show tracked remote bookmarks"
-
-[custom_commands."show default"]
-key_sequence = [" ", "v", "d"]
-revset = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"
-desc = "show default revisions"
-
-[custom_commands."move commit down"]
-key = ["J"]
-args = ["rebase", "-r", "$checked_commit_ids", "--insert-before", "$change_id"]
-
-[custom_commands."move commit up"]
-key = ["K"]
-args = ["rebase", "-r", "$checked_commit_ids", "--insert-after", "$change_id"]
 
 [revisions]
 template = 'custom_log_oneline'
@@ -213,108 +45,12 @@ limit = 200
 [graph]
 batch_size = 50
 
-[keys]
-up = ["up", "k"]
-down = ["down", "j"]
-jump_to_parent = ["ctrl+j"]
-jump_to_children = ["ctrl+k"]
-jump_to_working_copy = ["@"]
-apply = ["enter"]
-cancel = ["esc"]
-toggle_select = ["v"]
-new = ["ctrl+n"]
-commit = ["c"]
-refresh = ["ctrl+r"]
-abandon = ["A"]
-# diff = ["d"]
-quit = ["q"]
-help = ["?"]
-describe = ["alt+d"]
-edit = ["e"]
-diffedit = ["E"]
-absorb = []
-split = ["s"]
-undo = ["u"]
-revset = ["ctrl+l"]
-exec_jj = [":"]
-exec_shell = ["$"]
-quick_search = ["/"]
-quick_search_cycle = ["n"]
-custom_commands = [";", "x"]
-suspend = ["ctrl+z"]
+bindings = [
+  { key = "shift+a", action = "revisions.abandon", scope = "revisions", desc = "abandon" },
+  { key = "", action = "revisions.absorb", scope = "revisions", desc = "absorb" },
+  { key = "", action = "revisions.details.absorb", scope = "revisions.details", desc = "absorb" },
+]
 
-[keys.file_search]
-toggle = ["ctrl+t"]
-up = ["up", "ctrl+k"]
-down = ["down", "ctrl+j"]
-accept = ["enter"]
-edit = ["alt+e"]
-
-[keys.evolog]
-mode = ["V"]
-
-[keys.rebase]
-mode = ["r"]
-revision = ["r"]
-source = ["s"]
-branch = ["B"]
-after = ["a"]
-before = ["b"]
-onto = ["d"]
-insert = ["i"]
-
-
-[keys.duplicate]
-mode = ["D"]
-after = ["a"]
-before = ["b"]
-onto = ["d"]
-
-[keys.squash]
-mode = ["S"]
-keep_emptied = ["e"]
-interactive = ["i"]
-
-[keys.details]
-mode = ["l"]
-close = ["h"]
-split = ["s"]
-restore = ["r"]
-absorb = []
-diff = ["d"]
-select = ["v", " "]
-revisions_changing_file = ["*"]
-
-[keys.preview]
-mode = ["p"]
-scroll_up = ["ctrl+p"]
-scroll_down = ["ctrl+n"]
-half_page_down = ["ctrl+d", "ctrl+f"]
-half_page_up = ["ctrl+u", "ctrl+b"]
-expand = ["ctrl+h"]
-shrink = ["ctrl+l"]
-
-[keys.bookmark]
-mode = ["b"]
-set = ["B"]
-delete = ["d"]
-move = ["m"]
-forget = ["f"]
-track = ["t"]
-untrack = ["u"]
-
-[keys.inline_describe]
-mode = ["enter"]
-accept = ["alt+enter", "ctrl+s"]
-
-[keys.git]
-mode = ["g"]
-push = ["p"]
-fetch = ["f"]
-
-[keys.oplog]
-mode = ["o"]
-restore = ["r"]
 
 [ui]
 theme = ""
@@ -362,3 +98,272 @@ border = "#414868"
 "details renamed" = "#7aa2f7"
 
 "preview" = { fg = "#c0caf5" }
+
+# [custom_commands."tag current change"]
+# key_sequence = [" ", "t", "t"]
+# desc = "tag change under cursor"
+# lua = '''
+# ---@diagnostic disable: undefined-global
+# local change_id = context.change_id()
+# if not change_id then
+#   flash("No change_id")
+#   return
+# end
+# local user_input = input({
+#   title = "Tag name",
+#   prompt = "Enter a tag_name: ",
+# }) or ""
+#
+# local tag_name = string.gsub(user_input, "%s", "")
+# if not tag_name then
+#   flash("No tag_name")
+#   return
+# end
+# jj("tag", "set", "-r", change_id, tag_name)
+# revisions.refresh()
+# '''
+#
+# [custom_commands."delete tag"]
+# key_sequence = [" ", "t", "d"]
+# lua = '''
+# local output, err = jj("tag", "list", "-T", "name ++ '\n'")
+# local choice = choose({
+#   title = "Choose a tag",
+#   options = split_lines(output),
+# })
+# if not choice then
+#   flash("none selected")
+#   return
+# end
+# jj("tag", "delete", choice)
+# revisions.refresh()
+# '''
+#
+# [custom_commands."diff to bookmark"]
+# key_sequence = [" ", "d", "d"]
+# lua = '''
+# local change_id = context.change_id()
+# if not change_id then
+#   flash("No change_id")
+#   return
+# end
+# local bookmarks, err = jj("bookmark", "list", "-T", "name ++ '\n'")
+# local bookmark = choose({
+#   title = "Choose a bookmark",
+#   options = split_lines(bookmarks),
+# })
+# if not bookmark then
+#   flash("None selected")
+#   return
+# end
+# exec_shell("jj diff --from " .. change_id .. " --to " .. bookmark .. " | diffnav")
+# '''
+#
+# [custom_commands."diff to trunk"]
+# key_sequence = [" ", "d", "t"]
+# lua = '''
+# local change_id = context.change_id()
+# if not change_id then
+#   flash("No change_id")
+#   return
+# end
+# exec_shell("jj diff --from " .. change_id .. " --to 'trunk()' | diffnav")
+# '''
+#
+# [custom_commands."edit file"]
+# key_sequence = [" ", "e"]
+# desc = "edit file under cursor"
+# lua = '''
+# ---@diagnostic disable: undefined-global
+# local file = context.file()
+# if not file then
+#   flash("No file selected")
+#   return
+# end
+# exec_shell("$EDITOR " .. '"' .. file .. '"')
+# '''
+#
+# [custom_commands."rebase onto multiple targets"]
+# key_sequence = [" ", "r", "m"]
+# args = ["rebase", "-s", "$change_id", "--onto", "$checked_commit_ids"]
+#
+# [custom_commands."megamerge"]
+# key_sequence = [" ", "m"]
+# args = ["new", "$checked_commit_ids"]
+#
+# [custom_commands."new change at trunk"]
+# key_sequence = [" ", "n", "t"]
+# args = ["new", "trunk()"]
+#
+# [custom_commands."new change from here"]
+# key_sequence = [" ", "n", "n"]
+# args = ["new", "$change_id"]
+#
+# [custom_commands."new change after here"]
+# key_sequence = [" ", "n", "a"]
+# args = ["new", "--insert-after", "$change_id"]
+#
+# [custom_commands."new change before here"]
+# key_sequence = [" ", "n", "b"]
+# lua = '''
+# ---@diagnostic disable: undefined-global
+# local change_id = context.change_id()
+# if not change_id then
+#   flash("No change_id")
+#   return
+# end
+# jj("new", "--insert-before", change_id)
+# revisions.refresh()
+# '''
+#
+# [custom_commands."new at branch"]
+# key_sequence = [" ", "n", "ctrl+b"]
+# desc = "new change at branch"
+# lua = '''
+# ---@diagnostic disable: undefined-global
+# local output, err = jj("bookmark", "list", "-T", "name ++ '\n'")
+# bookmark = choose({ options = split_lines(output), title = "choose a bookmark" })
+# if bookmark then
+#   jj("new", "--insert-after", bookmark)
+#   revisions.refresh()
+# else
+#   flash("none selected")
+# end
+#   '''
+#
+# [custom_commands."deltadiff"]
+# key = ["d"]
+# args = [
+#   "util",
+#   "exec",
+#   "--",
+#   "bash",
+#   "-c",
+#   """jj diff --summary --git --color always -r $change_id $file | diffnav""",
+# ]
+# show = "interactive"
+#
+# [custom_commands."show all"]
+# key_sequence = [" ", "v", "a"]
+# revset = "all()"
+# desc = "show all revisions"
+#
+# [custom_commands."show tracked"]
+# key_sequence = [" ", "v", "t"]
+# revset = "tracked_remote_bookmarks()::"
+# desc = "show tracked remote bookmarks"
+#
+# [custom_commands."show default"]
+# key_sequence = [" ", "v", "d"]
+# revset = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"
+# desc = "show default revisions"
+#
+# [custom_commands."move commit down"]
+# key = ["J"]
+# args = ["rebase", "-r", "$checked_commit_ids", "--insert-before", "$change_id"]
+#
+# [custom_commands."move commit up"]
+# key = ["K"]
+# args = ["rebase", "-r", "$checked_commit_ids", "--insert-after", "$change_id"]
+# [keys]
+# up = ["up", "k"]
+# down = ["down", "j"]
+# jump_to_parent = ["ctrl+j"]
+# jump_to_children = ["ctrl+k"]
+# jump_to_working_copy = ["@"]
+# apply = ["enter"]
+# cancel = ["esc"]
+# toggle_select = ["v"]
+# new = ["ctrl+n"]
+# commit = ["c"]
+# refresh = ["ctrl+r"]
+# abandon = ["A"]
+# # diff = ["d"]
+# quit = ["q"]
+# help = ["?"]
+# describe = ["alt+d"]
+# edit = ["e"]
+# diffedit = ["E"]
+# absorb = []
+# split = ["s"]
+# undo = ["u"]
+# revset = ["ctrl+l"]
+# exec_jj = [":"]
+# exec_shell = ["$"]
+# quick_search = ["/"]
+# quick_search_cycle = ["n"]
+# custom_commands = [";", "x"]
+# suspend = ["ctrl+z"]
+#
+# [keys.file_search]
+# toggle = ["ctrl+t"]
+# up = ["up", "ctrl+k"]
+# down = ["down", "ctrl+j"]
+# accept = ["enter"]
+# edit = ["alt+e"]
+#
+# [keys.evolog]
+# mode = ["V"]
+#
+# [keys.rebase]
+# mode = ["r"]
+# revision = ["r"]
+# source = ["s"]
+# branch = ["B"]
+# after = ["a"]
+# before = ["b"]
+# onto = ["d"]
+# insert = ["i"]
+#
+#
+# [keys.duplicate]
+# mode = ["D"]
+# after = ["a"]
+# before = ["b"]
+# onto = ["d"]
+#
+# [keys.squash]
+# mode = ["S"]
+# keep_emptied = ["e"]
+# interactive = ["i"]
+#
+# [keys.details]
+# mode = ["l"]
+# close = ["h"]
+# split = ["s"]
+# restore = ["r"]
+# absorb = []
+# diff = ["d"]
+# select = ["v", " "]
+# revisions_changing_file = ["*"]
+#
+# [keys.preview]
+# mode = ["p"]
+# scroll_up = ["ctrl+p"]
+# scroll_down = ["ctrl+n"]
+# half_page_down = ["ctrl+d", "ctrl+f"]
+# half_page_up = ["ctrl+u", "ctrl+b"]
+# expand = ["ctrl+h"]
+# shrink = ["ctrl+l"]
+#
+# [keys.bookmark]
+# mode = ["b"]
+# set = ["B"]
+# delete = ["d"]
+# move = ["m"]
+# forget = ["f"]
+# track = ["t"]
+# untrack = ["u"]
+#
+# [keys.inline_describe]
+# mode = ["enter"]
+# accept = ["alt+enter", "ctrl+s"]
+#
+# [keys.git]
+# mode = ["g"]
+# push = ["p"]
+# fetch = ["f"]
+#
+# [keys.oplog]
+# mode = ["o"]
+# restore = ["r"]
