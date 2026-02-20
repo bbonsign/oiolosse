@@ -9,7 +9,7 @@ new_tab marketplace-server
 cd ~/mh/dare/repo.git.jj/src/marketplace_landing_page/
 launch
 
-new_tab snowflake-test
+new_tab snowflake
 cd ~/mh/aa_recommendation_engine/snowflake_connector_test/
 launch
 
