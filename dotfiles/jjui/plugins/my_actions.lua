@@ -20,7 +20,7 @@ local actions = {
       flash("No item selected to copy")
     end,
     opts = {
-      seq = { " ", "y", "c" },
+      seq = { "space", "y", "c" },
       desc = "Copy change id",
       scope = "revisions.details",
     },
@@ -50,7 +50,7 @@ local actions = {
       flash("No item selected to copy")
     end,
     opts = {
-      seq = { " ", "y", "c" },
+      seq = { "space", "y", "c" },
       desc = "Copy change id",
       scope = "revisions",
     },
@@ -74,7 +74,7 @@ local actions = {
       flash("No item selected to copy")
     end,
     opts = {
-      seq = { " ", "y", "f" },
+      seq = { "space", "y", "f" },
       desc = "Copy change id or file path",
       scope = "revisions.details",
     },
@@ -102,7 +102,7 @@ local actions = {
       revisions.refresh()
     end,
     opts = {
-      seq = { " ", "t", "t" },
+      seq = { "space", "t", "t" },
       scope = "revisions",
       desc = "tag change under cursor",
     },
@@ -124,7 +124,7 @@ local actions = {
       revisions.refresh()
     end,
     opts = {
-      seq = { " ", "t", "d" },
+      seq = { "space", "t", "d" },
       scope = "revisions",
     },
   },
@@ -150,7 +150,7 @@ local actions = {
       exec_shell("jj diff --from " .. change_id .. " --to " .. bookmark .. " | diffnav")
     end,
     opts = {
-      seq = { " ", "d", "d" },
+      seq = { "space", "d", "d" },
       scope = "revisions",
     },
   },
@@ -165,7 +165,7 @@ local actions = {
       exec_shell("jj diff --from " .. change_id .. " --to 'trunk()' | diffnav")
     end,
     opts = {
-      seq = { " ", "d", "t" },
+      seq = { "space", "d", "t" },
       scope = "revisions",
     },
   },
@@ -219,7 +219,7 @@ local actions = {
       exec_shell("$EDITOR " .. '"' .. file .. '"')
     end,
     opts = {
-      seq = { " ", "e" },
+      seq = { "space", "e" },
       scope = "revisions.details",
       desc = "edit selected file",
     },
@@ -244,10 +244,77 @@ local actions = {
       revisions.refresh()
     end,
     opts = {
-      seq = { " ", "r", "m" },
+      seq = { "space", "r", "m" },
       scope = "revisions",
     },
   },
+
+  {
+    name = "mark-private-base",
+    fn = function()
+      local change_id = context.change_id()
+      if not change_id then
+        flash("No change_id")
+        return
+      end
+
+      local description = jj("log", "--no-graph", "-r", change_id, "-T", "description")
+      local trimmed_description = string.gsub(description or "", "^%s*(.-)%s*$", "%1")
+      if trimmed_description ~= "" then
+        flash("Revision already has a description")
+        return
+      end
+
+      local empty_revset = 'change_id("' .. change_id .. '") & empty()'
+      local empty_match = jj("log", "--no-graph", "-r", empty_revset, "-T", "change_id")
+      local trimmed_empty_match = string.gsub(empty_match or "", "^%s*(.-)%s*$", "%1")
+      if trimmed_empty_match == "" then
+        flash("Revision is not empty")
+        return
+      end
+
+      jj("describe", "-r", change_id, "--message", "private: base")
+      revisions.refresh()
+    end,
+    opts = {
+      seq = { "space", "m", "b" },
+      scope = "revisions",
+      desc = "set description to private: base when empty",
+    },
+  },
+
+  {
+    name = "rebase-private-base-to-trunk",
+    fn = function()
+      local output, err = jj("log", "--no-graph", "-r", 'description("private: base*")', "-T", "change_id ++ '\n'")
+      local matches = split_lines(output)
+      if not matches or #matches == 0 then
+        flash("No revision found with description: private: base")
+        return
+      end
+
+      local source = matches[1]
+      if #matches > 1 then
+        source = choose({
+          title = "Choose private: base revision",
+          options = matches,
+        })
+        if not source then
+          flash("None selected")
+          return
+        end
+      end
+
+      jj("rebase", "--source", source, "--destination", "trunk()")
+      revisions.refresh()
+    end,
+    opts = {
+      seq = { "space", "r", "b" },
+      scope = "revisions",
+      desc = "rebase private: base onto trunk()",
+    },
+  },
+
   {
     name = "megamerge",
     fn = function()
@@ -264,7 +331,7 @@ local actions = {
       revisions.refresh()
     end,
     opts = {
-      seq = { " ", "m" },
+      seq = { "space", "m", "m" },
       scope = "revisions",
     },
   },
@@ -325,7 +392,7 @@ local actions = {
       revisions.refresh()
     end,
     opts = {
-      seq = { " ", "n", "t" },
+      seq = { "space", "n", "t" },
       scope = "revisions",
     },
   },
@@ -341,7 +408,7 @@ local actions = {
       revisions.refresh()
     end,
     opts = {
-      seq = { " ", "n", "n" },
+      seq = { "space", "n", "n" },
       scope = "revisions",
     },
   },
@@ -357,7 +424,7 @@ local actions = {
       revisions.refresh()
     end,
     opts = {
-      seq = { " ", "n", "a" },
+      seq = { "space", "n", "a" },
       scope = "revisions",
     },
   },
@@ -373,7 +440,7 @@ local actions = {
       revisions.refresh()
     end,
     opts = {
-      seq = { " ", "n", "b" },
+      seq = { "space", "n", "b" },
       scope = "revisions",
     },
   },
@@ -390,7 +457,7 @@ local actions = {
       end
     end,
     opts = {
-      seq = { " ", "n", "ctrl+b" },
+      seq = { "space", "n", "ctrl+b" },
       scope = "revisions",
       desc = "new change at branch",
     },
@@ -403,7 +470,7 @@ local actions = {
       revset.set("all()")
     end,
     opts = {
-      seq = { " ", "v", "a" },
+      seq = { "space", "v", "a" },
       scope = "revisions",
       desc = "show all revisions",
     },
@@ -414,7 +481,7 @@ local actions = {
       revset.set("tracked_remote_bookmarks()::")
     end,
     opts = {
-      seq = { " ", "v", "t" },
+      seq = { "space", "v", "t" },
       scope = "revisions",
       desc = "show tracked remote bookmarks",
     },
@@ -425,9 +492,22 @@ local actions = {
       revset.set("present(@) | ancestors(immutable_heads().., 2) | present(trunk())")
     end,
     opts = {
-      seq = { " ", "v", "d" },
+      seq = { "space", "v", "d" },
       scope = "revisions",
       desc = "show default revisions",
+    },
+  },
+
+  -- Rebase source
+  {
+    name = "rebase-source",
+    fn = function()
+      revisions.start_rebase({ source = "descendants" })
+    end,
+    opts = {
+      key = "R",
+      scope = "revisions",
+      desc = "rebase --source current revision",
     },
   },
 

@@ -45,11 +45,29 @@ limit = 200
 [graph]
 batch_size = 50
 
-bindings = [
-  { key = "shift+a", action = "revisions.abandon", scope = "revisions", desc = "abandon" },
-  { key = "", action = "revisions.absorb", scope = "revisions", desc = "absorb" },
-  { key = "", action = "revisions.details.absorb", scope = "revisions.details", desc = "absorb" },
-]
+# https://github.com/idursun/jjui/blob/8b517545d5b1f063c33fa4d0efa0ae13b56176c5/internal/config/default/bindings.toml
+# [[bindings]]
+# key = "shift+a"
+# action = "revisions.abandon"
+# scope = "revisions"
+# desc = "abandon"
+# [[bindings]]
+# key = "ctrl+shift+a"
+# action = "revisions.absorb"
+# scope = "revisions"
+# desc = "absorb"
+# [[bindings]]
+# key = "ctrl+shift+a"
+# action = "revisions.details.absorb"
+# scope = "revisions.details"
+# desc = "absorb"
+# [[bindings]]
+# key = "v"
+# action = "revisions.toggle_select"
+# scope = "revisions"
+# desc = "select"
+# [[bindings]]
+# { key = "v", action = "revisions.details.toggle_select", scope = "revisions.details", desc = "select" }
 
 
 [ui]
