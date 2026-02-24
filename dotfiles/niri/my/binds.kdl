@@ -28,7 +28,7 @@ binds {
   // Mod+Ctrl+Space { spawn "wlr-which-key"; }
   // Mod+Shift+Semicolon { spawn "wlr-which-key"; }
   // Alt+Tab repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
-  Mod+Tab repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
+  // Mod+Tab repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
   // Mod+Comma repeat=false hotkey-overlay-title="Window Picker" { spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
   Mod+Period repeat=false hotkey-overlay-title="Window Picker"{ spawn-sh "vicinae vicinae://extensions/vicinae/wm/switch-windows"; }
   // Mod+Tab hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
