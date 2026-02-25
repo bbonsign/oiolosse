@@ -7,7 +7,7 @@ return {
     if not bookmark then
       return
     end
-    local change_id, id_err = helpers.bookmark_change_id(bookmark)
+    local change_id, id_err = helpers.change_id_of_revision(bookmark)
     if id_err then
       flash({ text = "Failed to resolve bookmark: " .. id_err, error = true })
       return
