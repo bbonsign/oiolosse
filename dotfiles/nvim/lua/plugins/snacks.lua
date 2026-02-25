@@ -116,6 +116,12 @@ return {
           border = "double",
         },
       },
+      zen = {
+        show = {
+          statusline = true,
+          tabline = true,
+        },
+      },
     },
 
     keys = {

@@ -106,6 +106,7 @@
       gnused
       go
       gum # charm cli scripting helper
+      hexyl
       htop
       hyprpicker
       inotify-tools

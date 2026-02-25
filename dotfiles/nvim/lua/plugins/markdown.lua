@@ -56,15 +56,34 @@ return {
   },
 
   {
+    "timantipov/md-table-tidy.nvim",
+    -- default config
+    opts = {
+      padding = 1, -- number of spaces for cell padding
+      keymap = {
+        table_tidy = "<localleader>tt", -- key for command :TableTidy<CR>
+        table_tidy_all = "<localleader>ta", -- key for command :TableTidyAll<CR>
+      },
+    },
+  },
+
+  {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
     },
     enabled = true,
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
     opts = {
+      anti_conceal = { enabled = false },
+      pipe_table = {
+        preset = "round",
+        alignment_indicator = "┅",
+      },
+      heading = {
+        width = "block",
+        min_width = 30,
+      },
       code = {
         sign = false,
         border = "thick",
