@@ -71,6 +71,7 @@
       # qutebrowser
       # valent # KDE Connect client
       # websocat
+      asciinema_3
       age
       # amp-cli
       awscli2

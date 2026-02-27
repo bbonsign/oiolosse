@@ -30,13 +30,22 @@ function flash(message) end
 ---Show a selection menu and wait for the user's choice.
 ---@param ... string Options to choose from
 ---@return string|nil choice The selected option, or nil if cancelled
----@overload fun(opts: {options: string[], title?: string}): string|nil
+---@overload fun(opts: {options: string[], title?: string, filter?: boolean, ordered?: boolean}): string|nil
 function choose(...) end
 
 ---Show an input prompt and wait for user input.
 ---@param opts {title?: string, prompt?: string} Input options
 ---@return string|nil text The entered text, or nil if cancelled
 function input(opts) end
+
+-- Wait Primitives
+
+---Suspend the Lua coroutine until the currently-open sub-view is closed.
+---@return boolean applied True if the operation was applied/confirmed, false if cancelled
+function wait_close() end
+
+---Suspend the Lua coroutine until the revision list has finished refreshing.
+function wait_refresh() end
 
 -- Utilities
 
@@ -57,6 +66,8 @@ function split_lines(text, keep_empty) end
 ---@alias Scope
 ---| '"bookmarks"'
 ---| '"choose"'
+---| '"choose.filter"'
+---| '"command_history"'
 ---| '"diff"'
 ---| '"file_search"'
 ---| '"git"'
@@ -66,7 +77,7 @@ function split_lines(text, keep_empty) end
 ---| '"password"'
 ---| '"redo"'
 ---| '"revisions"'
----| '"revisions.abandon"'
+---| '"revisions.open_abandon"'
 ---| '"revisions.ace_jump"'
 ---| '"revisions.details"'
 ---| '"revisions.details.confirmation"'
@@ -95,7 +106,17 @@ function setup(config) end
 
 -- Config
 
+---@class TerminalInfo
+---@field dark_mode boolean Whether terminal has a dark background
+---@field bg string Terminal background color (e.g., "#1e1e2e")
+---@field fg string Terminal foreground color
+
 ---@class Config
+---@field repo string Absolute path to the jj repo root
+---@field terminal TerminalInfo Terminal info (dark_mode, bg, fg)
+---@field ui table The [ui] config section (theme, colors, etc.)
+---@field actions table Mutable array of action configs
+---@field bindings table Mutable array of binding configs
 local Config = {}
 
 ---Register a custom Lua action, optionally with an inline binding.
@@ -167,28 +188,13 @@ function revisions.current() end
 ---@return string[] change_ids
 function revisions.checked() end
 
----Open the details view for the selected revision.
-function revisions.open_details() end
-
----Refresh the revision list.
+---Refresh the revision list. Yields until refresh completes.
 ---@param opts? {keep_selections?: boolean, selected_revision?: string}
 function revisions.refresh(opts) end
 
 ---Navigate the revision list.
 ---@param opts {by?: integer, page?: boolean, target?: "parent"|"child"|"working_copy", to?: string, fallback?: string, ensureView?: boolean, allowStream?: boolean}
 function revisions.navigate(opts) end
-
----Initiate a squash operation.
----@param opts? {files?: string[]}
-function revisions.start_squash(opts) end
-
----Initiate a rebase operation.
----@param opts? {source?: "revision"|"branch"|"descendants", target?: "destination"|"after"|"before"|"insert"}
-function revisions.start_rebase(opts) end
-
----Open inline editor to change the description. Yields until editor is closed.
----@return boolean applied True if the description was applied
-function revisions.start_inline_describe() end
 
 -- Revset API
 
@@ -209,3 +215,112 @@ function revset.set(expression) end
 
 ---Reset to the default revset.
 function revset.reset() end
+
+-- Generated Action API (jjui.* namespace)
+-- Built-in actions are auto-generated and callable as jjui.<owner>.<action>(args?).
+-- All accept an optional args table and yield a step.
+
+---@class jjui
+jjui = {}
+
+---@class jjui.revisions
+jjui.revisions = {}
+
+---Open the details view for the selected revision.
+---@param args? table
+function jjui.revisions.open_details(args) end
+
+---Open the abandon confirmation dialog.
+---@param args? table
+function jjui.revisions.open_abandon(args) end
+
+---Open the squash operation picker.
+---@param args? table
+function jjui.revisions.open_squash(args) end
+
+---Open the rebase operation picker.
+---@param args? table
+function jjui.revisions.open_rebase(args) end
+
+---Open the revert operation.
+---@param args? table
+function jjui.revisions.open_revert(args) end
+
+---Open the duplicate operation picker.
+---@param args? table
+function jjui.revisions.open_duplicate(args) end
+
+---Open the evolog view.
+---@param args? table
+function jjui.revisions.open_evolog(args) end
+
+---Open inline describe editor.
+---@param args? table
+function jjui.revisions.open_inline_describe(args) end
+
+---Open the set bookmark dialog.
+---@param args? table
+function jjui.revisions.open_set_bookmark(args) end
+
+---Open the set parents dialog.
+---@param args? table
+function jjui.revisions.open_set_parents(args) end
+
+---Describe the selected revision (opens editor).
+---@param args? table
+function jjui.revisions.describe(args) end
+
+---Create a new revision.
+---@param args? table
+function jjui.revisions.new(args) end
+
+---Split the selected revision.
+---@param args? table
+function jjui.revisions.split(args) end
+
+---Split the selected revision in parallel.
+---@param args? table
+function jjui.revisions.split_parallel(args) end
+
+---Edit the selected revision.
+---@param args? table
+function jjui.revisions.edit(args) end
+
+---Show diff for the selected revision.
+---@param args? table
+function jjui.revisions.diff(args) end
+
+---Commit the working copy.
+---@param args? table
+function jjui.revisions.commit(args) end
+
+---Refresh the revision list.
+---@param args? table
+function jjui.revisions.refresh(args) end
+
+---@class jjui.ui
+jjui.ui = {}
+
+---Quit jjui.
+---@param args? table
+function jjui.ui.quit(args) end
+
+---Open the git operations panel.
+---@param args? table
+function jjui.ui.open_git(args) end
+
+---Open the bookmarks panel.
+---@param args? table
+function jjui.ui.open_bookmarks(args) end
+
+---Open the operation log panel.
+---@param args? table
+function jjui.ui.open_oplog(args) end
+
+---Open the revset input.
+---@param args? table
+function jjui.ui.open_revset(args) end
+
+---Toggle the preview panel.
+---@param args? table
+function jjui.ui.preview_toggle(args) end

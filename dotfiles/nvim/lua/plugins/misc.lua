@@ -32,17 +32,17 @@ return {
     config = function()
       require("colorizer").setup({
         filetypes = { "*" },
-        user_default_options = {
-          RGB = true,
-          RRGGBB = true,
-          RRGGBBAA = true,
-          rgb_fn = true,
-          hsl_fn = true,
-          css = true,
-          css_fn = true,
-          tailwind = true,
-          -- mode = "virtualtext",
-          -- virtualtext = "■",
+        options = {
+          parsers = {
+            css = true,
+            css_fn = true,
+            tailwind = { enable = true },
+            hex = { enable = true },
+          },
+          -- display = {
+          --   mode = "virtualtext",
+          --   virtualtext = { position = "eol", hl_mode = "foreground" },
+          -- },
         },
       })
     end,

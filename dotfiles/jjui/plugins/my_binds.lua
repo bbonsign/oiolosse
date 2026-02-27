@@ -16,7 +16,7 @@ local my_binds = {
   },
   {
     key = "A",
-    action = "revisions.abandon",
+    action = "revisions.open_abandon",
     scope = "revisions",
     desc = "abandon",
   },
@@ -50,6 +50,18 @@ local my_binds = {
     scope = "revisions",
     desc = "revset",
   },
+  -- {
+  --   action = "revisions.refresh",
+  --   key = "shift+r",
+  --   scope = "revisions",
+  --   desc = "refresh",
+  -- },
+  -- {
+  --   action = "ui.open_command_history",
+  --   key = "ctrl+r",
+  --   scope = "ui",
+  --   desc = "command history",
+  -- },
 }
 
 function M.setup(config)
