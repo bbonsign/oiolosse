@@ -1,34 +1,26 @@
 os_window_title breeze
 
+new_tab backend
+cd ~/mh/breeze-tco/tco_backend.repo/default.git.jj/
+title code
+launch
+
 new_tab fe
 cd ~/mh/breeze-tco/tco_frontend.repo/default.git.jj/
 launch
 
-# new_tab fe-server
-# cd ~/mh/breeze-tco/tco_frontend.repo/default.git.jj/
-# launch
-
-new_tab fe-admin
-cd ~/mh/breeze-tco/tco_frontend_admin.repo/default.git.jj/
+new_tab fe-server
+cd ~/mh/breeze-tco/tco_frontend.repo/default.git.jj/
 launch
 
-# new_tab fe-admin-server
-# cd ~/mh/breeze-tco/tco_frontend_admin.repo/default.git.jj/
-# launch
-
-new_tab backend
-cd ~/mh/breeze-tco/tco_backend.repo/default.git.jj/
-title code
+new_tab admin
+cd ~/mh/breeze-tco/tco_frontend_admin.repo/default.git.jj/
 launch
 
 new_tab ui-tests
 cd ~/mh/breeze-tco/tco_ui_tests.repo/default.git.jj/
 launch
 
-new_tab waf
-cd ~/mh/mh-common/waf.repo/default.git.jj
-launch
-
-launch kitten @ focus-tab --match 'title:fe and session:.'
+launch kitten @ focus-tab --match 'title:backend and session:.'
 
 # vim:ft=sh

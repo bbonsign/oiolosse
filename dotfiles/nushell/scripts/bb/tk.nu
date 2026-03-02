@@ -20,10 +20,9 @@ export def --env y [...args] {
 # In bash, this would be `nvim --cmd copen -q <(ruff check --output-format concise)`
 # From https://github.com/nushell/nushell/issues/10610
 export def "as file" [] {
-  let it = $in
   # make tmp file in system tmp dir
   let file = mktemp --tmpdir
-  $it | save --append $file # Need to run it in background for it to stream, but this also works (but doesn't provide streaming).
+  $in | save --append $file # Need to run it in background for it to stream, but this also works (but doesn't provide streaming).
   $file
 }
 

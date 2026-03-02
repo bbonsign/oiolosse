@@ -1,0 +1,14 @@
+os_window_title ubs-bms
+
+cd ~/mh/qlair/qlair-ubs-dashboard.repo/default.git.jj/
+title main
+launch --title ubs-dash
+
+new_tab bms
+cd ~/mh/qlair/bms.repo/default.git.jj/
+launch --title bms
+
+
+launch kitten @ focus-tab --match 'title:main and session:.'
+
+# vim:ft=sh

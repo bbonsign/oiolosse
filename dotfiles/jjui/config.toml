@@ -50,8 +50,6 @@ batch_size = 50
 theme = "base24-tokyo-night-dark"
 auto_refresh_interval = 0
 flash_message_display_seconds = 0
-# NOTE: tracer was recently removed, zwxx
-tracer.enabled = true
 
 # https://github.com/idursun/jjui/blob/8b517545d5b1f063c33fa4d0efa0ae13b56176c5/internal/config/default/bindings.toml
 # [[bindings]]
