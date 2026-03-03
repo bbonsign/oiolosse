@@ -1,3 +1,5 @@
+local helpers = require("plugins.helpers")
+
 return {
   name = "mark-private-base",
   fn = function()
@@ -7,7 +9,7 @@ return {
       return
     end
 
-    local description = jj("log", "--no-graph", "-r", change_id, "-T", "description")
+    local description = helpers.log_template(change_id, "description")
     local trimmed_description = string.gsub(description or "", "^%s*(.-)%s*$", "%1")
     if trimmed_description ~= "" then
       flash("Revision already has a description")
@@ -15,7 +17,7 @@ return {
     end
 
     local empty_revset = 'change_id("' .. change_id .. '") & empty()'
-    local empty_match = jj("log", "--no-graph", "-r", empty_revset, "-T", "change_id")
+    local empty_match = helpers.log_template(empty_revset, "change_id")
     local trimmed_empty_match = string.gsub(empty_match or "", "^%s*(.-)%s*$", "%1")
     if trimmed_empty_match == "" then
       flash("Revision is not empty")

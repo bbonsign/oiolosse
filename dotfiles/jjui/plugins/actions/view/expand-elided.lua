@@ -16,7 +16,7 @@ return {
     revisions.refresh({ selected_revision = change_id })
   end,
   opts = {
-    seq = { "space", "E" },
+    seq = { "space", "e" },
     scope = "revisions",
     desc = "expand elided revisions",
   },

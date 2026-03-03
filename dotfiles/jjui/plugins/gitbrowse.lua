@@ -1,3 +1,4 @@
+local helpers = require("plugins.helpers")
 local M = {}
 
 -- Patterns to convert git remote URLs to HTTPS browse URLs
@@ -135,7 +136,7 @@ function M.browse(opts)
     local short_commit = context.commit_id()
     local commit_id = nil
     if short_commit then
-      local full, resolve_err = jj("log", "-r", short_commit, "--no-graph", "-T", "commit_id", "--limit", "1")
+      local full, resolve_err = helpers.log_template(short_commit, "commit_id")
       if not resolve_err and full and full ~= "" then
         commit_id = full
       end
