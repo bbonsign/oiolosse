@@ -14,9 +14,9 @@ return {
       return
     end
 
-    local destination_revset = megamerge .. "-"
+    local destination_revset = string.format("%s-", megamerge)
     for _, cid in ipairs(targets) do
-      destination_revset = destination_revset .. " ~ " .. cid
+      destination_revset = string.format("%s ~ %s", destination_revset, cid)
     end
 
     jj("rebase", "--source", megamerge, "--onto", destination_revset)

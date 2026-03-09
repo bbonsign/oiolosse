@@ -19,7 +19,7 @@ return {
       "--source",
       megamerge,
       "--onto",
-      megamerge .. "-",
+      string.format("%s-", megamerge),
     }
     for _, cid in ipairs(targets) do
       table.insert(args, "--onto")

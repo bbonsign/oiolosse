@@ -13,7 +13,7 @@ return {
       flash("None selected")
       return
     end
-    exec_shell("jj diff --from " .. change_id .. " --to " .. bookmark .. " | diffnav")
+    exec_shell(string.format("jj diff --from %s --to %s | diffnav", change_id, bookmark))
   end,
   opts = {
     seq = { "space", "d", "d" },

@@ -1,7 +1,8 @@
 return {
   name = "rebase-source",
   fn = function()
-    revisions.start_rebase({ source = "descendants" })
+    revisions.open_rebase()
+    revisions.rebase.set_source({ source = "source" })
   end,
   opts = {
     key = "R",

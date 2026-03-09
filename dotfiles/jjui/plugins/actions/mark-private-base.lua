@@ -16,7 +16,7 @@ return {
       return
     end
 
-    local empty_revset = 'change_id("' .. change_id .. '") & empty()'
+    local empty_revset = string.format('change_id("%s") & empty()', change_id)
     local empty_match = helpers.log_template(empty_revset, "change_id")
     local trimmed_empty_match = string.gsub(empty_match or "", "^%s*(.-)%s*$", "%1")
     if trimmed_empty_match == "" then

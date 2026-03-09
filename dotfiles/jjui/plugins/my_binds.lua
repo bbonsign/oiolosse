@@ -45,23 +45,11 @@ local my_binds = {
     desc = "select",
   },
   {
-    action = "ui.open_revset",
-    key = "R",
-    scope = "revisions",
-    desc = "revset",
+    seq = { "space", "space" },
+    action = "ui.open_help",
+    scope = "ui",
+    desc = "help",
   },
-  -- {
-  --   action = "revisions.refresh",
-  --   key = "shift+r",
-  --   scope = "revisions",
-  --   desc = "refresh",
-  -- },
-  -- {
-  --   action = "ui.open_command_history",
-  --   key = "ctrl+r",
-  --   scope = "ui",
-  --   desc = "command history",
-  -- },
 }
 
 function M.setup(config)

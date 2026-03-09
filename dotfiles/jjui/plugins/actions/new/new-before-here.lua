@@ -13,7 +13,7 @@ return {
     revisions.refresh({ selected_revision = new_change_id })
   end,
   opts = {
-    seq = { "space", "n", "b" },
+    seq = { "space", "n", "B" },
     scope = "revisions",
   },
 }

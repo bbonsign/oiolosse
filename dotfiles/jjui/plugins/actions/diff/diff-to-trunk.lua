@@ -6,7 +6,14 @@ return {
       flash("No change_id")
       return
     end
-    exec_shell("jj diff --from " .. change_id .. " --to 'trunk()' | diffnav")
+    jj_interactive(
+      "util",
+      "exec",
+      "--",
+      "bash",
+      "-c",
+      string.format("jj diff --from %s --to 'trunk()' | diffnav", change_id)
+    )
   end,
   opts = {
     seq = { "space", "d", "t" },

@@ -1,22 +1,27 @@
 return {
   name = "expand-elided",
   fn = function()
-    local change_id = context.change_id()
+    local change_id = revisions.current()
     if not change_id then
-      flash("No change selected")
       return
     end
 
     local current = revset.current()
-    local ancestor_expr = "ancestors(" .. change_id .. ", 2)"
-    if current:find(ancestor_expr, 1, true) then
-      return
+    local bumped = false
+    local pattern = string.format("ancestors%%(%s%%s*,%%s*(%%d+)%%)", change_id)
+    local updated = current:gsub(pattern, function(n)
+      bumped = true
+      return string.format("ancestors(%s, %d)", change_id, tonumber(n) + 1)
+    end, 1)
+
+    if not bumped then
+      updated = string.format("%s | ancestors(%s, 2)", current, change_id)
     end
-    revset.set(current .. " | " .. ancestor_expr)
-    revisions.refresh({ selected_revision = change_id })
+
+    revset.set(updated)
   end,
   opts = {
-    seq = { "space", "e" },
+    key = { "+", "=" },
     scope = "revisions",
     desc = "expand elided revisions",
   },

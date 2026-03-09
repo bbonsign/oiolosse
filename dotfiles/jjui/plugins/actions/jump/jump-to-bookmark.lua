@@ -9,7 +9,7 @@ return {
     end
     local change_id, id_err = helpers.change_id_of_revision(bookmark)
     if id_err then
-      flash({ text = "Failed to resolve bookmark: " .. id_err, error = true })
+      flash({ text = string.format("Failed to resolve bookmark: %s", id_err), error = true })
       return
     end
     revisions.navigate({ to = change_id })

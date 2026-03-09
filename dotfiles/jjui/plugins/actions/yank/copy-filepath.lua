@@ -5,13 +5,13 @@ return {
     if checked_files and #checked_files > 0 then
       local file_names = table.concat(checked_files, " ")
       copy_to_clipboard(file_names)
-      flash("Copied checked files: " .. file_names)
+      flash(string.format("Copied checked files: %s", file_names))
       return
     end
     local selected_file = context.file()
     if selected_file then
       copy_to_clipboard(selected_file)
-      flash("Copied file: " .. selected_file)
+      flash(string.format("Copied file: %s", selected_file))
       return
     end
     flash("No item selected to copy")
