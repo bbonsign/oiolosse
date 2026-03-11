@@ -70,6 +70,13 @@ def _draw_left_status(
     if extra > 0:
         screen.cursor.x -= extra + 1
         screen.draw("…")
+    if tab.layout_name == "stack" and tab.num_window_groups > 1:
+        live_tab = get_boss().tab_for_id(tab.tab_id)
+        if live_tab is not None:
+            active_idx = live_tab.windows.active_group_idx + 1
+            screen.draw(f"[{active_idx}/{tab.num_window_groups}]")
+        else:
+            screen.draw(f"[{tab.num_window_groups}]")
     if trailing_spaces:
         screen.draw(" " * trailing_spaces)
     end = screen.cursor.x
