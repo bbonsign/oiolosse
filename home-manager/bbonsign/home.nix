@@ -146,6 +146,7 @@
       presenterm
       # quickshell
       ripgrep
+      sioyek
       snyk
       snowsql
       sops
