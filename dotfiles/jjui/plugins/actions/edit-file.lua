@@ -18,10 +18,14 @@ return {
       flash("No file selected")
       return
     end
-    local diff = jj("diff", "--git", "-r", context.change_id(), context.file())
+    local change_id = context.change_id()
+    -- Switch working copy to the selected change so $EDITOR opens the right version
+    jj("edit", change_id)
+    local diff = jj("diff", "--git", "-r", change_id, file)
     local line_number = first_hunk_new_lineno(diff)
     -- opens at line of first hunk in nvim
-    jj_interactive("util", "exec", "--", "bash", "-c", string.format("$EDITOR +%q %q", line_number, context.file()))
+    local cmd = string.format("$EDITOR +%q %q", line_number, file)
+    exec_shell(cmd)
   end,
   opts = {
     key = "e",
