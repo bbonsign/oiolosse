@@ -8,7 +8,7 @@ return {
       "--",
       "bash",
       "-c",
-      string.format("jj diff --summary --git --color always -r %s | diffnav", change_id)
+      string.format("jj show --git --color always -r %s | diffnav", change_id)
     )
   end,
   opts = {
