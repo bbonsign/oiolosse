@@ -36,6 +36,20 @@ init = ["util", "exec", "--", "jj-init"]
 [revset-aliases]
 'trunk_to(revset)' = 'trunk()..revset'
 
+[merge-tools.diffconflicts]
+program = "nvim"
+merge-args = [
+  "-c",
+  "let g:jj_diffconflicts_marker_length=$marker_length",
+  "-c",
+  "JJDiffConflicts!",
+  "$output",
+  "$base",
+  "$left",
+  "$right",
+]
+merge-tool-edits-conflict-markers = true
+
 [ui]
 default-command = "log"
 editor = "nvim"

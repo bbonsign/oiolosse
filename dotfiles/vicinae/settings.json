@@ -9,10 +9,25 @@
 // Learn more about configuration at https://docs.vicinae.com/config
 
 {
+   "$schema": "https://vicinae.com/schemas/config.json",
+   "font": {
+      "normal": {
+         "family": "FiraCode Nerd Font Med"
+      }
+   },
    "theme": {
       "dark": {
          "name": "tokyo-night"
       }
+   },
+   "launcher_window": {
+      "client_side_decorations": {
+         "enabled": true
+      }
+   },
+   "keybinds": {
+      "open-search-filter": "control+/",
+      "toggle-action-panel": "control+P"
    },
    "providers": {
       "files": {
