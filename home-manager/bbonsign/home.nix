@@ -155,6 +155,7 @@
       stylua
       systemctl-tui
       tealdeer
+      television
       topiary # treesitter based formatter
       trashy
       tree
