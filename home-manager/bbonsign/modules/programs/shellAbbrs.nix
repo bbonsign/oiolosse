@@ -16,7 +16,9 @@
   ":ns" = "niri-session";
   ":r" = "just"; # i.e. "run"
   ":s" = "systemctl-tui";
-  ":t" = "tmux attach -t";
+  ":t" = "tmux";
+  ":ta" = "tmux attach -t";
+  ":tk" = "tmux kill-server";
   ":xo" = "xdg-open";
   ":y" = "yazi";
   b = "bat";
@@ -117,7 +119,6 @@
   # open nvim with quick-fix from rg search
   eqf = "nvim --cmd 'copen' -q <(rg --column --line-number --no-heading)";
   rmimages = "docker rmi (docker images -q -f dangling=true)";
-  t = "tmux";
   tp = "trash put";
   # weather = "curl wttr.in";
   wlc = "wl-copy";

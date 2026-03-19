@@ -2,6 +2,8 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+vim.keymap.set("n", "<localleader>w", [[:%s/\s\+$//e<CR>]], { desc = "Trim trailing whitespace" })
+
 vim.keymap.del("n", "<Leader>l")
 vim.keymap.del("n", "<Leader>L")
 vim.keymap.del("n", "<C-h>")
