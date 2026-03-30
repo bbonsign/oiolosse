@@ -50,10 +50,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ignis = {
-      url = "github:linkfrg/ignis";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # ignis = {
+    #   url = "github:linkfrg/ignis";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     jjui = {
       url = "github:idursun/jjui";

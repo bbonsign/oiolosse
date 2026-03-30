@@ -1,9 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   config = {
     gtk = {
       enable = true;
+      gtk4.theme = config.gtk.theme;
       cursorTheme = {
         name = "Nordzy-cursors";
         package = pkgs.nordzy-cursor-theme;

@@ -28,7 +28,7 @@
         enable = false;
         systemd = {
           enable = false;
-          target = "niri.service";
+          targets = [ "niri.service" ];
         };
       };
     };

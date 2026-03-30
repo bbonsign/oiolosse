@@ -2,12 +2,12 @@
 
 {
   imports = [
-    inputs.ignis.homeManagerModules.default
+    # inputs.ignis.homeManagerModules.default
   ];
 
   config = {
     programs.ignis = {
-      enable = true;
+      enable = false;
       # Add Ignis to the Python environment (useful for LSP support)
       addToPythonEnv = true;
       # Put a config directory from your flake into ~/.config/ignis
