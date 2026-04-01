@@ -1,9 +1,9 @@
 return {
   "folke/noice.nvim",
+  -- enabled = false,
   -- presets = {
   --   lsp_doc_border = true, -- add a border to hover docs and signature help
   -- },
-
   keys = {
     {
       "<leader>snn",
@@ -14,6 +14,9 @@ return {
     },
   },
   opts = {
+    cmdline = {
+      enabled = false,
+    },
     lsp = {
       -- https://github.com/folke/noice.nvim/blob/main/lua/noice/config/views.lua
       hover = {
