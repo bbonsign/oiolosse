@@ -129,7 +129,7 @@
       # networkmanager-openvpn
       nh
       nix-output-monitor
-      nodePackages.pnpm
+      # pnpm
       nodejs
       ntfy-sh
       numbat # Scientific calculator/programming language

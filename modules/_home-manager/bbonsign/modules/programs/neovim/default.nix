@@ -7,6 +7,7 @@
       vimAlias = true;
       withNodeJs = true;
       withPython3 = true;
+      withRuby = false;
       extraPackages = with pkgs; [ gcc lua-language-server ];
     };
   };

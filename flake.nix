@@ -14,7 +14,7 @@
     import-tree.url = "github:vic/import-tree";
 
     # wrappers.url = "github:Lassulus/wrappers";
-    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+    wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
 
     home-manager = {
       url = "github:nix-community/home-manager";

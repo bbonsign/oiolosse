@@ -1,18 +1,18 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, self, ... }:
 
 {
   imports = [
     # adds home-manager options to flake-parts
     inputs.home-manager.flakeModules.home-manager
-    inputs.wrapper-modules.flakeModules.wrappers
+    inputs.wrappers.flakeModules.wrappers
   ];
 
   options = {
-    flake = inputs.flake-parts.lib.mkSubmoduleOptions {
-      wrappersModules = inputs.nixpkgs.lib.mkOption {
-        default = {};
-      };
-    };
+    # flake = inputs.flake-parts.lib.mkSubmoduleOptions {
+    #   wrappersModules = inputs.nixpkgs.lib.mkOption {
+    #     default = {};
+    #   };
+    # };
   };
 
   config = {
@@ -55,6 +55,11 @@
           # Specify your home configuration modules here, for example, the path to your home.nix.
           modules = [
             ./_home-manager/bbonsign
+            {
+              home.packages = [
+                self.packages.x86_64-linux.lf
+              ];
+            }
           ];
 
           # Optionally use extraSpecialArgs to pass through arguments to home.nix
