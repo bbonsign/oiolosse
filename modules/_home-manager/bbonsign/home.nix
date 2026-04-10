@@ -1,14 +1,18 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, isNixOS, ... }:
 
 {
   imports = [
     ./modules
     inputs.nix-index-database.homeModules.nix-index
-
+  ] ++ lib.optionals (!isNixOS) [
     {
       nixpkgs.overlays = [
         inputs.neovim-nightly-overlay.overlays.default
       ];
+      nixpkgs.config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _pkg: true;
+      };
     }
   ];
 
@@ -42,13 +46,6 @@
       package = pkgs.nordzy-cursor-theme;
       name = "Nordzy-cursors";
       size = 24;
-    };
-
-    nixpkgs = {
-      config = {
-        allowUnfree = true;
-        allowUnfreePredicate = _pkg: true;
-      };
     };
 
     # # Link configs that don't have home-manager modules

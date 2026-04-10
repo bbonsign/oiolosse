@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   # imports = [ ./mithlond/configuration.nix ];
@@ -56,6 +56,10 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.overlays = [
+    inputs.neovim-nightly-overlay.overlays.default
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
