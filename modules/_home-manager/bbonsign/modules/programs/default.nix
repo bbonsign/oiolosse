@@ -10,13 +10,11 @@
     ./fish
     ./fzf.nix
     ./gammastep.nix
-    ./git
     ./gtk.nix
     # ./kanata
     # ./kitty
     ./kde-connect.nix
     ./keyd
-    ./lazygit.nix
     ./mise.nix
     ./neovim
     ./nushell

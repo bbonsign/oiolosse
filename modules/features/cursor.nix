@@ -1,9 +1,6 @@
+_:
 {
-inputs,
-...
-}:
-{
-  flake.modules.homeManager.cursor = {pkgs,...}: {
+  flake.homeModules.cursor = {pkgs,...}: {
 
     config = {
       home.pointerCursor = {

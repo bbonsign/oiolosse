@@ -3,7 +3,6 @@
 {
   imports = [
     ./modules
-    inputs.nix-index-database.homeModules.nix-index
   ] ++ lib.optionals (!isNixOS) [
     {
       nixpkgs.overlays = [
@@ -37,16 +36,8 @@
     #   '';
     # };
 
-    fonts.fontconfig.enable = true;
 
     home.shellAliases = import ./modules/programs/shellAliases.nix;
-
-    home.pointerCursor = {
-      gtk.enable = true;
-      package = pkgs.nordzy-cursor-theme;
-      name = "Nordzy-cursors";
-      size = 24;
-    };
 
     # # Link configs that don't have home-manager modules
     # home.file = {
@@ -55,8 +46,6 @@
     #     recursive = true;
     #   };
     # };
-
-    # home.shellAliases = import ../programs/shellAliases.nix;
 
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
@@ -96,8 +85,6 @@
       file
       # flyctl
       gcc
-      gh # GitHub cli
-      git-extras
       glow # terminal markdown previewer
       gnumake
       gnupg
@@ -112,23 +99,16 @@
       jc # converts many command outputs/data types to json
       jq
       # jjui
-      inputs.jjui.packages.x86_64-linux.jjui
-      jujutsu
       # just
       killall
       kitty
-      lazygit
       litecli
       lua-language-server
       luarocks
       mermaid-cli
       nautilus
-      nerd-fonts.fira-code
-      nerd-fonts.fantasque-sans-mono
       # networkmanager
       # networkmanager-openvpn
-      nh
-      nix-output-monitor
       # pnpm
       nodejs
       ntfy-sh
@@ -181,9 +161,6 @@
 
     # Let home Manager install and manage itself.
     programs.home-manager.enable = true;
-
-    programs.nix-index.enable = true;
-    programs.nix-index-database.comma.enable = true;
 
 
     services = {
