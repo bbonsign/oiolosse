@@ -108,21 +108,6 @@ menu:
       #   cmd: dms ipc bar toggle 1
       # - key: "b"
       #   desc: Toggle
-      #   cmd: ignis init || ignis quit
-      # - key: "r"
-      #   desc: Reload
-      #   cmd: ignis reload
-      # - key: "s"
-      #   desc: Toggle
-      #   cmd: ignis init
-      # - key: "t"
-      #   desc: Toggle
-      #   cmd: ignis init || ignis quit
-      # - key: "q"
-      #   desc: Toggle
-      #   cmd: ignis quit
-      # - key: "b"
-      #   desc: Toggle
       #   cmd: pkill -SIGUSR1 waybar
       # - key: "r"
       #   desc: Reload

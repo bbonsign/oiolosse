@@ -9,7 +9,6 @@
     ./fd
     ./fish
     ./fzf.nix
-    # ./ignis.nix
     ./gammastep.nix
     ./git
     ./gtk.nix
