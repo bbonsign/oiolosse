@@ -38,12 +38,6 @@
 
   security.rtkit.enable = true;
 
-  hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
-  };
 
   services.tailscale.enable = true;
 
@@ -51,7 +45,6 @@
   # services.displayManager.sddm.enable = true;
   services.displayManager.enable = false;
 
-  services.blueman.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {

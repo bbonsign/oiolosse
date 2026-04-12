@@ -5,6 +5,5 @@
     # ./gnome
     ./sway
     # ./hyprland
-    ./niri
   ];
 }
