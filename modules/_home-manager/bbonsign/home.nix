@@ -16,8 +16,6 @@
   ];
 
   config = {
-    home.username = "bbonsign";
-    home.homeDirectory = "/home/bbonsign";
     home.sessionVariables = {
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
@@ -39,128 +37,6 @@
 
     home.shellAliases = import ./modules/programs/shellAliases.nix;
 
-    # # Link configs that don't have home-manager modules
-    # home.file = {
-    #   ".local/bin" = {
-    #     source = ./local-bin;
-    #     recursive = true;
-    #   };
-    # };
-
-    # Packages that should be installed to the user profile.
-    home.packages = with pkgs; [
-      # devbox
-      # ghostty
-      # podman
-      # podman-compose
-      # podman-tui
-      # qutebrowser
-      # valent # KDE Connect client
-      # websocat
-      asciinema_3
-      age
-      # amp-cli
-      awscli2
-      ast-grep
-      bat
-      beam.packages.erlang_28.elixir_1_19
-      beam.packages.erlang_28.erlang
-      bottom
-      brightnessctl
-      btop
-      bun
-      cargo
-      cbonsai
-      cmatrix
-      codex
-      cowsay
-      delta
-      # diffnav # Delta + file tree -- installed from local clone for now
-      # difftastic
-      dnsutils # `dig` + `nslookup`
-      duckdb
-      duf
-      exiftool
-      eza
-      file
-      # flyctl
-      gcc
-      glow # terminal markdown previewer
-      gnumake
-      gnupg
-      gnused
-      go
-      google-chrome
-      gum # charm cli scripting helper
-      hexyl
-      htop
-      hyprpicker
-      inotify-tools
-      jc # converts many command outputs/data types to json
-      jq
-      # jjui
-      # just
-      killall
-      kitty
-      litecli
-      lua-language-server
-      luarocks
-      mermaid-cli
-      nautilus
-      # networkmanager
-      # networkmanager-openvpn
-      # pnpm
-      nodejs
-      ntfy-sh
-      numbat # Scientific calculator/programming language
-      # obsidian # Using flatpak for now
-      p7zip
-      pandoc
-      # pgadmin4
-      pgcli
-      pinentry-gtk2
-      postgresql
-      presenterm
-      # quickshell
-      ripgrep
-      sioyek
-      snyk
-      snowsql
-      sops
-      sqlite
-      # ssm-session-manager-plugin # For aws cli
-      stylua
-      systemctl-tui
-      tealdeer
-      television
-      topiary # treesitter based formatter
-      trashy
-      tree
-      unzip
-      usbutils # lsusb
-      uv # python packaging and project manager
-      # watchman
-      which
-      xdg-desktop-portal-gnome
-      xz
-      yarn
-      yazi
-      yq-go # yaml processer https://github.com/mikefarah/yq
-      zip
-    ];
-
-    # This value determines the home Manager release that your
-    # configuration is compatible with. This helps avoid breakage
-    # when a new home Manager release introduces backwards
-    # incompatible changes.
-    #
-    # You can update home Manager without changing this value. See
-    # the home Manager release notes for a list of state version
-    # changes in each release.
-    home.stateVersion = "22.11";
-
-    # Let home Manager install and manage itself.
-    programs.home-manager.enable = true;
 
 
     services = {

@@ -19,13 +19,19 @@ self,
   flake.homeModules.bbonsignHomeModule = {pkgs, ...}: {
     imports = [
       ../_home-manager/bbonsign/home.nix
+      self.homeModules.beam
       self.homeModules.cursor
       self.homeModules.font
+      self.homeModules.home-manager
+      self.homeModules.miscPackages
       self.homeModules.nix
       self.homeModules.vcs
     ];
 
     config = {
+      home.username = "bbonsign";
+      home.homeDirectory = "/home/bbonsign";
+
       home.packages = [
         self.packages.x86_64-linux.lf
       ];
