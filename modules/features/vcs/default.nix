@@ -15,6 +15,7 @@
 
       programs.git = {
         enable = true;
+        signing.format = "openpgp";
         includes = [
           {
             condition = "gitdir:~/mh/";
