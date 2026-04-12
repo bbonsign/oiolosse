@@ -5,17 +5,13 @@ _:
     config = {
       # Packages that should be installed to the user profile.
       home.packages = [
-        # devbox
-        # ghostty
-        # podman
-        # podman-compose
-        # podman-tui
-        # qutebrowser
-        # valent # KDE Connect client
-        # websocat
+        # pkgs.podman
+        # pkgs.podman-compose
+        # pkgs.podman-tui
+        # pkgs.valent # KDE Connect client
+        # pkgs.websocat
         pkgs.asciinema_3
         pkgs.age
-        # amp-cli
         pkgs.awscli2
         pkgs.ast-grep
         pkgs.bat
@@ -26,18 +22,15 @@ _:
         pkgs.cargo
         pkgs.cbonsai
         pkgs.cmatrix
-        # codex
         pkgs.cowsay
         pkgs.delta
-        # diffnav # Delta + file tree -- installed from local clone for now
-        # difftastic
+        # pkgs.diffnav # Delta + file tree -- installed from local clone for now
         pkgs.dnsutils # `dig` + `nslookup`
         pkgs.duckdb
         pkgs.duf
         pkgs.exiftool
         pkgs.eza
         pkgs.file
-        # flyctl
         pkgs.gcc
         pkgs.glow # terminal markdown previewer
         pkgs.gnumake
@@ -52,7 +45,7 @@ _:
         pkgs.inotify-tools
         pkgs.jc # converts many command outputs/data types to json
         pkgs.jq
-        # just
+        # pkgs.just
         pkgs.killall
         pkgs.kitty
         pkgs.litecli
@@ -60,28 +53,25 @@ _:
         pkgs.luarocks
         pkgs.mermaid-cli
         pkgs.nautilus
-        # networkmanager
-        # networkmanager-openvpn
-        # pnpm
+        # pkgs.networkmanager
+        # pkgs.networkmanager-openvpn
         pkgs.nodejs
         pkgs.ntfy-sh
         pkgs.numbat # Scientific calculator/programming language
-        # obsidian # Using flatpak for now
+        # pkgs.obsidian # Using flatpak for now
         pkgs.p7zip
         pkgs.pandoc
-        # pgadmin4
         pkgs.pgcli
         pkgs.pinentry-gtk2
         pkgs.postgresql
         pkgs.presenterm
-        # quickshell
         pkgs.ripgrep
         pkgs.sioyek
         pkgs.snyk
         pkgs.snowsql
         pkgs.sops
         pkgs.sqlite
-        # ssm-session-manager-plugin # For aws cli
+        # pkgs.ssm-session-manager-plugin # For aws cli
         pkgs.stylua
         pkgs.systemctl-tui
         pkgs.tealdeer
@@ -91,12 +81,10 @@ _:
         pkgs.tree
         pkgs.unzip
         pkgs.usbutils # lsusb
-        pkgs.uv # python packaging and project manager
-        # watchman
+        pkgs.uv
         pkgs.which
         pkgs.xdg-desktop-portal-gnome
         pkgs.xz
-        pkgs.yarn
         pkgs.yazi
         pkgs.yq-go # yaml processer https://github.com/mikefarah/yq
         pkgs.zip

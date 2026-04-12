@@ -2,7 +2,6 @@
   imports = [
     ./atuin
     ./bash.nix
-    ./broot
     ./carapace.nix
     ./difftastic
     ./direnv.nix
@@ -12,7 +11,6 @@
     ./gammastep.nix
     ./gtk.nix
     # ./kanata
-    # ./kitty
     ./kde-connect.nix
     ./keyd
     ./mise.nix
@@ -25,7 +23,6 @@
     ./vicinae.nix
     ./wezterm
     ./zathura.nix
-    # ./zellij
     ./zsh.nix
     ./zoxide.nix
   ];
