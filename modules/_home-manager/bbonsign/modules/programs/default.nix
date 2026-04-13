@@ -16,7 +16,6 @@
     ./mise.nix
     ./neovim
     ./nushell
-    ./starship.nix
     ./topiary
     ./tmux
     ./vicinae.nix

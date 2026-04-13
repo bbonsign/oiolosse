@@ -5,7 +5,7 @@ use bb *
 
 const ALL_MODES = [emacs vi_normal vi_insert]
 
-let fzf_menu_source = {|buffer, position|
+let fzf_menu_source = {|buffer position|
   fzf_menu_source $buffer $position
 }
 
@@ -85,7 +85,7 @@ $env.config.menus = (
         selected_text: green_reverse
         description_text: yellow
       }
-      source: {|buffer, position|
+      source: {|buffer position|
         scope aliases
         | where name == ($buffer | str trim)
         | each {|it| {value: $"($it.expansion) "} }
@@ -106,20 +106,31 @@ $env.config.menus = (
       name: pipe_completions_menu
       only_buffer_difference: false # Search is done on the text written after activating the menu
       marker: ""
-      type: { layout: list page_size: 25 }
-      style: { text: green selected_text: green_reverse description_text: yellow }
+      type: {layout: list page_size: 25}
+      style: {text: green selected_text: green_reverse description_text: yellow}
       source: {|buffer position|
 
-        let esc_regex: closure = {|input|
+         let esc_regex: closure = {|input|
           # regex special symbols
           [
-            '\' '.' '^' '$' '*'
-            '+' '?' '{' '}' '('
-            ')' '[' ']' '|' '/'
+            '\'
+            '.'
+            '^'
+            '$'
+            '*'
+            '+'
+            '?'
+            '{'
+            '}'
+            '('
+            ')'
+            '['
+            ']'
+            '|'
+            '/'
           ]
           | reduce -f $input {|i acc| $acc | str replace -a $i $'\($i)' }
         }
-
 
         let segments = $buffer | split row -r '(\s\|\s)|\(|;|(\{\|\w\| )'
         let last_segment = $segments | last
@@ -135,7 +146,7 @@ $env.config.menus = (
         | str replace -r $'.*($last_segment_esc)' $last_segment
         | reverse
         | uniq
-        | each {|it| { value: $it span: { start: ($position - $last_segment_length) end: ($position) } } }
+        | each {|it| {value: $it span: {start: ($position - $last_segment_length) end: ($position)}} }
       }
     }
   ]
@@ -353,3 +364,7 @@ $env.config.keybindings = (
 #   | default ""
 #   | str trim
 # }
+
+# # Enable starship prompt
+# mkdir ($nu.data-dir | path join "vendor/autoload")
+# starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")

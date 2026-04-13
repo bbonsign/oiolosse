@@ -27,6 +27,7 @@ self,
       self.homeModules.miscPackages
       self.homeModules.niri
       self.homeModules.nix
+      self.homeModules.shell-prompt
       self.homeModules.ssh
       self.homeModules.terminalFun
       self.homeModules.vcs

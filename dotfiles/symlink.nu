@@ -62,7 +62,7 @@ create_symlink ./presenterm ($CONFIG_DIR | path join presenterm)
 create_symlink ./nvim ($CONFIG_DIR | path join nvim)
 create_symlink ./rofi ($CONFIG_DIR | path join rofi)
 create_symlink ./soteria ($CONFIG_DIR | path join soteria)
-create_symlink ./starship.toml ($CONFIG_DIR | path join starship.toml)
+# create_symlink ./starship.toml ($CONFIG_DIR | path join starship.toml)
 create_symlink ./sway ($CONFIG_DIR | path join sway)
 # create_symlink  ($SERVICE_DIR | path join swayidle.service )
 # ln -s ($SERVICE_DIR  | path join swayidle.service) ($SERVICE_DIR | path join niri.service.wants/ ) | complete
