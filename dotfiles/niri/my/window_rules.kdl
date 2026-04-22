@@ -1,6 +1,9 @@
-// Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+window-rule {
+  background-effect {
+    blur true
+    // xray false
+  }
+}
 
 window-rule {
   match app-id=r#"1Password"# 

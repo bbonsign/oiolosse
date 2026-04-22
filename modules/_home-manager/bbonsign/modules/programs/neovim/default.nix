@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   config = {
     programs.neovim = {
+      sideloadInitLua = true;
       enable = true;
       defaultEditor = true;
       viAlias = true;

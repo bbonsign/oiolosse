@@ -2,12 +2,12 @@ local M = {}
 
 -- https://github.com/idursun/jjui/blob/8b517545d5b1f063c33fa4d0efa0ae13b56176c5/internal/config/default/bindings.toml
 local my_binds = {
-  {
-    key = "__none__",
-    action = "revisions.absorb",
-    scope = "revisions",
-    desc = "absorb",
-  },
+  -- {
+  --   key = "__none__",
+  --   action = "revisions.absorb",
+  --   scope = "revisions",
+  --   desc = "absorb",
+  -- },
   {
     key = "__none__",
     action = "revisions.details.absorb",
