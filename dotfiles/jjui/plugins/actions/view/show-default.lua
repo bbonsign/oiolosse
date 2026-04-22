@@ -1,7 +1,7 @@
 return {
   name = "show-default",
   fn = function()
-    revset.set("present(@) | ancestors(immutable_heads().., 2) | present(trunk())")
+    revset.reset()
   end,
   opts = {
     seq = { "space", "v", "d" },
