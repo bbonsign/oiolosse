@@ -35,8 +35,6 @@
     # };
 
 
-    home.shellAliases = import ./modules/programs/shellAliases.nix;
-
     services = {
       gnome-keyring.enable = true;
     };

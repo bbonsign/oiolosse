@@ -1,22 +1,25 @@
-{ pkgs, ... }: {
-  config = {
+_:
+{
+  flake.homeModules.fish = {pkgs,...}:
+    {
+      config = {
 
-    home.file.".config/fish/colors/fish_tokyonight_night.fish".source =
-      ./fish_tokyonight_night.fish;
+        home.file.".config/fish/colors/fish_tokyonight_night.fish".source =
+          ./fish_tokyonight_night.fish;
 
-    programs.fish = {
-      enable = true;
+        programs.fish = {
+          enable = true;
 
-      shellAliases = import ../shellAliases.nix;
-      shellAbbrs = import ../shellAbbrs.nix // {
-        ":dev" = "export AWS_PROFILE=dev_qlair";
-        ":euprod" = "export AWS_PROFILE=prod_qlair_eu";
-        ":loc" = "export AWS_PROFILE=local";
-        ":prod" = "export AWS_PROFILE=prod_qlair";
-        ":sand" = "export AWS_PROFILE=sandbox";
-      };
+          shellAliases = import ../_shellAliases.nix;
+          shellAbbrs = import ../_shellAbbrs.nix // {
+            ":dev" = "export AWS_PROFILE=dev_qlair";
+            ":euprod" = "export AWS_PROFILE=prod_qlair_eu";
+            ":loc" = "export AWS_PROFILE=local";
+            ":prod" = "export AWS_PROFILE=prod_qlair";
+            ":sand" = "export AWS_PROFILE=sandbox";
+          };
 
-      interactiveShellInit = ''
+          interactiveShellInit = ''
         set fish_greeting # Disable greeting
         source ~/.config/fish/colors/fish_tokyonight_night.fish
 
@@ -59,17 +62,18 @@
         if command -v ruff 1>/dev/null 2>&1
             ruff generate-shell-completion fish | source
         end
-      '';
+          '';
 
-      plugins = [{
-        name = "fzf";
-        src = pkgs.fetchFromGitHub {
-          owner = "oddlama";
-          repo = "fzf.fish";
-          rev = "6331eedaf680323dd5a2e2f7fba37a1bc89d6564";
-          sha256 = "sha256-BO+KFvHdbBz7SRA6EuOk2dEC8zORsCH9V04dHhJ6gxw=";
+          plugins = [{
+            name = "fzf";
+            src = pkgs.fetchFromGitHub {
+              owner = "oddlama";
+              repo = "fzf.fish";
+              rev = "6331eedaf680323dd5a2e2f7fba37a1bc89d6564";
+              sha256 = "sha256-BO+KFvHdbBz7SRA6EuOk2dEC8zORsCH9V04dHhJ6gxw=";
+            };
+          }];
         };
-      }];
+      };
     };
-  };
 }
