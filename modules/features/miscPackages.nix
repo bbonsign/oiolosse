@@ -49,10 +49,12 @@ _:
         pkgs.lua-language-server
         pkgs.luarocks
         pkgs.mermaid-cli
+        pkgs.mpv
         pkgs.nautilus
         # pkgs.networkmanager
         # pkgs.networkmanager-openvpn
         pkgs.nodejs
+        pkgs.nom
         pkgs.ntfy-sh
         pkgs.numbat # Scientific calculator/programming language
         # pkgs.obsidian # Using flatpak for now

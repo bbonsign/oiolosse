@@ -1,0 +1,8 @@
+ordering: desc
+showread: false
+theme:
+  glamour: tokyo-night
+
+feeds:
+  - url: https://lucumr.pocoo.org/feed.xml
+    name: Armin Ronacher
