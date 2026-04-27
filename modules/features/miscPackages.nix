@@ -45,7 +45,7 @@ _:
         # pkgs.just
         pkgs.killall
         pkgs.kitty
-        pkgs.litecli
+        # pkgs.litecli
         pkgs.lua-language-server
         pkgs.luarocks
         pkgs.mermaid-cli
@@ -60,7 +60,7 @@ _:
         # pkgs.obsidian # Using flatpak for now
         pkgs.p7zip
         pkgs.pandoc
-        pkgs.pgcli
+        # pkgs.pgcli
         pkgs.pinentry-gtk2
         pkgs.postgresql
         pkgs.presenterm
