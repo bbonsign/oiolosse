@@ -1,6 +1,6 @@
 _: 
 {
-  flake.homeModules.miscPackages = {pkgs, ...}: {
+  flake.homeModules.misc-packages = {pkgs, ...}: {
 
     config = {
       # Packages that should be installed to the user profile.
