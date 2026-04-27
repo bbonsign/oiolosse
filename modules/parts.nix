@@ -33,6 +33,19 @@
             ./_nixos/mithlond
             ./_nixos_mods
 
+            # When `home-manager.useGlobalPkgs = true`, HM cannot set
+            # `nixpkgs.{overlays,config}` itself, so configure them here at
+            # the NixOS level instead.
+            {
+              nixpkgs.overlays = [
+                inputs.neovim-nightly-overlay.overlays.default
+              ];
+              nixpkgs.config = {
+                allowUnfree = true;
+                allowUnfreePredicate = _pkg: true;
+              };
+            }
+
             # make home-manager as a module of nixos
             # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
             inputs.home-manager.nixosModules.home-manager
@@ -40,9 +53,8 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "hmbak";
-              home-manager.users.bbonsign = import ./_home-manager/bbonsign;
-              # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-              home-manager.extraSpecialArgs = { inherit inputs; isNixOS = true; };
+              home-manager.users.bbonsign = self.homeModules.bbonsignHomeModule;
+              # home-manager.extraSpecialArgs = { inherit inputs; isNixOS = true; };
             }
           ];
         };

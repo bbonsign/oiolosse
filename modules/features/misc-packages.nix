@@ -1,4 +1,4 @@
-_: 
+{self, ...}:
 {
   flake.homeModules.misc-packages = {pkgs, ...}: {
 
@@ -87,6 +87,8 @@ _:
         pkgs.yazi
         pkgs.yq-go # yaml processer https://github.com/mikefarah/yq
         pkgs.zip
+        ## Wrapped packages
+        self.packages.x86_64-linux.lf
       ];
 
     };
