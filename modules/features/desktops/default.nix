@@ -6,7 +6,8 @@
         # self.homeModules.gnome
         self.homeModules.dconf
         self.homeModules.noctalia
-        self.homeModules.sway
+        self.homeModules.niri
+        # self.homeModules.sway
       ];
     };
 }

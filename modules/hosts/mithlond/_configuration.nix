@@ -2,10 +2,8 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ./common.nix
-    ./desktops
-    ./services
+    ./_hardware-configuration.nix
+    ./_common.nix
   ];
 
   # Set your time zone.

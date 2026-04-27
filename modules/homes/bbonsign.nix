@@ -36,7 +36,6 @@ in {
       self.homeModules.hm-programs
       self.homeModules.home-manager
       self.homeModules.misc-packages
-      self.homeModules.niri
       self.homeModules.nix
       self.homeModules.shell-prompt
       self.homeModules.shells
