@@ -3,6 +3,5 @@ _:
 {
   imports = [
     ./desktops
-    ./programs
   ];
 }

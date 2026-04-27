@@ -23,6 +23,7 @@ self,
       self.homeModules.bluetooth
       self.homeModules.cursor
       self.homeModules.font
+      self.homeModules.hm-programs
       self.homeModules.home-manager
       self.homeModules.misc-packages
       self.homeModules.niri
