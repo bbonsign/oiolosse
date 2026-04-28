@@ -18,4 +18,12 @@
         home.shellAliases = import ./_shellAliases.nix;
       };
     };
+
+  flake.nixosModules.shells = _:
+    {
+      imports = [
+        self.nixosModules.fish
+        self.nixosModules.zsh
+      ];
+    };
 }

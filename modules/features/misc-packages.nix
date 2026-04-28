@@ -1,7 +1,6 @@
 {self, ...}:
 {
   flake.homeModules.misc-packages = {pkgs, ...}: {
-
     config = {
       # Packages that should be installed to the user profile.
       home.packages = [
@@ -49,7 +48,7 @@
         pkgs.lua-language-server
         pkgs.luarocks
         pkgs.mermaid-cli
-        pkgs.mpv
+        # pkgs.mpv
         pkgs.nautilus
         # pkgs.networkmanager
         # pkgs.networkmanager-openvpn
@@ -93,4 +92,28 @@
 
     };
   };
+
+  flake.nixosModules.misc-packages = {pkgs,...}: {
+    config = {
+      # List packages installed in system profile. To search, run:
+      # $ nix search wget
+      environment.systemPackages = [
+        # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+        pkgs.brightnessctl
+        pkgs.distrobox
+        pkgs.firefox
+        pkgs.git
+        pkgs.inotify-tools
+        pkgs.ncurses
+        pkgs.neovim
+        pkgs.pciutils
+        pkgs.python312
+        pkgs.sqlite
+        pkgs.vivaldi
+        pkgs.wget
+        pkgs.wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+      ];
+    };
+  };
+
 }

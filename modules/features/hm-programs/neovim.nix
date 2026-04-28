@@ -1,4 +1,4 @@
-_:
+{inputs, ...}:
 {
   flake.homeModules.neovim = {pkgs, ...}:
     {
@@ -12,8 +12,19 @@ _:
           withNodeJs = true;
           withPython3 = true;
           withRuby = false;
-          extraPackages = with pkgs; [ gcc lua-language-server ];
+          extraPackages = [
+            pkgs.gcc
+            pkgs.lua-language-server
+          ];
         };
       };
     };
+
+  flake.nixosModules.neovim = {pkgs, ...}: {
+    config = {
+      nixpkgs.overlays = [
+        inputs.neovim-nightly-overlay.overlays.default
+      ];
+    };
+  };
 }

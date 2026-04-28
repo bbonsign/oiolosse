@@ -2,6 +2,11 @@
 description = "Choose a task to run"
 run = "mise tasks ls | fzf --header-lines=0 | awk '{print $1}' | xargs -r mise run"
 
+[tasks.check_flake]
+description = "nix flake check"
+alias = "c"
+run = "nix flake check"
+
 [tasks.format]
 description = "nix fmt"
 alias = "f"

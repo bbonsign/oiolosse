@@ -2,7 +2,6 @@ _:
 
 {
   flake.homeModules.zsh = {config, ...}:
-
     {
       config = {
         programs.zsh = {
@@ -28,6 +27,14 @@ _:
             abbreviations = import ./_shellAbbrs.nix;
           };
         };
+      };
+    };
+
+  flake.nixosModules.zsh = _:
+    {
+      config = {
+        # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.enableCompletion
+        environment.pathsToLink = [ "/share/zsh" ];
       };
     };
 }

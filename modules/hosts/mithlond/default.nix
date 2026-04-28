@@ -5,10 +5,22 @@
       # inherit system;
       specialArgs = { inherit inputs; };
       modules = [
-        ./_configuration.nix 
+        ./_hardware-configuration.nix
 
         self.nixosModules."1password"
         self.nixosModules.bazecor
+        self.nixosModules.boot
+        self.nixosModules.containers
+        self.nixosModules.home-manager
+        self.nixosModules.keyboard
+        self.nixosModules.locale
+        self.nixosModules.misc-packages
+        self.nixosModules.networking
+        self.nixosModules.pipewire
+        self.nixosModules.printing
+        self.nixosModules.shells
+        self.nixosModules.tailscale
+        self.nixosModules.users
 
         # When `home-manager.useGlobalPkgs = true`, HM cannot set
         # `nixpkgs.{overlays,config}` itself, so configure them here at
@@ -23,22 +35,14 @@
           };
         }
 
-        # make home-manager as a module of nixos
-        # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-        inputs.home-manager.nixosModules.home-manager
-
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "hmbak";
-          home-manager.users.bbonsign = self.homeModules.bbonsignHomeModule;
-        }
-
-        # Since Home Manager is installed via its NixOS module and 'home-manager.useUserPackages' is
-        # enabled, you need to add the following to your NixOS configuration so that the portal
-        # definitions and DE provided configurations get linked.
-        {
-          environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
+          # This value determines the NixOS release from which the default
+          # settings for stateful data, like file locations and database versions
+          # on your system were taken. It‘s perfectly fine and recommended to leave
+          # this value at the release version of the first install of this system.
+          # Before changing this value read the documentation for this option
+          # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+          system.stateVersion = "23.05"; # Did you read the comment?
         }
       ];
     };

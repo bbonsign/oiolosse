@@ -76,4 +76,11 @@ _:
         };
       };
     };
+
+  flake.nixosModules.fish = _:
+    {
+      config = {
+        programs.fish.enable = true;
+      };
+    };
 }
