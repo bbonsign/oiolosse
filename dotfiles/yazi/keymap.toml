@@ -15,6 +15,66 @@ on = ["/"]
 run = "filter"
 
 [[mgr.prepend_keymap]]
+on = ["<space>", "S", "M"]
+run = "sort mtime --reverse=no; linemode mtime"
+desc = "Sort by modified time"
+
+[[mgr.prepend_keymap]]
+on = ["<space>", "s", "m"]
+run = "sort mtime --reverse; linemode mtime"
+desc = "Sort by modified time (reverse)"
+
+[[mgr.prepend_keymap]]
+on = ["<space>", "s", "b"]
+run = "sort btime --reverse=no; linemode btime"
+desc = "Sort by birth time"
+
+[[mgr.prepend_keymap]]
+on = ["<space>", "S", "B"]
+run = "sort btime --reverse; linemode btime"
+desc = "Sort by birth time (reverse)"
+
+[[mgr.prepend_keymap]]
+on = ["<space>", "s", "e"]
+run = "sort extension --reverse=no"
+desc = "Sort by extension"
+
+[[mgr.prepend_keymap]]
+on = ["<space>", "S", "E"]
+run = "sort extension --reverse"
+desc = "Sort by extension (reverse)"
+
+[[mgr.prepend_keymap]]
+on = ["<space>", "s", "a"]
+run = "sort alphabetical --reverse=no"
+desc = "Sort alphabetically"
+
+[[mgr.prepend_keymap]]
+on = ["<space>", "S", "A"]
+run = "sort alphabetical --reverse"
+desc = "Sort alphabetically (reverse)"
+
+[[mgr.prepend_keymap]]
+on = ["<space>", "s", "n"]
+run = "sort natural --reverse=no"
+desc = "Sort naturally"
+
+[[mgr.prepend_keymap]]
+on = ["<space>", "S", "N"]
+run = "sort natural --reverse"
+desc = "Sort naturally (reverse)"
+
+[[mgr.prepend_keymap]]
+on = ["<space>", "s", "s"]
+run = "sort size --reverse=no; linemode size"
+desc = "Sort by size"
+
+[[mgr.prepend_keymap]]
+on = ["<space>", "S", "S"]
+run = "sort size --reverse; linemode size"
+desc = "Sort by size (reverse)"
+
+[[mgr.prepend_keymap]]
 on = "!"
 for = "unix"
 run = 'shell "nu" --block'
