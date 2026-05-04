@@ -16,6 +16,10 @@ new_tab fe-server
 cd ~/mh/qlair/webportal.git/main.git.jj/
 launch --title "fe-server"
 
+new_tab admin
+cd ~/mh/qlair/qlair-admin.repo/default.git.jj
+launch --title admin
+
 launch kitten @ focus-tab --match 'title:code and session:.'
 # focus_tab title:code and session:.
 
