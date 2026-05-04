@@ -1,8 +1,26 @@
-ordering: desc
-showread: false
-theme:
-  glamour: tokyo-night
-
+configpath: /var/home/bbonsign/.config/nom/config.yml
+version: ""
 feeds:
-  - url: https://lucumr.pocoo.org/feed.xml
-    name: Armin Ronacher
+    - url: https://lucumr.pocoo.org/feed.xml
+      name: Armin Ronacher
+    - url: https://bower.sh/rss
+      name: Eric Bower (Erock), zmx dev
+    - url: https://ersc.io/rss.xml
+      name: ersc
+    - url: https://willhbr.net/feed.xml
+      name: Will Richardson
+    - url: https://oseifert.ch/blog/rss.xml
+      name: Oliver Seifert
+database: nom.db
+ordering: desc
+filtering:
+    defaultIncludeFeedName: false
+theme:
+    glamour: tokyo-night
+    titleColor: "62"
+    titleColorFg: "231"
+    filterColor: "62"
+    selectedItemColor: "170"
+    readIcon: ✓
+http:
+    mintls: TLS 1.2
