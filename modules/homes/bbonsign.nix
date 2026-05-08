@@ -57,7 +57,13 @@ in {
         ERL_AFLAGS = "-kernel shell_history enabled";
         # Hint electron apps to use wayland:
         NIXOS_OZONE_WL = "1";
+        # npm global prefix (writable alternative to Nix store)
+        NPM_CONFIG_PREFIX = "$HOME/.npm-global";
       };
+
+      home.sessionPath = [
+        "$HOME/.npm-global/bin"
+      ];
 
       services = {
         gnome-keyring.enable = true;

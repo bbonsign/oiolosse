@@ -1,12 +1,12 @@
 # Set the working directory for windows in the current tab
 cd ~/mh/x8/microfrontend/default.git.jj/
-title x8-default
+title x8-microfrontend
 launch --title x8-default
 
-new_tab fe-server
-cd ~/mh/x8/microfrontend/default.git.jj/
-launch --title "fe-server"
+new_tab x8-be
+cd ~/mh/x8/x8-lambda.repo/default.git.jj
+launch --title "x8-be"
 
-launch kitten @ focus-tab --match 'title:x8-default and session:.'
+launch kitten @ focus-tab --match 'title:x8-microfrontend and session:.'
 
 # vim:ft=sh

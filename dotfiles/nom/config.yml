@@ -11,6 +11,12 @@ feeds:
       name: Will Richardson
     - url: https://oseifert.ch/blog/rss.xml
       name: Oliver Seifert
+    - url: https://duckdb.org/feed.xml
+      name: DuckDB
+    - url: https://jakelazaroff.com/rss.xml
+      name: Jake Lazaroff
+    - url: https://darryl-ruggles.cloud/feed.xml
+      name: Darryl's World of Cloud
 database: nom.db
 ordering: desc
 filtering:

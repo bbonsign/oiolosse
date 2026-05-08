@@ -32,7 +32,7 @@ spawn-sh-at-startup "wl-paste --watch cliphist store &"
 // spawn-at-startup "swaync"
 spawn-sh-at-startup "1password --silent" // --silent opens to the system tray without showing the main window
 spawn-sh-at-startup "kitty --single-instance || $HOME/.local/kitty.app/bin/kitty --single-instance"
-spawn-at-startup "~/.local/bin/niri-scratch.nu"
+// spawn-at-startup "~/.local/bin/niri-scratch.nu"
 
 debug {
     keep-laptop-panel-on-when-lid-is-closed

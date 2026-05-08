@@ -1,16 +1,15 @@
 # Set the working directory for windows in the current tab
 cd ~/mh/streametric/backend-v2.git/wts/dev/
-title code
+title BE
 launch --title code
 
-new_tab alt
-cd ~/mh/streametric/backend-v2.git/wts/alt/
-launch
-
-new_tab fe
-cd ~/mh/streametric/backend-v2.git/wts/alt/
+new_tab FE
+cd ~/mh/streametric/frontend-v2.repo/default.git.jj/
 launch --title "fe-code"
-launch --title "fe-server"
+
+new_tab st-alerts
+cd ~/mh/streametric/streametric-monitoring-alerting.repo/default.git.jj/
+launch --title "st-alerts"
 
 launch kitten @ focus-tab --match 'title:code and session:.'
 
