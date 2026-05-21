@@ -1,0 +1,40 @@
+[metadata]
+name = "kitty-sessions"
+description = "Browse, launch, edit, and delete kitty session files"
+requirements = ["kitty", "nu", "bat"]
+
+# Each source line is `<glyph>\t<session-name>` where the glyph shows
+# whether a kitty OS-window for that session is currently running.
+# Display renders both columns; action templates use string_pipeline
+# to extract just the name column. `separator = "\n"` joins multi-
+# selected entries with a newline so the per-entry split works.
+[source]
+command = """nu -c "use bb/ky.nu *; ky session ls-all" """
+display = '{split:\t:0} {split:\t:1}'
+output = '{split:\t:1}'
+
+[preview]
+command = 'nu -c "use bb/ky.nu *; ky session preview {split:\t:1}"'
+
+[keybindings]
+enter = "actions:launch"
+f2 = "actions:edit"
+ctrl-d = ["actions:close", "reload_source"]
+
+[actions.launch]
+description = "Launch selected session(s) (focus if already running)"
+command = 'nu -c "use bb/ky.nu *; ky session launch {split:\n:..|map:{split:\t:1}|join: }"'
+separator = "\n"
+mode = "execute"
+
+[actions.edit]
+description = "Open selected session file(s) in $EDITOR"
+command = 'nu -c "use bb/ky.nu *; ky session edit {split:\n:..|map:{split:\t:1}|join: }"'
+separator = "\n"
+mode = "execute"
+
+[actions.close]
+description = "Close running kitty OS-window(s) for selected session(s)"
+command = 'nu -c "use bb/ky.nu *; ky session close {split:\n:..|map:{split:\t:1}|join: }"'
+separator = "\n"
+mode = "fork"
