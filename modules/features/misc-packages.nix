@@ -9,7 +9,7 @@
         # pkgs.podman-tui
         # pkgs.valent # KDE Connect client
         # pkgs.websocat
-        pkgs.asciinema_3
+        pkgs.asciinema
         pkgs.age
         pkgs.awscli2
         pkgs.ast-grep

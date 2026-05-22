@@ -6,7 +6,7 @@ _:
       programs.ssh = {
         enable = true;
         enableDefaultConfig = false;
-        matchBlocks."*".addKeysToAgent = "yes";
+        settings."*".AddKeysToAgent = "yes";
         extraConfig = ''
         Host *
           IdentityAgent ~/.1password/agent.sock
