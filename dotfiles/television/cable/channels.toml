@@ -7,12 +7,19 @@ requirements = ["tv", "bat"]
 command = ["tv list-channels"]
 
 [preview]
-command = "bat -pn --color always ${XDG_CONFIG_HOME:-$HOME/.config}/television/cable/**/{}.toml"
+command = "bat -pn --color always ${XDG_CONFIG_HOME:-$HOME/.config}/television/cable/{}.toml"
 
 [keybindings]
 enter = "actions:channel-enter"
+ctrl-e = "actions:edit-config"
 
 [actions.channel-enter]
 description = "Enter a television channel"
 command = "tv {}"
+mode = "execute"
+
+[actions.edit-config]
+description = "Edit the local channel config file (no-op for built-in channels)"
+command = '''f="${XDG_CONFIG_HOME:-$HOME/.config}/television/cable/{}.toml"; if [ -f "$f" ]; then ${EDITOR:-vim} "$f"; else printf 'No local config for channel "%s" (built-in). Press any key...' "{}"; read -n 1 -s -r; fi'''
+shell = "bash"
 mode = "execute"
