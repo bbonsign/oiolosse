@@ -80,20 +80,20 @@ return {
             },
           },
         },
-        -- pyright = {
-        --   settings = {
-        --     pyright = {
-        --       disableOrganizeImports = true, -- Using Ruff
-        --       disableTaggedHints = true,
-        --     },
-        --     python = {
-        --       analysis = {
-        --         -- ignore = { "*" }, -- Using Ruff
-        --         -- typeCheckingMode = "off", -- Using mypy
-        --       },
-        --     },
-        --   },
-        -- },
+        pyright = {
+          settings = {
+            pyright = {
+              disableOrganizeImports = true, -- Using Ruff
+              disableTaggedHints = true,
+            },
+            python = {
+              analysis = {
+                -- ignore = { "*" }, -- Using Ruff
+                -- typeCheckingMode = "off", -- Using mypy
+              },
+            },
+          },
+        },
         ruff_lsp = {
           keys = {
             {

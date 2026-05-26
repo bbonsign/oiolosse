@@ -200,8 +200,12 @@ export def --env "set_aws_profile" [] {
   $env.AWS_PROFILE =  (aws configure list-profiles | fzf)
 }
 
-export alias ":ae" = set_aws_profile 
-export alias "dtfi" = datetime from int  
+export def --env "set_aws_profile-tv" [] {
+  $env.AWS_PROFILE =  (tv aws-profiles --inline)
+}
+
+export alias ":ae" = set_aws_profile-tv
+export alias "dtfi" = datetime from int
 
 
 
