@@ -33,7 +33,7 @@
         pkgs.gnupg
         pkgs.gnused
         pkgs.go
-        pkgs.google-chrome
+        # pkgs.google-chrome
         pkgs.gum # charm cli scripting helper
         pkgs.hexyl
         pkgs.htop
@@ -61,7 +61,7 @@
         pkgs.pandoc
         # pkgs.pgcli
         pkgs.pinentry-gtk2
-        pkgs.postgresql
+        # pkgs.postgresql
         pkgs.presenterm
         pkgs.ripgrep
         pkgs.sioyek
@@ -82,12 +82,12 @@
         pkgs.uv
         pkgs.which
         pkgs.xdg-desktop-portal-gnome
-        pkgs.xz
+        # pkgs.xz
         pkgs.yazi
         pkgs.yq-go # yaml processer https://github.com/mikefarah/yq
         pkgs.zip
         ## Wrapped packages
-        self.packages.x86_64-linux.lf
+        # self.packages.x86_64-linux.lf
       ];
 
     };
