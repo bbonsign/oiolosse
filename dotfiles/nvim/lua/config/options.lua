@@ -16,7 +16,9 @@ opt.mousemoveevent = true
 opt.number = false
 opt.relativenumber = false
 opt.textwidth = 100
-opt.foldlevel = 100
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldenable = false
 
 vim.g.snacks_animate = false
 

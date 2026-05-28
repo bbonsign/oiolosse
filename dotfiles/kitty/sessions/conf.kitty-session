@@ -13,6 +13,10 @@ new_tab conf
 cd ~/.config/
 launch --title "conf"
 
+new_tab jjui-clone
+cd ~/code/bbonsign/jjui.repo/default.git.jj/
+launch --title "jjui-clone"
+
 launch kitten @ focus-tab --match 'title:oiolosse and session:.'
 
 # vim:ft=sh
