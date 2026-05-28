@@ -8,6 +8,9 @@ return {
       "KittyNavigateLeft",
       "KittyNavigateRight",
     },
+    init = function()
+      vim.g.kitty_navigator_enable_stack_layout = 1
+    end,
     config = function()
       vim.cmd([[let g:kitty_navigator_no_mappings = 1]])
       vim.keymap.del("n", "<C-h>")
@@ -25,24 +28,6 @@ return {
       { "<A-k>", ":KittyNavigateUp<CR>", silent = true },
       { "<A-l>", ":KittyNavigateRight<CR>", silent = true },
     },
-  },
-
-  {
-    "bbonsign/kitty-scrollback.nvim",
-    enabled = true,
-    lazy = true,
-    cmd = {
-      "KittyScrollbackGenerateKittens",
-      "KittyScrollbackCheckHealth",
-      "KittyScrollbackGenerateCommandLineEditing",
-    },
-    event = { "User KittyScrollbackLaunch" },
-    branch = "feature/open-scrollback-in-kitty-tab",
-    -- version = '*', -- latest stable version, may have breaking changes if major version changed
-    -- version = '^6.0.0', -- pin major version, include fixes and features that do not have breaking changes
-    config = function()
-      require("kitty-scrollback").setup()
-    end,
   },
 
   { -- syntax highlighting for kitty.conf
