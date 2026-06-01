@@ -15,7 +15,7 @@ output = "{split:\t:0}"
 command = "podman inspect '{split:\t:0}' | jq -C '.[0] | {Name, State, Config: {Image: .Config.Image, Cmd: .Config.Cmd}, NetworkSettings: {IPAddress: .NetworkSettings.IPAddress}}'"
 
 [ui]
-layout = "portrait"
+# layout = "portrait"
 
 [keybindings]
 ctrl-s = "actions:start"

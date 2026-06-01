@@ -17,6 +17,14 @@ feeds:
       name: Jake Lazaroff
     - url: https://darryl-ruggles.cloud/feed.xml
       name: Darryl's World of Cloud
+    - url: https://distantprovince.by/rss.xml
+      name: Distant Province - Alex Martsinovich
+    - url: https://nvim-mini.org/blog/index.xml
+      name: Nvim-Mini
+    - url: https://wickstrom.tech/feed.xml
+      name: Oskar Wickström
+    - url: https://obsidian.md/feed.xml
+      name: Obsidian Blog
 database: nom.db
 ordering: desc
 filtering:

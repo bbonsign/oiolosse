@@ -77,6 +77,7 @@
         pkgs.topiary # treesitter based formatter
         pkgs.trashy
         pkgs.tree
+        pkgs.tree-sitter
         pkgs.unzip
         pkgs.usbutils # lsusb
         pkgs.uv
