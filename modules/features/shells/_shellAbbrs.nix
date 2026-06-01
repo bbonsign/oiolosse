@@ -36,6 +36,8 @@
   dpsa = "docker ps -a";
   e = "nvim";
   "e." = "nvim .";
+  v = "NVIM_APPNAME=v nvim";
+  "v." = "NVIM_APPNAME=v nvim .";
   g = "git";
   ga = "git add";
   gaa = "git add -A";
