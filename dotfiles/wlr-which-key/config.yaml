@@ -27,7 +27,7 @@ menu:
     cmd: vicinae vicinae://toggle
   - key: "BackSpace"
     desc: "close-all"
-    cmd: swaync-client --close-all
+    cmd: noctalia msg notification-clear-active
   - key: "Tab"
     desc: Windows
     cmd: ~/.local/bin/niri-choose-window.nu
@@ -87,13 +87,13 @@ menu:
     submenu:
       - key: "b"
         desc: Toggle
-        cmd: noctalia-shell ipc call bar toggle
+        cmd: noctalia msg bar-toggle
       - key: "s"
         desc: Toggle
-        cmd: noctalia-shell ipc call bar toggle
+        cmd: noctalia msg bar-toggle
       - key: "t"
         desc: Toggle
-        cmd: noctalia-shell ipc call bar toggle
+        cmd: noctalia msg bar-toggle
       # - key: "b"
       #   desc: Toggle
       #   cmd: dms ipc bar toggle 1
@@ -131,8 +131,8 @@ menu:
     desc: "Kitty Session"
     cmd: ~/.local/bin/kitty-switch-fuzzel.nu
   - key: "R"
-    desc: "Restart Noctalia"
-    cmd: systemctl --user restart noctalia-service.service
+    desc: "Reload Noctalia"
+    cmd: noctalia msg config-reload
   - key: "r"
     desc: Run
     submenu:
@@ -267,16 +267,13 @@ menu:
     submenu:
       - key: "n"
         desc: "Notifications"
-        cmd: noctalia-shell ipc call notifications toggleHistory
-      - key: "t"
-        desc: "toggle-panel"
-        cmd: swaync-client --toggle-panel
+        cmd: noctalia msg panel-toggle control-center notifications
       - key: "c"
-        desc: "close-all"
-        cmd: noctalia-shell ipc call notifications clear
+        desc: "close-active"
+        cmd: noctalia msg notification-clear-active
       - key: "C"
         desc: "close-all"
-        cmd: noctalia-shell ipc call notifications clear
-      - key: "D"
-        desc: "toggle-dnd"
-        cmd: swaync-client --toggle-dnd
+        cmd: noctalia msg notification-clear-history
+      # - key: "D"
+      #   desc: "toggle-dnd"
+      #   cmd: swaync-client --toggle-dnd

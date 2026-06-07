@@ -1,0 +1,178 @@
+[backdrop]
+blur_intensity = 0.13999999687075615
+tint_intensity = 0.0
+
+[bar]
+order = ["default"]
+
+[bar.default]
+auto_hide = false
+background_opacity = 0.70999998413026333
+center = ["control-center", "clock"]
+end = [
+  "media",
+  "clipboard",
+  "tray",
+  "network",
+  "bluetooth",
+  "group:g1",
+  "session",
+  "battery",
+  "notifications",
+]
+margin_edge = 0
+margin_ends = 0
+reserve_space = true
+start = ["launcher", "wallpaper", "workspaces", "taskbar"]
+thickness = 25
+
+[[bar.default.capsule_group]]
+fill = "surface_variant"
+id = "g1"
+members = ["volume", "brightness"]
+opacity = 1.0
+padding = 6.0
+
+[calendar]
+enabled = true
+refresh_minutes = 30
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+[desktop_widgets.grid]
+cell_size = 8
+major_interval = 4
+visible = true
+
+[desktop_widgets.widget]
+
+[dock]
+active_monitor_only = true
+auto_hide = true
+cross_axis_padding = 4
+enabled = true
+icon_size = 40
+main_axis_padding = 8
+reserve_space = false
+
+[location]
+address = "Cary, NC"
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = ["lockscreen-login-box@DP-4", "lockscreen-login-box@eDP-1"]
+
+[lockscreen_widgets.grid]
+cell_size = 8
+major_interval = 4
+visible = true
+
+[lockscreen_widgets.widget."lockscreen-login-box@DP-4"]
+box_height = 0.0
+box_width = 0.0
+cx = 960.0
+cy = 1077.0
+output = "DP-4"
+rotation = 0.0
+type = "login_box"
+
+[lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+box_height = 0.0
+box_width = 0.0
+cx = 960.0
+cy = 1077.0
+output = "eDP-1"
+rotation = 0.0
+type = "login_box"
+
+[notification]
+background_opacity = 0.90000000000000002
+
+[osd]
+position = "bottom_center"
+
+[osd.kinds]
+keyboard_layout = false
+lock_keys = false
+
+[shell]
+settings_show_advanced = true
+telemetry_enabled = true
+
+[shell.animation]
+speed = 1.8500000275671482
+
+[shell.panel]
+open_near_click_session = true
+open_near_click_wallpaper = true
+
+[[shell.session.actions]]
+action = "lock"
+command = "hyprlock"
+enabled = true
+shortcut = "1"
+variant = "default"
+
+[[shell.session.actions]]
+action = "logout"
+enabled = true
+shortcut = "2"
+variant = "default"
+
+[[shell.session.actions]]
+action = "lock_and_suspend"
+enabled = true
+shortcut = "3"
+variant = "default"
+
+[[shell.session.actions]]
+action = "reboot"
+enabled = true
+shortcut = "4"
+variant = "default"
+
+[[shell.session.actions]]
+action = "shutdown"
+enabled = true
+shortcut = "5"
+variant = "destructive"
+
+[theme]
+builtin = "Tokyo-Night"
+
+[wallpaper]
+directory = "/var/home/bbonsign/Pictures/wallpapers"
+edge_smoothness = 0.39999999105930328
+transition = ["honeycomb"]
+transition_duration = 4000
+transition_on_startup = true
+
+[wallpaper.default]
+path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
+
+[wallpaper.last]
+path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
+
+[wallpaper.monitors.DP-4]
+path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
+
+[wallpaper.monitors.eDP-1]
+path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
+
+[[wallpaper.favorite]]
+builtin_palette = "Tokyo-Night"
+palette_source = "builtin"
+path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
+theme_mode = "dark"
+
+[widget.taskbar]
+only_active_workspace = true
+
+[widget.workspaces]
+display = "none"
+empty_color = "on_surface_variant"
+max_label_chars = 8
+pill_scale = 0.90000000000000002

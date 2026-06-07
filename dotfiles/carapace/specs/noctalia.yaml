@@ -1,0 +1,237 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: noctalia
+description: Noctalia shell control CLI
+flags:
+  -h, --help: Show help message
+  -v, --version: Show version information
+  -d, --daemon: Run in background
+completion:
+  positional:
+    - ["msg", "theme", "config"]
+commands:
+  - name: msg
+    description: Send a command to the running instance
+    commands:
+      - name: bar-auto-hide-set
+        description: "Set auto-hide state for a bar"
+        completion:
+          positional:
+            - ["on", "off", "true", "false", "1", "0"]
+      - name: bar-hide
+        description: "Hide one or all bars and release their layout gaps"
+      - name: bar-show
+        description: "Show one or all bars"
+      - name: bar-toggle
+        description: "Toggle visibility for one or all bars"
+      - name: bluetooth-disable
+        description: "Disable Bluetooth"
+      - name: bluetooth-enable
+        description: "Enable Bluetooth"
+      - name: bluetooth-status
+        description: "Print Bluetooth state"
+      - name: bluetooth-toggle
+        description: "Toggle Bluetooth"
+      - name: brightness-down
+        description: "Decrease brightness (defaults to current monitor)"
+      - name: brightness-osd
+        description: "Show brightness OSD without changing brightness"
+      - name: brightness-set
+        description: "Set brightness (defaults to current monitor)"
+      - name: brightness-up
+        description: "Increase brightness (defaults to current monitor)"
+      - name: caffeine-disable
+        description: "Disable caffeine (idle inhibitor)"
+      - name: caffeine-enable
+        description: "Enable caffeine (idle inhibitor)"
+      - name: caffeine-toggle
+        description: "Toggle caffeine (idle inhibitor)"
+      - name: clipboard-clear
+        description: "Clear clipboard history"
+      - name: color-scheme-get
+        description: "Print active color scheme: <source> <name> (source is builtin, wallpaper, community, or custom)"
+      - name: color-scheme-set
+        description: "Set palette source and selection in settings.toml (builtin name, wallpaper generator scheme, community id, or custom scheme folder name)"
+      - name: config-reload
+        description: "Reload the config file"
+      - name: desktop-widgets-edit
+        description: "Open the desktop widgets editor"
+      - name: desktop-widgets-exit
+        description: "Close the desktop widgets editor"
+      - name: desktop-widgets-toggle-edit
+        description: "Toggle desktop widgets edit mode"
+      - name: dock-hide
+        description: "Hide the dock (persists override)"
+      - name: dock-reload
+        description: "Reload dock configuration"
+      - name: dock-show
+        description: "Show the dock (persists override)"
+      - name: dock-toggle
+        description: "Toggle dock visibility (persists override)"
+      - name: dpms-off
+        description: "Turn monitors off"
+      - name: dpms-on
+        description: "Turn monitors on"
+      - name: greeter-sync
+        description: "Sync wallpaper and colors to Noctalia Greeter"
+      - name: lockscreen-widgets-edit
+        description: "Open the lockscreen widgets editor"
+      - name: lockscreen-widgets-exit
+        description: "Close the lockscreen widgets editor"
+      - name: lockscreen-widgets-toggle-edit
+        description: "Toggle lockscreen widgets edit mode"
+      - name: media
+        description: "Control active media playback"
+        completion:
+          positional:
+            - ["next", "previous", "toggle", "stop"]
+      - name: mic-mute
+        description: "Toggle microphone mute"
+      - name: mic-volume-down
+        description: "Decrease microphone volume"
+      - name: mic-volume-set
+        description: "Set microphone volume"
+      - name: mic-volume-up
+        description: "Increase microphone volume"
+      - name: nightlight-disable
+        description: "Disable night light schedule"
+      - name: nightlight-enable
+        description: "Enable night light schedule"
+      - name: nightlight-force-toggle
+        description: "Toggle forced night light mode"
+      - name: nightlight-toggle
+        description: "Toggle night light schedule"
+      - name: notification-clear-active
+        description: "Dismiss all currently active notifications"
+      - name: notification-clear-history
+        description: "Clear notification history"
+      - name: notification-dnd-set
+        description: "Set notification Do Not Disturb state"
+        completion:
+          positional:
+            - ["on", "off", "true", "false", "1", "0"]
+      - name: notification-dnd-status
+        description: "Print notification Do Not Disturb state"
+      - name: notification-dnd-toggle
+        description: "Toggle notification Do Not Disturb state"
+      - name: panel-close
+        description: "Close the active panel, or close the named panel if it is active"
+      - name: panel-open
+        description: "Open a panel by id, optionally with context (e.g. launcher /emo, control-center audio)"
+      - name: panel-toggle
+        description: "Toggle a panel by id, optionally with context (e.g. launcher /emo, control-center audio)"
+      - name: plugin
+        description: "Dispatch an event to a plugin entry"
+      - name: plugins
+        description: "Manage plugins and sources (list/enable/disable/update, source list/add/remove)"
+        completion:
+          positional:
+            - ["list", "enable", "disable", "update", "source"]
+      - name: power-cycle
+        description: "Switch to the next power profile in UPower's ordered list (wraps)"
+      - name: power-set
+        description: "Set the UPower power profile (e.g. performance, balanced, power-saver)"
+        completion:
+          positional:
+            - ["performance", "balanced", "power-saver"]
+      - name: screenshot-fullscreen
+        description: "Capture the focused monitor by default, pick interactively with pick, or all outputs with all"
+        completion:
+          positional:
+            - ["pick", "monitor", "all"]
+      - name: screenshot-region
+        description: "Start an interactive region screenshot"
+      - name: session
+        description: "Run a built-in session action"
+        completion:
+          positional:
+            - ["lock", "suspend", "lock-and-suspend", "logout", "reboot", "shutdown"]
+      - name: settings-close
+        description: "Close the settings window"
+      - name: settings-open
+        description: "Open the settings window, or focus it if already open"
+      - name: settings-toggle
+        description: "Toggle the settings window"
+      - name: status
+        description: "Print current state as JSON"
+      - name: templates-apply
+        description: "Apply configured theme templates for the current palette"
+      - name: theme-mode-get
+        description: "Print the current resolved theme mode"
+      - name: theme-mode-set
+        description: "Set theme mode and persist to settings.toml"
+        completion:
+          positional:
+            - ["dark", "light", "auto"]
+      - name: theme-mode-toggle
+        description: "Toggle theme mode between dark and light"
+      - name: volume-down
+        description: "Decrease speaker volume"
+      - name: volume-mute
+        description: "Toggle speaker mute"
+      - name: volume-set
+        description: "Set speaker volume"
+      - name: volume-up
+        description: "Increase speaker volume"
+      - name: wallpaper-get
+        description: "Print default wallpaper path, or effective path for an output"
+      - name: wallpaper-random
+        description: "Switch to a random wallpaper immediately"
+      - name: wallpaper-set
+        description: "Set wallpaper for all or a specific output (persisted)"
+      - name: wifi-disable
+        description: "Disable Wi-Fi"
+      - name: wifi-enable
+        description: "Enable Wi-Fi"
+      - name: wifi-status
+        description: "Print Wi-Fi state"
+      - name: wifi-toggle
+        description: "Toggle Wi-Fi"
+      - name: window-switcher
+        description: "Open or close the window switcher overlay"
+  - name: theme
+    description: Generate a color palette from an image
+    flags:
+      --scheme=: "Palette scheme (m3-tonal-spot, m3-content, m3-fruit-salad, m3-rainbow, m3-monochrome, vibrant, faithful, dysfunctional, muted)"
+      --dark: Emit only the dark variant (default)
+      --light: Emit only the light variant
+      --both: Emit both variants under dark/light keys
+      --theme-json=: Load precomputed dark/light token maps from JSON
+      -o=: Write JSON to file instead of stdout
+      -r=: Render a template file (in:out)
+      -c=: Process a TOML template config file
+      --builtin-config: Process the shipped built-in template catalog
+      --list-templates: List built-in, cached community, and configured user templates
+      --default-mode=: "Template default mode: dark or light"
+    completion:
+      flag:
+        scheme: ["m3-tonal-spot", "m3-content", "m3-fruit-salad", "m3-rainbow", "m3-monochrome", "vibrant", "faithful", "dysfunctional", "muted"]
+        default-mode: ["dark", "light"]
+        theme-json: ["$files([.json])"]
+        o: ["$files"]
+        c: ["$files([.toml])"]
+      positional:
+        - ["$files"]
+  - name: config
+    description: Validate config and support/replay helpers
+    commands:
+      - name: validate
+        description: Check config validity (TOML syntax, unknown settings, bad values)
+        completion:
+          positional:
+            - ["$directories"]
+      - name: export
+        description: Print the active config as TOML
+        completion:
+          positional:
+            - ["merged", "full"]
+      - name: replay-report
+        description: Reconstruct config/state from a support report
+        flags:
+          --target=: Target directory
+          --force: Overwrite existing files
+          --flattened: Reconstruct a single flattened config.toml
+        completion:
+          flag:
+            target: ["$directories"]
+          positional:
+            - ["$files([.toml])"]
