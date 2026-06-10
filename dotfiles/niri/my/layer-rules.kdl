@@ -1,12 +1,15 @@
 // Make the wallpaper stationary, rather than moving with workspaces.
 layer-rule {
-    // This is for swaybg; change for other wallpaper tools.
     // Find the right namespace by running niri msg layers.
     match namespace="^wallpaper$"
     match namespace="^quickshell$"
     match namespace="^noctalia-wallpaper*"
+    match namespace="^noctalia*"
     match namespace="dms:blurwallpaper"
     place-within-backdrop true
+    background-effect {
+      xray false
+    }
 }
 
 

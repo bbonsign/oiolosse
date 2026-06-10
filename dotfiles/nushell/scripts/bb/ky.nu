@@ -90,7 +90,10 @@ export def "ky session ls" [] {
 # Emits one `<status>\t<name>` line per session. The channel's display
 # template renders the glyph alongside the name, and the action
 # templates use `string_pipeline` to extract just the name column.
-export def "ky session ls-all" [] {
+export def "ky session ls-all" [
+  --running-first (-r)  # Sort running sessions to the top
+  --running-only (-R)  # Only list currently-running sessions
+] {
   # Scope to the focused OS-window (the user's primary kitty), so the
   # scratch / quake OS-window's session doesn't appear as "running" here.
   # `session_name` lives on each kitty window (not the OS-window) and
@@ -105,16 +108,27 @@ export def "ky session ls-all" [] {
     | compact
     | uniq
   } catch { [] }
-  ls $sessions_dir
+  let rows = ls $sessions_dir
   | get name
   | each { path basename }
   | sort
   | each {|name|
     let stem = ($name | str replace --regex '\.kitty-session$' '')
-    let glyph = if ($stem in $running) { "●" } else { "○" }
-    $"($glyph)\t($name)"
+    let is_running = ($stem in $running)
+    let glyph = if $is_running { "●" } else { "○" }
+    {is_running: $is_running, line: $"($glyph)\t($name)"}
   }
-  | str join "\n"
+  let filtered = if $running_only {
+    $rows | where is_running
+  } else {
+    $rows
+  }
+  let sorted = if $running_first {
+    $filtered | sort-by --reverse is_running
+  } else {
+    $filtered
+  }
+  $sorted | get line | str join "\n"
 }
 
 # Preview helper for the `kitty-sessions` television channel.

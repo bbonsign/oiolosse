@@ -1,7 +1,7 @@
 window-rule {
   background-effect {
     blur true
-    // xray false
+    xray false
   }
 }
 
@@ -79,7 +79,6 @@ window-rule {
 }
 window-rule {
   match title=r#"kitty-scratch"#
-  open-on-workspace "z"
   open-floating true
   // Anchor to the top edge of the screen.
   // default-floating-position x=0 y=0 relative-to="top"

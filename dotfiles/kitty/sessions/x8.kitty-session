@@ -1,11 +1,19 @@
 # Set the working directory for windows in the current tab
 cd ~/mh/x8/x8-microfrontend.repo/default.git.jj/
 title x8-micro
-launch --title x8-micro
+launch --title "x8-micro"
 
 new_tab x8-lambdas
 cd ~/mh/x8/x8-lambda.repo/default.git.jj
 launch --title "x8-lambdas"
+
+new_tab x8-iac
+cd ~/mh/x8/x8-iac.repo/default.git.jj/
+launch --title "x8-iac"
+
+new_tab X8-iac-bootstrap
+cd ~/mh/x8/x8-iac-bootstrap.repo/default.git.jj/
+launch --title "x8-iac-bootstrap"
 
 launch kitten @ focus-tab --match 'title:x8-microfrontend and session:.'
 

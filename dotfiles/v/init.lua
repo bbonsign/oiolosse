@@ -1,6 +1,8 @@
 vim.loader.enable()
 
-require("vim._core.ui2").enable()
+if vim.fn.has("nvim-0.12") == 1 then
+  require("vim._core.ui2").enable()
+end
 
 -- Neovim's default `<C-L>` mapping (nohlsearch|diffupdate|redraw) is a *complete*
 -- mapping that shadows <localleader> (Ctrl-L), so <localleader>... sequences never

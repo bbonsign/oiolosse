@@ -293,11 +293,18 @@ return {
         desc = "Disabled",
       },
       {
-        "<leader>ud",
+        "<leader>uD",
         function()
           Snacks.dashboard()
         end,
         desc = "Dashboard",
+      },
+      {
+        "<leader>ud",
+        function()
+          Snacks.dim()
+        end,
+        desc = "Toggle Dimming",
       },
     },
 

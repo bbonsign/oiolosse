@@ -1,6 +1,8 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
-require("vim._core.ui2").enable()
+if vim.fn.has("nvim-0.12") == 1 then
+  require("vim._core.ui2").enable()
+end
 local function switch_case()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   local word = vim.fn.expand("<cword>")

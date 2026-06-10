@@ -8,18 +8,34 @@ requirements = ["kitty", "nu", "bat"]
 # Display renders both columns; action templates use string_pipeline
 # to extract just the name column. `separator = "\n"` joins multi-
 # selected entries with a newline so the per-entry split works.
+# Two sources, toggled with ctrl-s (see [keybindings]):
+#   - "Running" (default): only sessions with a live kitty OS-window.
+#   - "All": every session file, running ones sorted first.
+# Both emit the same `<glyph>\t<name>` rows so display/output/preview
+# work identically regardless of the active source.
 [source]
-command = """nu -c "use bb/ky.nu *; ky session ls-all" """
+command = [
+  { name = "Running", run = """nu -c "use bb/ky.nu *; ky session ls-all --running-only" """ },
+  { name = "All", run = """nu -c "use bb/ky.nu *; ky session ls-all --running-first" """ },
+]
 display = '{split:\t:0} {split:\t:1}'
 output = '{split:\t:1}'
+# Preserve the source order (running-first) instead of tv's
+# match-quality sorting.
+no_sort = true
 
 [preview]
 command = 'nu -c "use bb/ky.nu *; ky session preview {split:\t:1}"'
+
+# Hide the preview panel by default (toggle with the preview keybinding).
+[ui.preview_panel]
+hidden = true
 
 [keybindings]
 enter = "actions:launch"
 f2 = "actions:edit"
 ctrl-d = ["actions:close", "reload_source"]
+ctrl-s = "cycle_sources"
 
 [actions.launch]
 description = "Launch selected session(s) (focus if already running)"

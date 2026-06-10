@@ -115,7 +115,7 @@
   pyhttp = "python -m http.server";
   r = "mise run"; # i.e. "run"
   rj = "just"; # i.e. "run"
-
+  se = "sudoedit";
   # rg search with quick-fix compatible output
   qf = "rg --column --line-number --no-heading";
   # open nvim with quick-fix from rg search
