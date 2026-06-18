@@ -12,6 +12,9 @@ return {
       -- git_status_hl = true, -- use the git status highlight group for the filename
     },
   },
+  sources = {
+    tabs = require("bb.pickers.tabs"),
+  },
   layout = {
     preset = "ivy",
     layout = {

@@ -1,9 +1,9 @@
-return {
-  "folke/flash.nvim",
-  event = "VeryLazy",
-  vscode = true,
+Config.later(function()
+  vim.pack.add({
+    "https://github.com/folke/flash.nvim",
+  })
   ---@type Flash.Config
-  opts = {
+  local opts = {
     label = {
       before = true,
       after = false,
@@ -25,77 +25,69 @@ return {
         label = "@markup.heading.5.markdown",
       },
     },
-  },
-  keys = {
-    -- Toggle flash in "/" searches (when "/" is active)
-    {
-      "<c-s>",
-      mode = { "c" },
-      function()
-        require("flash").toggle()
-      end,
-      desc = "Toggle Flash Search",
-    },
-    {
-      "s",
-      mode = { "n", "x", "o" },
-      false,
-    },
-    {
-      "gs",
-      mode = { "n", "x", "o" },
-      function()
-        require("flash").jump()
-      end,
-      desc = "Flash",
-    },
-    {
-      "S",
-      mode = { "n", "x", "o" },
-      function()
-        require("flash").jump()
-      end,
-      desc = "Flash",
-    },
-    {
-      "R",
-      mode = { "o", "x" },
-      function()
-        require("flash").treesitter_search()
-      end,
-      desc = "Treesitter Search",
-    },
-    {
-      "r",
-      mode = "o",
-      function()
-        require("flash").remote()
-      end,
-      desc = "Remote Flash",
-    },
-    -- {
-    --   "gS",
-    --   mode = { "n", "o", "x" },
-    --   function()
-    --     require("flash").treesitter()
-    --   end,
-    --   desc = "Flash Treesitter",
-    -- },
-    -- {
-    --   "r",
-    --   mode = "o",
-    --   function()
-    --     require("flash").remote()
-    --   end,
-    --   desc = "Remote Flash",
-    -- },
-    -- {
-    --   "R",
-    --   mode = { "o", "x" },
-    --   function()
-    --     require("flash").treesitter_search()
-    --   end,
-    --   desc = "Treesitter Search",
-    -- },
-  },
-}
+  }
+
+  require("flash").setup(opts)
+
+  -- stylua: ignore start
+  -- Toggle flash in "/" searches (when "/" is active)
+  vim.keymap.set(
+    { "c" },
+    "<c-s>",
+    require("flash").toggle,
+    { desc = "Toggle Flash Search" }
+  )
+
+  vim.keymap.set(
+    { "n", "x", "o" },
+    "gs",
+    require("flash").jump,
+    { desc = "Flash" }
+  )
+
+  vim.keymap.set(
+    { "n", "x", "o" },
+    "S",
+    require("flash").jump,
+    { desc = "Flash" }
+  )
+
+  vim.keymap.set(
+    { "o", "x" },
+    "R",
+    require("flash").treesitter_search,
+    { desc = "Treesitter Search" }
+  )
+
+  vim.keymap.set(
+    "o",
+    "r",
+    require("flash").remote,
+    { desc = "Remote Flash" }
+  )
+
+  -- {
+  --   "gS",
+  --   mode = { "n", "o", "x" },
+  --   function()
+  --     require("flash").treesitter()
+  --   end,
+  --   desc = "Flash Treesitter",
+  -- },
+  -- {
+  --   "r",
+  --   mode = "o",
+  --   function()
+  --     require("flash").remote()
+  --   end,
+  --   desc = "Remote Flash",
+  -- },
+  -- {
+  --   "R",
+  --   mode = { "o", "x" },
+  --   function()
+  --     require("flash").treesitter_search()
+  --   end,
+  --   desc = "Treesitter Search",
+  -- },
+end)

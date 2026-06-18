@@ -1,9 +1,8 @@
-return {
-  "lukas-reineke/virt-column.nvim",
-  opts = {
-    -- highlight = "Comment",
-    exclude = {
-      filetypes = { "oil" },
-    },
+vim.pack.add({ "https://github.com/lukas-reineke/virt-column.nvim" })
+
+require("virt-column").setup({
+  -- highlight = "Comment",
+  exclude = {
+    filetypes = { "oil" },
   },
-}
+})

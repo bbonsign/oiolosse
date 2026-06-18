@@ -1,137 +1,36 @@
-return {
-
-  {
-    "obsidian-nvim/obsidian.nvim",
-    enabled = false,
-    version = "*", -- recommended, use latest release instead of latest commit
-    lazy = true,
-    -- ft = "markdown",
-    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in
-    -- your vault:
-    event = {
-      -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-      -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-      -- refer to `:h file-pattern` for more examples
-      -- "BufReadPre path/to/my-vault/*.md",
-      "BufReadPre "
-        .. vim.fn.expand("~")
-        .. "/notes/*.md",
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- Required.
-    },
-    opts = {
-      ui = { enable = false }, -- in favor of render-markdown below
-      legacy_commanges = false,
-      picker = {
-        name = "snacks.pick",
-      },
-      workspaces = {
-        {
-          name = "notes",
-          path = "~/notes",
-        },
-      },
-      daily_notes = {
-        folder = "dailies",
-        date_format = "YYYY-MM-DD--dddd",
-        default_tags = { "dailies" },
-      },
-      attachments = {
-        img_foler = "assets",
-      },
-    },
+vim.pack.add({ "https://github.com/timantipov/md-table-tidy.nvim" })
+require("md-table-tidy").setup({
+  padding = 1, -- number of spaces for cell padding
+  keymap = {
+    table_tidy = "<localleader>tt", -- key for command :TableTidy<CR>
+    table_tidy_all = "<localleader>ta", -- key for command :TableTidyAll<CR>
   },
+})
 
-  {
-    "OXY2DEV/markview.nvim",
-    lazy = false,
-    enabled = false,
-    -- For `nvim-treesitter` users.
-    priority = 49,
-    -- For blink.cmp's completion source
-    dependencies = {
-      "saghen/blink.cmp",
-    },
+vim.pack.add({
+  "https://github.com/MeanderingProgrammer/render-markdown.nvim",
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+  "https://github.com/nvim-tree/nvim-web-devicons",
+})
+require("render-markdown").setup({
+  anti_conceal = { enabled = false },
+  pipe_table = {
+    preset = "round",
+    alignment_indicator = "┅",
   },
+  heading = {
+    width = "block",
+    min_width = 30,
+  },
+  code = {
+    sign = false,
+    border = "thick",
+    right_pad = 1,
+    conceal_delimiters = false,
+  },
+})
 
-  {
-    "timantipov/md-table-tidy.nvim",
-    -- default config
-    opts = {
-      padding = 1, -- number of spaces for cell padding
-      keymap = {
-        table_tidy = "<localleader>tt", -- key for command :TableTidy<CR>
-        table_tidy_all = "<localleader>ta", -- key for command :TableTidyAll<CR>
-      },
-    },
-  },
-
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-    enabled = true,
-    opts = {
-      anti_conceal = { enabled = false },
-      pipe_table = {
-        preset = "round",
-        alignment_indicator = "┅",
-      },
-      heading = {
-        width = "block",
-        min_width = 30,
-      },
-      code = {
-        sign = false,
-        border = "thick",
-        right_pad = 1,
-        conceal_delimiters = false,
-      },
-    },
-    ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
-    config = function(_, opts)
-      require("render-markdown").setup(opts)
-      Snacks.toggle({
-        name = "Render Markdown",
-        get = function()
-          return require("render-markdown.state").enabled
-        end,
-        set = function(enabled)
-          local m = require("render-markdown")
-          if enabled then
-            m.enable()
-          else
-            m.disable()
-          end
-        end,
-      }):map("<leader>um")
-    end,
-  },
-
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = {
-      "MarkdownPreviewToggle",
-      "MarkdownPreview",
-      "MarkdownPreviewStop",
-    },
-    build = function()
-      require("lazy").load({ plugins = { "markdown-preview.nvim" } })
-      vim.fn["mkdp#util#install"]()
-    end,
-    keys = {
-      {
-        "<leader>uM",
-        ft = "markdown",
-        "<cmd>MarkdownPreviewToggle<cr>",
-        desc = "Markdown Preview",
-      },
-    },
-    config = function()
-      vim.cmd([[do FileType]])
-    end,
-  },
-}
+vim.pack.add({ "https://github.com/iamcco/markdown-preview.nvim" })
+Config.on_packchanged("markdown-preview.nvim", { "install", "update" }, function()
+  vim.fn["mkdp#util#install"]()
+end, "Update markdown-preview")
