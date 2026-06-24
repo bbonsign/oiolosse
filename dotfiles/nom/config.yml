@@ -31,6 +31,8 @@ feeds:
       name: Noctalia
     - url: https://simonwillison.net/atom/everything/
       name: Simon Willison
+    - url: https://ampcode.com/news.rss
+      name: Amp
 database: nom.db
 ordering: desc
 filtering:
