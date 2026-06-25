@@ -2,23 +2,6 @@ Config.later(function()
   vim.pack.add({ "https://github.com/mbbill/undotree" })
   vim.keymap.set("n", "<leader>uu", "<Cmd>UndotreeToggle<CR>", { desc = "UndotreeToggle" })
 
-  vim.pack.add({ "https://github.com/NvChad/nvim-colorizer.lua" })
-  require("colorizer").setup({
-    filetypes = { "*" },
-    options = {
-      parsers = {
-        css = true,
-        css_fn = true,
-        tailwind = { enable = true },
-        hex = { enable = true },
-      },
-      -- display = {
-      --   mode = "virtualtext",
-      --   virtualtext = { position = "eol", hl_mode = "foreground" },
-      -- },
-    },
-  })
-
   vim.pack.add({ "https://github.com/folke/lazydev.nvim" })
   require("lazydev").setup()
 end)

@@ -379,52 +379,8 @@ vim.keymap.set(
   { desc = "Notify foldlevel" }
 )
 
--- tabs
-vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
-vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { desc = "New Tab" })
-vim.keymap.set("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-vim.keymap.set("n", "<leader><tab>q", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-vim.keymap.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-
--- rename the current tab (uses lualine's :LualineRenameTab)
-vim.keymap.set(
-  "n",
-  "<leader><tab>r",
-  function()
-    vim.ui.input(
-      { prompt = "Tab name: " },
-      function(name)
-        if name then
-          vim.cmd("LualineRenameTab " .. name)
-        end
-      end
-    )
-  end,
-  { desc = "Rename Tab" }
-)
-
--- tabs picker
-vim.keymap.set(
-  "n",
-  "<leader><tab><tab>",
-  function()
-    Snacks.picker.pick("tabs")
-  end,
-  { desc = "Tabs Picker" }
-)
-
--- go to tab by number
-for i = 1, 9 do
-  vim.keymap.set(
-    "n",
-    "<leader><tab>" .. i,
-    "<cmd>" .. i .. "tabnext<cr>",
-    { desc = "Go to Tab " .. i }
-  )
-end
+-- tabs (keymaps live in bb.tabs; registered under <leader><tab> and <leader>t)
+require("bb.keymaps_tabs").setup()
 
 -- lua
 vim.keymap.set(

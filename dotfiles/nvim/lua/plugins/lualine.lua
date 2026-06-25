@@ -106,6 +106,7 @@ require("lualine").setup({
     },
     separator = "",
     section_separators = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
   },
   tabline = {
 
@@ -257,8 +258,13 @@ require("lualine").setup({
       {
         "tabs",
         mode = 2,
-        separator = "",
-        section_separators = { left = "", right = "" },
+        show_modified_status = false, -- Shows a symbol next to the tab name if the file has been modified.
+        -- use_mode_colors = true,
+        tabs_color = {
+          -- Same values as the general color option can be used here.
+          -- active = "lualine_{section}_normal", -- Color for active tab.
+          -- inactive = "lualine_{section}_inactive", -- Color for inactive tab.
+        },
       },
       -- {
       --   function()

@@ -37,3 +37,36 @@ require("tokyonight").setup({
 })
 
 vim.cmd.colorscheme("tokyonight")
+
+Config.later(function()
+  vim.pack.add({ "https://github.com/NvChad/nvim-colorizer.lua" })
+  require("colorizer").setup({
+    filetypes = { "*" },
+    options = {
+      parsers = {
+        css = true,
+        css_fn = true,
+        tailwind = { enable = true },
+        hex = { enable = true },
+      },
+      -- display = {
+      --   mode = "virtualtext",
+      --   virtualtext = { position = "eol", hl_mode = "foreground" },
+      -- },
+    },
+  })
+
+  local hipatterns = require("mini.hipatterns")
+  hipatterns.setup({
+    highlighters = {
+      -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+      fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+      hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
+      todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+      note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+
+      -- Highlight hex color strings (`#rrggbb`) using that color
+      -- hex_color = hipatterns.gen_highlighter.hex_color(),
+    },
+  })
+end)

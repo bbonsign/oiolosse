@@ -132,6 +132,7 @@ snacks.setup({
       border = "double",
     },
   },
+  words = { enabled = true }, -- illuminate lsp references
   zen = {
     show = {
       statusline = true,

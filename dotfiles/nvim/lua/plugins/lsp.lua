@@ -45,50 +45,30 @@ now_if_args(function()
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("my.lsp", {}),
     callback = function(ev)
-      local opts = { buffer = ev.buf }
-
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Definition" }))
-      -- vim.keymap.set("n", "<leader>lf", format, vim.tbl_extend("force", opts, { desc = "Format Document" }))
-      vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename" }))
-      vim.keymap.set(
-        { "n", "v" },
-        "<leader>la",
-        vim.lsp.buf.code_action,
-        vim.tbl_extend("force", opts, { desc = "code action" })
-      )
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf, desc = "Definition" })
+      -- vim.keymap.set("n", "<leader>lf", format,  {buffer = ev.buf, desc = "Format Document" })
+      vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename" })
+      vim.keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, { buffer = ev.buf, desc = "code action" })
       vim.keymap.set("n", "<leader>lA", function()
-        vim.lsp.buf.code_action({
-          context = {
-            only = {
-              "source",
-            },
-            diagnostics = {},
-          },
-        })
-      end, vim.tbl_extend("force", opts, { desc = "Source Action" }))
-      vim.keymap.set(
-        { "n", "v" },
-        "<leader>lI",
-        "<cmd>checkhealth lsp",
-        vim.tbl_extend("force", opts, { desc = "LSP Health" })
-      )
+        vim.lsp.buf.code_action({ context = { only = { "source" }, diagnostics = {} } })
+      end, { buffer = ev.buf, desc = "Source Action" })
+      vim.keymap.set({ "n", "v" }, "<leader>lI", "<cmd>checkhealth lsp", { buffer = ev.buf, desc = "LSP Health" })
       vim.keymap.set({ "n", "v" }, "<leader>li", function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-      end, vim.tbl_extend("force", opts, { desc = "Toggle Inlay Hints" }))
-      vim.keymap.set("n", "<leader>hh", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover" }))
-      vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover" }))
-      vim.keymap.set("n", "<leader>lk", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover" }))
-      vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover" }))
-      vim.keymap.set("n", "<leader>ck", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover" }))
-      vim.keymap.set(
-        "n",
-        "<leader>lI",
-        "<Cmd>checkhealth vim.lsp<CR>",
-        vim.tbl_extend("force", opts, { desc = "Lsp Info" })
-      )
-      vim.keymap.set("n", "<leader>lm", "<Cmd>Mason<CR>", vim.tbl_extend("force", opts, { desc = "Mason" }))
-      vim.keymap.set("n", "<leader>lS", "<Cmd>lsp stop<CR>", vim.tbl_extend("force", opts, { desc = "Lsp Stop" }))
-      vim.keymap.set("n", "<leader>lR", "<Cmd>lsp restart<CR>", vim.tbl_extend("force", opts, { desc = "Lsp Restart" }))
+      end, { buffer = ev.buf, desc = "Toggle Inlay Hints" })
+      vim.keymap.set("n", "<leader>hh", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
+      vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
+      vim.keymap.set("n", "<leader>lk", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
+      vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
+      vim.keymap.set("n", "<leader>ck", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
+      vim.keymap.set("n", "<leader>lI", "<Cmd>checkhealth vim.lsp<CR>", { buffer = ev.buf, desc = "Lsp Info" })
+      vim.keymap.set("n", "<leader>lm", "<Cmd>Mason<CR>", { buffer = ev.buf, desc = "Mason" })
+      vim.keymap.set("n", "<leader>lS", "<Cmd>lsp stop<CR>", { buffer = ev.buf, desc = "Lsp Stop" })
+      vim.keymap.set("n", "<leader>lR", "<Cmd>lsp restart<CR>", { buffer = ev.buf, desc = "Lsp Restart" })
+      vim.keymap.set({ "n" }, "gai", Snacks.picker.lsp_incoming_calls, { desc = "C[a]lls Incoming" })
+      vim.keymap.set({ "n" }, "gao", Snacks.picker.lsp_outgoing_calls, { desc = "C[a]lls Outgoing" })
+      vim.keymap.set({ "n" }, "<leader>ss", Snacks.picker.lsp_symbols, { desc = "LSP Symbols" })
+      vim.keymap.set({ "n" }, "<leader>sS", Snacks.picker.lsp_workspace_symbols, { desc = "LSP Workspace Symbols" })
     end,
   })
 end)

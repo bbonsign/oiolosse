@@ -30,7 +30,11 @@ require("render-markdown").setup({
   },
 })
 
-vim.pack.add({ "https://github.com/iamcco/markdown-preview.nvim" })
+-- Register the build hook BEFORE `add()`. `vim.pack.add()` installs missing
+-- plugins and fires `PackChanged` synchronously during the call, so the autocmd
+-- must already exist to catch the "install" event (see `:h vim.pack-events`).
+-- This builds the preview binary on both first install and later updates.
 Config.on_packchanged("markdown-preview.nvim", { "install", "update" }, function()
   vim.fn["mkdp#util#install"]()
 end, "Update markdown-preview")
+vim.pack.add({ "https://github.com/iamcco/markdown-preview.nvim" })
