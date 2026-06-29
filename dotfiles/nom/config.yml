@@ -33,6 +33,10 @@ feeds:
       name: Simon Willison
     - url: https://ampcode.com/news.rss
       name: Amp
+    - url: https://kristoff.it/index.xml
+      name: Loris Cro
+    - url: https://neovim.io/news.xml
+      name: Neovim
 database: nom.db
 ordering: desc
 filtering:

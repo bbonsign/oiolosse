@@ -44,6 +44,16 @@
                "/var/home/bbonsign/.config/vicinae/scripts"
             ]
          }
+      },
+      "snippets": {
+         "enabled": true,
+         "preferences": {
+            "enabled": true,
+            "keyDelay": "2",
+            "layout": "",
+            "prePasteDelay": "0",
+            "undo": true
+         }
       }
    }
 }
