@@ -33,6 +33,7 @@ order = [ "default" ]
 
 [brightness]
 enable_ddcutil = true
+minimum_brightness = 0.050000000000000003
 
 [calendar]
 enabled = true
@@ -62,6 +63,9 @@ reserve_space = false
 
 [location]
 address = "Cary, NC"
+
+[lockscreen]
+enabled = false
 
 [lockscreen_widgets]
 enabled = true
