@@ -7,9 +7,9 @@ let
   # Overlays / nixpkgs config that are safe to apply only when Home-Manager
   # owns its own pkgs (i.e. standalone, NOT under `home-manager.useGlobalPkgs`).
   standaloneNixpkgs = {
-    # nixpkgs.overlays = [
-    #   inputs.neovim-nightly-overlay.overlays.default
-    # ];
+    nixpkgs.overlays = [
+      inputs.neovim-nightly-overlay.overlays.default
+    ];
     nixpkgs.config = {
       allowUnfree = true;
       allowUnfreePredicate = _pkg: true;

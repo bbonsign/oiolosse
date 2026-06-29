@@ -6,6 +6,7 @@ _:
       config = {
         programs.fzf = {
           enable = true;
+          enableNushellIntegration = false;
           defaultCommand =
             "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
           fileWidgetCommand = "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
