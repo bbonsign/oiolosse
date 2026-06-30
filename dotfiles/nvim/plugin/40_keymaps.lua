@@ -185,6 +185,13 @@ vim.keymap.set(
   { desc = "LSP Health" }
 )
 
+vim.keymap.set(
+  "n",
+  "<leader>ld",
+  vim.diagnostic.open_float,
+  { desc = 'Diagnostic popup' }
+)
+
 vim.keymap.set("n", "<leader>fs", ":w<CR>", { desc = "Write file" })
 vim.keymap.set("n", "<leader>fw", ":w<CR>", { desc = "Write file" })
 vim.keymap.set("n", "<leader>fR", ":earlier 1f<CR>", { desc = "Revert to last write" })

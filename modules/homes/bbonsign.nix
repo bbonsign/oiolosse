@@ -49,6 +49,7 @@ in {
       home.username = "bbonsign";
       home.homeDirectory = "/home/bbonsign";
       home.sessionVariables = {
+        DELTA_FEATURES = "default-features";
         EDITOR = "nvim";
         SUDO_EDITOR = "nvim";
         VISUAL = "nvim";

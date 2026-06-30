@@ -61,6 +61,7 @@
         pkgs.pandoc
         # pkgs.pgcli
         pkgs.pinentry-gtk2
+        pkgs.pnpm
         # pkgs.postgresql
         pkgs.presenterm
         pkgs.ripgrep

@@ -54,11 +54,17 @@
 
           delta = {
             dark = true;
-            features = "line-numbers decorations";
+            features = "default-features";
+            default-features = "line-numbers decorations split-view";
             navigate = true;
-            side-by-side = true;
             tabs = 2;
             whitespace-error-style = "22 reverse";
+            split-view = {
+              side-by-side = true;
+            };
+            non-split-view = {
+              side-by-side = false;
+            };
             decorations = {
               "file-style" = "bold yellow ul";
               "file-decoration-style" = "none";

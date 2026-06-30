@@ -165,8 +165,18 @@ local diagnostic_opts = {
 
   -- Don't update diagnostics when typing
   update_in_insert = false,
+
+  -- When jumping to a diagnostic (e.g. `]d`/`[d`), also show it in a float,
+  -- as if pressing `<C-w>d` after the jump.
+  jump = {
+    on_jump = function(diagnostic, bufnr)
+      if not diagnostic then return end
+      vim.diagnostic.open_float(bufnr, { scope = 'cursor', focus = false })
+    end,
+  },
 }
 
 -- Use `later()` to avoid sourcing `vim.diagnostic` on startup
--- Config.later(function() vim.diagnostic.config(diagnostic_opts) end)
+Config.later(function() vim.diagnostic.config(diagnostic_opts) end)
+
 -- stylua: ignore end

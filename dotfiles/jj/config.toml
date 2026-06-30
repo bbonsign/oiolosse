@@ -56,19 +56,6 @@ editor = "nvim"
 # revsets-use-glob-by-default = true
 # conflict-marker-style = "snapshot"
 
-# merge-editor = [
-#   "flatpak",
-#   "run",
-#   "--file-forwarding",
-#   "--filesystem=/tmp",
-#   "org.gnome.meld",
-#   "$left",
-#   "$base",
-#   "$right",
-#   "-o",
-#   "$output",
-# ]
-
 pager = "delta"
 diff-formatter = ":git"
 
