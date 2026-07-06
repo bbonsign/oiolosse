@@ -38,3 +38,27 @@ Config.on_packchanged("markdown-preview.nvim", { "install", "update" }, function
   vim.fn["mkdp#util#install"]()
 end, "Update markdown-preview")
 vim.pack.add({ "https://github.com/iamcco/markdown-preview.nvim" })
+
+-- mo.nvim: browser preview via the `mo` CLI (save-based live-reload).
+-- Local repo for now; switch `src` to
+-- "https://github.com/bbonsign/mo.nvim" once pushed.
+vim.pack.add({
+  {
+    src = "file:///var/home/bbonsign/code/bbonsign/mo.nvim.repo/default.git.jj",
+    name = "mo.nvim",
+    version = "main",
+  },
+})
+require("mo").setup({})
+
+-- mo.nvim: browser preview via the `mo` CLI (save-based live-reload).
+-- Local repo for now; switch `src` to
+-- "https://github.com/bbonsign/mo.nvim" once pushed.
+vim.pack.add({
+  {
+    src = "file:///var/home/bbonsign/code/bbonsign/mo.nvim.repo/default.git.jj",
+    name = "mo.nvim",
+    version = "main",
+  },
+})
+require("mo").setup({})

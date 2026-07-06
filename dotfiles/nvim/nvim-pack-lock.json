@@ -62,8 +62,13 @@
       "src": "https://github.com/timantipov/md-table-tidy.nvim"
     },
     "mini.nvim": {
-      "rev": "c5cdbadeb423ff724e27a42ab2d1c504d1d6fc5a",
+      "rev": "d74190c1528aaf12ba5f3a29d03524c6b81e18b3",
       "src": "https://github.com/nvim-mini/mini.nvim"
+    },
+    "mo.nvim": {
+      "rev": "a54c79890aef2ec152ff372e577863462955a891",
+      "src": "file:///var/home/bbonsign/code/bbonsign/mo.nvim.repo/default.git.jj",
+      "version": "'main'"
     },
     "multicursor.nvim": {
       "rev": "704b99f10a72cc05d370cfeb294ff83412a8ab55",
@@ -78,7 +83,7 @@
       "src": "https://github.com/NvChad/nvim-colorizer.lua"
     },
     "nvim-lspconfig": {
-      "rev": "292f44408498103c47996ff5c18fd366293840d8",
+      "rev": "d224a1920728ba129880efc700d4a0180ac4ecbb",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-spider": {
@@ -166,7 +171,7 @@
       "src": "https://github.com/folke/which-key.nvim"
     },
     "yazi.nvim": {
-      "rev": "1fb8b04bee3d0e42e9966e87772428906b184df8",
+      "rev": "e36efe6b31cd9041ece4857aace292d182812466",
       "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }

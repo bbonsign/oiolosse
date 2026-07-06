@@ -13,4 +13,6 @@ Snacks.toggle({
   end,
 }):map("<leader>um")
 
-vim.keymap.set("n", "<leader>uM", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
+-- vim.keymap.set("n", "<leader>uM", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
+
+vim.keymap.set("n", "<leader>uM", "<cmd>Mo toggle<cr>", { desc = "Markdown Preview (mo)" })
