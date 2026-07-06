@@ -9,7 +9,8 @@ _:
           enableNushellIntegration = false;
           defaultCommand =
             "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
-          fileWidgetCommand = "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
+          fileWidget.command = "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
+          historyWidget.command = "";
           defaultOptions = [
             "--ansi"
             "--cycle"
