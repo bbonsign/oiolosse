@@ -11,7 +11,7 @@ return {
     revset.set(string.format('trunk():: ~ %s::', base))
   end,
   opts = {
-    seq = { "space", "v", "p" },
+    seq = { "space", "v", "P" },
     scope = "revisions",
     desc = "show trunk descendants excluding private base descendants",
   },

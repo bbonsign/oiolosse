@@ -6,6 +6,21 @@ local function trim(s)
   return string.gsub(s or "", "^%s*(.-)%s*$", "%1")
 end
 
+---Show a `choose` popup with a live-updating substring filter.
+---Requires a jjui build where filterable `choose` popups open directly in filter
+---mode (the local "choose-filter" patch). The search input is shown immediately
+---and the list narrows as you type; Enter selects, Esc cancels.
+---@param options string[] The full list of options
+---@param title? string Title shown on the choose popup
+---@return string|nil selected The chosen option, or nil if cancelled
+local function choose_filtered(options, title)
+  return choose({
+    title = title,
+    options = options,
+    filter = true,
+  })
+end
+
 ---Show a selection menu of bookmarks and return the chosen one.
 ---@param opts? {title?: string, tracked?: boolean}
 ---@return string|nil bookmark The selected bookmark name (with @remote suffix if applicable), or nil if cancelled
@@ -23,10 +38,42 @@ function M.choose_bookmark(opts)
     return nil
   end
 
-  return choose({
-    title = opts.title or "Choose a bookmark",
-    options = split_lines(bookmarks),
-  })
+  return choose_filtered(split_lines(bookmarks), opts.title or "Choose a bookmark")
+end
+
+---Show a selection menu of bookmarks and tags and return the chosen target.
+---Local bookmarks appear as `name`, remote bookmarks as `name@remote`, and tags as `name`.
+---@param opts? {title?: string}
+---@return string|nil target The selected bookmark/tag name, or nil if cancelled
+function M.choose_target(opts)
+  opts = opts or {}
+  local options = {}
+
+  local bookmark_template = 'if(remote, name ++ "@" ++ remote, name) ++ "\\n"'
+  local bookmarks, berr = jj("bookmark", "list", "--all", "-T", bookmark_template)
+  if berr then
+    flash({ text = "Failed to list bookmarks: " .. berr, error = true })
+    return nil
+  end
+  for _, name in ipairs(split_lines(bookmarks)) do
+    table.insert(options, name)
+  end
+
+  local tags, terr = jj("tag", "list", "-T", 'name ++ "\\n"')
+  if terr then
+    flash({ text = "Failed to list tags: " .. terr, error = true })
+    return nil
+  end
+  for _, name in ipairs(split_lines(tags)) do
+    table.insert(options, name)
+  end
+
+  if #options == 0 then
+    flash("No bookmarks or tags found")
+    return nil
+  end
+
+  return choose_filtered(options, opts.title or "Choose a target")
 end
 
 ---Evaluate a jj template against a single revision.
