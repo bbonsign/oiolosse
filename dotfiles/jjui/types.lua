@@ -40,6 +40,10 @@ function jj(...) end
 ---@param text_or_options string|{text: string, error?: boolean, sticky?: boolean} Message text or options table
 function flash(text_or_options) end
 
+---Change the active runtime theme
+---@param name string Theme name
+function set_theme(name) end
+
 ---Copy text to the system clipboard
 ---@param text string Text to copy
 ---@return boolean? ok True on success
@@ -197,9 +201,11 @@ function wait_refresh() end
 ---@field absorb jjui.revisions.absorb
 ---@field ace_jump jjui.revisions.ace_jump
 ---@field details jjui.revisions.details
+---@field diff_range jjui.revisions.diff_range
 ---@field duplicate jjui.revisions.duplicate
 ---@field evolog jjui.revisions.evolog
 ---@field inline_describe jjui.revisions.inline_describe
+---@field new_between jjui.revisions.new_between
 ---@field quick_search jjui.revisions.quick_search
 ---@field rebase jjui.revisions.rebase
 ---@field revert jjui.revisions.revert
@@ -226,12 +232,14 @@ function wait_refresh() end
 ---@field open_abandon fun()
 ---@field open_absorb fun()
 ---@field open_details fun()
+---@field open_diff_range fun()
 ---@field open_duplicate fun()
 ---@field open_evolog fun()
 ---@field open_inline_describe fun()
+---@field open_new_between fun()
 ---@field open_rebase fun()
 ---@field open_revert fun()
----@field open_set_bookmark fun()
+---@field open_set_bookmark fun(args: {value?: string})
 ---@field open_set_parents fun()
 ---@field open_squash fun()
 ---@field page_down fun()
@@ -240,6 +248,7 @@ function wait_refresh() end
 ---@field split fun()
 ---@field split_parallel fun()
 ---@field toggle_select fun()
+---@field tracer_toggle fun()
 ---@field close fun()
 
 ---@class jjui.revisions.abandon
@@ -257,6 +266,7 @@ function wait_refresh() end
 ---@field apply fun()
 ---@field cancel fun()
 ---@field jump_to_working_copy fun()
+---@field select_descendants fun()
 ---@field toggle_select fun()
 ---@field close fun()
 
@@ -293,6 +303,13 @@ function wait_refresh() end
 ---@field prev fun()
 ---@field close fun()
 
+---@class jjui.revisions.diff_range
+---@field apply fun()
+---@field cancel fun()
+---@field swap fun()
+---@field target_picker fun(args: {target: "to"|"from"})
+---@field close fun()
+
 ---@class jjui.revisions.duplicate
 ---@field ace_jump fun()
 ---@field apply fun(args: {force?: boolean})
@@ -321,6 +338,12 @@ function wait_refresh() end
 ---@field editor fun()
 ---@field force_accept fun()
 ---@field new_line fun()
+---@field close fun()
+
+---@class jjui.revisions.new_between
+---@field apply fun()
+---@field cancel fun()
+---@field toggle_insert_before fun()
 ---@field close fun()
 
 ---@class jjui.revisions.quick_search
@@ -419,6 +442,7 @@ function wait_refresh() end
 ---@class jjui.ui
 ---@field preview jjui.ui.preview
 ---@field cancel fun()
+---@field change_theme fun(value?: string|{name: string})
 ---@field exec_jj fun()
 ---@field exec_shell fun()
 ---@field expand_status fun()
@@ -477,6 +501,7 @@ function wait_refresh() end
 ---@field jj_interactive fun(...: string|string[])
 ---@field jj fun(...: string|string[]): string?, string?
 ---@field flash fun(text_or_options: string|{text: string, error?: boolean, sticky?: boolean})
+---@field set_theme fun(name: string)
 ---@field copy_to_clipboard fun(text: string): boolean?, string?
 ---@field exec_shell fun(command: string)
 ---@field split_lines fun(text: string, keepEmpty?: boolean): string[]

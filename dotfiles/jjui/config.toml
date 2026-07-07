@@ -25,6 +25,15 @@ file_command = [
   "-c",
   """jj diff --color always --git -r $change_id '$file' | delta --side-by-side --width $preview_width""",
 ]
+# Relies on custom build of jjui
+diff_range_command = [
+  "util",
+  "exec",
+  "--",
+  "bash",
+  "-c",
+  """jj diff --from $from --to $to --color always --git | diffnav""",
+]
 # oplog_command = [
 #   "op",
 #   "show",
