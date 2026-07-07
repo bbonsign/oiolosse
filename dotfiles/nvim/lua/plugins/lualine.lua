@@ -81,6 +81,27 @@ local function get_fileinfo_widget()
   end
 end
 
+--- Get search term and match count for the current search
+--- @return string search info
+local function get_search_widget()
+  local ok, result = pcall(vim.fn.searchcount, { maxcount = 999, timeout = 500 })
+  if not ok or not result.total or result.total == 0 then
+    return ""
+  end
+
+  local term = vim.fn.getreg("/")
+  local current = result.current
+  if result.incomplete == 1 then -- timed out
+    current = "?"
+  elseif result.incomplete == 2 then -- max count exceeded
+    if result.total > result.maxcount and result.current > result.maxcount then
+      current = ">" .. result.maxcount
+    end
+  end
+
+  return table.concat({ " ", term, "  ", current, "/", result.total })
+end
+
 local icons = Config.icons
 -- For symbol hierarchy hint
 local trouble = require("trouble")
@@ -139,36 +160,36 @@ require("lualine").setup({
         color = { bg = bg_color() },
       },
 
-      {
-        "diff",
-        symbols = {
-          added = icons.git.added,
-          modified = icons.git.modified,
-          removed = icons.git.removed,
-        },
-        separator = "",
-        padding = { left = 0, right = 1 },
-        on_click = function()
-          Snacks.picker.git_status()
-        end,
-        color = { bg = bg_color() },
-      },
+      -- {
+      --   "diff",
+      --   symbols = {
+      --     added = icons.git.added,
+      --     modified = icons.git.modified,
+      --     removed = icons.git.removed,
+      --   },
+      --   separator = "",
+      --   padding = { left = 0, right = 1 },
+      --   on_click = function()
+      --     Snacks.picker.git_status()
+      --   end,
+      --   color = { bg = bg_color() },
+      -- },
     },
 
     lualine_c = {
-      {
-        "diagnostics",
-        symbols = {
-          error = icons.diagnostics.Error,
-          warn = icons.diagnostics.Warn,
-          info = icons.diagnostics.Info,
-          hint = icons.diagnostics.Hint,
-        },
-        padding = { left = 1, right = 0 },
-        on_click = function()
-          Snacks.picker.diagnostics()
-        end,
-      },
+      -- {
+      --   "diagnostics",
+      --   symbols = {
+      --     error = icons.diagnostics.Error,
+      --     warn = icons.diagnostics.Warn,
+      --     info = icons.diagnostics.Info,
+      --     hint = icons.diagnostics.Hint,
+      --   },
+      --   padding = { left = 1, right = 0 },
+      --   on_click = function()
+      --     Snacks.picker.diagnostics()
+      --   end,
+      -- },
       {
         function()
           return " "
@@ -224,9 +245,20 @@ require("lualine").setup({
 
     lualine_y = {
       {
+        function()
+          return get_fileinfo_widget()
+        end,
+        color = { bg = bg_color() },
+      },
+      {
         "location",
         padding = { left = 1, right = 1 },
         color = { fg = Snacks.util.color("Special"), bg = bg_color() },
+      },
+      {
+        "progress",
+        color = { fg = Snacks.util.color("StatusLine"), bg = bg_color() },
+        padding = { left = 0, right = 1 },
       },
       {
         get_scrollbar_widget,
@@ -237,11 +269,6 @@ require("lualine").setup({
         on_click = function()
           vim.cmd.write()
         end,
-      },
-      {
-        "progress",
-        color = { fg = Snacks.util.color("StatusLine"), bg = bg_color() },
-        padding = { left = 1, right = 0 },
       },
     },
 
@@ -283,10 +310,12 @@ require("lualine").setup({
     },
     lualine_b = {
       {
-        function()
-          return get_fileinfo_widget()
+        get_search_widget,
+        cond = function()
+          return vim.v.hlsearch == 1
         end,
-        color = { bg = bg_color() },
+        color = { fg = Snacks.util.color("Special"), bg = bg_color() },
+        padding = { left = 1, right = 1 },
       },
     },
     lualine_c = {
