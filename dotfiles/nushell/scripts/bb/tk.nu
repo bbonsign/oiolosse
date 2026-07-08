@@ -15,21 +15,34 @@ export def --env y [...args] {
 
 # Allows for replicating process substituion.
 # Example:
-#   nvim --cmd copen -q (ruff check --output-format concise | as file )
+#   nvim --cmd copen -q (as file { ruff check --output-format concise })
 #
 # In bash, this would be `nvim --cmd copen -q <(ruff check --output-format concise)`
 # From https://github.com/nushell/nushell/issues/10610
-export def "as file" [] {
+#
+# Pass the command as a closure so its stdout is captured even when the command
+# exits non-zero (e.g. `ruff check` exits 1 when it finds issues). Piping into
+# `as file` also works for pipelines/values that don't exit non-zero, but a
+# failing external command upstream aborts the pipeline before its output ever
+# reaches this helper, so prefer the closure form for external commands.
+export def "as file" [
+  command?: closure # optional command whose stdout is captured regardless of exit code
+] {
+  let input = $in
   # make tmp file in system tmp dir
-  let file = mktemp --tmpdir
-  $in | save --append $file # Need to run it in background for it to stream, but this also works (but doesn't provide streaming).
+  let file = mktemp --tmpdir --suffix .txt
+  if $command != null {
+    do $command | complete | get stdout | save --append $file
+  } else {
+    $input | save --append $file
+  }
   $file
 }
 
 export def wrap_commandline_in_nvim_quickfix [] {
   let current_commandline = commandline
   if (($current_commandline | str trim ) == "") { return $current_commandline }
-  commandline edit $"nvim --cmd copen -q \(($current_commandline) | as file\)"
+  commandline edit $"nvim --cmd copen -q \(as file { ($current_commandline) }\)"
 }
 
 # Get help on commands using fzf
