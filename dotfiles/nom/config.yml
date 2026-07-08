@@ -29,8 +29,6 @@ feeds:
       name: German Velasco
     - url: https://noctalia.dev/rss.xml
       name: Noctalia
-    - url: https://simonwillison.net/atom/everything/
-      name: Simon Willison
     - url: https://ampcode.com/news.rss
       name: Amp
     - url: https://kristoff.it/index.xml
