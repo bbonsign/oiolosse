@@ -159,7 +159,7 @@ def parse-curl [tokens: list<string>] {
           $headers = $headers ++ [{name: ($parsed.name | str trim) value: ($parsed.value | str trim)}]
         }
       } else if $t == '-X' or $t == '--request' {
-        $method = ($v | str downcase)
+        $method = ($v | str lowercase)
       } else if $t in ['-d' '--data' '--data-raw' '--data-binary' '--data-ascii' '--data-urlencode'] {
         if ($body | is-empty) {
           $body = $v
@@ -219,12 +219,12 @@ def build-command [parsed: record]: nothing -> string {
   let real_headers = ($headers | where {|h| $h.name != "_curl_user_" })
   let content_type = (
     $real_headers
-    | where {|h| ($h.name | str downcase) == "content-type" }
+    | where {|h| ($h.name | str lowercase) == "content-type" }
     | get 0?.value
   )
   let header_headers = (
     $real_headers
-    | where {|h| ($h.name | str downcase) != "content-type" }
+    | where {|h| ($h.name | str lowercase) != "content-type" }
   )
 
   mut parts = [$"http ($method)"]
