@@ -35,6 +35,11 @@ $env.config.completions = {
   }
 }
 
+$env.config.abbreviations = {
+  jobs: "job list"
+  fg: "job unfreeze"
+}
+
 $env.config.menus = (
   $env.config.menus | append [
     {

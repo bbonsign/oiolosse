@@ -83,6 +83,7 @@ $line_break\
 $battery\
 $status\
 $os\
+$jobs\
 $character\
 """
 
@@ -102,6 +103,14 @@ success_symbol = "[λ](bold blue)"
 
 [container]
 style = "purple"
+
+[jobs]
+# For some reason the job number is off by one in nushell, so the symbol would appear and the number
+# of jobs would be shown as 2, even if there was just one frozen job. So for now we set the
+# symbol_threshold to 2.
+symbol_threshold = 2
+number_threshold = 20
+format = '[$symbol$number]($style)'
 
 [custom.jj]
 ignore_timeout = true
