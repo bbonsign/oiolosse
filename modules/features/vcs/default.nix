@@ -20,8 +20,8 @@
           {
             condition = "gitdir:~/mh/";
             contents = {
-              user.email = "brian.bonsignore@i-qlair.com";
-              user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSFThjipGc4GEwPZD8uPgdeIf23SBJcv++8kfAaPqY5";
+              user.email = "brian.bonsignore@mann-hummel.com";
+              user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDusQHZwJ2pMj91kAQXLpbZmPSzSgL9xpKrcpjnq7l2v brian.bonsignore@mann-hummel.com";
               gpg.format = "ssh";
               gpg.ssh.program = "/opt/1Password/op-ssh-sign";
               gpg.ssh.allowedSignersFile = builtins.toString ./allowed_signers;
