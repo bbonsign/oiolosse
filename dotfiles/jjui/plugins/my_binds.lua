@@ -39,6 +39,12 @@ local my_binds = {
     desc = "select",
   },
   {
+    key = "V",
+    action = "revisions.open_evolog",
+    scope = "revisions",
+    desc = "evolog",
+  },
+  {
     key = "v",
     action = "revisions.details.toggle_select",
     scope = "revisions.details",
