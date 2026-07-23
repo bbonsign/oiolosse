@@ -88,6 +88,9 @@ menu:
       - key: "b"
         desc: Toggle
         cmd: noctalia msg bar-toggle
+      - key: "h"
+        desc: Hide on last workspaces
+        cmd: ~/.local/bin/niri-last-workspaces.nu
       - key: "s"
         desc: Toggle
         cmd: noctalia msg bar-toggle
