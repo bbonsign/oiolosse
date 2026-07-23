@@ -6,6 +6,7 @@
       home.packages = [
         pkgs.fuzzel
         pkgs.networkmanager_dmenu
+        pkgs.nwg-displays
         pkgs.polkit_gnome
         pkgs.power-profiles-daemon
         pkgs.rofi

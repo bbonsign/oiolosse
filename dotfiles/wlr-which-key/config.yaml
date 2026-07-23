@@ -145,6 +145,9 @@ menu:
       - key: "c"
         desc: "Hex"
         cmd: hyprpicker --autocopy
+      - key: "d"
+        desc: "Displays"
+        cmd: nwg-displays
       - key: "f"
         desc: "Files"
         cmd: nautilus
