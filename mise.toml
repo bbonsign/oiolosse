@@ -51,3 +51,7 @@ run = ["nix store gc", "nix-collect-garbage --delete-older-than ${usage_days}d"]
 [tasks.dots]
 description = "Symlink non-home-manager dotfiles"
 run = "./dotfiles/symlink.nu"
+
+[tasks.keyd]
+description = "Update and reload the keyd config"
+run = "keyd-reload.nu"
