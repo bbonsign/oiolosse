@@ -8,7 +8,7 @@ _:
           plugins = [
             pkgs.nushellPlugins.gstat
             pkgs.nushellPlugins.query
-            pkgs.nushellPlugins.polars
+            # pkgs.nushellPlugins.polars
           ];
           # remove the `ll` alias in favor os a nushell native ls alias in helpers.nu
           shellAliases = builtins.removeAttrs
