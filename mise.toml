@@ -22,8 +22,9 @@ description = "Update Flake"
 alias = ["up", "u"]
 run = "nix flake update"
 
-[tasks.hm-news]
+[tasks.news]
 description = "Home manager news"
+alias = ["n"]
 run = "NIXPKGS_ALLOW_UNFREE=1 nix run home-manager -- --flake . --impure news"
 
 [tasks.hm-old]

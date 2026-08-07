@@ -200,14 +200,14 @@ menu:
         desc: Move to monitor left
         cmd: niri msg action move-workspace-to-monitor-left
       - key: "J"
-        desc: Move down
-        cmd: niri msg action move-workspace-down
+        desc: Move to monitor down
+        cmd: niri msg action move-workspace-to-monitor-down
       - key: "j"
         desc: Move down
         cmd: niri msg action move-workspace-down
       - key: "K"
-        desc: Move up
-        cmd: niri msg action move-workspace-up
+        desc: Move to montitor up
+        cmd: niri msg action move-workspace-to-monitor-up
       - key: "k"
         desc: Move up
         cmd: niri msg action move-workspace-up
