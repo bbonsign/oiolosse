@@ -10,6 +10,37 @@ vim.pack.add({
 require("mason").setup()
 require("mason-lspconfig").setup()
 
+local function pyright_hover()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "pyright" })
+
+  if #clients == 0 then
+    vim.notify("Pyright is not attached to this buffer", vim.log.levels.WARN)
+    return
+  end
+
+  local client = clients[1]
+  local params = vim.lsp.util.make_position_params(0, client.offset_encoding)
+  client:request("textDocument/hover", params, function(err, result, context)
+    vim.lsp.handlers["textDocument/hover"](err, result, context, { border = "rounded" })
+  end, bufnr)
+end
+
+vim.lsp.config("pyright", {
+  handlers = {
+    ["textDocument/publishDiagnostics"] = function() end,
+  },
+  on_attach = function(client)
+    -- Keep Pyright synchronized for explicit requests, but let ty provide all
+    -- regular LSP features without duplicate results.
+    for capability in pairs(client.server_capabilities) do
+      if capability:match("Provider$") then
+        client.server_capabilities[capability] = false
+      end
+    end
+  end,
+})
+
 now_if_args(function()
   vim.pack.add({
     "https://github.com/nvim-lua/plenary.nvim",
@@ -57,7 +88,7 @@ now_if_args(function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end, { buffer = ev.buf, desc = "Toggle Inlay Hints" })
       vim.keymap.set("n", "<leader>hh", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
-      vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
+      vim.keymap.set("n", "<leader>lh", pyright_hover, { buffer = ev.buf, desc = "Pyright Hover" })
       vim.keymap.set("n", "<leader>lk", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
       vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
       vim.keymap.set("n", "<leader>ck", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
