@@ -32,7 +32,7 @@ diff_range_command = [
   "--",
   "bash",
   "-c",
-  """jj diff --from $from --to $to --color always --git | diffnav""",
+  """jj diff --ignore-all-space --from $from --to $to --color always --git | diffnav""",
 ]
 # oplog_command = [
 #   "op",

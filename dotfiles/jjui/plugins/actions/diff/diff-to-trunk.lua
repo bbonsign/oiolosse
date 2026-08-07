@@ -12,7 +12,7 @@ return {
       "--",
       "bash",
       "-c",
-      string.format("jj diff --from %s --to 'trunk()' | diffnav", change_id)
+      string.format("jj diff --ignore-all-space --from %s --to 'trunk()' | diffnav", change_id)
     )
   end,
   opts = {

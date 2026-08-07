@@ -9,7 +9,7 @@ return {
       "--",
       "bash",
       "-c",
-      string.format("jj diff --summary --git --color always -r %s %s | diffnav", change_id, file)
+      string.format("jj diff --ignore-all-space --summary --git --color always -r %s %s | diffnav", change_id, file)
     )
   end,
   opts = {
