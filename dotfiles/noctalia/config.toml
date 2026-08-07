@@ -260,8 +260,8 @@ font_family = "FiraCode Nerd Font"
 [widget.bluetooth]
 color = "primary"
 
-[widget.cat]
-type = "noctalia/bongocat:cat"
+[widget.bluetooth.actions]
+right = "none"
 
 [widget.clock]
 format = "%I:%M %p    %H:%M    %a %d %b %Y  "
@@ -277,10 +277,6 @@ right = "exec kitty"
 [widget.date]
 format = " %H:%M UTC "
 timezone = "UTC"
-
-[widget.hello]
-glyph = "power"
-type = "noctalia/example:hello"
 
 [widget.media]
 hide_when_no_media = true
@@ -314,7 +310,7 @@ capsule = true
 capsule_opacity = 0.70000000000000007
 
 [widget.workspaces]
-display = "none"
 empty_color = "on_surface_variant"
 max_label_chars = 8
 pill_scale = 0.90000000000000002
+show_labels = false

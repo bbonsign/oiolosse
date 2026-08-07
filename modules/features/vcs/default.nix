@@ -187,10 +187,10 @@
             # };
           };
           git = {
-            pagers = [
+            diffRenderers = [
               {
                 colorArg = "always";
-                pager = "delta --dark --paging=never --no-gitconfig";
+             command = "delta --dark --paging=never --no-gitconfig";
               }
             ];
 
