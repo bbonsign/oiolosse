@@ -1,5 +1,5 @@
 
-{inputs, self, ...}:
+{inputs, ...}:
 {
   flake.homeModules.home-manager = {pkgs,...}: {
     config = {
@@ -28,14 +28,6 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "hmbak";
-        home-manager.users.bbonsign = self.homeModules.bbonsignHomeModule;
-      }
-
-      # Since Home Manager is installed via its NixOS module and 'home-manager.useUserPackages' is
-      # enabled, you need to add the following to your NixOS configuration so that the portal
-      # definitions and DE provided configurations get linked.
-      {
-        environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
       }
     ];
   };

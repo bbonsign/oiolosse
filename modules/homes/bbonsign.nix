@@ -26,6 +26,27 @@ in {
     ];
   };
 
+  flake.homeModules.bbonsignServerHomeModule = {pkgs, ...}: {
+    imports = [
+      self.homeModules.fd
+      self.homeModules.fzf
+      self.homeModules.home-manager
+      self.homeModules.neovim
+      self.homeModules.nushell
+    ];
+
+    config = {
+      home.username = "bbonsign";
+      home.homeDirectory = "/home/bbonsign";
+      home.packages = [ pkgs.ripgrep ];
+      home.sessionVariables = {
+        EDITOR = "nvim";
+        SUDO_EDITOR = "nvim";
+        VISUAL = "nvim";
+      };
+    };
+  };
+
   flake.homeModules.bbonsignHomeModule = {pkgs, ...}: {
     imports = [
       self.homeModules.beam

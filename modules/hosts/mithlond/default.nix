@@ -7,20 +7,46 @@
       modules = [
         ./_hardware-configuration.nix
 
-        self.nixosModules."1password"
-        self.nixosModules.bazecor
         self.nixosModules.boot
-        self.nixosModules.containers
         self.nixosModules.home-manager
-        self.nixosModules.keyboard
         self.nixosModules.locale
-        self.nixosModules.misc-packages
         self.nixosModules.networking
-        self.nixosModules.pipewire
-        self.nixosModules.printing
-        self.nixosModules.shells
         self.nixosModules.tailscale
         self.nixosModules.users
+
+        {
+          home-manager.users.bbonsign = self.homeModules.bbonsignServerHomeModule;
+
+          # Blank the console display while keeping the laptop running with its lid closed.
+          boot.kernelParams = [ "consoleblank=60" ];
+          services.logind.settings.Login = {
+            HandleLidSwitch = "ignore";
+            HandleLidSwitchDocked = "ignore";
+            HandleLidSwitchExternalPower = "ignore";
+          };
+          systemd.targets = {
+            sleep.enable = false;
+            suspend.enable = false;
+            hibernate.enable = false;
+            hybrid-sleep.enable = false;
+          };
+
+          # SSH and Mealie are reachable only over Tailscale.
+          services.openssh = {
+            enable = true;
+            openFirewall = false;
+            settings.PermitRootLogin = "no";
+          };
+          services.mealie = {
+            enable = true;
+            listenAddress = "0.0.0.0";
+            port = 9000;
+          };
+          networking.firewall.interfaces.tailscale0.allowedTCPPorts = [
+            22
+            9000
+          ];
+        }
 
         # When `home-manager.useGlobalPkgs = true`, HM cannot set
         # `nixpkgs.{overlays,config}` itself, so configure them here at
