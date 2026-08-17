@@ -1,0 +1,72 @@
+[metadata]
+name = "ruff-rules"
+description = "Browse ruff lint rules with their explanations rendered as markdown"
+requirements = ["ruff", "jq", "glow", "sed", "less"]
+
+[source]
+# The whole line (code, rule name, summary, linter) is what tv matches against,
+# so the list is searchable by "F401", "unused-import" or "unused import" alike.
+# Colors are display only; `strip_ansi` recovers the code for the preview/actions.
+command = '''ruff rule --all --output-format json | jq -r --arg e "$(printf '\033')" '
+  def pad($n): . + ((" " * ($n - length)) // "");
+  def col($c): $e + "[" + $c + "m" + . + $e + "[0m";
+  .[]
+  | (.status | keys[0]) as $status
+  | (.code | pad(9) | col("1;33"))
+    + (.name | pad(44) | col("36"))
+    + (.summary | col("90"))
+    + "  " + (.linter | col("35"))
+    + (if $status == "Stable" then ""
+       elif $status == "Preview" then " " + ("[preview]" | col("33"))
+       else " " + ("[" + ($status | ascii_downcase) + "]" | col("31")) end)
+    + (if .fix_availability == "Always" then " " + ("[fix]" | col("32"))
+       elif .fix_availability == "Sometimes" then " " + ("[fix?]" | col("32"))
+       else "" end)
+' '''
+ansi = true
+output = "{strip_ansi|split: :0}"
+
+[preview]
+# `ruff rule` emits markdown; glow renders it.
+#   -s dark : glow falls back to plain ASCII when its output is not a terminal
+#   -w 0    : no reflow/padding, so we keep ruff's own ~78 column wrapping and
+#             avoid glow's full-width background padding in the panel
+# The sed pass drops glow's OSC 8 hyperlink escapes, which tv does not parse.
+# Note: the command must not contain any other curly braces, or tv's template
+# engine tries to read them as placeholders and stops substituting.
+command = '''ruff rule '{strip_ansi|split: :0}' 2>&1 | glow -s dark -w 0 - | sed 's/\x1b]8;[^\x07]*\x07//g' '''
+cached = true
+
+[keybindings]
+# `enter` keeps tv's default: it prints the rule code, so the channel doubles as
+# a picker, e.g. `ruff check --extend-select "$(tv ruff-rules)" .`
+ctrl-o = "actions:docs"
+ctrl-d = "actions:pager"
+ctrl-g = "actions:check"
+
+[actions.docs]
+description = "Open the rule's documentation page in the browser"
+command = '''name=$(ruff rule '{strip_ansi|split: :0}' | sed -n '1s/^# \([^ ]*\).*/\1/p'); url="https://docs.astral.sh/ruff/rules/$name/"; xdg-open "$url" 2>/dev/null || open "$url"'''
+mode = "execute"
+
+[actions.pager]
+description = "Read the rendered explanation in a pager"
+command = "ruff rule '{strip_ansi|split: :0}' 2>&1 | glow -s dark -p -"
+mode = "execute"
+
+[actions.check]
+description = "Run only the selected rule against the current directory"
+command = "ruff check --no-cache --isolated --preview --color always --select '{strip_ansi|split: :0}' . 2>&1 | less -R"
+mode = "execute"
+
+[ui]
+# Portrait puts the explanation under the list at full terminal width, which fits
+# ruff's ~78 column markdown (plus glow's margin) even on a narrow terminal.
+layout = "portrait"
+
+[ui.preview_panel]
+size = 60
+header = "{strip_ansi|split: :0}"
+# Deliberately no `word_wrap`: tv drops leading whitespace when it wraps, which
+# would flatten the indentation of the Python examples. Only the odd long link
+# line gets clipped instead.

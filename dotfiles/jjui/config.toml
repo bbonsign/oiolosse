@@ -1,5 +1,8 @@
 limit = 0
 
+[bookmark]
+interactive_bookmark_pane = true
+
 [revisions]
 template = 'custom_log_oneline'
 # template = 'builtin_log_oneline'

@@ -9,13 +9,6 @@ return {
       return
     end
 
-    local description = helpers.log_template(change_id, "description")
-    local trimmed_description = string.gsub(description or "", "^%s*(.-)%s*$", "%1")
-    if trimmed_description ~= "" then
-      flash("Revision already has a description")
-      return
-    end
-
     local empty_revset = string.format('change_id("%s") & empty()', change_id)
     local empty_match = helpers.log_template(empty_revset, "change_id")
     local trimmed_empty_match = string.gsub(empty_match or "", "^%s*(.-)%s*$", "%1")
@@ -24,12 +17,12 @@ return {
       return
     end
 
-    jj("describe", "-r", change_id, "--message", "private: base")
+    jj("bookmark", "set", "private-base", "--revision", change_id, "--allow-backwards")
     revisions.refresh()
   end,
   opts = {
     seq = { "space", "m", "b" },
     scope = "revisions",
-    desc = "set description to private: base when empty",
+    desc = "set private-base bookmark on empty revision",
   },
 }

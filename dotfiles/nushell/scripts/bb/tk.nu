@@ -87,23 +87,39 @@ export def ":search" [query: string = ""] {
 }
 
 export def "fg status" []  {
-  try {
-    git rev-parse --git-dir e> (std null-device)
+  let vcs = try {
+    jj root o+e> (std null-device)
+    "jj"
   } catch {
-    print "Not in a git repo";
-    return ""
+    try {
+      git rev-parse --git-dir o+e> (std null-device)
+      "git"
+    } catch {
+      print "Not in a jj or git repo"
+      return ""
+    }
   }
   def parse-status [status_line: string]  {
     $status_line | split row ' ' | last
   }
-  let preview_cmd = "git diff --color {-1} | delta --config ~/.config/git/config"
-  let selections = git -c color.status=always status --short
+  let preview_cmd = if $vcs == "jj" {
+    "jj diff --color always --git -- {-1} | delta --config ~/.config/git/config"
+  } else {
+    "git diff --color {-1} | delta --config ~/.config/git/config"
+  }
+  let prompt = if $vcs == "jj" { "Jj Status> " } else { "Git Status> " }
+  let status = if $vcs == "jj" {
+    jj diff --summary --color always
+  } else {
+    git -c color.status=always status --short
+  }
+  let selections = $status
   | (
     fzf-tmux
     --ansi
     --multi
     --cycle
-    --prompt "Git Status> "
+    --prompt $prompt
     # --query (commandline --current-token)
     --preview-window '~4,+{2}+4/3,<80(up)'
     --preview $preview_cmd

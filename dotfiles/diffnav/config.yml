@@ -16,4 +16,4 @@ ui:
   # Show the amount of lines added / removed next to the file
   showDiffStats: false
   # Use side-by-side diff view (default: true, set false for unified)
-  sideBySide: true
+  sideBySide: false

@@ -1,3 +1,8 @@
+-- return early if kitty isn't installed, e.g. on a server
+if vim.fn.executable("kitten") == 0 then
+  return
+end
+
 -- These globals must be set before `add()` sources the plugin's `plugin/`
 -- files. `no_mappings` prevents the default <C-h/j/k/l> maps from being created.
 vim.g.kitty_navigator_enable_stack_layout = 1

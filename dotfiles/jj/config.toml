@@ -30,6 +30,7 @@ la = ["log", "-r", "all()"]
 s = ["status"]
 st = ["status"]
 ui = ["util", "exec", "--", "jjui"]
+wus = ["workspace", "update-stale"]
 clone = ["util", "exec", "--", "jj-clone"]
 init = ["util", "exec", "--", "jj-init"]
 # https://isaaccorbrey.com/notes/jujutsu-megamerges-for-fun-and-profit#tldr

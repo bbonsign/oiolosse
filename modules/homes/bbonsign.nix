@@ -33,6 +33,7 @@ in {
       self.homeModules.home-manager
       self.homeModules.neovim
       self.homeModules.nushell
+      self.homeModules.vcs
     ];
 
     config = {

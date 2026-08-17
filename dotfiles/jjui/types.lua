@@ -61,7 +61,7 @@ function exec_shell(command) end
 function split_lines(text, keepEmpty) end
 
 ---Show a choice dialog and wait for user selection (yields)
----@param ... string|string[]|{options?: string[]|string, title?: string, filter?: boolean, ordered?: boolean} Options as variadic strings, a single array, or an options table
+---@param ... string|string[]|{options?: string[]|string, title?: string, ordered?: boolean} Options as variadic strings, a single array, or an options table
 ---@return string|nil selected The selected option, or nil if cancelled
 function choose(...) end
 
@@ -76,6 +76,47 @@ function wait_close() end
 
 ---Yield and wait for revisions to be updated
 function wait_refresh() end
+
+---@class jjui.bookmark_pane
+---@field confirmation jjui.bookmark_pane.confirmation
+---@field filter jjui.bookmark_pane.filter
+---@field apply fun()
+---@field cancel fun()
+---@field create fun()
+---@field cycle_remotes fun()
+---@field cycle_remotes_back fun()
+---@field delete fun()
+---@field edit fun()
+---@field fetch fun()
+---@field forget fun()
+---@field move fun()
+---@field move_down fun()
+---@field move_up fun()
+---@field new fun()
+---@field open_filter fun()
+---@field page_down fun()
+---@field page_up fun()
+---@field push fun()
+---@field rename fun()
+---@field set_revset fun()
+---@field show_in_revision fun()
+---@field toggle_expand fun()
+---@field toggle_select fun()
+---@field track fun()
+---@field untrack fun()
+---@field close fun()
+
+---@class jjui.bookmark_pane.confirmation
+---@field apply fun(args: {force?: boolean})
+---@field cancel fun()
+---@field next fun()
+---@field prev fun()
+---@field close fun()
+
+---@class jjui.bookmark_pane.filter
+---@field apply fun()
+---@field cancel fun()
+---@field close fun()
 
 ---@class jjui.bookmarks
 ---@field apply fun()
@@ -98,6 +139,7 @@ function wait_refresh() end
 ---@class jjui.choose
 ---@field apply fun()
 ---@field cancel fun()
+---@field filter fun()
 ---@field move_down fun()
 ---@field move_up fun()
 ---@field close fun()
@@ -114,12 +156,15 @@ function wait_refresh() end
 ---@field left fun()
 ---@field move_bottom fun()
 ---@field move_top fun()
+---@field next_file fun()
 ---@field page_down fun()
 ---@field page_up fun()
+---@field prev_file fun()
 ---@field right fun()
 ---@field scroll_down fun()
 ---@field scroll_up fun()
 ---@field show fun(value?: string|{content: string})
+---@field target_picker fun()
 ---@field toggle_wrap fun()
 
 ---@class jjui.file_search
@@ -200,6 +245,7 @@ function wait_refresh() end
 ---@field abandon jjui.revisions.abandon
 ---@field absorb jjui.revisions.absorb
 ---@field ace_jump jjui.revisions.ace_jump
+---@field bookmark_target jjui.revisions.bookmark_target
 ---@field details jjui.revisions.details
 ---@field diff_range jjui.revisions.diff_range
 ---@field duplicate jjui.revisions.duplicate
@@ -223,6 +269,8 @@ function wait_refresh() end
 ---@field edit fun()
 ---@field force_apply fun()
 ---@field force_edit fun()
+---@field go_to_bottom fun()
+---@field go_to_top fun()
 ---@field jump_to_children fun()
 ---@field jump_to_parent fun()
 ---@field jump_to_working_copy fun()
@@ -275,11 +323,21 @@ function wait_refresh() end
 ---@field cancel fun()
 ---@field close fun()
 
+---@class jjui.revisions.bookmark_target
+---@field ace_jump fun()
+---@field apply fun(args: {force?: boolean})
+---@field cancel fun()
+---@field force_apply fun()
+---@field close fun()
+
 ---@class jjui.revisions.details
 ---@field confirmation jjui.revisions.details.confirmation
 ---@field absorb fun()
 ---@field cancel fun()
 ---@field diff fun()
+---@field filter fun()
+---@field filter_apply fun()
+---@field filter_cancel fun()
 ---@field move_down fun()
 ---@field move_up fun()
 ---@field page_down fun()
@@ -447,6 +505,7 @@ function wait_refresh() end
 ---@field exec_shell fun()
 ---@field expand_status fun()
 ---@field file_search_toggle fun()
+---@field focus_next_pane fun()
 ---@field open_bookmarks fun()
 ---@field open_command_history fun()
 ---@field open_git fun()
@@ -466,6 +525,7 @@ function wait_refresh() end
 ---@field quick_search fun()
 ---@field quit fun()
 ---@field suspend fun()
+---@field toggle_bookmark_pane fun()
 ---@field close fun()
 
 ---@class jjui.ui.preview
@@ -482,6 +542,7 @@ function wait_refresh() end
 ---@field revisions jjui.revisions
 ---@field revset jjui.revset
 ---@field context jjui.context
+---@field bookmark_pane jjui.bookmark_pane
 ---@field bookmarks jjui.bookmarks
 ---@field choose jjui.choose
 ---@field command_history jjui.command_history
@@ -505,12 +566,13 @@ function wait_refresh() end
 ---@field copy_to_clipboard fun(text: string): boolean?, string?
 ---@field exec_shell fun(command: string)
 ---@field split_lines fun(text: string, keepEmpty?: boolean): string[]
----@field choose fun(...: string|string[]|{options?: string[]|string, title?: string, filter?: boolean, ordered?: boolean}): string|nil
+---@field choose fun(...: string|string[]|{options?: string[]|string, title?: string, ordered?: boolean}): string|nil
 ---@field input fun(options?: {title?: string, prompt?: string}): string|nil
 ---@field wait_close fun(): boolean
 ---@field wait_refresh fun()
 
 ---@class jjui.builtin
+---@field bookmark_pane jjui.bookmark_pane
 ---@field bookmarks jjui.bookmarks
 ---@field choose jjui.choose
 ---@field command_history jjui.command_history

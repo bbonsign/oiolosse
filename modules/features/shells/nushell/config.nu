@@ -217,13 +217,13 @@ $env.config.keybindings = (
       event: {send: menu name: pipe_completions_menu}
     }
 
-    {
-      name: fuzzy_file_pwd
-      modifier: control
-      keycode: char_s
-      mode: $ALL_MODES
-      event: {send: Enter}
-    }
+    # {
+    #   name: fuzzy_file_pwd
+    #   modifier: control
+    #   keycode: char_s
+    #   mode: $ALL_MODES
+    #   event: {send: Enter}
+    # }
     {
       name: fuzzy_file
       modifier: control

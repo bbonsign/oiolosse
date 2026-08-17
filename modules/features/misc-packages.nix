@@ -65,6 +65,7 @@
         # pkgs.postgresql
         pkgs.presenterm
         pkgs.ripgrep
+        pkgs.ruff
         pkgs.sioyek
         pkgs.snyk
         pkgs.snowsql

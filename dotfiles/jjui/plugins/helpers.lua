@@ -100,12 +100,19 @@ function M.working_copy_change_id()
   return M.change_id_of_revision("@")
 end
 
----Returns the change ID of the revision with description "private: base", or flashes an error.
+---Returns the change ID at the "private-base" bookmark, falling back to the
+---revision with description "private: base", or flashes an error.
 ---@return string|nil change_id
 function M.private_base_change_id()
-  local change_id, err = M.change_id_of_revision('description(glob:"private: base*")')
+  local change_id = M.change_id_of_revision("private-base")
+  if change_id and change_id ~= "" then
+    return change_id
+  end
+
+  local err
+  change_id, err = M.change_id_of_revision('description(glob:"private: base*")')
   if err or not change_id or change_id == "" then
-    flash({ text = "No revision with description 'private: base' found", error = true })
+    flash({ text = "No 'private-base' bookmark or revision with description 'private: base' found", error = true })
     return nil
   end
   return change_id
