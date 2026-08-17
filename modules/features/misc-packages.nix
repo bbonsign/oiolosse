@@ -60,7 +60,7 @@
         pkgs.p7zip
         pkgs.pandoc
         # pkgs.pgcli
-        pkgs.pinentry-gtk2
+        pkgs.pinentry-gnome3 
         pkgs.pnpm
         # pkgs.postgresql
         pkgs.presenterm

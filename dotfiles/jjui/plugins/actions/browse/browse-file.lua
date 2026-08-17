@@ -6,7 +6,7 @@ return {
     gitbrowse.browse({ file = true })
   end,
   opts = {
-    seq = { "space", "b" },
+    seq = { "space", "B" },
     scope = "revisions.details",
     desc = "open file in browser",
   },
