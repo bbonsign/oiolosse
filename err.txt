@@ -1,0 +1,32 @@
+[switch] $ sudo nixos-rebuild switch --fast --flake .#mithlond
+nixos-rebuild: warning: --fast is deprecated, use --no-reexec instead
+building the system configuration...
+warning: Git tree '/home/bbonsign/oiolosse' is dirty
+Checking switch inhibitors... done
+Skipping "/boot/EFI/systemd/systemd-bootx64.efi", same boot loader version in place already.
+Skipping "/boot/EFI/BOOT/BOOTX64.EFI", same boot loader version in place already.
+activating the configuration...
+setting up /etc...
+reloading user units for bbonsign...
+restarting the following user units: nixos-activation.service
+restarting sysinit-reactivation.target
+the following new units were started: NetworkManager-dispatcher.service
+warning: the following units failed: tailscale-serve-mealie.service
+× tailscale-serve-mealie.service - Tailnet-only HTTPS proxy for Mealie
+     Loaded: loaded (/etc/systemd/system/tailscale-serve-mealie.service; enabled; preset: ignored)
+     Active: failed (Result: exit-code) since Thu 2026-09-03 00:21:04 EDT; 269ms ago
+ Invocation: 209bd9ce780443ab9b1b78b510fa3be3
+    Process: 15309 ExecStart=/nix/store/lfqbsp1wh59izfbs39sf9yds7dp0jwdj-tailscale-1.102.3/bin/tailscale serve --service=svc:mealie --yes --https=443 http://127.0.0.1:9000 (code=exited, status=1/FAILURE)
+   Main PID: 15309 (code=exited, status=1/FAILURE)
+         IP: 0B in, 0B out
+         IO: 0B read, 0B written
+   Mem peak: 4.3M
+        CPU: 22ms
+
+Sep 03 00:21:04 mithlond systemd[1]: Starting Tailnet-only HTTPS proxy for Mealie...
+Sep 03 00:21:04 mithlond tailscale[15309]: service hosts must be tagged nodes
+Sep 03 00:21:04 mithlond systemd[1]: tailscale-serve-mealie.service: Main process exited, code=exited, status=1/FAILURE
+Sep 03 00:21:04 mithlond systemd[1]: tailscale-serve-mealie.service: Failed with result 'exit-code'.
+Sep 03 00:21:04 mithlond systemd[1]: Failed to start Tailnet-only HTTPS proxy for Mealie.
+Command 'systemd-run -E LOCALE_ARCHIVE -E NIXOS_INSTALL_BOOTLOADER -E NIXOS_NO_CHECK --collect --no-ask-password --pipe --quiet --service-type=exec --unit=nixos-rebuild-switch-to-configuration /nix/store/z73b99y6qf3wdnqy8fdh2njpdybknxq7-nixos-system-mithlond-26.11.20260831.34ab990/bin/switch-to-configuration switch' returned non-zero exit status 4.
+[switch] ERROR task failed

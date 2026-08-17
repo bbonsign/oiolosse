@@ -3,6 +3,8 @@
 
     config = {
       home.packages = [
+        pkgs.delta
+        pkgs.diffnav # Delta + file tree -- installed from local clone for now
         inputs.jjui.packages.x86_64-linux.jjui
         pkgs.jujutsu
 

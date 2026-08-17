@@ -39,7 +39,7 @@ in {
     config = {
       home.username = "bbonsign";
       home.homeDirectory = "/home/bbonsign";
-      home.packages = [ pkgs.ripgrep ];
+      home.packages = [ pkgs.ripgrep pkgs.mise pkgs.trashy];
       home.sessionVariables = {
         EDITOR = "nvim";
         SUDO_EDITOR = "nvim";

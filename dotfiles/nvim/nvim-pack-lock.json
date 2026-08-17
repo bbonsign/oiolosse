@@ -65,11 +65,6 @@
       "rev": "9d01f392b33fb2ba36fbc87fc0bf4453e63ffb0a",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
-    "mo.nvim": {
-      "rev": "a54c79890aef2ec152ff372e577863462955a891",
-      "src": "file:///var/home/bbonsign/code/bbonsign/mo.nvim.repo/default.git.jj",
-      "version": "'main'"
-    },
     "multicursor.nvim": {
       "rev": "704b99f10a72cc05d370cfeb294ff83412a8ab55",
       "src": "https://github.com/jake-stewart/multicursor.nvim"

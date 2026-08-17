@@ -19,8 +19,6 @@
         pkgs.btop
         pkgs.bun
         pkgs.cargo
-        pkgs.delta
-        # pkgs.diffnav # Delta + file tree -- installed from local clone for now
         pkgs.dnsutils # `dig` + `nslookup`
         pkgs.duckdb
         pkgs.duf
