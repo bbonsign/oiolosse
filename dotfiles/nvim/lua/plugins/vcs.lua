@@ -1,5 +1,5 @@
 Config.later(function()
-  vim.pack.add({ "https://github.com/lewis6991/gitsigns.nvim" })
+  vim.pack.add({ "https://github.com/bbonsign/gitsigns.nvim" })
 
   require("gitsigns").setup({
     preview_config = { border = "rounded" },
