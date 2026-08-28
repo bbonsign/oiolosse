@@ -27,8 +27,10 @@ binds {
   Mod+Space { spawn "wlr-which-key"; }
   // Mod+Ctrl+Space { spawn "wlr-which-key"; }
   // Mod+Shift+Semicolon { spawn "wlr-which-key"; }
-  Mod+Tab repeat=false hotkey-overlay-title="Window Picker"{ spawn-sh "vicinae vicinae://launch/wm/switch-windows"; }
+  Mod+Tab repeat=false hotkey-overlay-title="Window Switcher"{ spawn-sh  "noctalia msg window-switcher"; }
+  Mod+Shift+Tab repeat=false hotkey-overlay-title="Window Switcher"{ spawn-sh  "noctalia msg window-switcher"; }
   Mod+Period repeat=false hotkey-overlay-title="Window Picker"{ spawn-sh "vicinae vicinae://launch/wm/switch-windows"; }
+  Mod+Comma repeat=false hotkey-overlay-title="Window Picker"{ spawn-sh "vicinae vicinae://launch/wm/switch-windows"; }
   // Mod+Tab hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
   // Mod+Comma hotkey-overlay-title="Window Picker" { spawn "~/.local/bin/niri-choose-window.nu"; }
   // Mod+Period hotkey-overlay-title="Window Picker"{ spawn "~/.local/bin/niri-choose-window.nu"; }

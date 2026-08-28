@@ -1,7 +1,7 @@
 binds {
   // Core Noctalia binds
   Mod+Shift+Semicolon { spawn-sh  "noctalia msg panel-toggle launcher"; }
-  Mod+Comma { spawn-sh  "noctalia msg settings-toggle"; }
+  Mod+Ctrl+Comma { spawn-sh  "noctalia msg settings-toggle"; }
 
   // // Audio controls
   XF86AudioRaiseVolume { spawn-sh  "noctalia msg volume-up"; }
