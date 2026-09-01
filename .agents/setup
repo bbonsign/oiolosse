@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+step() {
+  local label="$1"
+  shift
+  local started=$SECONDS
+
+  printf '==> %s\n' "$label"
+  "$@"
+  printf '<== %s (%ss)\n' "$label" "$((SECONDS - started))"
+}
+
+install_nix() {
+  if [[ ! -x "$HOME/.nix-profile/bin/nix" ]]; then
+    sudo install -d -m 0755 -o "$USER" -g "$(id -gn)" /nix
+    curl --fail --location --silent --show-error https://nixos.org/nix/install \
+      | sh -s -- --no-daemon --yes
+  fi
+}
+
+install_mise() {
+  if [[ ! -x "$HOME/.local/bin/mise" ]]; then
+    mkdir -p "$HOME/.local/bin"
+    curl --fail --location --silent --show-error https://mise.run \
+      | MISE_INSTALL_PATH="$HOME/.local/bin/mise" sh
+  fi
+}
+
+configure_login_shell() {
+  local marker='# oiolosse orb toolchain'
+
+  touch "$HOME/.bash_profile"
+  if ! grep -Fqx "$marker" "$HOME/.bash_profile"; then
+    cat >> "$HOME/.bash_profile" <<'EOF'
+
+# oiolosse orb toolchain
+if [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]]; then
+  # shellcheck disable=SC1091
+  source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+EOF
+  fi
+}
+
+step 'Install Nix' install_nix
+
+# The installer cannot update this running process.
+# shellcheck disable=SC1091
+source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+mkdir -p "$HOME/.config/nix"
+if [[ ! -f "$HOME/.config/nix/nix.conf" ]] \
+  || ! grep -Eq '^experimental-features[[:space:]]*=.*\bflakes\b' "$HOME/.config/nix/nix.conf"; then
+  printf '%s\n' 'experimental-features = nix-command flakes' >> "$HOME/.config/nix/nix.conf"
+fi
+
+step 'Install mise' install_mise
+step 'Configure login shell' configure_login_shell
+step 'Fetch locked flake inputs' nix flake archive --no-write-lock-file
+step 'Evaluate locked flake' nix flake check --no-build --no-write-lock-file
+
+printf 'Orb setup complete.\n'
