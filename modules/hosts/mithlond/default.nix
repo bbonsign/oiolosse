@@ -11,6 +11,7 @@
         self.nixosModules.home-manager
         self.nixosModules.locale
         self.nixosModules.networking
+        self.nixosModules.nextcloud-calendar
         self.nixosModules.nix
         self.nixosModules.tailscale
         self.nixosModules.users
