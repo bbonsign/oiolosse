@@ -33,6 +33,7 @@ spawn-sh-at-startup "wl-paste --watch cliphist store &"
 spawn-at-startup "nixGL" "noctalia"
 // spawn-at-startup "swaync"
 spawn-sh-at-startup "1password --silent" // --silent opens to the system tray without showing the main window
+spawn-sh-at-startup "tailscale systray"
 spawn-sh-at-startup "kitty --single-instance --session sessions/conf.kitty-session || $HOME/.local/kitty.app/bin/kitty --single-instance --session sessions/conf.kitty-session"
 // spawn-at-startup "~/.local/bin/niri-scratch.nu"
 
