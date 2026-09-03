@@ -17,6 +17,16 @@ description = "Nixos switch"
 alias = "sw"
 run = "sudo nixos-rebuild switch --fast --flake .#mithlond"
 
+[tasks.deploy]
+description = "Build mithlond locally and deploy it over Tailscale"
+alias = "d"
+usage = '''
+  arg "<action>" default="switch" {
+    choices "switch" "test" "boot"
+  }
+'''
+run = "nixos-rebuild ${usage_action} --flake .#mithlond --target-host bbonsign@mithlond --ask-sudo-password"
+
 [tasks.update]
 description = "Update Flake"
 alias = ["up", "u"]

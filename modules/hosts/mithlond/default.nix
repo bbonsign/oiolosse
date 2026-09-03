@@ -50,6 +50,8 @@
               openFirewall = false;
               settings.PermitRootLogin = "no";
             };
+            # Permit remote deployment of closures built on Telperion.
+            nix.settings.trusted-users = [ "bbonsign" ];
             services.mealie = {
               enable = true;
               listenAddress = "127.0.0.1";
