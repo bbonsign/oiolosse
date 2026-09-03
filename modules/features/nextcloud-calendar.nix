@@ -17,7 +17,7 @@ _: {
         services.nextcloud = {
           enable = true;
           package = pkgs.nextcloud34;
-          hostName = "nextcloud.duckbull-wahoo.ts.net";
+          hostName = "nextcloud.duckbill-wahoo.ts.net";
           https = true;
 
           database.createLocally = true;

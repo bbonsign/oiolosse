@@ -56,7 +56,7 @@
               enable = true;
               listenAddress = "127.0.0.1";
               port = 9000;
-              settings.BASE_URL = "https://mealie.duckbull-wahoo.ts.net";
+              settings.BASE_URL = "https://mealie.duckbill-wahoo.ts.net";
             };
             networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 22 ];
 

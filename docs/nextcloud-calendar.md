@@ -30,13 +30,13 @@ tags:
 
 ```text
 Tailnet client
-  -> https://nextcloud.duckbull-wahoo.ts.net/ (svc:nextcloud, TLS on 443)
+  -> https://nextcloud.duckbill-wahoo.ts.net/ (svc:nextcloud, TLS on 443)
   -> mithlond Tailscale Service host
   -> http://127.0.0.1:8080 (nginx and PHP-FPM)
   -> local PostgreSQL + Redis Unix socket
 
 Tailnet client
-  -> https://mealie.duckbull-wahoo.ts.net/ (svc:mealie, TLS on 443)
+  -> https://mealie.duckbill-wahoo.ts.net/ (svc:mealie, TLS on 443)
   -> mithlond Tailscale Service host
   -> http://127.0.0.1:9000 (Mealie)
 ```
@@ -145,14 +145,14 @@ nextcloud-occ status
 nextcloud-occ app:list | sed -n '/Enabled:/,/Disabled:/p'
 ```
 
-Open `https://nextcloud.duckbull-wahoo.ts.net/` from a tailnet client and sign in
+Open `https://nextcloud.duckbill-wahoo.ts.net/` from a tailnet client and sign in
 as `admin` with the generated password. Change the admin password after storing
 it safely, set the admin email if mail is later configured, and verify Calendar
 appears in the app menu. Calendar is declaratively installed and enabled; the
 Nextcloud app store is disabled so it cannot drift from the Nix package.
 
 Mealie remains available separately at
-`https://mealie.duckbull-wahoo.ts.net/`.
+`https://mealie.duckbill-wahoo.ts.net/`.
 
 Create a separate account for every family member under **Administration
 settings -> Users**. In Calendar, create a calendar such as **Family**, use its
@@ -164,13 +164,13 @@ Avoid sharing the admin account.
 Use the discovery URL:
 
 ```text
-https://nextcloud.duckbull-wahoo.ts.net/remote.php/dav
+https://nextcloud.duckbill-wahoo.ts.net/remote.php/dav
 ```
 
 The direct per-user collection is:
 
 ```text
-https://nextcloud.duckbull-wahoo.ts.net/remote.php/dav/calendars/<USERNAME>/
+https://nextcloud.duckbill-wahoo.ts.net/remote.php/dav/calendars/<USERNAME>/
 ```
 
 Create an app password in **Personal settings -> Security -> Devices &
@@ -252,7 +252,7 @@ tailscale serve status
 tailscale serve get-config --all
 tailscale status --json | jq '.Self.CapMap."service-host"'
 ss -lntp | grep -E '(127\.0\.0\.1:8080|127\.0\.0\.1:9000)'
-curl -I -H 'Host: nextcloud.duckbull-wahoo.ts.net' http://127.0.0.1:8080/status.php
+curl -I -H 'Host: nextcloud.duckbill-wahoo.ts.net' http://127.0.0.1:8080/status.php
 nextcloud-occ status
 nextcloud-occ app:list
 nextcloud-occ config:system:get trusted_domains
