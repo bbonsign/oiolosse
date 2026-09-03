@@ -25,7 +25,7 @@ usage = '''
     choices "switch" "test" "boot"
   }
 '''
-run = "nixos-rebuild ${usage_action} --flake .#mithlond --target-host bbonsign@mithlond --ask-sudo-password"
+run = "nix run .#nixosConfigurations.mithlond.config.system.build.nixos-rebuild -- ${usage_action} --flake .#mithlond --target-host bbonsign@mithlond --ask-sudo-password"
 
 [tasks.update]
 description = "Update Flake"
