@@ -1,4 +1,9 @@
-{ inputs, pkgs, self, ... }:
+{
+  inputs,
+  pkgs,
+  self,
+  ...
+}:
 {
   flake.nixosConfigurations = {
     mithlond = inputs.nixpkgs.lib.nixosSystem {
@@ -16,39 +21,64 @@
         self.nixosModules.tailscale
         self.nixosModules.users
 
-        {
-          home-manager.users.bbonsign = self.homeModules.bbonsignServerHomeModule;
+        (
+          { config, lib, ... }:
+          let
+            mealieServiceName = "svc:mealie";
+            tailscale = lib.getExe config.services.tailscale.package;
+          in
+          {
+            home-manager.users.bbonsign = self.homeModules.bbonsignServerHomeModule;
 
-          # Blank the console display while keeping the laptop running with its lid closed.
-          boot.kernelParams = [ "consoleblank=60" ];
-          services.logind.settings.Login = {
-            HandleLidSwitch = "ignore";
-            HandleLidSwitchDocked = "ignore";
-            HandleLidSwitchExternalPower = "ignore";
-          };
-          systemd.targets = {
-            sleep.enable = false;
-            suspend.enable = false;
-            hibernate.enable = false;
-            hybrid-sleep.enable = false;
-          };
+            # Blank the console display while keeping the laptop running with its lid closed.
+            boot.kernelParams = [ "consoleblank=60" ];
+            services.logind.settings.Login = {
+              HandleLidSwitch = "ignore";
+              HandleLidSwitchDocked = "ignore";
+              HandleLidSwitchExternalPower = "ignore";
+            };
+            systemd.targets = {
+              sleep.enable = false;
+              suspend.enable = false;
+              hibernate.enable = false;
+              hybrid-sleep.enable = false;
+            };
 
-          # SSH and Mealie are reachable only over Tailscale.
-          services.openssh = {
-            enable = true;
-            openFirewall = false;
-            settings.PermitRootLogin = "no";
-          };
-          services.mealie = {
-            enable = true;
-            listenAddress = "0.0.0.0";
-            port = 9000;
-          };
-          networking.firewall.interfaces.tailscale0.allowedTCPPorts = [
-            22
-            9000
-          ];
-        }
+            # SSH and web applications are reachable only over Tailscale.
+            services.openssh = {
+              enable = true;
+              openFirewall = false;
+              settings.PermitRootLogin = "no";
+            };
+            services.mealie = {
+              enable = true;
+              listenAddress = "127.0.0.1";
+              port = 9000;
+              settings.BASE_URL = "https://mealie.duckbull-wahoo.ts.net";
+            };
+            networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 22 ];
+
+            systemd.services.tailscale-serve-mealie = {
+              description = "Tailnet-only HTTPS proxy for Mealie";
+              after = [
+                "tailscaled.service"
+                "mealie.service"
+              ];
+              requires = [
+                "tailscaled.service"
+                "mealie.service"
+              ];
+              wantedBy = [ "multi-user.target" ];
+
+              serviceConfig = {
+                Type = "oneshot";
+                RemainAfterExit = true;
+                ExecStart = "${tailscale} serve --service=${mealieServiceName} --yes --https=443 http://127.0.0.1:9000";
+                ExecStop = "${tailscale} serve drain ${mealieServiceName}";
+              };
+            };
+          }
+        )
 
         # When `home-manager.useGlobalPkgs = true`, HM cannot set
         # `nixpkgs.{overlays,config}` itself, so configure them here at

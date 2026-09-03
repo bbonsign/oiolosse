@@ -8,6 +8,8 @@ _: {
     }:
     let
       backendPort = 8080;
+      passwordFile = "/var/lib/nextcloud-secrets/admin-password";
+      serviceName = "svc:nextcloud";
       tailscale = lib.getExe config.services.tailscale.package;
     in
     {
@@ -15,7 +17,7 @@ _: {
         services.nextcloud = {
           enable = true;
           package = pkgs.nextcloud34;
-          hostName = "localhost";
+          hostName = "nextcloud.duckbull-wahoo.ts.net";
           https = true;
 
           database.createLocally = true;
@@ -24,13 +26,10 @@ _: {
           config = {
             dbtype = "pgsql";
             adminuser = "admin";
-            adminpassFile = "/var/lib/nextcloud-secrets/admin-password";
+            adminpassFile = passwordFile;
           };
 
           settings = {
-            # The tailnet DNS suffix is runtime state, so trust only this node's
-            # MagicDNS name without embedding the private suffix in the repository.
-            trusted_domains = [ "mithlond.*.ts.net" ];
             trusted_proxies = [ "127.0.0.1" ];
             overwriteprotocol = "https";
           };
@@ -53,23 +52,44 @@ _: {
           "d /var/lib/nextcloud-secrets 0700 root root - -"
         ];
 
+        systemd.services.nextcloud-admin-password = {
+          description = "Provision the initial Nextcloud administrator password";
+          before = [ "nextcloud-setup.service" ];
+          requiredBy = [ "nextcloud-setup.service" ];
+
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+          };
+
+          script = ''
+            if [[ ! -s ${passwordFile} ]]; then
+              umask 0077
+              ${lib.getExe pkgs.openssl} rand -base64 36 > ${passwordFile}.tmp
+              ${lib.getExe' pkgs.coreutils "mv"} ${passwordFile}.tmp ${passwordFile}
+            fi
+          '';
+        };
+
         systemd.services.tailscale-serve-nextcloud = {
           description = "Tailnet-only HTTPS proxy for Nextcloud Calendar";
           after = [
             "tailscaled.service"
             "nginx.service"
+            "nextcloud-setup.service"
           ];
           requires = [
             "tailscaled.service"
             "nginx.service"
+            "nextcloud-setup.service"
           ];
           wantedBy = [ "multi-user.target" ];
 
           serviceConfig = {
             Type = "oneshot";
             RemainAfterExit = true;
-            ExecStart = "${tailscale} serve --bg --yes --https=443 http://127.0.0.1:${toString backendPort}";
-            ExecStop = "${tailscale} serve --https=443 off";
+            ExecStart = "${tailscale} serve --service=${serviceName} --yes --https=443 http://127.0.0.1:${toString backendPort}";
+            ExecStop = "${tailscale} serve drain ${serviceName}";
           };
         };
       };

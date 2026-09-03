@@ -3,6 +3,7 @@ title: "Nextcloud Calendar on mithlond"
 document_type: "runbook"
 status: "active"
 created_at: "2026-09-02"
+updated_at: "2026-09-02"
 source_thread: "https://ampcode.com/threads/T-01a0609a-f0a8-7264-89fa-6c198de0e41b"
 request_context: >-
   Operate the private family calendar service without exposing it outside the
@@ -10,11 +11,13 @@ request_context: >-
 scope:
   - "Nextcloud Calendar access, setup, backup, restore, and upgrades on mithlond"
 decisions:
-  - "Tailscale Serve terminates HTTPS and proxies to loopback-only nginx."
+  - "Named Tailscale Services give Nextcloud and Mealie separate MagicDNS names on HTTPS port 443."
+  - "Tailscale Serve terminates HTTPS and proxies each service to its loopback-only backend."
   - "Nextcloud uses local PostgreSQL and Redis and installs Calendar from its matching Nix package set."
 handoff: >-
-  Provision the documented password file and confirm Tailscale MagicDNS and HTTPS
-  before the first activation. Never skip Nextcloud major versions during upgrades.
+  Complete the documented tailnet service, tag, policy, and approval setup; activate
+  the NixOS configuration; then retrieve and store the generated initial administrator
+  password. Never skip Nextcloud major versions during upgrades.
 tags:
   - "nextcloud"
   - "calendar"
@@ -27,50 +30,107 @@ tags:
 
 ```text
 Tailnet client
-  -> https://<MITHLOND-MAGICDNS-NAME>/ (Tailscale Serve, TLS on 443)
+  -> https://nextcloud.duckbull-wahoo.ts.net/ (svc:nextcloud, TLS on 443)
+  -> mithlond Tailscale Service host
   -> http://127.0.0.1:8080 (nginx and PHP-FPM)
   -> local PostgreSQL + Redis Unix socket
+
+Tailnet client
+  -> https://mealie.duckbull-wahoo.ts.net/ (svc:mealie, TLS on 443)
+  -> mithlond Tailscale Service host
+  -> http://127.0.0.1:9000 (Mealie)
 ```
 
-`<MITHLOND-MAGICDNS-NAME>` is the full name reported by
-`tailscale status --json`, normally `mithlond.<TAILNET-DNS-SUFFIX>.ts.net`.
-The endpoint is Tailscale Serve, not Funnel, and nginx listens only on loopback.
-No application port is opened in the host firewall, so the service is not
-reachable from the LAN or a router-forwarded public port.
+The endpoints are named Tailscale Services using Serve, not Funnel. The NixOS
+systemd units configure and advertise them non-interactively whenever the host
+starts. Both application backends listen only on loopback, and no application
+port is opened in the host firewall, so neither service is reachable from the
+LAN or a router-forwarded public port.
 
-Every client must be logged into the tailnet and permitted to reach `mithlond`
-by the tailnet ACL/grants policy. MagicDNS and Tailscale HTTPS certificates must
-be enabled for the tailnet. Keep Tailscale running while web and CalDAV clients
-use the service.
+Every client must be logged into the tailnet and granted access to the named
+services. MagicDNS and Tailscale HTTPS certificates must be enabled. Keep
+Tailscale running while web and CalDAV clients use the service.
 
-## Before first activation
+## One-time tailnet setup (manual)
 
-The only provisioned credential is the initial Nextcloud administrator
-password. It is read at runtime through a systemd credential and is not part of
-the Nix store or repository. On `mithlond`, create it before the first
-activation:
+Tailscale Services are tailnet control-plane resources, so NixOS cannot create
+or approve them. Complete these steps as a tailnet Owner, Admin, or Network
+admin before activating this configuration:
+
+1. In **Services**, define `nextcloud` and `mealie`. Give each service the
+   advertised endpoint `tcp:443`.
+2. In the Tailscale **Access controls** page, define a tag that `mithlond` may
+   use and grant the intended users access to SSH and both services. Merge the
+   following entries into the existing policy rather than replacing it, and
+   narrow `autogroup:member` if only selected family members should have access:
+
+   ```json
+   "tagOwners": {
+     "tag:server": ["autogroup:admin"]
+   },
+   "grants": [
+     {
+       "src": ["autogroup:member"],
+       "dst": ["tag:server"],
+       "ip": ["22"]
+     },
+     {
+       "src": ["autogroup:member"],
+       "dst": ["svc:nextcloud", "svc:mealie"],
+       "ip": ["443"]
+     }
+   ]
+   ```
+
+   Preserve any existing rules that provide access to other resources. Tagging
+   changes the node from a user identity to a tag identity, so ensure the SSH
+   grant is effective before ending the current administrative session.
+
+3. In **Machines**, assign `tag:server` to `mithlond`. Tailscale requires a
+   tag-based identity for every Service host.
+4. Activate the NixOS configuration. The systemd units run these equivalent
+   non-interactive commands; do not run them manually:
+
+   ```console
+   tailscale serve --service=svc:nextcloud --yes --https=443 http://127.0.0.1:8080
+   tailscale serve --service=svc:mealie --yes --https=443 http://127.0.0.1:9000
+   ```
+
+5. Return to **Services**, open each service, and approve the pending
+   `mithlond` advertisement. This approval persists across service and host
+   restarts. Alternatively, configure `autoApprovers.services` for both service
+   names and `tag:server` before activation.
+
+Clients running Tailscale 1.94 or newer discover Service routes automatically.
+On an older Linux client, manually enable them once with
+`sudo tailscale set --accept-routes`.
+
+## Initial administrator password
+
+Before the first Nextcloud setup, `nextcloud-admin-password.service` generates
+the initial administrator password at
+`/var/lib/nextcloud-secrets/admin-password`. It is read through a systemd
+credential and is not part of the Nix store or repository. After activation,
+retrieve it on `mithlond`:
 
 ```console
-sudo install -d -m 0700 -o root -g root /var/lib/nextcloud-secrets
-sudo openssl rand -base64 36 -out /var/lib/nextcloud-secrets/admin-password
-sudo chmod 0600 /var/lib/nextcloud-secrets/admin-password
+sudo cat /var/lib/nextcloud-secrets/admin-password
 ```
 
-Store a copy in the family password manager. Do not commit the value. Local
-PostgreSQL authenticates over its Unix socket, so no database password is
-needed. The password file is only used when `nextcloud-setup.service` creates a
-new instance; changing it later does not change the existing admin password.
+Store it in the family password manager and do not commit the value. Generation
+is idempotent and never replaces a non-empty password file. Local PostgreSQL
+authenticates over its Unix socket, so no database password is needed. The
+password file is only used when `nextcloud-setup.service` creates a new
+instance; changing it later does not change the existing admin password.
 
-Confirm the server is already connected to Tailscale and find its URL:
+Confirm the server is connected to Tailscale:
 
 ```console
 tailscale status
-tailscale status --json | jq -r '.Self.DNSName'
 ```
 
-The first `tailscale serve` invocation may ask a tailnet administrator to enable
-MagicDNS/HTTPS. Complete that prerequisite in the Tailscale admin console, then
-restart `tailscale-serve-nextcloud.service` if necessary.
+If MagicDNS or HTTPS certificates are not yet enabled, enable them in the
+Tailscale admin console before starting the Serve units.
 
 ## First-time Nextcloud setup
 
@@ -85,11 +145,14 @@ nextcloud-occ status
 nextcloud-occ app:list | sed -n '/Enabled:/,/Disabled:/p'
 ```
 
-Open `https://<MITHLOND-MAGICDNS-NAME>/` from a tailnet client and sign in as
-`admin` with the provisioned password. Change the admin password after storing
+Open `https://nextcloud.duckbull-wahoo.ts.net/` from a tailnet client and sign in
+as `admin` with the generated password. Change the admin password after storing
 it safely, set the admin email if mail is later configured, and verify Calendar
-appears in the app menu. Calendar is declaratively installed and enabled;
-the Nextcloud app store is disabled so it cannot drift from the Nix package.
+appears in the app menu. Calendar is declaratively installed and enabled; the
+Nextcloud app store is disabled so it cannot drift from the Nix package.
+
+Mealie remains available separately at
+`https://mealie.duckbull-wahoo.ts.net/`.
 
 Create a separate account for every family member under **Administration
 settings -> Users**. In Calendar, create a calendar such as **Family**, use its
@@ -101,13 +164,13 @@ Avoid sharing the admin account.
 Use the discovery URL:
 
 ```text
-https://<MITHLOND-MAGICDNS-NAME>/remote.php/dav
+https://nextcloud.duckbull-wahoo.ts.net/remote.php/dav
 ```
 
 The direct per-user collection is:
 
 ```text
-https://<MITHLOND-MAGICDNS-NAME>/remote.php/dav/calendars/<USERNAME>/
+https://nextcloud.duckbull-wahoo.ts.net/remote.php/dav/calendars/<USERNAME>/
 ```
 
 Create an app password in **Personal settings -> Security -> Devices &
@@ -182,21 +245,24 @@ Nextcloud does not support skipping major versions. For example, upgrade 34 to
 ## Troubleshooting
 
 ```console
-systemctl status nextcloud-setup phpfpm-nextcloud nginx postgresql redis-nextcloud tailscale-serve-nextcloud
-journalctl -u nextcloud-setup -u phpfpm-nextcloud -u nginx -u tailscale-serve-nextcloud -b
+systemctl status nextcloud-admin-password nextcloud-setup phpfpm-nextcloud nginx postgresql redis-nextcloud tailscale-serve-nextcloud mealie tailscale-serve-mealie
+journalctl -u nextcloud-admin-password -u nextcloud-setup -u phpfpm-nextcloud -u nginx -u tailscale-serve-nextcloud -b
 tailscale status
 tailscale serve status
-ss -lntp | grep -E '(:443|127\.0\.0\.1:8080)'
-curl -I -H 'Host: mithlond.<TAILNET-DNS-SUFFIX>.ts.net' http://127.0.0.1:8080/status.php
+tailscale serve get-config --all
+tailscale status --json | jq '.Self.CapMap."service-host"'
+ss -lntp | grep -E '(127\.0\.0\.1:8080|127\.0\.0\.1:9000)'
+curl -I -H 'Host: nextcloud.duckbull-wahoo.ts.net' http://127.0.0.1:8080/status.php
 nextcloud-occ status
 nextcloud-occ app:list
 nextcloud-occ config:system:get trusted_domains
 sudo -u postgres psql -d nextcloud -c 'select 1;'
 ```
 
-Expected listeners are Tailscale-managed HTTPS on port 443 and nginx on
-`127.0.0.1:8080`; nginx must not listen on `0.0.0.0:8080` or `[::]:8080`. An
-"untrusted domain" error means the client did not use
-`mithlond.<TAILNET-DNS-SUFFIX>.ts.net`; inspect the actual request hostname and
-the configured trusted domains. Certificate or Serve errors usually mean the
-node is logged out, MagicDNS/HTTPS is disabled, or tailnet policy denies access.
+Expected backend listeners are nginx on `127.0.0.1:8080` and Mealie on
+`127.0.0.1:9000`; neither may listen on all interfaces. Both named services
+should appear in the Serve configuration and as connected in the Tailscale
+**Services** page. If a service URL does not connect, check that `mithlond` has
+`tag:server`, its advertisement is approved, and the client has a grant to the
+service on port 443. An "untrusted domain" error means the client did not use
+the configured Nextcloud MagicDNS name.
