@@ -1,89 +1,134 @@
 #!/usr/bin/env nu
 
-# Script to create symlinks to all dotfiles
+# Symlink repository-managed dotfiles into their expected home directories.
+# Existing files are preserved, correct links are left unchanged, and missing
+# sources are reported without stopping the rest of the setup.
 
 echo "===== Symlinking dotfiles ====="
-let DOTFILES = $env.HOME | path join oiolosse dotfiles
-let CONFIG_DIR = $env.HOME | path join .config
-let WALLPAPER_DIR = $env.HOME | path join Pictures wallpapers
-let SERVICE_DIR = $env.HOME | path join .config systemd user
-let BIN_DIR = $env.HOME | path join .local bin
-let DESKTOP_DIR = $env.HOME | path join .local share applications
-let VIMIUM_DIR = $env.HOME | path join code philc vimium
+let DOTFILES = $env.FILE_PWD
+let CONFIG_DIR = [$env.HOME ".config"] | path join
+let WALLPAPER_DIR = [$env.HOME "Pictures" "wallpapers"] | path join
+let BIN_DIR = [$env.HOME ".local" bin] | path join
+let DESKTOP_DIR = [$env.HOME ".local" "share" "applications"] | path join
+let VIMIUM_DIR = [$env.HOME "code" "philc" "vimium"] | path join
 
-^mkdir -p ($SERVICE_DIR | path join niri.service.wants)
-
+# Create a symlink from `dest` to `src` without overwriting non-symlink paths.
+# Relative sources are resolved from the directory containing this script.
 def create_symlink [src dest] {
-  if ($dest | path exists) or (($dest | path type) == "symlink") {
-    trash put $dest
+  let source = if ($src | str starts-with "/") {
+    $src | path expand
+  } else {
+    [$DOTFILES $src] | path join | path expand
   }
-  ln -sf ([$DOTFILES $src] | path join) $dest
+
+  if not ($source | path exists) {
+    print --stderr $"Skipping missing source: ($source)"
+    return
+  }
+
+  let destination_type = try {
+    $dest | path type
+  } catch {
+    null
+  }
+
+  if $destination_type == "symlink" {
+    let current_source = ^readlink -- $dest | str trim
+    if $current_source == $source {
+      return
+    }
+
+    rm $dest
+  } else if $destination_type != null {
+    print --stderr $"Skipping existing destination: ($dest)"
+    return
+  }
+
+  mkdir ($dest | path dirname)
+  ln -s $source $dest
 }
 
-# create_symlink "justfile" "$env.HOME/justfile"
-create_symlink rsync_excludes ($env.HOME | path join rsync_excludes)
-create_symlink dot_iex.exs ($env.HOME | path join .iex.exs)
-# create_symlink ./ipython_config.py ($env.HOME | path join .ipython profile_default ipython_config.py)
-create_symlink ./symlink.nu ($BIN_DIR | path join .f)
-
-let bin_files = ls ($DOTFILES | path join bin)
-$bin_files | each {|x|
-  create_symlink $x.name ($BIN_DIR | path join ($x.name | path basename))
+# Symlink each immediate child of `source_dir` into `destination_dir`.
+# A missing source directory is reported and otherwise ignored.
+def link_directory_files [source_dir destination_dir] {
+  if ($source_dir | path exists) {
+    ls $source_dir | each {|file|
+      create_symlink $file.name ($destination_dir | path join ($file.name | path basename))
+    }
+  } else {
+    print --stderr $"Skipping missing directory: ($source_dir)"
+  }
 }
 
-let desktop_files = ls ($DOTFILES | path join desktop)
-$desktop_files | each {|x|
-  create_symlink $x.name ($DESKTOP_DIR | path join ($x.name | path basename))
+# Paths linked to XDG_CONFIG directory
+let config_paths = [
+  "carapace"
+  "direnv/direnvrc"
+  "diffnav"
+  "dunst"
+  # "dygma"
+  "foot"
+  "fuzzel"
+  # "ghostty"
+  "hypr"
+  "jj"
+  "jjui"
+  "kitty"
+  # "kanata"
+  "keyd"
+  # "litecli"
+  "mimeapps.list"
+  "mise"
+  "networkmanager-dmenu"
+  "niri"
+  "noctalia"
+  "nushell/autoload"
+  "nushell/scripts"
+  "presenterm"
+  "nom"
+  "nvim_lazy"
+  "nvim"
+  "rofi"
+  "soteria"
+  # "starship.toml"
+  "sway"
+  "swayidle"
+  "swaylock"
+  "swaync"
+  "television"
+  # "tridactyl"
+  "vicinae"
+  "waybar"
+  "wlr-which-key"
+  "yazi"
+  "libinput-gestures.conf"
+]
+
+$config_paths | each {|path|
+  create_symlink $path ($CONFIG_DIR | path join $path)
 }
 
-mkdir ([$CONFIG_DIR] | path join direnv)
-create_symlink ./carapace ($CONFIG_DIR | path join carapace)
-create_symlink ./direnv/direnvrc ([$CONFIG_DIR] | path join direnv direnvrc)
-create_symlink ./diffnav ($CONFIG_DIR | path join diffnav)
-create_symlink ./dunst ($CONFIG_DIR | path join dunst)
-# create_symlink dygma/  ($CONFIG_DIR  | path join dygma)
-create_symlink ./foot ($CONFIG_DIR | path join foot)
-create_symlink ./fuzzel ($CONFIG_DIR | path join fuzzel)
-# create_symlink ./ghostty ($CONFIG_DIR  | path join ghostty)
-create_symlink ./hypr ($CONFIG_DIR | path join hypr)
-create_symlink ./jj ($CONFIG_DIR | path join jj)
-create_symlink ./jjui ($CONFIG_DIR | path join jjui)
-create_symlink ./kitty ($CONFIG_DIR | path join kitty)
-# create_symlink kanata ($CONFIG_DIR  | path join kanata)
-create_symlink keyd ($CONFIG_DIR | path join keyd)
-# create_symlink litecli ($CONFIG_DIR  | path join litecli)
-create_symlink ./mimeapps.list ($CONFIG_DIR | path join mimeapps.list)
-create_symlink ./mise ($CONFIG_DIR | path join mise)
-create_symlink ./networkmanager-dmenu ($CONFIG_DIR | path join networkmanager-dmenu)
-create_symlink ./niri ($CONFIG_DIR | path join niri)
-create_symlink ./noctalia ($CONFIG_DIR | path join noctalia)
-create_symlink ./nushell/autoload ($CONFIG_DIR | path join nushell autoload)
-create_symlink ./nushell/scripts ($CONFIG_DIR | path join nushell scripts)
-# create_symlink ./nushell/tv.nu ($env.HOME | path join .local share nushell vendor autoload tv.nu)
-create_symlink ./presenterm ($CONFIG_DIR | path join presenterm)
-create_symlink ./nom ($CONFIG_DIR | path join nom)
-create_symlink ./nvim_lazy ($CONFIG_DIR | path join nvim_lazy)
-create_symlink ./nvim ($CONFIG_DIR | path join nvim)
-create_symlink ./rofi ($CONFIG_DIR | path join rofi)
-create_symlink ./soteria ($CONFIG_DIR | path join soteria)
-# create_symlink ./starship.toml ($CONFIG_DIR | path join starship.toml)
-create_symlink ./sway ($CONFIG_DIR | path join sway)
-# create_symlink  ($SERVICE_DIR | path join swayidle.service )
-# ln -s ($SERVICE_DIR  | path join swayidle.service) ($SERVICE_DIR | path join niri.service.wants/ ) | complete
-create_symlink ./swayidle ($CONFIG_DIR | path join swayidle)
-# create_symlink ./swayidle/swayidle.service ($SERVICE_DIR | path join niri.service.wants/ )
-create_symlink ./swaylock/ ($CONFIG_DIR | path join swaylock)
-create_symlink ./swaync/ ($CONFIG_DIR | path join swaync)
-create_symlink ./television/ ($CONFIG_DIR | path join television)
-# create_symlink tridactyl/ ($CONFIG_DIR  | path join tridactyl)
-create_symlink ./vicinae ($CONFIG_DIR | path join vicinae)
-create_symlink ./waybar ($CONFIG_DIR | path join waybar)
-create_symlink ./wlr-which-key ($CONFIG_DIR | path join wlr-which-key)
-create_symlink ./yazi ($CONFIG_DIR | path join yazi)
-create_symlink ./libinput-gestures.conf ($CONFIG_DIR | path join libinput-gestures.conf)
+let links = [
+  # {source: "justfile", destination: ($env.HOME | path join justfile)}
+  # {source: "ipython_config.py", destination: ($env.HOME | path join .ipython profile_default ipython_config.py)}
+  {source: "rsync_excludes" destination: ($env.HOME | path join rsync_excludes)}
+  {source: "dot_iex.exs" destination: ($env.HOME | path join .iex.exs)}
+  {source: "symlink.nu" destination: ($BIN_DIR | path join .f)}
+  {source: "nushell/tv.nu" destination: ($env.HOME | path join .local share nushell vendor autoload tv.nu)}
+  {source: "vimium/blank.html" destination: ($VIMIUM_DIR | path join pages blank.html)}
+  {
+    source: ($WALLPAPER_DIR | path join jackson-hendry-eodA_8CTOFo-unsplash.jpg)
+    destination: ($VIMIUM_DIR | path join pages jackson-hendry-eodA_8CTOFo-unsplash.jpg)
+  }
+  {
+    source: ($WALLPAPER_DIR | path join phil-botha-a0TJ3hy-UD8-unsplash.jpg)
+    destination: ($VIMIUM_DIR | path join pages phil-botha-a0TJ3hy-UD8-unsplash.jpg)
+  }
+]
 
-create_symlink ./vimium/blank.html ($VIMIUM_DIR | path join pages blank.html)
-create_symlink ($WALLPAPER_DIR | path join jackson-hendry-eodA_8CTOFo-unsplash.jpg) ($VIMIUM_DIR | path join pages jackson-hendry-eodA_8CTOFo-unsplash.jpg)
-create_symlink ($WALLPAPER_DIR | path join phil-botha-a0TJ3hy-UD8-unsplash.jpg) ($VIMIUM_DIR | path join pages phil-botha-a0TJ3hy-UD8-unsplash.jpg)
+$links | each {|link| create_symlink $link.source $link.destination }
+
+link_directory_files ($DOTFILES | path join bin) $BIN_DIR
+link_directory_files ($DOTFILES | path join desktop) $DESKTOP_DIR
 
 print "===== Finished symlinking to dotfiles ====="
