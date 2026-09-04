@@ -146,12 +146,24 @@ vim.keymap.set({ "n", "v" }, "L", "$")
 vim.keymap.set("n", "M", "J") -- mnemonic: [M]erge
 vim.keymap.set("n", "<leader>hh", "K") -- mnemonic: [h]over
 
+
+vim.keymap.set("n", "<localleader><localleader>", "Q", { desc = "Add mcursor" })
+vim.keymap.set("n", "<localleader><C-n>", "nQ", { desc = "MultiCursor at next match" })
+vim.keymap.set("n", "<localleader><C-m>", "NQ", { desc = "MultiCursor at prev match" })
+
+vim.keymap.set(
+  "n",
+  "<localleader><C-w>",
+  [[:%s/\s\+$//e<CR>]],
+  { desc = "Trim trailing whitespace" }
+)
 vim.keymap.set(
   "n",
   "<localleader>w",
   [[:%s/\s\+$//e<CR>]],
   { desc = "Trim trailing whitespace" }
 )
+
 vim.keymap.set(
   "n",
   "<leader>a:",

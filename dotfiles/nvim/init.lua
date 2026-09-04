@@ -7,9 +7,10 @@ end
 -- Neovim's default `<C-L>` mapping (nohlsearch|diffupdate|redraw) is a *complete*
 -- mapping that shadows <localleader> (Ctrl-L), so <localleader>... sequences never
 -- fire. Remove it so Ctrl-L works purely as the local leader.
-pcall(vim.keymap.del, "n", "<C-L>")
+-- pcall(vim.keymap.del, "n", "<C-L>")
 vim.g.mapleader = " " -- Use `<Space>` as <Leader> key
-vim.g.maplocalleader = "" -- ctrl+L for localleader
+-- vim.g.maplocalleader = "" -- ctrl+l for localleader
+vim.g.maplocalleader = "" -- ctrl+k for localleader
 
 -- Define config table to be able to pass data between scripts
 -- It is a global variable which can be use both as `_G.Config` and `Config`

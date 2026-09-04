@@ -32,6 +32,7 @@ require("tokyonight").setup({
     hl.FloatBorder.fg = colors.blue7
     hl.LspInfoBorder.fg = colors.blue7
     hl.CursorLine.bg = "#010C21"
+    hl.MCursor = { bg =  "#ff966c" }
     hl.Folded.bg = "#16161E"
   end,
 })
