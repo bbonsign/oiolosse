@@ -1,4 +1,9 @@
-{ inputs, pkgs, self, ... }:
+{
+  inputs,
+  pkgs,
+  self,
+  ...
+}:
 
 {
   imports = [
@@ -23,5 +28,8 @@
       # "aarch64-darwin"
     ];
 
+    perSystem = { pkgs, ... }: {
+      formatter = pkgs.nixfmt-tree;
+    };
   };
 }

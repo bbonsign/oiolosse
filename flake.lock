@@ -173,28 +173,6 @@
         "type": "github"
       }
     },
-    "nix-formatter-pack": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nmd": "nmd",
-        "nmt": "nmt"
-      },
-      "locked": {
-        "lastModified": 1783080654,
-        "narHash": "sha256-D1fYuLjg+JY+XCv2+F5zrceYjdGYViAqpxPmw2M6Sag=",
-        "owner": "Gerschtli",
-        "repo": "nix-formatter-pack",
-        "rev": "9ed243d4590bfeea0e734f58056bc4d2c8e35023",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Gerschtli",
-        "repo": "nix-formatter-pack",
-        "type": "github"
-      }
-    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -275,38 +253,6 @@
         "type": "github"
       }
     },
-    "nmd": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1666190571,
-        "narHash": "sha256-Z1hc7M9X6L+H83o9vOprijpzhTfOBjd0KmUTnpHAVjA=",
-        "owner": "rycee",
-        "repo": "nmd",
-        "rev": "b75d312b4f33bd3294cd8ae5c2ca8c6da2afc169",
-        "type": "gitlab"
-      },
-      "original": {
-        "owner": "rycee",
-        "repo": "nmd",
-        "type": "gitlab"
-      }
-    },
-    "nmt": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1648075362,
-        "narHash": "sha256-u36WgzoA84dMVsGXzml4wZ5ckGgfnvS0ryzo/3zn/Pc=",
-        "owner": "rycee",
-        "repo": "nmt",
-        "rev": "d83601002c99b78c89ea80e5e6ba21addcfe12ae",
-        "type": "gitlab"
-      },
-      "original": {
-        "owner": "rycee",
-        "repo": "nmt",
-        "type": "gitlab"
-      }
-    },
     "noctalia": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
@@ -333,7 +279,6 @@
         "jjui": "jjui",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "niri": "niri",
-        "nix-formatter-pack": "nix-formatter-pack",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",

@@ -24,6 +24,11 @@ daemon trusts closures uploaded by `bbonsign`. After pulling this configuration
 on Mithlond, run `mise run switch` there once. Subsequent deployments can be
 run entirely from Telperion.
 
+## Formatting
+
+Run `nix fmt` or the equivalent `mise run format` task to format all Nix files
+in the repository with the official Nix formatter.
+
 ## Manual Steps
 Small tweaks to be done manually on fresh install:
 
