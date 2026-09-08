@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.xdg = {pkgs, ...}: {
+  flake.homeModules.xdg = { pkgs, ... }: {
 
     config = {
       xdg.terminal-exec = {
@@ -23,7 +23,10 @@ _: {
           pkgs.xdg-desktop-portal-termfilechooser
         ];
         config.common = {
-          default = [ "gnome" "gtk" ];
+          default = [
+            "gnome"
+            "gtk"
+          ];
           "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
         };
       };
@@ -46,16 +49,15 @@ _: {
       xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
         force = true;
         text = ''
-        [filechooser]
-        cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
-        default_dir=$HOME
-        env=TERMCMD='/var/home/bbonsign/.local/bin/kitty --title "termfilechooser"'
-        open_mode=suggested
-        save_mode=last
+          [filechooser]
+          cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
+          default_dir=$HOME
+          env=TERMCMD='/var/home/bbonsign/.local/bin/kitty --title "termfilechooser"'
+          open_mode=suggested
+          save_mode=last
         '';
       };
     };
 
   };
 }
-

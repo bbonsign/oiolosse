@@ -1,12 +1,13 @@
-_:
-{
-  flake.homeModules.locale = {pkgs,...}:
+_: {
+  flake.homeModules.locale =
+    { pkgs, ... }:
     {
       config = {
       };
     };
 
-  flake.nixosModules.locale = {pkgs,...}:
+  flake.nixosModules.locale =
+    { pkgs, ... }:
     {
       config = {
         time.timeZone = "America/New_York";

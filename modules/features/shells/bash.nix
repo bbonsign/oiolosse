@@ -1,6 +1,6 @@
-_:
-{
-  flake.homeModules.bash = {...}:
+_: {
+  flake.homeModules.bash =
+    { ... }:
     {
       config = {
         programs.bash = {

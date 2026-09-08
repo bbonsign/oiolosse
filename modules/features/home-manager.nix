@@ -1,7 +1,6 @@
-
-{inputs, ...}:
+{ inputs, ... }:
 {
-  flake.homeModules.home-manager = {pkgs,...}: {
+  flake.homeModules.home-manager = { pkgs, ... }: {
     config = {
       # This value determines the home Manager release that your
       # configuration is compatible with. This helps avoid breakage
@@ -18,7 +17,7 @@
     };
   };
 
-  flake.nixosModules.home-manager = {pkgs,...}: {
+  flake.nixosModules.home-manager = { pkgs, ... }: {
     imports = [
       # make home-manager as a module of nixos
       # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`

@@ -1,5 +1,5 @@
-{inputs, pkgs, ...}: {
-  flake.homeModules.vcs = {pkgs,...}: {
+{ inputs, pkgs, ... }: {
+  flake.homeModules.vcs = { pkgs, ... }: {
 
     config = {
       home.packages = [
@@ -86,8 +86,8 @@
           };
           alias = {
             # https://duncanlock.net/blog/2021/11/01/git-up-alias-that-works-for-any-default-branch/
-            head-branch = ''!git remote show origin | grep 'HEAD branch' | cut -d' ' -f5'';
-            up = ''!git switch $(git head-branch) && git fetch --all --prune --progress && git pull'';
+            head-branch = "!git remote show origin | grep 'HEAD branch' | cut -d' ' -f5";
+            up = "!git switch $(git head-branch) && git fetch --all --prune --progress && git pull";
 
             a = "add";
             aa = "add --all";
@@ -109,7 +109,7 @@
             cpa = "cherry-pick --abort";
             cpc = "cherry-pick --continue";
 
-            # ~/.local/bin/git-clone-bare 
+            # ~/.local/bin/git-clone-bare
             clone-bare = "git-clone-bare";
 
             # Diff $1=branch against its origin version
@@ -123,8 +123,7 @@
 
             jm = "jump merge";
             last = "log -1 HEAD";
-            l =
-              "log --oneline -n 40 --date=short --boundary --pretty=format:'%Cgreen%ad %C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cblue[%aN]%Creset %Cblue'";
+            l = "log --oneline -n 40 --date=short --boundary --pretty=format:'%Cgreen%ad %C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cblue[%aN]%Creset %Cblue'";
             ll = "log --graph --oneline --abbrev-commit --decorate --all";
 
             m = "merge";
@@ -170,7 +169,10 @@
             nerdFontsVersion = "3";
             sidePanelWidth = 0.25;
             theme = {
-              selectedLineBgColor = [ "black" "bold" ];
+              selectedLineBgColor = [
+                "black"
+                "bold"
+              ];
             };
             # Tokyonight extra
             # theme = {
@@ -192,7 +194,7 @@
             diffRenderers = [
               {
                 colorArg = "always";
-             command = "delta --dark --paging=never --no-gitconfig";
+                command = "delta --dark --paging=never --no-gitconfig";
               }
             ];
 
@@ -204,8 +206,7 @@
             universal = {
               quit = "q";
               quit-alt1 = "<c-c>"; # alternative/alias of quit
-              return =
-                "<esc>"; # return to previous menu, will quit if there"s nowhere to return;
+              return = "<esc>"; # return to previous menu, will quit if there"s nowhere to return;
               quitWithoutChangingDirectory = "Q";
               togglePanel = "<tab>"; # goto the next panel;
               prevItem = "<up>"; # go one line up;
@@ -222,7 +223,13 @@
               nextBlock = "<right>"; # goto the next block / panel;
               prevBlock-alt = "K"; # goto the previous block / panel;
               nextBlock-alt = "J"; # goto the next block / panel;
-              jumpToBlock = [ "1" "2" "3" "4" "5" ]; # goto the Nth block / panel;
+              jumpToBlock = [
+                "1"
+                "2"
+                "3"
+                "4"
+                "5"
+              ]; # goto the Nth block / panel;
               nextMatch = "n";
               prevMatch = "N";
               optionMenu = "?"; # show help menu;
@@ -274,8 +281,7 @@
             };
             files = {
               commitChanges = "c";
-              commitChangesWithoutHook =
-                "w"; # commit changes without pre-commit hook;
+              commitChangesWithoutHook = "w"; # commit changes without pre-commit hook;
               amendLastCommit = "A";
               commitChangesWithEditor = "C";
               findBaseCommitForFixup = "<c-f>";
@@ -334,7 +340,9 @@
               popStash = "<c-p>";
               renameStash = "r";
             };
-            commitFiles = { checkoutCommitFile = "c"; };
+            commitFiles = {
+              checkoutCommitFile = "c";
+            };
             main = {
               toggleSelectHunk = "a";
               pickBothHunks = "b";
@@ -344,7 +352,9 @@
               update = "u";
               bulkMenu = "b";
             };
-            commitMessage = { commitMenu = "<c-o>"; };
+            commitMessage = {
+              commitMenu = "<c-o>";
+            };
             amendAttribute = {
               addCoAuthor = "c";
               resetAuthor = "a";

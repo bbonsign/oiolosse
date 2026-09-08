@@ -1,6 +1,7 @@
-{inputs, ...}:
+{ inputs, ... }:
 {
-  flake.homeModules.neovim = {pkgs, ...}:
+  flake.homeModules.neovim =
+    { pkgs, ... }:
     {
       config = {
         programs.neovim = {
@@ -20,7 +21,7 @@
       };
     };
 
-  flake.nixosModules.neovim = {pkgs, ...}: {
+  flake.nixosModules.neovim = { pkgs, ... }: {
     config = {
       nixpkgs.overlays = [
         inputs.neovim-nightly-overlay.overlays.default

@@ -1,7 +1,7 @@
 {
-inputs,
-self,
-...
+  inputs,
+  self,
+  ...
 }:
 let
   # Overlays / nixpkgs config that are safe to apply only when Home-Manager
@@ -15,7 +15,8 @@ let
       allowUnfreePredicate = _pkg: true;
     };
   };
-in {
+in
+{
   flake.homeConfigurations.bbonsign = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
 
@@ -26,7 +27,7 @@ in {
     ];
   };
 
-  flake.homeModules.bbonsignServerHomeModule = {pkgs, ...}: {
+  flake.homeModules.bbonsignServerHomeModule = { pkgs, ... }: {
     imports = [
       self.homeModules.fd
       self.homeModules.fzf
@@ -39,7 +40,11 @@ in {
     config = {
       home.username = "bbonsign";
       home.homeDirectory = "/home/bbonsign";
-      home.packages = [ pkgs.ripgrep pkgs.mise pkgs.trashy];
+      home.packages = [
+        pkgs.ripgrep
+        pkgs.mise
+        pkgs.trashy
+      ];
       home.sessionVariables = {
         EDITOR = "nvim";
         SUDO_EDITOR = "nvim";
@@ -48,7 +53,7 @@ in {
     };
   };
 
-  flake.homeModules.bbonsignHomeModule = {pkgs, ...}: {
+  flake.homeModules.bbonsignHomeModule = { pkgs, ... }: {
     imports = [
       self.homeModules.beam
       self.homeModules.bluetooth

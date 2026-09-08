@@ -1,6 +1,6 @@
-_:
-{
-  flake.nixosModules.bazecor = {pkgs, ...}:
+_: {
+  flake.nixosModules.bazecor =
+    { pkgs, ... }:
     {
       config = {
         environment.systemPackages = [

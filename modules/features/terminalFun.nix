@@ -1,6 +1,5 @@
-_: 
-{
-  flake.homeModules.terminalFun = {pkgs, ...}: {
+_: {
+  flake.homeModules.terminalFun = { pkgs, ... }: {
 
     config = {
       home.packages = [

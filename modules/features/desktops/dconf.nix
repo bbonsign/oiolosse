@@ -1,7 +1,7 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
-_:
-{
-  flake.homeModules.dconf = {lib, ...}:
+_: {
+  flake.homeModules.dconf =
+    { lib, ... }:
     {
       config = with lib.hm.gvariant; {
         dconf.settings = {
@@ -16,11 +16,21 @@ _:
             secondary-color = "#000000000000";
           };
 
-          "org/gnome/desktop/calendar" = { show-weekdate = true; };
+          "org/gnome/desktop/calendar" = {
+            show-weekdate = true;
+          };
 
           "org/gnome/desktop/input-sources" = {
-            sources = [ (mkTuple [ "xkb" "us" ]) ];
-            xkb-options = [ "terminate:ctrl_alt_bksp" "ctrl:nocaps" ];
+            sources = [
+              (mkTuple [
+                "xkb"
+                "us"
+              ])
+            ];
+            xkb-options = [
+              "terminate:ctrl_alt_bksp"
+              "ctrl:nocaps"
+            ];
           };
 
           "org/gnome/desktop/interface" = {
@@ -43,7 +53,9 @@ _:
             repeat-interval = mkUint32 10;
           };
 
-          "org/gnome/desktop/peripherals/mouse" = { natural-scroll = false; };
+          "org/gnome/desktop/peripherals/mouse" = {
+            natural-scroll = false;
+          };
 
           "org/gnome/desktop/peripherals/touchpad" = {
             natural-scroll = false;
@@ -123,7 +135,9 @@ _:
             toggle-tiled-right = [ "<Super>l" ];
           };
 
-          "org/gnome/nautilus/icon-view" = { default-zoom-level = "small"; };
+          "org/gnome/nautilus/icon-view" = {
+            default-zoom-level = "small";
+          };
 
           "org/gnome/settings-daemon/plugins/color" = {
             night-light-enabled = true;
@@ -138,12 +152,11 @@ _:
             www = [ "<Super>b" ];
           };
 
-          "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
-            {
-              binding = "<Super>Return";
-              command = "/var/home/bbonsign/.local/bin/kitty";
-              name = "terminal";
-            };
+          "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+            binding = "<Super>Return";
+            command = "/var/home/bbonsign/.local/bin/kitty";
+            name = "terminal";
+          };
 
           "org/gnome/settings-daemon/plugins/power" = {
             power-button-action = "nothing";
@@ -173,7 +186,9 @@ _:
             toggle-overview = [ "<Super>o" ];
           };
 
-          "org/gnome/tweaks" = { show-extensions-notice = false; };
+          "org/gnome/tweaks" = {
+            show-extensions-notice = false;
+          };
 
           # "org/gnome/shell/world-clocks" = {
           #   locations = [

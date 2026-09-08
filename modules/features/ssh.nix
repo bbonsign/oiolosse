@@ -1,6 +1,5 @@
-_:
-{
-  flake.homeModules.ssh = {pkgs,...}: {
+_: {
+  flake.homeModules.ssh = { pkgs, ... }: {
 
     config = {
       programs.ssh = {
@@ -8,8 +7,8 @@ _:
         enableDefaultConfig = false;
         settings."*".AddKeysToAgent = "yes";
         extraConfig = ''
-        Host *
-          IdentityAgent ~/.1password/agent.sock
+          Host *
+            IdentityAgent ~/.1password/agent.sock
         '';
       };
       services = {
@@ -18,4 +17,3 @@ _:
     };
   };
 }
-

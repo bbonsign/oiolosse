@@ -1,6 +1,6 @@
-{self, ...}:
+{ self, ... }:
 {
-  flake.homeModules.shell-prompt = {pkgs,...}: {
+  flake.homeModules.shell-prompt = { pkgs, ... }: {
     programs.starship = {
       enable = true;
       package = self.packages.x86_64-linux.starship;
@@ -10,4 +10,3 @@
     ];
   };
 }
-

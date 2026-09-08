@@ -1,6 +1,5 @@
-_:
-{
-  flake.homeModules.bluetooth = {...}: {
+_: {
+  flake.homeModules.bluetooth = { ... }: {
 
     config = {
       services = {
@@ -10,7 +9,7 @@ _:
     };
   };
 
-  flake.nixosModules.bluetooth = {pkgs, ...}: {
+  flake.nixosModules.bluetooth = { pkgs, ... }: {
     hardware = {
       bluetooth = {
         enable = true;
@@ -23,4 +22,3 @@ _:
     ];
   };
 }
-

@@ -1,6 +1,6 @@
-_:
-{
-  flake.homeModules.carapace = {pkgs, ...}:
+_: {
+  flake.homeModules.carapace =
+    { pkgs, ... }:
     {
       config = {
         home.packages = [

@@ -1,6 +1,6 @@
-{self, ...}:
+{ self, ... }:
 {
-  flake.homeModules.misc-packages = {pkgs, ...}: {
+  flake.homeModules.misc-packages = { pkgs, ... }: {
     config = {
       # Packages that should be installed to the user profile.
       home.packages = [
@@ -58,7 +58,7 @@
         pkgs.p7zip
         pkgs.pandoc
         # pkgs.pgcli
-        pkgs.pinentry-gnome3 
+        pkgs.pinentry-gnome3
         pkgs.pnpm
         # pkgs.postgresql
         pkgs.presenterm
@@ -94,7 +94,7 @@
     };
   };
 
-  flake.nixosModules.misc-packages = {pkgs,...}: {
+  flake.nixosModules.misc-packages = { pkgs, ... }: {
     config = {
       # List packages installed in system profile. To search, run:
       # $ nix search wget

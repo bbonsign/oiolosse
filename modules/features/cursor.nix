@@ -1,6 +1,5 @@
-_:
-{
-  flake.homeModules.cursor = {pkgs,...}: {
+_: {
+  flake.homeModules.cursor = { pkgs, ... }: {
 
     config = {
       home.pointerCursor = {
@@ -13,4 +12,3 @@ _:
     };
   };
 }
-

@@ -1,6 +1,6 @@
-_:
-{
-  flake.homeModules.gtk = {pkgs, config, ...}:
+_: {
+  flake.homeModules.gtk =
+    { pkgs, config, ... }:
     {
       config = {
         gtk = {

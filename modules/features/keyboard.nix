@@ -1,12 +1,13 @@
-_:
-{
-  flake.homeModules.keyboard = {pkgs,...}:
+_: {
+  flake.homeModules.keyboard =
+    { pkgs, ... }:
     {
       config = {
       };
     };
 
-  flake.nixosModules.keyboard = {pkgs,...}:
+  flake.nixosModules.keyboard =
+    { pkgs, ... }:
     {
       config = {
         # Configure keymap in X11
@@ -18,4 +19,3 @@ _:
       };
     };
 }
-

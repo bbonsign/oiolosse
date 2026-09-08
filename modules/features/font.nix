@@ -1,6 +1,6 @@
-_:
-{
-  flake.homeModules.font = {pkgs,...}:
+_: {
+  flake.homeModules.font =
+    { pkgs, ... }:
     {
       config = {
         fonts.fontconfig.enable = true;
@@ -11,7 +11,8 @@ _:
       };
     };
 
-  flake.nixosModules.font = {pkgs,...}:
+  flake.nixosModules.font =
+    { pkgs, ... }:
     {
       config = {
         fontspackages = [
@@ -21,4 +22,3 @@ _:
       };
     };
 }
-

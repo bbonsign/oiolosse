@@ -1,6 +1,6 @@
-_:
-{
-  flake.homeModules.tmux = {pkgs, ...}:
+_: {
+  flake.homeModules.tmux =
+    { pkgs, ... }:
     {
       config = {
 
