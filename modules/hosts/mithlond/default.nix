@@ -56,7 +56,23 @@
               enable = true;
               listenAddress = "127.0.0.1";
               port = 9000;
-              settings.BASE_URL = "https://mealie.duckbill-wahoo.ts.net";
+              settings = {
+                BASE_URL = "https://mealie.duckbill-wahoo.ts.net";
+                THEME_LIGHT_PRIMARY = "#5E9BD1";
+                THEME_LIGHT_ACCENT = "#A3C9E8";
+                THEME_LIGHT_SECONDARY = "#4F89BA";
+                THEME_LIGHT_SUCCESS = "#4CAF50";
+                THEME_LIGHT_INFO = "#4A9ED8";
+                THEME_LIGHT_WARNING = "#EAC46B";
+                THEME_LIGHT_ERROR = "#E57373";
+                THEME_DARK_PRIMARY = "#5A8FBF";
+                THEME_DARK_ACCENT = "#90B8D9";
+                THEME_DARK_SECONDARY = "#406D96";
+                THEME_DARK_SUCCESS = "#81C784";
+                THEME_DARK_INFO = "#78B2C0";
+                THEME_DARK_WARNING = "#EBC86E";
+                THEME_DARK_ERROR = "#E57373";
+              };
             };
             networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 22 ];
 
