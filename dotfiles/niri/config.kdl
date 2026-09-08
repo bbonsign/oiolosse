@@ -30,7 +30,7 @@ include "monitor.kdl"
 // which may be more convenient to use.
 // spawn-at-startup "/usr/libexec/xdg-desktop-portal" "--replace"
 spawn-sh-at-startup "wl-paste --watch cliphist store &"
-spawn-at-startup "nixGL" "noctalia"
+spawn-at-startup "noctalia"
 // spawn-at-startup "swaync"
 spawn-sh-at-startup "1password --silent" // --silent opens to the system tray without showing the main window
 spawn-sh-at-startup "tailscale systray"

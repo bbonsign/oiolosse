@@ -48,6 +48,18 @@ run = "NIXPKGS_ALLOW_UNFREE=1 nix run home-manager -- --flake . --impure -b hm-b
 description = "Home manager NH"
 run = "nh home switch . -c bbonsign"
 
+[tasks.gpu-setup]
+description = "Install the current Home Manager GPU drivers on non-NixOS"
+run = '''
+if [ -e /etc/NIXOS ]; then
+  echo "gpu-setup is only for non-NixOS systems" >&2
+  exit 1
+fi
+
+setup="$(nix build --no-link --print-out-paths '.#homeConfigurations.bbonsign.config.targets.genericLinux.gpu.setupPackage')"
+sudo "$setup/bin/non-nixos-gpu-setup"
+'''
+
 [tasks."gc"]
 description = "Nix Garbage Collection with nh"
 run = "nh clean user"

@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.vicinae = _: {
+  flake.homeModules.vicinae = { config, ... }: {
     config = {
       programs.vicinae = {
         enable = true;
@@ -13,7 +13,7 @@ _: {
           After = [ "graphical-session.target" ];
         };
         Service = {
-          ExecStart = "%h/.nix-profile/bin/nixGL vicinae server";
+          ExecStart = "${config.programs.vicinae.package}/bin/vicinae server";
           Restart = "on-failure";
           RestartSec = 1;
         };

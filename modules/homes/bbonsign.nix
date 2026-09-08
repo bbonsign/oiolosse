@@ -14,9 +14,13 @@ let
       allowUnfree = true;
       allowUnfreePredicate = _pkg: true;
     };
+    # Make Nix GUI applications use the host's GPU on non-NixOS systems.
+    # Home Manager will prompt when its root-owned driver link needs updating.
+    targets.genericLinux.enable = true;
   };
 in
 {
+  # For non-nixos systems using Home Manager
   flake.homeConfigurations.bbonsign = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
 
