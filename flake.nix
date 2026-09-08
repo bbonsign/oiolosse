@@ -36,11 +36,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-formatter-pack = {
-      url = "github:Gerschtli/nix-formatter-pack";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     niri = {
       url = "github:YaLTeR/niri";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,23 +52,5 @@
     };
   };
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake
-      {inherit inputs;}
-      (inputs.import-tree ./modules);
-
-  # outputs = inputs@{ nixpkgs, home-manager, nix-formatter-pack, ... }:
-  #   let system = "x86_64-linux";
-  #   in {
-  #     # nix fmt
-  #     formatter.x86_64-linux = nix-formatter-pack.lib.mkFormatter {
-  #       pkgs = nixpkgs.legacyPackages.${system};
-  #       config.tools = {
-  #         alejandra.enable = false;
-  #         deadnix.enable = true;
-  #         nixpkgs-fmt.enable = true;
-  #         statix.enable = true;
-  #       };
-  #     };
-  #   };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
