@@ -1,12 +1,13 @@
-_:
-{
-  flake.homeModules.boot = {pkgs,...}:
+_: {
+  flake.homeModules.boot =
+    { pkgs, ... }:
     {
       config = {
       };
     };
 
-  flake.nixosModules.boot = {pkgs,...}:
+  flake.nixosModules.boot =
+    { pkgs, ... }:
     {
       config = {
         # Bootloader.
@@ -15,4 +16,3 @@ _:
       };
     };
 }
-

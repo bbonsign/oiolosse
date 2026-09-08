@@ -1,6 +1,6 @@
-_:
-{
-  flake.homeModules.zoxide = {...}:
+_: {
+  flake.homeModules.zoxide =
+    { ... }:
     {
       config = {
         programs.zoxide = {

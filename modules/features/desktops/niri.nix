@@ -1,7 +1,6 @@
-
-{inputs, ...}:
+{ inputs, ... }:
 {
-  flake.homeModules.niri = {pkgs,...}: {
+  flake.homeModules.niri = { pkgs, ... }: {
     config = {
       home.packages = [
         pkgs.fuzzel
@@ -89,7 +88,6 @@
           #   };
           # };
 
-
           # handled by Shell
           # swaybg = {
           #   Install.WantedBy = [ "niri.service" ];
@@ -125,7 +123,7 @@
 
   };
 
-  flake.nixosModules.niri = {pkgs,...}: {
+  flake.nixosModules.niri = { pkgs, ... }: {
     config = {
       services.displayManager.enable = false;
 

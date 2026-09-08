@@ -1,6 +1,6 @@
-_:
-{
-  flake.homeModules.keyd = {pkgs, ...}:
+_: {
+  flake.homeModules.keyd =
+    { pkgs, ... }:
     {
       config = {
         home.packages = with pkgs; [

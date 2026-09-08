@@ -1,6 +1,5 @@
-_:
-{
-  flake.homeModules.beam = {pkgs,...}: {
+_: {
+  flake.homeModules.beam = { pkgs, ... }: {
 
     config = {
       home.sessionVariables = {
@@ -13,4 +12,3 @@ _:
     };
   };
 }
-

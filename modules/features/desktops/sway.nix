@@ -1,6 +1,6 @@
-_:
-{
-  flake.homeModules.sway = {pkgs, ...}:
+_: {
+  flake.homeModules.sway =
+    { pkgs, ... }:
     {
       config = {
         home.packages = with pkgs; [

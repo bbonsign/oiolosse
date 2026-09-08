@@ -1,12 +1,13 @@
-_:
-{
-  flake.homeModules.pipewire = {pkgs,...}:
+_: {
+  flake.homeModules.pipewire =
+    { pkgs, ... }:
     {
       config = {
       };
     };
 
-  flake.nixosModules.pipewire = {pkgs,...}:
+  flake.nixosModules.pipewire =
+    { pkgs, ... }:
     {
       config = {
         security.rtkit.enable = true;
@@ -25,4 +26,3 @@ _:
       };
     };
 }
-

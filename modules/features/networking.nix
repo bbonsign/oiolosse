@@ -1,12 +1,13 @@
-_:
-{
-  flake.homeModules.networking = {pkgs,...}:
+_: {
+  flake.homeModules.networking =
+    { pkgs, ... }:
     {
       config = {
       };
     };
 
-  flake.nixosModules.networking = {pkgs,...}:
+  flake.nixosModules.networking =
+    { pkgs, ... }:
     {
       config = {
         networking.hostName = "mithlond"; # Define your hostname.
@@ -27,4 +28,3 @@ _:
       };
     };
 }
-

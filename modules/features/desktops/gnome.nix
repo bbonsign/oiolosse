@@ -1,6 +1,6 @@
-_:
-{
-  flake.homeModules.gnome = {pkgs, ...}:
+_: {
+  flake.homeModules.gnome =
+    { pkgs, ... }:
     {
       config = {
         home.packages = with pkgs; [
@@ -12,7 +12,8 @@ _:
       };
     };
 
-  flake.nixosModules.gnome = {pkgs, ...}:
+  flake.nixosModules.gnome =
+    { pkgs, ... }:
     {
       config = {
         environment = {
@@ -75,7 +76,10 @@ _:
         xdg.portal = {
           config = {
             gnome = {
-              default = [ "gnome" "gtk" ];
+              default = [
+                "gnome"
+                "gtk"
+              ];
               "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
             };
           };

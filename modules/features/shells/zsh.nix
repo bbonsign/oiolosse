@@ -1,12 +1,15 @@
 _:
 
 {
-  flake.homeModules.zsh = {config, ...}:
+  flake.homeModules.zsh =
+    { config, ... }:
     {
       config = {
         programs.zsh = {
           enable = true;
-          autosuggestion = { enable = true; };
+          autosuggestion = {
+            enable = true;
+          };
           enableCompletion = true;
 
           defaultKeymap = "emacs";
@@ -30,11 +33,10 @@ _:
       };
     };
 
-  flake.nixosModules.zsh = _:
-    {
-      config = {
-        # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.enableCompletion
-        environment.pathsToLink = [ "/share/zsh" ];
-      };
+  flake.nixosModules.zsh = _: {
+    config = {
+      # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.enableCompletion
+      environment.pathsToLink = [ "/share/zsh" ];
     };
+  };
 }

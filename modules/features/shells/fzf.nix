@@ -1,14 +1,13 @@
-_:
-{
-  flake.homeModules.fzf = {...}:
+_: {
+  flake.homeModules.fzf =
+    { ... }:
 
     {
       config = {
         programs.fzf = {
           enable = true;
           enableNushellIntegration = false;
-          defaultCommand =
-            "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
+          defaultCommand = "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
           fileWidget.command = "fd --color always --follow --ignore-file '$HOME/.config/fd/ignore'";
           historyWidget.command = "";
           defaultOptions = [

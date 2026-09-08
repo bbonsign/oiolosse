@@ -1,6 +1,6 @@
-_:
-{
-  flake.homeModules.direnv = {...}:
+_: {
+  flake.homeModules.direnv =
+    { ... }:
     {
       config = {
         programs.direnv = {

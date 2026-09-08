@@ -1,12 +1,13 @@
-_:
-{
-  flake.homeModules.containers = {pkgs,...}:
+_: {
+  flake.homeModules.containers =
+    { pkgs, ... }:
     {
       config = {
       };
     };
 
-  flake.nixosModules.containers = {pkgs,...}:
+  flake.nixosModules.containers =
+    { pkgs, ... }:
     {
       config = {
         virtualisation = {
