@@ -50,6 +50,7 @@
         pkgs.nautilus
         # pkgs.networkmanager
         # pkgs.networkmanager-openvpn
+        pkgs.nixd
         pkgs.nodejs
         pkgs.nom
         pkgs.ntfy-sh
