@@ -82,6 +82,7 @@
         pkgs.unzip
         pkgs.usbutils # lsusb
         pkgs.uv
+        pkgs.vivaldi
         pkgs.which
         pkgs.xdg-desktop-portal-gnome
         # pkgs.xz

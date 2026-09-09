@@ -7,12 +7,12 @@ order = ["default"]
 
 [bar.default]
 auto_hide = false
-background_opacity = 0.64999998547136784
-center = ["clock", "date", "screenshot"]
+background_opacity = 0.4999999888241291
+center = ["clock", "date", "bar", "clipboard", "screenshot"]
 contact_shadow = true
 end = [
+  "privacy",
   "media",
-  "clipboard",
   "network",
   "bluetooth",
   "group:g1",
@@ -32,7 +32,7 @@ left = "window-switcher"
 scroll_down = "taskbar-cycle next"
 scroll_left = "taskbar-cycle prev"
 scroll_right = "taskbar-cycle next"
-scroll_up = "taskbar-cycle preQ"
+scroll_up = "taskbar-cycle prev"
 
 [[bar.default.capsule_group]]
 fill = "surface_variant"
@@ -71,7 +71,7 @@ visible = true
 [dock]
 active_monitor_only = true
 auto_hide = true
-background_opacity = 0.79999998211860657
+background_opacity = 0.84999998100101948
 cross_axis_padding = 4
 enabled = true
 icon_size = 40
@@ -84,6 +84,24 @@ enabled = true
 [hot_corners.bottom_right]
 action = "window_switcher"
 
+[idle]
+behavior_order = ["screen-off", "lock", "lock-and-suspend"]
+
+[idle.behavior.lock]
+action = "lock"
+enabled = false
+timeout = 600.0
+
+[idle.behavior.lock-and-suspend]
+action = "lock_and_suspend"
+enabled = false
+timeout = 900.0
+
+[idle.behavior.screen-off]
+action = "screen_off"
+enabled = true
+timeout = 600.0
+
 [location]
 address = "Cary, NC"
 
@@ -94,6 +112,7 @@ enabled = false
 enabled = true
 schema_version = 2
 widget_order = [
+  "lockscreen-login-box@winit",
   "lockscreen-login-box@DP-3",
   "lockscreen-login-box@DP-4",
   "lockscreen-login-box@eDP-1",
@@ -105,11 +124,13 @@ major_interval = 4
 visible = true
 
 [lockscreen_widgets.widget."lockscreen-login-box@DP-3"]
-box_height = 70.0
-box_width = 400.0
+box_height = 196.0
+box_width = 720.0
 cx = 960.0
 cy = 961.0
 output = "DP-3"
+placement_height = 1080.0
+placement_width = 1920.0
 rotation = 0.0
 type = "login_box"
 
@@ -120,39 +141,85 @@ background_radius = 12.0
 center_password_text = false
 input_opacity = 1.0
 input_radius = 6.0
+layout = "regular"
 show_caps_lock = true
 show_keyboard_layout = true
 show_login_button = true
+show_media = true
+show_session_buttons = true
+show_unlock_hint = true
+show_weather = true
 
 [lockscreen_widgets.widget."lockscreen-login-box@DP-4"]
-box_height = 70.0
-box_width = 400.0
+box_height = 196.0
+box_width = 720.0
 cx = 960.0
-cy = 1077.0
+cy = 969.29998779296875
 output = "DP-4"
+placement_height = 1080.0
+placement_width = 1920.0
 rotation = 0.0
 type = "login_box"
 
 [lockscreen_widgets.widget."lockscreen-login-box@DP-4".settings]
 center_password_text = false
+layout = "regular"
 show_caps_lock = true
 show_keyboard_layout = true
 show_login_button = true
+show_media = true
+show_session_buttons = true
+show_unlock_hint = true
+show_weather = true
 
 [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-box_height = 70.0
-box_width = 400.0
+box_height = 196.0
+box_width = 720.0
 cx = 960.0
 cy = 1077.0
 output = "eDP-1"
+placement_height = 1200.0
+placement_width = 1920.0
 rotation = 0.0
 type = "login_box"
 
 [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
 center_password_text = false
+layout = "regular"
 show_caps_lock = true
 show_keyboard_layout = true
 show_login_button = true
+show_media = true
+show_session_buttons = true
+show_unlock_hint = true
+show_weather = true
+
+[lockscreen_widgets.widget."lockscreen-login-box@winit"]
+box_height = 196.0
+box_width = 810.0
+cx = 640.0
+cy = 973.0
+output = "winit"
+placement_height = 1155.0
+placement_width = 1280.0
+rotation = 0.0
+type = "login_box"
+
+[lockscreen_widgets.widget."lockscreen-login-box@winit".settings]
+background_color = "surface_variant"
+background_opacity = 0.88
+background_radius = 12.0
+center_password_text = false
+input_opacity = 1.0
+input_radius = 6.0
+layout = "regular"
+show_caps_lock = true
+show_keyboard_layout = true
+show_login_button = true
+show_media = true
+show_session_buttons = true
+show_unlock_hint = true
+show_weather = true
 
 [notification]
 background_opacity = 0.90000000000000002
@@ -165,7 +232,7 @@ keyboard_layout = false
 lock_keys = false
 
 [plugins]
-enabled = []
+enabled = ["noctalia/world_clock"]
 
 [shell]
 avatar_path = "/var/home/bbonsign/.face.jpeg"
@@ -186,8 +253,10 @@ open_near_click_wallpaper = true
 transparency_mode = "glass"
 
 [shell.screenshot]
+annotate = true
 confirm_region = true
 directory = "/var/home/bbonsign/Pictures/Screenshots"
+remember_last_region = true
 
 [[shell.session.actions]]
 action = "lock"
@@ -220,6 +289,9 @@ enabled = true
 shortcut = "5"
 variant = "destructive"
 
+[shell.shadow]
+alpha = 0.74999998323619366
+
 [theme]
 builtin = "Tokyo-Night"
 community_palette = "Tokyo Night Moon"
@@ -251,6 +323,15 @@ builtin_palette = "Tokyo-Night"
 palette_source = "builtin"
 path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
 theme_mode = "dark"
+
+[[wallpaper.favorite]]
+builtin_palette = "Tokyo-Night"
+palette_source = "builtin"
+path = "/var/home/bbonsign/Pictures/wallpapers/wallhaven-lyje9y.png"
+theme_mode = "dark"
+
+[widget.bar]
+type = "noctalia/world_clock:bar"
 
 [widget.battery]
 color = "primary"
@@ -297,6 +378,9 @@ type = "spacer"
 [widget.spacer_3]
 length = 30
 type = "spacer"
+
+[widget.sysmon]
+visualization = "graph"
 
 [widget.taskbar]
 only_active_workspace = true
