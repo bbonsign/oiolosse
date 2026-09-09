@@ -26,6 +26,64 @@ local function pyright_hover()
   end, bufnr)
 end
 
+local mouse_hover_id = 0
+
+local function hover_at_mouse(bufnr)
+  mouse_hover_id = mouse_hover_id + 1
+  local hover_id = mouse_hover_id
+  local mouse = vim.fn.getmousepos()
+
+  if mouse.winid ~= vim.api.nvim_get_current_win() or mouse.line == 0 or mouse.column == 0 then
+    return
+  end
+
+  local cursor = vim.api.nvim_win_get_cursor(mouse.winid)
+  local changedtick = vim.api.nvim_buf_get_changedtick(bufnr)
+  local function still_current()
+    return hover_id == mouse_hover_id
+      and vim.api.nvim_buf_is_valid(bufnr)
+      and vim.api.nvim_win_is_valid(mouse.winid)
+      and mouse.winid == vim.api.nvim_get_current_win()
+      and vim.api.nvim_win_get_buf(mouse.winid) == bufnr
+      and vim.api.nvim_buf_get_changedtick(bufnr) == changedtick
+      and vim.deep_equal(vim.api.nvim_win_get_cursor(mouse.winid), cursor)
+      and vim.api.nvim_get_mode().mode == "n"
+      and vim.deep_equal(vim.fn.getmousepos(), mouse)
+      and #vim.lsp.get_clients({ bufnr = bufnr, method = "textDocument/hover" }) > 0
+  end
+
+  vim.defer_fn(function()
+    if not still_current() then
+      return
+    end
+
+    vim.lsp.buf_request_all(bufnr, "textDocument/hover", function(client)
+      return {
+        textDocument = vim.lsp.util.make_text_document_params(bufnr),
+        position = {
+          line = mouse.line - 1,
+          character = vim.lsp.util.character_offset(bufnr, mouse.line - 1, mouse.column - 1, client.offset_encoding),
+        },
+      }
+    end, function(results)
+      if not still_current() then
+        return
+      end
+
+      for _, response in pairs(results) do
+        if not response.err and response.result and response.result.contents then
+          vim.lsp.handlers.hover(nil, response.result, response.context, {
+            focusable = false,
+            relative = "mouse",
+            silent = true,
+          })
+          return
+        end
+      end
+    end)
+  end, 300)
+end
+
 vim.lsp.config("pyright", {
   handlers = {
     ["textDocument/publishDiagnostics"] = function() end,
@@ -87,6 +145,9 @@ now_if_args(function()
       vim.keymap.set("n", "<leader>lk", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
       vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
       vim.keymap.set("n", "<leader>ck", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
+      vim.keymap.set("n", "<MouseMove>", function()
+        hover_at_mouse(ev.buf)
+      end, { buffer = ev.buf, desc = "Hover at Mouse" })
       vim.keymap.set("n", "<leader>lI", "<Cmd>checkhealth vim.lsp<CR>", { buffer = ev.buf, desc = "Lsp Info" })
       vim.keymap.set("n", "<leader>lm", "<Cmd>Mason<CR>", { buffer = ev.buf, desc = "Mason" })
       vim.keymap.set("n", "<leader>lS", "<Cmd>lsp enable<CR>", { buffer = ev.buf, desc = "Lsp Stop" })

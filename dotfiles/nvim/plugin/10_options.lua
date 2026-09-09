@@ -5,6 +5,7 @@
 local opt = vim.opt
 
 opt.mouse       = 'a'            -- Enable mouse
+opt.mousemoveevent = true        -- Report mouse movement for LSP hover
 -- opt.mousescroll = 'ver:25,hor:6' -- Customize mouse scroll
 opt.undofile    = true           -- Enable persistent undo
 
