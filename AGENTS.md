@@ -3,6 +3,12 @@
 This is a personal NixOS and Home Manager flake for the `mithlond` host and
 `bbonsign` home configuration.
 
+The related repository at `/var/home/bbonsign/telperion` configures the Fedora
+Atomic desktop where this Home Manager configuration is currently used. That
+desktop is the primary development machine for this repository, while more of
+its configuration is being explored in Nix/Home Manager, potentially leading
+to its replacement with a NixOS workstation.
+
 ## Layout
 
 - `flake.nix` defines inputs and imports the module tree from `modules/`.
