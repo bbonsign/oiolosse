@@ -3,6 +3,7 @@
   flake.homeModules.niri = { pkgs, ... }: {
     config = {
       home.packages = [
+        inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri
         pkgs.fuzzel
         pkgs.networkmanager_dmenu
         pkgs.nwg-displays
