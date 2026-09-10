@@ -89,7 +89,6 @@ let config_paths = [
   "nvim_lazy"
   "nvim"
   "rofi"
-  "soteria"
   # "starship.toml"
   "sway"
   "swayidle"

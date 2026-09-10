@@ -7,7 +7,7 @@ email = "brian.bonsignore@mann-hummel.com"
 [signing]
 behavior = "drop"
 backend = "ssh"
-backends.ssh.program = "/opt/1Password/op-ssh-sign"
+backends.ssh.program = "op-ssh-sign"
 backends.ssh.allowed-signers = "~/oiolosse/home-manager/bbonsign/modules/programs/git/allowed_signers"
 key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDusQHZwJ2pMj91kAQXLpbZmPSzSgL9xpKrcpjnq7l2v brian.bonsignore@mann-hummel.com"
 

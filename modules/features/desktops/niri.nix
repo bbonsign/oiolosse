@@ -39,6 +39,20 @@
         systemdTarget = "graphical-session.target";
       };
 
+      # Make niri.service available so niri-session can start the graphical
+      # session target and its services, including the Polkit agent below.
+      systemd.user.packages = [
+        inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri
+      ];
+
+      xdg.configFile."soteria/config.toml" = {
+        force = true;
+        text = ''
+          helper_path = "/usr/lib/polkit-1/polkit-agent-helper-1"
+          socket_path = ""
+        '';
+      };
+
       systemd.user = {
         services = {
 

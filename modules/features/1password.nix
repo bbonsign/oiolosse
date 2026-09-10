@@ -1,4 +1,11 @@
 _: {
+  flake.homeModules."1password" = { pkgs, ... }: {
+    config.home.packages = [
+      pkgs._1password-cli
+      pkgs._1password-gui
+    ];
+  };
+
   flake.nixosModules."1password" = _: {
     config = {
       programs._1password.enable = true;

@@ -59,6 +59,7 @@ in
 
   flake.homeModules.bbonsignHomeModule = { pkgs, ... }: {
     imports = [
+      self.homeModules."1password"
       self.homeModules.beam
       self.homeModules.bluetooth
       self.homeModules.cursor

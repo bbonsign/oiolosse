@@ -25,7 +25,7 @@
               user.email = "brian.bonsignore@mann-hummel.com";
               user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDusQHZwJ2pMj91kAQXLpbZmPSzSgL9xpKrcpjnq7l2v brian.bonsignore@mann-hummel.com";
               gpg.format = "ssh";
-              gpg.ssh.program = "/opt/1Password/op-ssh-sign";
+              gpg.ssh.program = "${pkgs._1password-gui}/bin/op-ssh-sign";
               gpg.ssh.allowedSignersFile = builtins.toString ./allowed_signers;
               commit.gpgsign = true;
             };
