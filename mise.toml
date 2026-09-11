@@ -32,6 +32,16 @@ description = "Update Flake"
 alias = ["up", "u"]
 run = "nix flake update"
 
+[tasks.update-inputs]
+description = "Choose Flake inputs to update"
+alias = "ui"
+run = '''
+nix flake metadata --json \
+  | jq -r '.locks.nodes.root.inputs | keys[]' \
+  | fzf --multi --header='Tab: toggle selection' --bind 'ctrl-a:toggle-all,ctrl-delete:deselect-all' \
+  | xargs --no-run-if-empty nix flake update
+'''
+
 [tasks.news]
 description = "Home manager news"
 alias = ["n"]
