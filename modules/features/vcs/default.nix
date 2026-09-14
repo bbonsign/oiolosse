@@ -4,8 +4,12 @@
     config = {
       home.packages = [
         pkgs.delta
-        pkgs.diffnav # Delta + file tree -- installed from local clone for now
-        inputs.jjui.packages.x86_64-linux.jjui
+        (pkgs.diffnav.overrideAttrs {
+          version = "0-unstable-${inputs.diffnav-src.shortRev}";
+          src = inputs.diffnav-src;
+          vendorHash = "sha256-5A1O3QbiWx3xF8Mp3Pm1rT40UrYCBm0NuHtk/c217IE=";
+        })
+        inputs.jjui.packages.${pkgs.stdenv.hostPlatform.system}.jjui
         pkgs.jujutsu
 
         pkgs.lazygit
