@@ -82,7 +82,6 @@
         pkgs.unzip
         pkgs.usbutils # lsusb
         pkgs.uv
-        pkgs.vivaldi
         pkgs.which
         pkgs.xdg-desktop-portal-gnome
         # pkgs.xz
@@ -112,7 +111,6 @@
         pkgs.pciutils
         pkgs.python312
         pkgs.sqlite
-        pkgs.vivaldi
         pkgs.wget
         pkgs.wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
       ];
