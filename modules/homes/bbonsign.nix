@@ -74,6 +74,7 @@ in
       self.homeModules.ssh
       self.homeModules.terminalFun
       self.homeModules.vcs
+      self.homeModules.vivaldi
       self.homeModules.xdg
     ];
 
