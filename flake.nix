@@ -46,8 +46,13 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    diffnav-src = {
+      url = "github:dlvhdr/diffnav";
+      flake = false;
+    };
+
     jjui = {
-      url = "github:idursun/jjui";
+      url = "github:bbonsign/jjui";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
