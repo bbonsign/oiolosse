@@ -42,6 +42,27 @@ nix flake metadata --json \
   | xargs --no-run-if-empty nix flake update
 '''
 
+[tasks.update-inputs-except]
+description = "Choose Flake inputs not to update"
+alias = "uie"
+run = '''
+inputs="$(mktemp)"
+excluded="$(mktemp)"
+trap 'rm -f "$inputs" "$excluded"' EXIT
+
+nix flake metadata --json \
+  | jq -r '.locks.nodes.root.inputs | keys[]' \
+  > "$inputs"
+
+if ! fzf --multi --header='Tab: exclude input from update' --bind 'ctrl-a:toggle-all,ctrl-delete:deselect-all' \
+  < "$inputs" > "$excluded"; then
+  exit 0
+fi
+
+grep --fixed-strings --line-regexp --invert-match --file="$excluded" "$inputs" \
+  | xargs --no-run-if-empty nix flake update
+'''
+
 [tasks.news]
 description = "Home manager news"
 alias = ["n"]
