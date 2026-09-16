@@ -43,6 +43,10 @@ vim.keymap.set("n", "<C-h>", "<C-e>")
 -- vim.keymap.set("n", "<C-j>", "<C-e>")
 -- vim.keymap.set("n", "<C-k>", "<C-y>")
 
+-- X1 and X2 are the Back and Forward thumb buttons on a five-button mouse.
+vim.keymap.set("n", "<X1Mouse>", "<C-o>", { desc = "Jump back" })
+vim.keymap.set("n", "<X2Mouse>", "<C-i>", { desc = "Jump forward" })
+
 vim.keymap.set(
   { "n", "v" },
   "<leader>p",

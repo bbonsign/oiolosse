@@ -26,9 +26,20 @@ local function pyright_hover()
   end, bufnr)
 end
 
+local mouse_hover_enabled = false
 local mouse_hover_id = 0
 
+local function toggle_mouse_hover()
+  mouse_hover_enabled = not mouse_hover_enabled
+  mouse_hover_id = mouse_hover_id + 1
+  vim.notify("Mouse hover " .. (mouse_hover_enabled and "enabled" or "disabled"))
+end
+
 local function hover_at_mouse(bufnr)
+  if not mouse_hover_enabled then
+    return
+  end
+
   mouse_hover_id = mouse_hover_id + 1
   local hover_id = mouse_hover_id
   local mouse = vim.fn.getmousepos()
@@ -142,7 +153,7 @@ now_if_args(function()
       end, { buffer = ev.buf, desc = "Toggle Inlay Hints" })
       vim.keymap.set("n", "<leader>hh", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
       vim.keymap.set("n", "<leader>lh", pyright_hover, { buffer = ev.buf, desc = "Pyright Hover" })
-      vim.keymap.set("n", "<leader>lk", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
+      vim.keymap.set("n", "<leader>lk", toggle_mouse_hover, { buffer = ev.buf, desc = "Toggle Mouse Hover" })
       vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
       vim.keymap.set("n", "<leader>ck", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
       vim.keymap.set("n", "<MouseMove>", function()
