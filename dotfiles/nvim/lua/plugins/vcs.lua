@@ -2,7 +2,7 @@ Config.later(function()
   vim.pack.add({
     {
       src = "https://github.com/bbonsign/gitsigns.nvim",
-      version = "feat/jj-parent-on-empty",
+      version = "main",
     },
   })
 

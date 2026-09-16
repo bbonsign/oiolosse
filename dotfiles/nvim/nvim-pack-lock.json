@@ -34,9 +34,9 @@
       "src": "https://github.com/folke/flash.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "6515968021137aae090e6e556cbd9fa324544108",
+      "rev": "70a0bb5d1117f62e8b48537bc3e2de9dc7ab9ee6",
       "src": "https://github.com/bbonsign/gitsigns.nvim",
-      "version": "'feat/jj-parent-on-empty'"
+      "version": "'main'"
     },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
@@ -172,7 +172,7 @@
       "src": "https://github.com/folke/which-key.nvim"
     },
     "yazi.nvim": {
-      "rev": "0e0ac42805b0365c6ddc8f4f69ba2d963193497a",
+      "rev": "4706bf68896273bce6d53b79fa01547cdaa409a7",
       "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }
