@@ -1,7 +1,13 @@
 Config.later(function()
-  vim.pack.add({ "https://github.com/bbonsign/gitsigns.nvim" })
+  vim.pack.add({
+    {
+      src = "https://github.com/bbonsign/gitsigns.nvim",
+      version = "feat/jj-parent-on-empty",
+    },
+  })
 
   require("gitsigns").setup({
+    jj = { show_parent_on_empty = true },
     preview_config = { border = "rounded" },
     trouble = false, -- don't open quickfix in trouble's version
 

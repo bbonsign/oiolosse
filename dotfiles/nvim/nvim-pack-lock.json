@@ -34,7 +34,7 @@
       "src": "https://github.com/folke/flash.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "39c7ca53f25418bd9bf7b7def7792d67661caee6",
+      "rev": "6515968021137aae090e6e556cbd9fa324544108",
       "src": "https://github.com/bbonsign/gitsigns.nvim"
     },
     "lazydev.nvim": {
