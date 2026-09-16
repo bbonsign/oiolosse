@@ -1,0 +1,28 @@
+[metadata]
+name = "kitty-tabs"
+description = "Switch between tabs in Kitty's current or all named tab groups"
+requirements = ["kitty", "nu"]
+
+# In Kitty, a session is a named group of tabs rather than an OS window.
+# `ctrl-s` toggles between the current session and every session in this
+# kitty instance. Both sources emit:
+# `<status>\t<search-session>\t<title>\t<tab-id>\t<session>`.
+[source]
+command = [
+  { name = "All sessions", run = """nu -c "use bb/ky.nu *; ky tab ls --all-sessions" """ },
+  { name = "Current session", run = """nu -c "use bb/ky.nu *; ky tab ls" """ },
+]
+display = '{split:\t:0} {split:\t:1}  {split:\t:2}'
+output = '{split:\t:2}'
+
+[ui.preview_panel]
+hidden = true
+
+[keybindings]
+enter = "actions:switch"
+ctrl-s = "cycle_sources"
+
+[actions.switch]
+description = "Focus the selected kitty tab"
+command = 'nu -c "use bb/ky.nu *; ky tab focus {split:\t:4} {split:\t:3}"'
+mode = "execute"

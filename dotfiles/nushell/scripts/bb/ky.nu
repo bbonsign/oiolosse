@@ -66,6 +66,53 @@ export def "ky tabs" [] {
   # | flatten
 }
 
+# Source command for the `kitty-tabs` television channel.
+# A kitty session is a named group of tabs, independent of OS windows.
+# Emits one `<status>\t<search-session>\t<title>\t<tab-id>\t<session>`
+# line per tab. The final plain session field is hidden from display and used
+# when switching groups.
+export def "ky tab ls" [
+  --all-sessions (-a)  # Include tabs from every named kitty session
+] {
+  let os_windows = if $all_sessions {
+    kitty @ ls | from json
+  } else {
+    kitty @ ls --match-tab 'session:.' | from json
+  }
+  $os_windows
+  | each {|os_window|
+    $os_window.tabs | where is_focused == false | each {|tab|
+      let session = $tab.windows
+        | get session_name
+        | compact
+        | where { not ($in | is-empty) }
+        | first
+        | default "(none)"
+      # Television 0.15 has no per-field weights. Zero-width separators keep
+      # the session readable/searchable while making title matches score higher.
+      let session_match = $session | split chars | str join "\u{200b}"
+      $"(if $tab.is_active { '●' } else { '○' })\t($session_match)\t($tab.title)\t($tab.id)\t($session)"
+    }
+  }
+  | flatten
+  | str join "\n"
+}
+
+# Switch to the tab's named session before focusing it. Focusing a tab from a
+# different session directly makes kitty show both named tab groups together.
+export def "ky tab focus" [session: string, tab_id: int] {
+  if $session != "(none)" {
+    let session_path = $sessions_dir | path join $"($session).kitty-session"
+    let switch = kitty @ action goto_session $session_path | complete
+    if $switch.exit_code != 0 {
+      error make {msg: ($switch.stderr | str trim)}
+    }
+    kitty @ focus-tab --match $"id:($tab_id) and session:."
+  } else {
+    kitty @ focus-tab --match $"id:($tab_id)"
+  }
+}
+
 export def "ky sessions" [] {
   kitty @ ls
   | from json
