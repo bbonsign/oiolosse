@@ -7,6 +7,10 @@ on = ["<space>", "?"]
 run = "help"
 
 [[mgr.prepend_keymap]]
+on = ["<space>", "<space>"]
+run = "help"
+
+[[mgr.prepend_keymap]]
 on = ["g", "?"]
 run = "help"
 
@@ -101,11 +105,27 @@ run = "leave"
 desc = "Back to the parent directory"
 
 [[mgr.prepend_keymap]]
+on = "q"
+run = "noop"
+
+[[mgr.prepend_keymap]]
+on = "<C-q>"
+run = "quit"
+
+[[mgr.prepend_keymap]]
 on = "<C-h>"
 run = "back"
 
 [[mgr.prepend_keymap]]
+on = "<C-o>"
+run = "back"
+
+[[mgr.prepend_keymap]]
 on = "<C-l>"
+run = "forward"
+
+[[mgr.prepend_keymap]]
+on = "<C-i>"
 run = "forward"
 
 [[mgr.prepend_keymap]]
