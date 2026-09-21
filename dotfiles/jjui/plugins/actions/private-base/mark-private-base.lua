@@ -18,6 +18,7 @@ return {
     end
 
     jj("bookmark", "set", "private-base", "--revision", change_id, "--allow-backwards")
+    jj("describe", "-r", change_id, "--message", "private: base")
     revisions.refresh()
   end,
   opts = {
