@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ inputs, ... }: {
   flake.homeModules.vcs = { pkgs, ... }: {
 
     config = {
