@@ -8,14 +8,14 @@ local my_binds = {
   --   scope = "revisions",
   --   desc = "absorb",
   -- },
+  -- {
+  --   key = "__none__",
+  --   action = "revisions.details.absorb",
+  --   scope = "revisions.details",
+  --   desc = "absorb",
+  -- },
   {
-    key = "__none__",
-    action = "revisions.details.absorb",
-    scope = "revisions.details",
-    desc = "absorb",
-  },
-  {
-    key = "A",
+    key = "a",
     action = "revisions.open_abandon",
     scope = "revisions",
     desc = "abandon",
@@ -32,12 +32,12 @@ local my_binds = {
     scope = "revisions",
     desc = "jump to children",
   },
-  {
-    key = "v",
-    action = "revisions.toggle_select",
-    scope = "revisions",
-    desc = "select",
-  },
+  -- {
+  --   key = "v",
+  --   action = "revisions.toggle_select",
+  --   scope = "revisions",
+  --   desc = "select",
+  -- },
   {
     key = "V",
     action = "revisions.open_evolog",

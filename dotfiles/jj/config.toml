@@ -6,58 +6,9 @@ name = "Brian Bonsignore"
 username = "bbonsign"
 
 [snapshot]
+auto-update-stale = true
 # Uncomment below to prevent new files from being tracked by default
 # auto-track = "none()"
-
-[git]
-# https://jj-vcs.github.io/jj/latest/config/#set-of-private-commits
-# You can configure the set of private commits by setting git.private-commits to a revset.
-# The value is a revset of commits that Jujutsu will refuse to push.
-# If unset, all commits are eligible to be pushed.
-# If a commit is in git.private-commits but is already on the remote, then it is not considered a private commit.
-# Commits that are immutable are also excluded from the private set.
-# Private commits prevent their descendants from being pushed, since doing so would require pushing the private commit as well.
-private-commits = "description(glob:'private*')"
-
-[aliases]
-e = ["edit"]
-en = ["next", "--edit"]
-ne = ["next", "--edit"]
-ep = ["prev", "--edit"]
-pe = ["prev", "--edit"]
-l = ["log"]
-la = ["log", "-r", "all()"]
-s = ["status"]
-st = ["status"]
-ui = ["util", "exec", "--", "jjui"]
-wus = ["workspace", "update-stale"]
-clone = ["util", "exec", "--", "jj-clone"]
-init = ["util", "exec", "--", "jj-init"]
-# https://isaaccorbrey.com/notes/jujutsu-megamerges-for-fun-and-profit#tldr
-# `jj stack <revset>` to include specific revs
-stack = [
-  "rebase",
-  "--after",
-  "trunk()",
-  "--before",
-  "closest_merge(@)",
-  "--revision",
-]
-# `jj stage` to include the whole stack after the megamerge
-stage = ["stack", "closest_merge(@)+:: ~ empty()"]
-# `jj restack` to rebase your changes onto `trunk()`
-restack = [
-  "rebase",
-  "--onto",
-  "trunk()",
-  "--source",
-  "roots(trunk()..) & mutable()",
-  "--simplify-parents",
-]
-
-[revset-aliases]
-'trunk_to(revset)' = 'trunk()..revset'
-"closest_merge(to)" = "heads(::to & merges())"
 
 [merge-tools.diffconflicts]
 program = "nvim"
@@ -86,6 +37,64 @@ diff-formatter = ":git"
 # use `--tool :buildin` to override the setting below and use the buildin `scm-diff-editor` https://github.com/arxanas/scm-record
 # diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 diff-instructions = false
+
+[git]
+# https://jj-vcs.github.io/jj/latest/config/#set-of-private-commits
+# You can configure the set of private commits by setting git.private-commits to a revset.
+# The value is a revset of commits that Jujutsu will refuse to push.
+# If unset, all commits are eligible to be pushed.
+# If a commit is in git.private-commits but is already on the remote, then it is not considered a private commit.
+# Commits that are immutable are also excluded from the private set.
+# Private commits prevent their descendants from being pushed, since doing so would require pushing the private commit as well.
+private-commits = "description(glob:'private*') | megamerge()"
+
+[aliases]
+e = ["edit"]
+en = ["next", "--edit"]
+ne = ["next", "--edit"]
+ep = ["prev", "--edit"]
+pe = ["prev", "--edit"]
+l = ["log"]
+la = ["log", "-r", "all()"]
+s = ["status"]
+st = ["status"]
+ui = ["util", "exec", "--", "jjui"]
+wus = ["workspace", "update-stale"]
+clone = ["util", "exec", "--", "jj-clone"]
+init = ["util", "exec", "--", "jj-init"]
+
+# https://isaaccorbrey.com/notes/jujutsu-megamerges-for-fun-and-profit#tldr
+# `add-to-megamerge` and `stage` assume @ is above the megamerge
+# `jj stack <revset>` to include the revset in the megamerge
+add-to-megamerge = [
+  "rebase",
+  "--after",
+  "trunk()",
+  "--before",
+  "closest_megamerge(@)",
+  "--revision",
+]
+
+# `jj stage` to stack anything on top of the megamerge into the megamerge
+stage = ["add-to-megamerge", "closest_megamerge(@)+:: ~ empty()"]
+# `jj restack` to rebase your changes onto `trunk()`
+restack = [
+  "rebase",
+  "--onto",
+  "trunk()",
+  "--source",
+  "roots(trunk()..) & mutable() & mine()",
+  "--simplify-parents",
+]
+
+[revset-aliases]
+'trunk_to(revset)' = 'trunk()..revset'
+"closest_megamerge(to)" = "heads(::to & megamerge())"
+"megamerge()" = "description(glob:'megamerge*')"
+"builtin_log_reduced()" = "present(@) | ancestors(immutable_heads().., 1) | trunk()"
+
+[templates]
+log = "custom_log_oneline"
 
 [template-aliases]
 'format_short_cryptographic_signature(sig)' = '''

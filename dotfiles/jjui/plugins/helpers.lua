@@ -1,11 +1,5 @@
 local M = {}
 
----@param s string|nil
----@return string
-local function trim(s)
-  return string.gsub(s or "", "^%s*(.-)%s*$", "%1")
-end
-
 ---Show a `choose` popup with a live-updating substring filter.
 ---Requires a jjui build where filterable `choose` popups open directly in filter
 ---mode (the local "choose-filter" patch). The search input is shown immediately
@@ -118,18 +112,18 @@ function M.private_base_change_id()
   return change_id
 end
 
----Returns the change ID of the first revision with description "private: megamerge*", or flashes an error.
+---Returns the change ID of the first revision with description "megamerge*", or flashes an error.
 ---@return string|nil change_id
 function M.megamerge_change_id()
-  local change_id, err = M.change_id_of_revision('description(glob:"private: megamerge*")')
+  local change_id, err = M.change_id_of_revision("megamerge()")
   if err or not change_id or change_id == "" then
-    flash({ text = "No revision with description 'private: megamerge' found", error = true })
+    flash({ text = "No revision with description 'megamerge*' found", error = true })
     return nil
   end
   return change_id
 end
 
----Returns whether the revision's description starts with "private: megamerge".
+---Returns whether the revision's description starts with "megamerge".
 ---@param change_id string|nil
 ---@return boolean is_megamerge
 function M.is_megamerge_change_id(change_id)
@@ -137,13 +131,28 @@ function M.is_megamerge_change_id(change_id)
     return false
   end
 
-  local description, err = M.log_template(change_id, "description")
+  local matched_change_id, err = M.log_template(change_id .. " & megamerge()", "change_id")
   if err then
-    flash({ text = "Failed to read revision description: " .. err, error = true })
+    flash({ text = "Failed to identify megamerge revision: " .. err, error = true })
     return false
   end
 
-  return trim(description):match("^private: megamerge") ~= nil
+  return matched_change_id ~= nil and matched_change_id ~= ""
+end
+
+---Create a megamerge from the checked revisions.
+function M.create_megamerge()
+  local checked = context.checked_commit_ids()
+  if not checked or #checked == 0 then
+    flash("Check revisions to merge")
+    return
+  end
+  local args = { "new", "-m", "megamerge" }
+  for _, cid in ipairs(checked) do
+    table.insert(args, cid)
+  end
+  jj(args)
+  revisions.refresh()
 end
 
 ---Find or choose a megamerge revision. If one exists, returns its change_id.
@@ -153,7 +162,7 @@ function M.find_or_choose_megamerge()
   local output, err = jj(
     "log",
     "-r",
-    'description(glob:"private: megamerge*")',
+    "megamerge()",
     "--no-graph",
     "-T",
     'change_id.shortest() ++ " " ++ description.first_line() ++ "\\n"'

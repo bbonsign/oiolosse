@@ -12,6 +12,6 @@ return {
   opts = {
     seq = { "space", "j", "m" },
     scope = "revisions",
-    desc = "jump to private: megamerge",
+    desc = "jump to megamerge",
   },
 }

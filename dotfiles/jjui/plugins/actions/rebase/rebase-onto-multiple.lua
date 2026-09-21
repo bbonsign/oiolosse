@@ -16,7 +16,8 @@ return {
     revisions.refresh()
   end,
   opts = {
-    seq = { "space", "r", "m" },
+    seq = { "space", "r", "M" },
     scope = "revisions",
+    desc = "rebase checked changes onto selected",
   },
 }
