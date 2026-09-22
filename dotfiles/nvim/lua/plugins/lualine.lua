@@ -99,7 +99,7 @@ local function get_search_widget()
     end
   end
 
-  return table.concat({ " ", term, "  ", current, "/", result.total })
+  return table.concat({ "  ", term, "  ", current, "/", result.total })
 end
 
 local icons = Config.icons
@@ -122,14 +122,14 @@ require("lualine").setup({
     -- color = { bg = bg_color() },
     globalstatus = true,
     disabled_filetypes = {
-      statusline = { "snacks_dashboard", "dashboard", "alpha" },
-      tabline = { "snacks_dashboard", "dashboard", "alpha", "lazy" },
+      statusline = { "snacks_dashboard", "dashboard", "alpha", "lazy" },
+      tabline = { "snacks_dashboard", "dashboard", "alpha" },
     },
     separator = "",
     section_separators = { left = "", right = "" },
     component_separators = { left = "", right = "" },
   },
-  tabline = {
+  sections = {
 
     lualine_a = {
       {
@@ -280,7 +280,7 @@ require("lualine").setup({
       },
     },
   },
-  sections = {
+  tabline = {
     lualine_a = {
       {
         "tabs",
