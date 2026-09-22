@@ -5,7 +5,6 @@ layer-rule {
     match namespace="^quickshell$"
     match namespace="^noctalia-wallpaper*"
     match namespace="^noctalia*"
-    match namespace="dms:blurwallpaper"
     place-within-backdrop true
     background-effect {
       xray false
