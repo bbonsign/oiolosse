@@ -89,8 +89,19 @@ vim.keymap.set("v", "g=", ":'<,'>lua<CR>", { desc = "Lua eval" })
 vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
 -- search the visual selection
-vim.keymap.set("x", "<CR>", '""y/<C-r>"<CR>N', { desc = "Search word under cursor" })
+vim.keymap.set("x", "<CR>", [[""y/<C-r>"<CR>N]], { desc = "Search word under cursor" })
 vim.keymap.set("n", "<CR>", "*N", { desc = "Search word under cursor" })
+
+-- Multicursor mappings
+vim.keymap.set("n", "<leader>mm", "*N1Qq=", { desc = "MCursors at matches" })
+vim.keymap.set("x", "<leader>mm", [[""y/<C-r>"<CR>N1Qq=]], { desc = "Mcursors at matches" })
+vim.keymap.set("n", "<leader>m.", "Q", { desc = "Add mcursor" })
+vim.keymap.set("n", "<localleader><localleader>", "Q", { desc = "Add mcursor" })
+vim.keymap.set("n", "<leader>mn", "nQ", { desc = "MultiCursor at next match" })
+vim.keymap.set("n", "<leader>mN", "NQ", { desc = "MultiCursor at prev match" })
+vim.keymap.set("n", "<localleader><C-n>", "nQ", { desc = "MultiCursor at next match" })
+vim.keymap.set("n", "<localleader><C-m>", "NQ", { desc = "MultiCursor at prev match" })
+
 
 vim.keymap.set({ "n", "v" }, "g.", "g`.", { desc = "Goto last edit" })
 
@@ -150,10 +161,6 @@ vim.keymap.set({ "n", "v" }, "L", "$")
 vim.keymap.set("n", "M", "J") -- mnemonic: [M]erge
 vim.keymap.set("n", "<leader>hh", "K") -- mnemonic: [h]over
 
-
-vim.keymap.set("n", "<localleader><localleader>", "Q", { desc = "Add mcursor" })
-vim.keymap.set("n", "<localleader><C-n>", "nQ", { desc = "MultiCursor at next match" })
-vim.keymap.set("n", "<localleader><C-m>", "NQ", { desc = "MultiCursor at prev match" })
 
 vim.keymap.set(
   "n",
