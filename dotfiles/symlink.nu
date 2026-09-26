@@ -5,7 +5,7 @@
 # sources are reported without stopping the rest of the setup.
 
 echo "===== Symlinking dotfiles ====="
-let DOTFILES = $env.FILE_PWD
+let DOTFILES = $env.CURRENT_FILE | path expand --strict | path dirname
 let CONFIG_DIR = [$env.HOME ".config"] | path join
 let WALLPAPER_DIR = [$env.HOME "Pictures" "wallpapers"] | path join
 let BIN_DIR = [$env.HOME ".local" bin] | path join
@@ -96,6 +96,7 @@ let config_paths = [
   "swaync"
   "television"
   # "tridactyl"
+  "umbriel"
   "vicinae"
   "waybar"
   "wlr-which-key"
