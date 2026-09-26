@@ -1,0 +1,9 @@
+[[scratchpad]]
+name = "term"
+spawn_when_empty = "kitty --app-id kitty-scratch --title kitty-scratch --override background_opacity=0.9 --session ~/.config/kitty/sessions/scratch.kitty-session"
+
+[[window_rule]]
+match.app_id = "^kitty-scratch$"
+default_scratchpad = "term"
+default_floating = true
+default_floating_size = { width = 0.90, height = 0.75 }

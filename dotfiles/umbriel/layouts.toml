@@ -1,0 +1,16 @@
+# ==============================================================================
+# Layout
+# https://docs.noctalia.dev/umbriel/layout/
+[layout]
+extent_presets = [0.5, 0.667, 0.333, 1]
+
+[layout.scrolling]
+default_extent_fraction = 1
+center_focused = "on_overflow"
+
+[layout.tabs]
+default_display = "normal"
+new_tab_position = "end"
+wrap_focus = false
+scroll_switches_tabs = true
+middle_click_closes = false

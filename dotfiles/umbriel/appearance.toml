@@ -1,0 +1,31 @@
+# ==============================================================================
+# Appearance
+# Blur uses a smaller radius than the built-in default.
+# https://docs.noctalia.dev/umbriel/appearance/
+[appearance]
+opaque_fullscreen = false
+
+[appearance.blur]
+radius = 1
+
+# Choose the background color shown if the lock screen takes too long to appear.
+# [colors]
+# backdrop = "#000000FF"
+
+[animation.windows_drag]
+physics = true
+
+[appearance.tab_bar]
+style = "titles"
+position = "top"
+height = 24
+font = "sans 10"
+padding = 8
+tab_gap = 4
+corner_radius = -1
+title_format = "{title}"
+title_align = "center"
+visible = true
+hide_when_single = false
+max_tabs = 0
+overflow = "scroll"

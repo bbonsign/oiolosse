@@ -102,14 +102,15 @@ window-rule {
 }
 
 window-rule {
-  match app-id=r#"kitty"# title=r#"^Yazi.*"#
+  match app-id=r#"kitty"#
   open-floating true
   default-window-height { proportion 0.75; }
   default-column-width { proportion 0.75; }
 }
 
 window-rule {
-  match title=r#"Slack"#
+  // Slack PWA
+  match app-id=r#"vivaldi-hiibkplfjkckmmdmpiojdobionnfppbm-Default"#
   // Discord PWA
   match app-id=r#"vivaldi-mfhpbolkhgobaabcbabdlnhidbjpoogc-Default"#
   default-column-width {proportion 1.00;}

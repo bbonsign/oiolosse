@@ -1,0 +1,244 @@
+#!/usr/bin/env nu
+
+# Compositor keybinds do not inherit the interactive shell's PATH. Television
+# also launches this script by name for its source and action commands.
+$env.PATH = ($env.PATH | prepend ($env.HOME | path join ".local" "bin"))
+
+def actions []: nothing -> table<action: string, usage: string, description: string> {
+  ^umbriel msg --help
+  | lines
+  | parse --regex '^  (?P<usage>\S+)\s{2,}(?P<description>.+)$'
+  | insert action {|row| $row.usage | split row ":" | first }
+  | select action usage description
+}
+
+def inspect-umbriel [command: string] {
+  let result = do { ^umbriel $command --json } | complete
+
+  if $result.exit_code == 0 {
+    $result.stdout | from json
+  } else {
+    []
+  }
+}
+
+def executable-names []: nothing -> list<string> {
+  $env.PATH
+  | each {|directory|
+      try {
+        ls -la $directory
+        | where type != dir and mode =~ "x"
+        | get name
+        | path basename
+      } catch {
+        []
+      }
+    }
+  | flatten
+  | uniq
+  | sort
+}
+
+def action-candidates [usage: string]: nothing -> table<value: string, description: string> {
+  if not ($usage | str contains ":") {
+    return []
+  }
+
+  let action = $usage | split row ":" | first
+  let argument = $usage | split row ":" | skip 1 | str join ":"
+
+  match $argument {
+    $arg if ($arg | str starts-with "<name>") or ($arg | str starts-with "<pool>") => {
+      let kind = $action | str replace "effect-" "" | split row "-" | first
+      let effects = inspect-umbriel effects
+      let presets = (
+        $effects
+        | get -o presets
+        | default []
+        | where kind == $kind
+        | each {|preset| {value: $preset.name, description: $"preset · ($preset.state)"} }
+      )
+      let pools = (
+        $effects
+        | get -o pools
+        | default []
+        | where kind == $kind
+        | each {|pool| {value: $pool.name, description: $"pool · ($pool.policy)"} }
+      )
+      let off = if ($action | str ends-with "-set") {
+        [{value: "off", description: "suppress this effect"}]
+      } else {
+        []
+      }
+
+      [$presets $pools $off] | flatten
+    }
+    $arg if ($arg | str contains "<workspace>") => {
+      inspect-umbriel workspaces
+      | each {|workspace|
+          {
+            value: $"($workspace.name)/($workspace.output)"
+            description: $"workspace ($workspace.index) on ($workspace.output) (($workspace.layout))"
+          }
+        }
+    }
+    $arg if ($arg | str contains "<window-id>") => {
+      inspect-umbriel windows
+      | each {|window|
+          let focused = if $window.focused { "focused · " } else { "" }
+          {value: $window.id, description: $"($focused)($window.app_id) — ($window.title)"}
+        }
+    }
+    $arg if ($arg | str contains "<output>") => {
+      inspect-umbriel outputs
+      | each {|output|
+          let state = if $output.enabled { "enabled" } else { "disabled" }
+          {value: $output.name, description: $"($state) · ($output.description)"}
+        }
+    }
+    $arg if ($arg | str contains "<scratchpad>") => {
+      inspect-umbriel windows
+      | get -o scratchpad
+      | default []
+      | where { is-not-empty }
+      | uniq
+      | each {|scratchpad| {value: $scratchpad, description: "scratchpad"} }
+    }
+    $arg if ($arg | str contains "<scrolling|dwindle|master|toggle>") => {
+      [
+        {value: "scrolling", description: "scrolling columns"}
+        {value: "dwindle", description: "dwindle layout"}
+        {value: "master", description: "master-stack layout"}
+        {value: "toggle", description: "toggle the current layout"}
+      ]
+    }
+    $arg if ($arg | str contains "<delta>") => {
+      [
+        {value: "-0.1", description: "decrease by 10%"}
+        {value: "+0.1", description: "increase by 10%"}
+        {value: "-0.5", description: "decrease by 50%"}
+        {value: "+0.5", description: "increase by 50%"}
+      ]
+    }
+    $arg if ($arg | str contains "<fraction>") => {
+      [
+        {value: "0.25", description: "25%"}
+        {value: "0.5", description: "50%"}
+        {value: "0.75", description: "75%"}
+        {value: "1.0", description: "100%"}
+      ]
+    }
+    $arg if ($arg | str contains "skip-confirmation") => {
+      [{value: "skip-confirmation", description: "quit without confirmation"}]
+    }
+    $arg if ($arg | str starts-with "<cmd>") => {
+      executable-names | each {|name| {value: $name, description: "command"} }
+    }
+    _ => []
+  }
+}
+
+def to-tsv [columns: list<string>]: table -> string {
+  each {|row|
+    $columns
+    | each {|column|
+        $row
+        | get $column
+        | into string
+        | str replace --all (char tab) '\t'
+        | str replace --all (char newline) '\n'
+      }
+    | str join (char tab)
+  }
+  | str join (char newline)
+}
+
+def print-tsv [columns: list<string>]: table -> nothing {
+  let output = $in | to-tsv $columns
+  if ($output | is-not-empty) {
+    print --no-newline $"($output)(char newline)"
+  }
+}
+
+def choose-argument [usage: string]: nothing -> string {
+  let action = $usage | split row ":" | first
+  let argument = $usage | split row ":" | skip 1 | str join ":"
+  let optional = $argument | str starts-with "["
+  let candidates = action-candidates $usage
+
+  let selection = if ($candidates | is-not-empty) {
+    let choices = if $optional {
+      [{value: "__default__", description: "use the focused/default target"} ...$candidates]
+    } else {
+      $candidates
+    }
+    let result = (
+      $choices
+      | to-tsv [value description]
+      | ^fzf
+          --delimiter=(char tab)
+          --with-nth=1,2
+          --no-multi
+          --print-query
+          --prompt=$"($action): "
+          --header=$"($usage) — select a suggestion or type a value"
+      | complete
+    )
+
+    if $result.exit_code == 0 {
+      $result.stdout | lines | last | split row (char tab) | first
+    }
+  } else {
+    input $"($usage): "
+  }
+
+  if ($selection | is-empty) or $selection == "__default__" {
+    if $optional { $action }
+  } else {
+    $"($action):($selection)"
+  }
+}
+
+def run-action [usage: string] {
+  let action = if ($usage | str contains ":") {
+    choose-argument $usage
+  } else {
+    $usage
+  }
+
+  if ($action | is-not-empty) {
+    ^umbriel msg $action
+  }
+}
+
+def pick-action [] {
+  let result = do { ^tv umbriel-actions } | complete
+
+  if $result.exit_code == 0 {
+    let usage = $result.stdout | str trim
+    if ($usage | is-not-empty) {
+      run-action $usage
+    }
+  }
+}
+
+def require-usage [usage?: string]: nothing -> string {
+  if ($usage | is-empty) {
+    error make {msg: "action usage is required"}
+  }
+
+  $usage
+}
+
+def main [
+  command: string = "pick"
+  usage?: string
+] {
+  match $command {
+    "list" => { actions | print-tsv [action usage description] }
+    "candidates" => { action-candidates (require-usage $usage) | print-tsv [value description] }
+    "run" => { run-action (require-usage $usage) }
+    "pick" => { pick-action }
+    _ => { error make {msg: "usage: umbriel-msg [pick|list|candidates ACTION_USAGE|run ACTION_USAGE]"} }
+  }
+}

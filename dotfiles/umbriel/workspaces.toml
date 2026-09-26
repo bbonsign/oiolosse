@@ -1,0 +1,20 @@
+[workspaces]
+back_and_forth = false
+
+
+[[workspace]]
+name = "term"
+output = "eDP-1"
+
+[[workspace]]
+name = "web"
+# layout.mode = "master"
+output = "DP-4"
+
+[[workspace]]
+name = "chat"
+output = "eDP-1"
+
+[[workspace]]
+name = "email"
+output = "eDP-1"
