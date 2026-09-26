@@ -1,0 +1,16 @@
+# ==============================================================================
+# Appearance
+# Blur uses a smaller radius than the built-in default.
+# https://docs.noctalia.dev/umbriel/appearance/
+[appearance]
+# opaque_fullscreen = false
+
+[appearance.blur]
+radius = 1
+
+# Choose the background color shown if the lock screen takes too long to appear.
+# [colors]
+# backdrop = "#000000FF"
+
+[animation.windows_drag]
+physics = true

@@ -1,0 +1,52 @@
+# Check edits with `umbriel config validate`.
+# Complete reference: https://docs.noctalia.dev/umbriel/
+
+[include]
+files = [
+  "appearance.toml",
+  "input.toml",
+  "keybinds.toml",
+  "layer-rules.toml",
+  "layouts.toml",
+  "outputs.toml",
+  "overview.toml",
+  "window-rules.toml",
+  "workspaces.toml",
+]
+
+[include.optional]
+files = []
+
+[environment]
+ELECTRON_OZONE_PLATFORM_HINT = "auto"
+QT_QPA_PLATFORM = "wayland"
+QT_QPA_PLATFORMTHEME = "gtk3"
+QT_QPA_PLATFORMTHEME_QT6 = "gtk3"
+# QT_QPA_PLATFORMTHEME = "qt6ct"
+
+# ==============================================================================
+# General
+
+# Optional session examples. XWayland support is enabled by default.
+# https://docs.noctalia.dev/umbriel/configuration/#general
+[general]
+autostart = [
+  "wl-paste --watch cliphist store",
+  "noctalia",
+  "1password --silent",
+  "tailscale systray",
+  "$HOME/.local/kitty.app/bin/kitty --single-instance --session sessions/conf.kitty-session || kitty --single-instance --session sessions/conf.kitty-session",
+]
+show_cheatsheet = true
+
+
+# ==============================================================================
+# Overview
+# Built-in overview and animation values are used. The top-left hot corner opens
+# the overview after a short delay.
+# Overview: https://docs.noctalia.dev/umbriel/workspaces-overview/
+# Animation: https://docs.noctalia.dev/umbriel/animation/
+[hot_corners.top_left]
+enabled = true
+delay_ms = 50
+action = "overview-open"

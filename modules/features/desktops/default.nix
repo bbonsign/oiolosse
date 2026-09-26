@@ -6,6 +6,7 @@
       self.homeModules.dconf
       self.homeModules.noctalia
       self.homeModules.niri
+      self.homeModules.umbriel
       # self.homeModules.sway
     ];
   };

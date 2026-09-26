@@ -1,0 +1,9 @@
+# ==============================================================================
+# Layout
+# https://docs.noctalia.dev/umbriel/layout/
+[layout]
+extent_presets = [0.5, 0.667, 0.333, 1]
+
+[layout.scrolling]
+default_extent_fraction = 0.667
+center_focused = "on_overflow"

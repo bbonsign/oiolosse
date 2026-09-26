@@ -47,6 +47,11 @@
       url = "github:noctalia-dev/noctalia/cachix";
     };
 
+    umbriel = {
+      url = "github:noctalia-dev/umbriel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     diffnav-src = {
       url = "github:dlvhdr/diffnav";
       flake = false;
