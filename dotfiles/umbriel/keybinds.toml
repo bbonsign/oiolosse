@@ -16,6 +16,7 @@
 "Mod+R" = { action = "spawn:vicinae vicinae://launch/clipboard/history", repeat = false }
 # "Mod+Alt+L" = { action = "spawn:hyprlock", repeat = false }
 "Mod+Space" = { action = "spawn:wlr-which-key", repeat = false }
+"Mod+Ctrl+Slash" = { action = "spawn:$HOME/.local/kitty.app/bin/kitty --class umbriel-actions -e umbriel-msg || kitty --class umbriel-actions -e umbriel-msg", repeat = false }
 "Mod+Tab" = { action = "spawn:noctalia msg window-switcher", repeat = false }
 "Mod+Period" = { action = "spawn:vicinae vicinae://launch/wm/switch-windows", repeat = false }
 "Mod+Comma" = { action = "spawn:vicinae vicinae://launch/wm/switch-windows", repeat = false }

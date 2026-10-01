@@ -1,0 +1,25 @@
+[metadata]
+name = "umbriel-actions"
+description = "Find and run Umbriel compositor actions"
+requirements = ["umbriel", "umbriel-msg", "fzf", "jq"]
+
+# The installed binary is the source of truth, so new Umbriel actions appear
+# here without a matching dotfiles update. Rows are action, usage, description.
+[source]
+command = "umbriel-msg list"
+display = '{split:\t:1}  {split:\t:2}'
+output = '{split:\t:1}'
+
+[ui]
+layout = "portrait"
+
+[ui.preview_panel]
+hidden = true
+
+[keybindings]
+enter = "actions:run"
+
+[actions.run]
+description = "Prompt for any arguments, then run the action"
+command = "umbriel-msg run '{split:\t:1}'"
+mode = "execute"

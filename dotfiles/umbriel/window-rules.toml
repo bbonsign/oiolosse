@@ -20,6 +20,11 @@ default_floating = true
 default_floating_size_px = { width = 800, height = 600 }
 
 [[window_rule]]
+match.app_id = "^umbriel-actions$"
+default_floating = true
+default_floating_size_px = { width = 1000, height = 700 }
+
+[[window_rule]]
 match.title = "^(Picture-in-Picture|Picture in picture)$"
 default_floating = true
 default_maximize = false

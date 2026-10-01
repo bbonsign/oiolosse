@@ -1,0 +1,153 @@
+#!/usr/bin/env bash
+
+set -o pipefail
+
+list_actions() {
+  umbriel msg --help | awk '
+    /^  [^[:space:]][^[:space:]]*[[:space:]][[:space:]]+/ {
+      line = $0
+      sub(/^  /, "", line)
+      match(line, /[[:space:]][[:space:]]+/)
+      usage = substr(line, 1, RSTART - 1)
+      description = substr(line, RSTART + RLENGTH)
+      action = usage
+      sub(/:.*/, "", action)
+      printf "%s\t%s\t%s\n", action, usage, description
+    }
+  '
+}
+
+json_or_empty() {
+  umbriel "$@" --json 2>/dev/null || printf '[]\n'
+}
+
+action_candidates() {
+  local usage=${1:?action usage is required}
+  local action=${usage%%:*}
+  local argument=${usage#*:}
+
+  if [[ $usage != *:* ]]; then
+    return
+  fi
+
+  case "$argument" in
+    '<name>'*|'<pool>'*)
+      local kind=${action#effect-}
+      kind=${kind%%-*}
+      json_or_empty effects | jq -r --arg kind "$kind" '
+        ((.presets // []) | map(select(.kind == $kind) | [.name, ("preset · " + .state)]))
+        + ((.pools // []) | map(select(.kind == $kind) | [.name, ("pool · " + .policy)]))
+        | .[] | @tsv
+      '
+      if [[ $action == *-set ]]; then
+        printf 'off\tsuppress this effect\n'
+      fi
+      ;;
+    *'<workspace>'*)
+      json_or_empty workspaces | jq -r '.[] | [(.name + "/" + .output), ("workspace " + (.index | tostring) + " on " + .output + " (" + .layout + ")")] | @tsv'
+      ;;
+    *'<window-id>'*)
+      json_or_empty windows | jq -r '.[] | [.id, ((if .focused then "focused · " else "" end) + .app_id + " — " + .title)] | @tsv'
+      ;;
+    *'<output>'*)
+      json_or_empty outputs | jq -r '.[] | [.name, ((if .enabled then "enabled" else "disabled" end) + " · " + .description)] | @tsv'
+      ;;
+    *'<scratchpad>'*)
+      json_or_empty windows | jq -r '[.[] | .scratchpad | select(length > 0)] | unique[] | [., "scratchpad"] | @tsv'
+      ;;
+    *'<scrolling|dwindle|master|toggle>'*)
+      printf '%s\t%s\n' \
+        scrolling 'scrolling columns' \
+        dwindle 'dwindle layout' \
+        master 'master-stack layout' \
+        toggle 'toggle the current layout'
+      ;;
+    *'<delta>'*)
+      printf '%s\t%s\n' -0.1 'decrease by 10%' +0.1 'increase by 10%' -0.5 'decrease by 50%' +0.5 'increase by 50%'
+      ;;
+    *'<fraction>'*)
+      printf '%s\t%s\n' 0.25 '25%' 0.5 '50%' 0.75 '75%' 1.0 '100%'
+      ;;
+    *skip-confirmation*)
+      printf 'skip-confirmation\tquit without confirmation\n'
+      ;;
+    '<cmd>'*)
+      compgen -c | sort -u
+      ;;
+  esac
+}
+
+choose_argument() {
+  local usage=${1:?action usage is required}
+  local action=${usage%%:*}
+  local optional=false
+  local candidates
+  local selection
+
+  [[ ${usage#*:} == \[* ]] && optional=true
+  candidates=$(action_candidates "$usage")
+
+  if [[ -n $candidates ]]; then
+    if $optional; then
+      candidates=$(printf '__default__\tuse the focused/default target\n%s' "$candidates")
+    fi
+    selection=$(printf '%s\n' "$candidates" | fzf \
+      --delimiter=$'\t' \
+      --with-nth=1,2 \
+      --no-multi \
+      --print-query \
+      --prompt="$action: " \
+      --header="$usage — select a suggestion or type a value") || return 1
+    selection=$(printf '%s\n' "$selection" | tail -n 1 | cut -f1)
+  else
+    local prompt="$usage: "
+    read -r -e -p "$prompt" selection || return 1
+  fi
+
+  if [[ -z $selection || $selection == __default__ ]]; then
+    $optional || return 1
+    printf '%s\n' "$action"
+  else
+    printf '%s:%s\n' "$action" "$selection"
+  fi
+}
+
+run_action() {
+  local usage=${1:?action usage is required}
+  local action=$usage
+
+  if [[ $usage == *:* ]]; then
+    action=$(choose_argument "$usage") || return
+  fi
+
+  umbriel msg "$action"
+}
+
+pick_action() {
+  local usage
+  usage=$(tv umbriel-actions | str_trim) || return
+  [[ -n $usage ]] && run_action "$usage"
+}
+
+str_trim() {
+  sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
+}
+
+case ${1:-pick} in
+  list)
+    list_actions
+    ;;
+  candidates)
+    action_candidates "${2:?usage: umbriel-msg candidates ACTION_USAGE}"
+    ;;
+  run)
+    run_action "${2:?usage: umbriel-msg run ACTION_USAGE}"
+    ;;
+  pick)
+    pick_action
+    ;;
+  *)
+    printf 'usage: umbriel-msg [pick|list|candidates ACTION_USAGE|run ACTION_USAGE]\n' >&2
+    exit 2
+    ;;
+esac
