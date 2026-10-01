@@ -63,7 +63,7 @@
       "src": "https://github.com/timantipov/md-table-tidy.nvim"
     },
     "mini.nvim": {
-      "rev": "561751e839b99a4baca36b9d963166b66d2536a6",
+      "rev": "6f0cd5049f414932ba55a5d6f3282a59d55c71a3",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "mo.nvim": {
@@ -84,7 +84,7 @@
       "src": "https://github.com/NvChad/nvim-colorizer.lua"
     },
     "nvim-lspconfig": {
-      "rev": "3e8d598d3b5f8338a41699c436e5fa11d2666cf0",
+      "rev": "910f0c4d46aa186641518395bc7e6fffb4d23baf",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-spider": {
@@ -92,7 +92,7 @@
       "src": "https://github.com/chrisgrieser/nvim-spider"
     },
     "nvim-treesitter": {
-      "rev": "910fdf6f49e9dee7e7257c7d11a76b040fdfb9de",
+      "rev": "e289100ff98969e118c702199d88b764ce9e7fdf",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-textobjects": {
@@ -126,6 +126,10 @@
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
       "src": "https://github.com/folke/snacks.nvim"
+    },
+    "sonarqube.nvim": {
+      "rev": "811bf8f46e0aa5ed9c9b5783aaf6f87640df553a",
+      "src": "https://github.com/iamkarasik/sonarqube.nvim"
     },
     "tokyonight.nvim": {
       "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
@@ -172,7 +176,7 @@
       "src": "https://github.com/folke/which-key.nvim"
     },
     "yazi.nvim": {
-      "rev": "688d1d48ef91bb1d29092d808a512f3293dfb34d",
+      "rev": "bc84dd40ef471a05501ceabd7ceadebb9fef94a3",
       "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }

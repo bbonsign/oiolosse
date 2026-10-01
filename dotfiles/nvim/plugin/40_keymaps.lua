@@ -106,8 +106,8 @@ vim.keymap.set("n", "<localleader><C-m>", "NQ", { desc = "MultiCursor at prev ma
 vim.keymap.set({ "n", "v" }, "g.", "g`.", { desc = "Goto last edit" })
 
 -- Q replays last recorded register by default now
--- vim.keymap.set("n", "Q", "@q", { desc = 'Macro in "q' })
--- vim.keymap.set("v", "Q", [[:norm @q<CR>]], { desc = 'Macro in "q' })
+vim.keymap.set("n", "<leader>r", "@q", { desc = 'Macro in "q' })
+vim.keymap.set("v", "<leader>r", [[:norm @q<CR>]], { desc = 'Macro in "q' })
 
 vim.keymap.set("i", [[<C-\>]], "λ", { desc = "Insert λ characer" })
 -- vim.keymap.set("i", [[<C-j>]], "|>", { desc = "|> Pipe" })

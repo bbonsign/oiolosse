@@ -4,6 +4,11 @@ Config.later(function()
 
   vim.pack.add({ "https://github.com/folke/lazydev.nvim" })
   require("lazydev").setup()
+
+  vim.pack.add({
+    "https://github.com/iamkarasik/sonarqube.nvim",
+  })
+  require("sonarqube").setup({})
 end)
 
 -- {
