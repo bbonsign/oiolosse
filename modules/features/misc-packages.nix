@@ -79,6 +79,7 @@
         pkgs.trashy
         pkgs.tree
         pkgs.tree-sitter
+        pkgs.tuicr
         pkgs.unzip
         pkgs.usbutils # lsusb
         pkgs.uv
