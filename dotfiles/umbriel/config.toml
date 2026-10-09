@@ -38,4 +38,4 @@ autostart = [
   "tailscale systray",
   "$HOME/.local/kitty.app/bin/kitty --single-instance --session sessions/conf.kitty-session || kitty --single-instance --session sessions/conf.kitty-session",
 ]
-show_cheatsheet = true
+show_cheatsheet = false

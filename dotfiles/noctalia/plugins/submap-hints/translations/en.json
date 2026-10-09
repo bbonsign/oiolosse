@@ -1,0 +1,17 @@
+{
+  "settings": {
+    "bindings_file": {
+      "label": "Umbriel binding file",
+      "description": "The TOML file containing all your submap bindings (not a config include wrapper)."
+    }
+  },
+  "panel": {
+    "title": "Umbriel · {submap}",
+    "empty": "No bindings configured for this layer.",
+    "footer": "Keys go to Umbriel · reset returns to the previous layer",
+    "back": "Previous layer",
+    "enter": "Enter {submap}",
+    "after": " → {submap}",
+    "reset": " ↩"
+  }
+}

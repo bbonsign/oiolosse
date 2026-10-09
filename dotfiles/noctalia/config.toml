@@ -3,50 +3,51 @@ blur_intensity = 0.13999999687075615
 tint_intensity = 0.0
 
 [bar]
-order = ["default"]
+order = [ "default" ]
 
-[bar.default]
-auto_hide = false
-background_opacity = 0.4999999888241291
-center = ["clock", "date", "bar", "clipboard", "screenshot"]
-contact_shadow = true
-end = [
-  "privacy",
-  "media",
-  "network",
-  "bluetooth",
-  "group:g1",
-  "tray",
-  "session",
-  "group:g2",
-  "notifications",
-]
-margin_edge = 0
-margin_ends = 0
-reserve_space = true
-start = ["launcher", "wallpaper", "workspaces", "spacer_3", "taskbar"]
-thickness = 25
+    [bar.default]
+    auto_hide = false
+    background_opacity = 0.4999999888241291
+    center = [ "clock", "date", "bar", "clipboard", "screenshot", "bar_3" ]
+    concave_edge_corners = false
+    contact_shadow = true
+    end = [ "privacy", "media", "network", "bluetooth", "group:g1", "tray", "session", "group:g2", "notifications" ]
+    margin_edge = 2
+    margin_ends = 2
+    reserve_space = true
+    start = [ "bar_2", "wallpaper", "workspaces", "spacer_3", "taskbar" ]
+    thickness = 25
 
-[bar.default.dead_zone.actions]
-left = "window-switcher"
-scroll_down = "taskbar-cycle next"
-scroll_left = "taskbar-cycle prev"
-scroll_right = "taskbar-cycle next"
-scroll_up = "taskbar-cycle prev"
+        [bar.default.dead_zone.actions]
+        back = "workspace-switch down"
+        forward = "workspace-switch up"
+        left = "window-switcher"
+        scroll_down = "taskbar-cycle next"
+        scroll_left = "taskbar-cycle prev"
+        scroll_right = "taskbar-cycle next"
+        scroll_up = "taskbar-cycle prev"
 
-[[bar.default.capsule_group]]
-fill = "surface_variant"
-id = "g1"
-members = ["volume", "brightness"]
-opacity = 0.69999998807907104
-padding = 6.0
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border_width = 1.0
+        enabled = true
+        fill = "surface_variant"
+        id = "g1"
+        members = [ "volume", "input_volume", "brightness" ]
+        opacity = 0.69999998807907104
+        padding = 6.0
 
-[[bar.default.capsule_group]]
-fill = "surface_variant"
-id = "g2"
-members = ["power_profile", "battery"]
-opacity = 0.69999998807907104
-padding = 6.0
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border_width = 1.0
+        enabled = true
+        fill = "surface_variant"
+        id = "g2"
+        members = [ "power_profile", "battery" ]
+        opacity = 0.69999998807907104
+        padding = 6.0
 
 [brightness]
 enable_ddcutil = true
@@ -59,48 +60,73 @@ refresh_minutes = 30
 [desktop_widgets]
 enabled = false
 schema_version = 2
-widget_order = []
+widget_order = [ "desktop-widget-0000000000000001" ]
 
-[desktop_widgets.grid]
-cell_size = 8
-major_interval = 4
-visible = true
+    [desktop_widgets.grid]
+    cell_size = 8
+    major_interval = 4
+    visible = true
 
-[desktop_widgets.widget]
+    [desktop_widgets.widget.desktop-widget-0000000000000001]
+    box_height = 448.0
+    box_width = 712.0
+    cx = 1216.0
+    cy = 760.0
+    output = "eDP-1"
+    placement_height = 1200.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "sysmon"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000001.settings]
+        background = true
+        background_opacity = 0.44
+        background_padding = 22
+        background_radius = 32
+        stat = "cpu_usage"
+        stat2 = "cpu_temp"
 
 [dock]
-active_monitor_only = true
+active_monitor_only = false
 auto_hide = true
-background_opacity = 0.84999998100101948
+background_opacity = 0.4999999888241291
 cross_axis_padding = 4
-enabled = true
-icon_size = 40
+enabled = false
+icon_size = 50
+launcher_position = "start"
 main_axis_padding = 8
+margin_edge = 8
+position = "left"
 reserve_space = false
+show_dots = true
+show_instance_count = false
+
+    [dock.monitor.eDP-1]
+    enabled = true
 
 [hot_corners]
 enabled = true
 
-[hot_corners.bottom_right]
-action = "window_switcher"
+    [hot_corners.bottom_right]
+    action = "launcher"
 
 [idle]
-behavior_order = ["screen-off", "lock", "lock-and-suspend"]
+behavior_order = [ "screen-off", "lock", "lock-and-suspend" ]
 
-[idle.behavior.lock]
-action = "lock"
-enabled = false
-timeout = 600.0
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = false
+    timeout = 600.0
 
-[idle.behavior.lock-and-suspend]
-action = "lock_and_suspend"
-enabled = false
-timeout = 900.0
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = false
+    timeout = 900.0
 
-[idle.behavior.screen-off]
-action = "screen_off"
-enabled = true
-timeout = 600.0
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 600.0
 
 [location]
 address = "Cary, NC"
@@ -112,114 +138,145 @@ enabled = false
 enabled = true
 schema_version = 2
 widget_order = [
-  "lockscreen-login-box@winit",
-  "lockscreen-login-box@DP-3",
-  "lockscreen-login-box@DP-4",
-  "lockscreen-login-box@eDP-1",
+    "lockscreen-login-box@WL-1",
+    "lockscreen-login-box@winit",
+    "lockscreen-login-box@DP-3",
+    "lockscreen-login-box@DP-4",
+    "lockscreen-login-box@eDP-1"
 ]
 
-[lockscreen_widgets.grid]
-cell_size = 8
-major_interval = 4
-visible = true
+    [lockscreen_widgets.grid]
+    cell_size = 8
+    major_interval = 4
+    visible = true
 
-[lockscreen_widgets.widget."lockscreen-login-box@DP-3"]
-box_height = 196.0
-box_width = 720.0
-cx = 960.0
-cy = 961.0
-output = "DP-3"
-placement_height = 1080.0
-placement_width = 1920.0
-rotation = 0.0
-type = "login_box"
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-3"]
+    box_height = 196.0
+    box_width = 720.0
+    cx = 960.0
+    cy = 961.0
+    output = "DP-3"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
 
-[lockscreen_widgets.widget."lockscreen-login-box@DP-3".settings]
-background_color = "surface_variant"
-background_opacity = 0.88
-background_radius = 12.0
-center_password_text = false
-input_opacity = 1.0
-input_radius = 6.0
-layout = "regular"
-show_caps_lock = true
-show_keyboard_layout = true
-show_login_button = true
-show_media = true
-show_session_buttons = true
-show_unlock_hint = true
-show_weather = true
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-3".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
-[lockscreen_widgets.widget."lockscreen-login-box@DP-4"]
-box_height = 196.0
-box_width = 720.0
-cx = 960.0
-cy = 969.29998779296875
-output = "DP-4"
-placement_height = 1080.0
-placement_width = 1920.0
-rotation = 0.0
-type = "login_box"
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-4"]
+    box_height = 196.0
+    box_width = 720.0
+    cx = 960.0
+    cy = 969.29998779296875
+    output = "DP-4"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
 
-[lockscreen_widgets.widget."lockscreen-login-box@DP-4".settings]
-center_password_text = false
-layout = "regular"
-show_caps_lock = true
-show_keyboard_layout = true
-show_login_button = true
-show_media = true
-show_session_buttons = true
-show_unlock_hint = true
-show_weather = true
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-4".settings]
+        center_password_text = false
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
-[lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-box_height = 196.0
-box_width = 720.0
-cx = 960.0
-cy = 1077.0
-output = "eDP-1"
-placement_height = 1200.0
-placement_width = 1920.0
-rotation = 0.0
-type = "login_box"
+    [lockscreen_widgets.widget."lockscreen-login-box@WL-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 640.0
+    cy = 971.315185546875
+    output = "WL-1"
+    placement_height = 1153.0
+    placement_width = 1280.0
+    rotation = 0.0
+    type = "login_box"
 
-[lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-center_password_text = false
-layout = "regular"
-show_caps_lock = true
-show_keyboard_layout = true
-show_login_button = true
-show_media = true
-show_session_buttons = true
-show_unlock_hint = true
-show_weather = true
+        [lockscreen_widgets.widget."lockscreen-login-box@WL-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
-[lockscreen_widgets.widget."lockscreen-login-box@winit"]
-box_height = 196.0
-box_width = 810.0
-cx = 640.0
-cy = 973.0
-output = "winit"
-placement_height = 1155.0
-placement_width = 1280.0
-rotation = 0.0
-type = "login_box"
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 196.0
+    box_width = 720.0
+    cx = 960.0
+    cy = 1077.0
+    output = "eDP-1"
+    placement_height = 1200.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
 
-[lockscreen_widgets.widget."lockscreen-login-box@winit".settings]
-background_color = "surface_variant"
-background_opacity = 0.88
-background_radius = 12.0
-center_password_text = false
-input_opacity = 1.0
-input_radius = 6.0
-layout = "regular"
-show_caps_lock = true
-show_keyboard_layout = true
-show_login_button = true
-show_media = true
-show_session_buttons = true
-show_unlock_hint = true
-show_weather = true
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        center_password_text = false
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@winit"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 640.0
+    cy = 973.0
+    output = "winit"
+    placement_height = 1155.0
+    placement_width = 1280.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@winit".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[nightlight]
+temperature_night = 2900
 
 [notification]
 background_opacity = 0.90000000000000002
@@ -227,12 +284,27 @@ background_opacity = 0.90000000000000002
 [osd]
 position = "bottom_center"
 
-[osd.kinds]
-keyboard_layout = false
-lock_keys = false
+    [osd.kinds]
+    keyboard_layout = false
+    lock_keys = false
 
 [plugins]
-enabled = ["noctalia/world_clock"]
+enabled = [ "noctalia/world_clock", "noctalia/umbriel-companion", "bbonsign/submap-hints" ]
+
+    [[plugins.source]]
+    kind = "path"
+    location = "~/.config/noctalia/plugins"
+    name = "personal"
+
+    [[plugins.source]]
+    kind = "git"
+    location = "https://github.com/noctalia-dev/official-plugins"
+    name = "official"
+
+    [[plugins.source]]
+    kind = "git"
+    location = "https://github.com/noctalia-dev/community-plugins"
+    name = "community"
 
 [shell]
 avatar_path = "/var/home/bbonsign/.face.jpeg"
@@ -240,57 +312,69 @@ niri_overview_type_to_launch_enabled = true
 settings_show_advanced = true
 telemetry_enabled = true
 
-[shell.animation]
-speed = 1.8500000275671482
+    [shell.animation]
+    speed = 1.8500000275671482
 
-[shell.launcher]
-provider_prefix = ":"
+    [shell.launcher]
+    app_grid = true
+    compact = true
+    provider_prefix = ":"
+    show_app_actions = true
 
-[shell.panel]
-open_near_click_control_center = true
-open_near_click_session = true
-open_near_click_wallpaper = true
-transparency_mode = "glass"
+        [shell.launcher.providers.wallpaper]
+        global = true
 
-[shell.screenshot]
-annotate = true
-confirm_region = true
-directory = "/var/home/bbonsign/Pictures/Screenshots"
-remember_last_region = true
+        [shell.launcher.providers.windows]
+        prefix = "wd"
 
-[[shell.session.actions]]
-action = "lock"
-command = "hyprlock"
-enabled = true
-shortcut = "1"
-variant = "default"
+    [shell.panel]
+    open_near_click_control_center = true
+    open_near_click_session = true
+    open_near_click_wallpaper = true
+    transparency_mode = "glass"
 
-[[shell.session.actions]]
-action = "logout"
-enabled = true
-shortcut = "2"
-variant = "default"
+    [shell.screenshot]
+    annotate = true
+    confirm_region = true
+    directory = "/var/home/bbonsign/Pictures/Screenshots"
+    remember_last_region = true
 
-[[shell.session.actions]]
-action = "lock_and_suspend"
-enabled = true
-shortcut = "3"
-variant = "default"
+    [[shell.session.actions]]
+    action = "lock"
+    command = "hyprlock"
+    enabled = true
+    shortcut = "1"
+    variant = "default"
 
-[[shell.session.actions]]
-action = "reboot"
-enabled = true
-shortcut = "4"
-variant = "default"
+    [[shell.session.actions]]
+    action = "logout"
+    enabled = true
+    shortcut = "2"
+    variant = "default"
 
-[[shell.session.actions]]
-action = "shutdown"
-enabled = true
-shortcut = "5"
-variant = "destructive"
+    [[shell.session.actions]]
+    action = "lock_and_suspend"
+    enabled = true
+    shortcut = "3"
+    variant = "default"
 
-[shell.shadow]
-alpha = 0.74999998323619366
+    [[shell.session.actions]]
+    action = "reboot"
+    enabled = true
+    shortcut = "4"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+    enabled = true
+    shortcut = "5"
+    variant = "destructive"
+
+    [shell.shadow]
+    alpha = 0.74999998323619366
+
+    [shell.window_switcher]
+    style = "compact"
 
 [theme]
 builtin = "Tokyo-Night"
@@ -299,39 +383,50 @@ community_palette = "Tokyo Night Moon"
 [wallpaper]
 directory = "/var/home/bbonsign/Pictures/wallpapers"
 edge_smoothness = 0.39999999105930328
-transition = ["honeycomb"]
+transition = [ "honeycomb" ]
 transition_duration = 4000
 transition_on_startup = true
 
-[wallpaper.default]
-path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
+    [wallpaper.default]
+    path = "/var/home/bbonsign/Pictures/wallpapers/phil-botha-a0TJ3hy-UD8-unsplash.jpg"
 
-[wallpaper.last]
-path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
+    [wallpaper.last]
+    path = "/var/home/bbonsign/Pictures/wallpapers/phil-botha-a0TJ3hy-UD8-unsplash.jpg"
 
-[wallpaper.monitors.DP-3]
-path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
+    [wallpaper.monitors.DP-3]
+    path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
 
-[wallpaper.monitors.DP-4]
-path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
+    [wallpaper.monitors.DP-4]
+    path = "/var/home/bbonsign/Pictures/wallpapers/phil-botha-a0TJ3hy-UD8-unsplash.jpg"
 
-[wallpaper.monitors.eDP-1]
-path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
+    [wallpaper.monitors.WL-1]
+    path = "/var/home/bbonsign/Pictures/wallpapers/Sunset-Of-The-Gods_by_Isaac-Sloan__smaller.jpg"
 
-[[wallpaper.favorite]]
-builtin_palette = "Tokyo-Night"
-palette_source = "builtin"
-path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
-theme_mode = "dark"
+    [wallpaper.monitors.eDP-1]
+    path = "/var/home/bbonsign/Pictures/wallpapers/phil-botha-a0TJ3hy-UD8-unsplash.jpg"
 
-[[wallpaper.favorite]]
-builtin_palette = "Tokyo-Night"
-palette_source = "builtin"
-path = "/var/home/bbonsign/Pictures/wallpapers/wallhaven-lyje9y.png"
-theme_mode = "dark"
+    [[wallpaper.favorite]]
+    builtin_palette = "Tokyo-Night"
+    palette_source = "builtin"
+    path = "/var/home/bbonsign/Pictures/wallpapers/slava-abramovitch-enAcB20iHAg-unsplash.jpg"
+    theme_mode = "dark"
+
+    [[wallpaper.favorite]]
+    builtin_palette = "Tokyo-Night"
+    palette_source = "builtin"
+    path = "/var/home/bbonsign/Pictures/wallpapers/wallhaven-lyje9y.png"
+    theme_mode = "dark"
 
 [widget.bar]
 type = "noctalia/world_clock:bar"
+
+[widget.bar_2]
+type = "noctalia/umbriel-companion:bar"
+
+[widget.bar_3]
+display_mode = "submap"
+enabled = false
+type = "noctalia/umbriel-companion:bar"
 
 [widget.battery]
 color = "primary"
@@ -341,8 +436,8 @@ font_family = "FiraCode Nerd Font"
 [widget.bluetooth]
 color = "primary"
 
-[widget.bluetooth.actions]
-right = "none"
+    [widget.bluetooth.actions]
+    right = "none"
 
 [widget.clock]
 format = "%I:%M %p    %H:%M    %a %d %b %Y  "
@@ -351,9 +446,9 @@ format = "%I:%M %p    %H:%M    %a %d %b %Y  "
 glyph = "live-photo"
 type = "custom_button"
 
-[widget.custom_button_bb.actions]
-left = "exec noctalia msg panel-toggle control-center"
-right = "exec kitty"
+    [widget.custom_button_bb.actions]
+    left = "exec noctalia msg panel-toggle control-center"
+    right = "exec kitty"
 
 [widget.date]
 format = " %H:%M UTC "
@@ -385,9 +480,9 @@ visualization = "graph"
 [widget.taskbar]
 only_active_workspace = true
 
-[widget.taskbar.actions]
-scroll_left = "taskbar-cycle prev"
-scroll_right = "taskbar-cycle next"
+    [widget.taskbar.actions]
+    scroll_left = "taskbar-cycle prev"
+    scroll_right = "taskbar-cycle next"
 
 [widget.tray]
 capsule = true
