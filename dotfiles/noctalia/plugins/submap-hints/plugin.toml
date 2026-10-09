@@ -1,0 +1,29 @@
+id = "bbonsign/submap-hints"
+name = "Submap Hints"
+version = "0.1.0"
+plugin_api = 24
+author = "bbonsign"
+description = "Passive hints for the active Umbriel submap, read from its binding configuration."
+dependencies = ["umbriel", "python3"]
+
+[[setting]]
+key = "bindings_file"
+type = "string"
+label_key = "settings.bindings_file.label"
+description_key = "settings.bindings_file.description"
+default = "~/.config/umbriel/keybinds.toml"
+
+[[service]]
+id = "service"
+entry = "service.luau"
+
+[[panel]]
+id = "hints"
+entry = "panel.luau"
+width = 1040
+height = 460
+placement = "floating"
+position = "bottom_center"
+keyboard_focus = "none"
+dismiss_on_outside_click = false
+persistent = true

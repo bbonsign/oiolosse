@@ -232,7 +232,13 @@ keyboard_layout = false
 lock_keys = false
 
 [plugins]
-enabled = ["noctalia/world_clock"]
+enabled = ["noctalia/world_clock", "bbonsign/submap-hints"]
+
+[[plugins.source]]
+name = "personal"
+kind = "path"
+location = "~/.config/noctalia/plugins"
+enabled = true
 
 [shell]
 avatar_path = "/var/home/bbonsign/.face.jpeg"

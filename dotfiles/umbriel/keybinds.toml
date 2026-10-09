@@ -15,7 +15,7 @@
 "Mod+E" = { action = "spawn:vicinae vicinae://launch/core/search-emojis", repeat = false }
 "Mod+R" = { action = "spawn:vicinae vicinae://launch/clipboard/history", repeat = false }
 # "Mod+Alt+L" = { action = "spawn:hyprlock", repeat = false }
-"Mod+Space" = { action = "spawn:wlr-which-key", repeat = false }
+"Mod+Space" = { action = "submap:leader", repeat = false }
 "Mod+Ctrl+Slash" = { action = "spawn:$HOME/.local/kitty.app/bin/kitty --class umbriel-actions -e $HOME/.local/bin/umbriel-msg || kitty --class umbriel-actions -e $HOME/.local/bin/umbriel-msg", repeat = false }
 "Mod+Tab" = { action = "spawn:noctalia msg window-switcher", repeat = false }
 "Mod+Period" = { action = "spawn:vicinae vicinae://launch/wm/switch-windows", repeat = false }
@@ -153,3 +153,72 @@
 "submap[screencapture],Escape" = "submap:reset"
 "submap[region],R" = { action = "spawn:grim -g \"$(slurp)\" screenshot.png", submap = "reset" }
 "submap[region],Escape" = "submap:reset"
+
+# Native leader menu. Noctalia only displays these bindings; Umbriel executes
+# them. Reset pops ONE layer: a nested one-shot returns to its parent menu.
+# Explicit Shift is required for uppercase shortcuts (keysyms are case-folded).
+"submap[leader],Escape" = "submap:reset"
+"submap[leader],Space" = { action = "spawn:vicinae vicinae://toggle", submap = "reset" }
+"submap[leader],BackSpace" = { action = "spawn:noctalia msg notification-clear-active", submap = "reset" }
+"submap[leader],Tab" = { action = "spawn:noctalia msg window-switcher", submap = "reset" }
+"submap[leader],a" = { action = "overview-toggle", submap = "reset" }
+"submap[leader],b" = { action = "submap:bar", repeat = false }
+"submap[leader],c" = { action = "submap:colorpicker", repeat = false }
+"submap[leader],d" = { action = "spawn:fuzzel --show-actions --lines 20 --width 80", submap = "reset" }
+"submap[leader],k" = { action = "spawn:$HOME/.local/bin/kitty-switch-fuzzel.nu", submap = "reset" }
+"submap[leader],n" = { action = "submap:notifications", repeat = false }
+"submap[leader],r" = { action = "submap:run", repeat = false }
+"submap[leader],Shift+r" = { action = "spawn:noctalia msg config-reload", submap = "reset" }
+"submap[leader],s" = { action = "submap:screencapture", repeat = false }
+"submap[leader],t" = { action = "spawn:$HOME/.local/kitty.app/bin/kitty --class time-tui -e $HOME/.local/bin/time-tui", submap = "reset" }
+"submap[leader],w" = { action = "submap:windows", repeat = false }
+"submap[leader],Shift+w" = { action = "submap:workspaces", repeat = false }
+"submap[leader],0" = { action = "submap:power", repeat = false }
+"submap[leader],1" = { action = "workspace-switch:term", submap = "reset" }
+"submap[leader],2" = { action = "workspace-switch:web", submap = "reset" }
+"submap[leader],3" = { action = "workspace-switch:chat", submap = "reset" }
+"submap[leader],4" = { action = "workspace-switch:email", submap = "reset" }
+"submap[leader],5" = { action = "workspace-switch:5", submap = "reset" }
+"submap[leader],6" = { action = "workspace-switch:6", submap = "reset" }
+"submap[leader],7" = { action = "workspace-switch:7", submap = "reset" }
+"submap[leader],8" = { action = "workspace-switch:8", submap = "reset" }
+"submap[leader],9" = { action = "workspace-switch:9", submap = "reset" }
+
+"submap[bar],Escape" = "submap:reset"
+"submap[bar],b" = { action = "spawn:noctalia msg bar-toggle", submap = "reset" }
+"submap[colorpicker],Escape" = "submap:reset"
+"submap[colorpicker],c" = { action = "spawn:hyprpicker --autocopy", submap = "reset" }
+"submap[colorpicker],r" = { action = "spawn:hyprpicker --autocopy --format=rgb", submap = "reset" }
+"submap[notifications],Escape" = "submap:reset"
+"submap[notifications],n" = { action = "spawn:noctalia msg panel-toggle control-center notifications", submap = "reset" }
+"submap[notifications],c" = { action = "spawn:noctalia msg notification-clear-active", submap = "reset" }
+"submap[notifications],Shift+c" = { action = "spawn:noctalia msg notification-clear-history", submap = "reset" }
+"submap[run],Escape" = "submap:reset"
+"submap[run],b" = { action = "spawn:$HOME/.local/kitty.app/bin/kitty --class kitty-btop btop", submap = "reset" }
+"submap[run],Shift+b" = { action = "spawn:$HOME/.local/kitty.app/bin/kitty --class kitty-btm btm", submap = "reset" }
+"submap[run],f" = { action = "spawn:nautilus", submap = "reset" }
+"submap[run],k" = { action = "spawn:$HOME/.local/bin/kitty-switch-fuzzel.nu", submap = "reset" }
+"submap[run],p" = { action = "spawn:$HOME/.local/bin/power-profiles.nu", submap = "reset" }
+"submap[windows],Escape" = "submap:reset"
+"submap[windows],h" = "window-focus-or-output-left"
+"submap[windows],j" = "window-focus-or-workspace-down"
+"submap[windows],k" = "window-focus-or-workspace-up"
+"submap[windows],l" = "window-focus-or-output-right"
+"submap[windows],Shift+h" = "column-move-left"
+"submap[windows],Shift+j" = "window-move-or-workspace-down"
+"submap[windows],Shift+k" = "window-move-or-workspace-up"
+"submap[windows],Shift+l" = "column-move-right"
+"submap[workspaces],Escape" = "submap:reset"
+"submap[workspaces],j" = "workspace-move-down"
+"submap[workspaces],k" = "workspace-move-up"
+"submap[workspaces],h" = "workspace-move-to-output-left"
+"submap[workspaces],l" = "workspace-move-to-output-right"
+"submap[workspaces],Shift+j" = "workspace-move-to-output-down"
+"submap[workspaces],Shift+k" = "workspace-move-to-output-up"
+"submap[power],Escape" = "submap:reset"
+"submap[power],l" = { action = "spawn:hyprlock", submap = "reset" }
+"submap[power],e" = { action = "session-quit", submap = "reset" }
+"submap[power],s" = { action = "spawn:systemctl suspend", submap = "reset" }
+"submap[power],h" = { action = "spawn:systemctl hibernate", submap = "reset" }
+"submap[power],Shift+r" = { action = "spawn:systemctl reboot", submap = "reset" }
+"submap[power],Shift+s" = { action = "spawn:systemctl poweroff", submap = "reset" }
