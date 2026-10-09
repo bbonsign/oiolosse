@@ -57,7 +57,7 @@ in
     };
   };
 
-  flake.homeModules.bbonsignHomeModule = { pkgs, ... }: {
+  flake.homeModules.bbonsignHomeModule = { ... }: {
     imports = [
       self.homeModules.beam
       self.homeModules.bluetooth
