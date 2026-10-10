@@ -1,9 +1,9 @@
-{ inputs, ... }:
+{ ... }:
 {
   flake.homeModules.niri = { pkgs, ... }: {
     config = {
       home.packages = [
-        inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri
+        pkgs.niri
         pkgs.fuzzel
         pkgs.networkmanager_dmenu
         pkgs.nwg-displays
@@ -42,7 +42,7 @@
       # Make niri.service available so niri-session can start the graphical
       # session target and its services, including the Polkit agent below.
       systemd.user.packages = [
-        inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri
+        pkgs.niri
       ];
 
       xdg.configFile."soteria/config.toml" = {
@@ -146,7 +146,7 @@
       environment.sessionVariables.NIXOS_OZONE_WL = "1";
       environment.systemPackages = [
         # niri
-        inputs.niri.packages.x86_64-linux.niri
+        pkgs.niri
         pkgs.xwayland-satellite
         pkgs.fuzzel
         pkgs.grim # screenshot functionality
