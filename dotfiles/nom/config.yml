@@ -35,6 +35,8 @@ feeds:
       name: Loris Cro
     - url: https://neovim.io/news.xml
       name: Neovim
+    - url: https://pydevtools.com/blog/index.xml
+      name: PyDevTools
 database: nom.db
 ordering: desc
 filtering:
