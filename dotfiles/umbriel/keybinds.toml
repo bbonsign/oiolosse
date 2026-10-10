@@ -111,10 +111,10 @@
 "Mod+7" = "workspace-switch:7"
 "Mod+8" = "workspace-switch:8"
 "Mod+9" = "workspace-switch:9"
-"Mod+Shift+1" = "window-move-to-workspace:1"
-"Mod+Shift+2" = "window-move-to-workspace:2"
-"Mod+Shift+3" = "window-move-to-workspace:3"
-"Mod+Shift+4" = "window-move-to-workspace:4"
+"Mod+Shift+1" = "window-move-to-workspace:term"
+"Mod+Shift+2" = "window-move-to-workspace:web"
+"Mod+Shift+3" = "window-move-to-workspace:chat"
+"Mod+Shift+4" = "window-move-to-workspace:email"
 "Mod+Shift+5" = "window-move-to-workspace:5"
 "Mod+Shift+6" = "window-move-to-workspace:6"
 "Mod+Shift+7" = "window-move-to-workspace:7"
@@ -214,8 +214,8 @@
 "submap[workspaces],BackSpace" = { action = "submap:reset", submap = "leader" }
 "submap[workspaces],j" = { action = "workspace-move-down", submap = "reset" }
 "submap[workspaces],k" = { action = "workspace-move-up", submap = "reset" }
-"submap[workspaces],h" = { action = "workspace-move-to-output-left", submap = "reset" }
-"submap[workspaces],l" = { action = "workspace-move-to-output-right", submap = "reset" }
+"submap[workspaces],Shift+h" = { action = "workspace-move-to-output-left", submap = "reset" }
+"submap[workspaces],Shift+l" = { action = "workspace-move-to-output-right", submap = "reset" }
 "submap[workspaces],Shift+j" = { action = "workspace-move-to-output-down", submap = "reset" }
 "submap[workspaces],Shift+k" = { action = "workspace-move-to-output-up", submap = "reset" }
 "submap[power],BackSpace" = { action = "submap:reset", submap = "leader" }

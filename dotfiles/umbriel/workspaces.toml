@@ -11,6 +11,11 @@ name = "web"
 # layout.mode = "master"
 output = "DP-4"
 
+# [[workspace]]
+# name = "web"
+# # layout.mode = "master"
+# output = "eDP-1"
+
 [[workspace]]
 name = "chat"
 output = "eDP-1"

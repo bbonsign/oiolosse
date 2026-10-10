@@ -67,7 +67,7 @@
         pkgs.ruff
         pkgs.sioyek
         pkgs.snyk
-        pkgs.snowsql
+        # pkgs.snowsql
         pkgs.sops
         pkgs.sqlite
         # pkgs.ssm-session-manager-plugin # For aws cli
