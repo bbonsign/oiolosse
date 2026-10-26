@@ -162,6 +162,10 @@ local diagnostic_opts = {
   virtual_text = {
     current_line = true,
     severity = { min = 'ERROR', max = 'ERROR' },
+    source = true,
+  },
+  float = {
+    source = true,
   },
 
   -- Don't update diagnostics when typing

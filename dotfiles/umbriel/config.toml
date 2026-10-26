@@ -13,6 +13,7 @@ files = [
   "scratchpads.toml",
   "window-rules.toml",
   "workspaces.toml",
+  # "quake.toml",
 ]
 
 [include.optional]
