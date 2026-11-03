@@ -11,7 +11,8 @@
 "Mod+T" = { action = "spawn:$HOME/.local/kitty.app/bin/kitty --class time-tui -e $HOME/.local/bin/time-tui", repeat = false }
 "Mod+Ctrl+D" = { action = "spawn:fuzzel --show-actions --lines 20 --width 80", repeat = false }
 "Mod+D" = { action = "spawn:vicinae vicinae://toggle", repeat = false }
-"Mod+Grave" = { action = "spawn:kitty --single-instance yazi || $HOME/.local/kitty.app/bin/kitty yazi", repeat = false }
+# Give standalone TUIs their desktop entry ID so shells resolve the app icon.
+"Mod+Grave" = { action = "spawn:xdg-terminal-exec --app-id=yazi.desktop -- yazi", repeat = false }
 "Mod+E" = { action = "spawn:vicinae vicinae://launch/core/search-emojis", repeat = false }
 "Mod+R" = { action = "spawn:vicinae vicinae://launch/clipboard/history", repeat = false }
 # "Mod+Alt+L" = { action = "spawn:hyprlock", repeat = false }
@@ -197,8 +198,8 @@
 "submap[notifications],c" = { action = "spawn:noctalia msg notification-clear-active", submap = "reset" }
 "submap[notifications],Shift+c" = { action = "spawn:noctalia msg notification-clear-history", submap = "reset" }
 "submap[run],BackSpace" = { action = "submap:reset", submap = "leader" }
-"submap[run],b" = { action = "spawn:$HOME/.local/kitty.app/bin/kitty --class kitty-btop btop", submap = "reset" }
-"submap[run],Shift+b" = { action = "spawn:$HOME/.local/kitty.app/bin/kitty --class kitty-btm btm", submap = "reset" }
+"submap[run],b" = { action = "spawn:xdg-terminal-exec --app-id=btop.desktop -- btop", submap = "reset" }
+"submap[run],Shift+b" = { action = "spawn:xdg-terminal-exec --app-id=bottom.desktop -- btm", submap = "reset" }
 "submap[run],f" = { action = "spawn:nautilus", submap = "reset" }
 "submap[run],k" = { action = "spawn:$HOME/.local/bin/kitty-switch-fuzzel.nu", submap = "reset" }
 "submap[run],p" = { action = "spawn:$HOME/.local/bin/power-profiles.nu", submap = "reset" }

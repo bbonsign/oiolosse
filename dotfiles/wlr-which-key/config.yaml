@@ -129,10 +129,10 @@ menu:
     submenu:
       - key: "B"
         desc: "btm"
-        cmd: ~/.local/kitty.app/bin/kitty --class kitty-btm btm
+        cmd: xdg-terminal-exec --app-id=bottom.desktop -- btm
       - key: "b"
         desc: "btop"
-        cmd: ~/.local/kitty.app/bin/kitty --class kitty-btop btop
+        cmd: xdg-terminal-exec --app-id=btop.desktop -- btop
       - key: "c"
         desc: "Hex"
         cmd: hyprpicker --autocopy

@@ -96,13 +96,14 @@ window-rule {
 }
 
 window-rule {
-  match app-id=r#"kitty-btm"#
-  match app-id=r#"kitty-btop"#
+  match app-id=r#"^bottom\.desktop$"#
+  match app-id=r#"^btop\.desktop$"#
   open-floating true
 }
 
 window-rule {
   match app-id=r#"kitty"#
+  match app-id=r#"^yazi\.desktop$"#
   open-floating true
   default-window-height { proportion 0.75; }
   default-column-width { proportion 0.75; }
@@ -180,4 +181,3 @@ window-rule {
   geometry-corner-radius 4
   clip-to-geometry true
 }
-

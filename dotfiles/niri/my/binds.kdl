@@ -20,7 +20,8 @@ binds {
   Mod+Return { spawn-sh "$HOME/.local/kitty.app/bin/kitty --single-instance || kitty --single-instance"; }
   Mod+Ctrl+D { spawn "fuzzel" "--show-actions" "--lines" "20" "--width" "80"; }
   Mod+D { spawn-sh "vicinae vicinae://toggle"; }
-  Mod+Grave { spawn-sh "kitty --single-instance yazi || $HOME/.local/kitty.app/bin/kitty yazi"; }
+  // Match the TUI's desktop entry, rather than the terminal's icon.
+  Mod+Grave { spawn "xdg-terminal-exec" "--app-id=yazi.desktop" "--" "yazi"; }
   Mod+E repeat=false { spawn-sh "vicinae vicinae://launch/core/search-emojis"; }
   Mod+R repeat=false { spawn-sh "vicinae vicinae://launch/clipboard/history"; }
   Mod+Alt+L hotkey-overlay-title="Lock" { spawn "hyprlock"; }
@@ -291,5 +292,4 @@ binds {
   XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "5%+"; }
 
 }
-
 
