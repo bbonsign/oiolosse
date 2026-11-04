@@ -18,4 +18,4 @@ effect = "slide-down"
 dim = 0.0
 
 [keybinds]
-"Mod+Shift+Minus" = { action = "scratchpad-toggle:quake", repeat = false }
+"Mod+Shift+Minus" = { action = "scratchpad-toggle quake", repeat = false }

@@ -18,7 +18,7 @@ def "nu-complete umbriel commands" [] {
   ]
 }
 
-def "nu-complete umbriel actions" [context: string] {
+def "nu-complete umbriel actions" [place: record, token: record] {
   let rows = try {
     ^umbriel-msg list
     | lines
@@ -28,10 +28,9 @@ def "nu-complete umbriel actions" [context: string] {
         {action: $fields.0 usage: $fields.1 description: $fields.2}
       }
   } catch { [] }
-  let token = $context | split row " " | last
 
-  if ($token | str contains ":") {
-    let action = $token | split row ":" | first
+  let completions = if ($place.command | length) == 3 {
+    let action = $place.command.1
     let usage = $rows | where action == $action | get -o 0.usage
     if ($usage | is-empty) {
       []
@@ -43,20 +42,29 @@ def "nu-complete umbriel actions" [context: string] {
         | each {|line|
             let fields = $line | split row "\t"
             {
-              value: $"($action):($fields.0)"
+              value: $fields.0
               description: ($fields | get -o 1 | default $usage)
             }
           }
       } catch { [] }
     }
-  } else {
-    $rows | each {|row|
-      {
-        value: (if ($row.usage | str contains ":") { $"($row.action):" } else { $row.action })
-        description: $"($row.description) — ($row.usage)"
+  } else if ($place.command | length) <= 2 {
+    $rows
+    | each {|row|
+        {
+          value: $row.action
+          description: $"($row.description) — ($row.usage)"
+        }
       }
-    }
+    | append [
+        {value: "--help", description: "Show action help"}
+        {value: "--json", description: "Print the reply as JSON"}
+      ]
+  } else {
+    []
   }
+
+  $completions | where value starts-with $token.text
 }
 
 export extern umbriel [
@@ -67,9 +75,8 @@ export extern umbriel [
   ...args: string
 ]
 
+@complete "nu-complete umbriel actions"
 export extern "umbriel msg" [
-  action?: string@"nu-complete umbriel actions"
-  --json (-j)
-  --help (-h)
+  action?: string
   ...args: string
 ]
