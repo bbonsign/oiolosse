@@ -8,7 +8,7 @@
 
 # Applications and shell
 "Mod+Return" = { action = "spawn:$HOME/.local/kitty.app/bin/kitty --single-instance || kitty --single-instance", repeat = false }
-"Mod+T" = { action = "spawn:$HOME/.local/kitty.app/bin/kitty --class time-tui -e $HOME/.local/bin/time-tui", repeat = false }
+"Mod+T" = { action = "spawn:xdg-terminal-exec --app-id=time-tui.desktop -- $HOME/.local/bin/time-tui", repeat = false }
 "Mod+Ctrl+D" = { action = "spawn:fuzzel --show-actions --lines 20 --width 80", repeat = false }
 "Mod+D" = { action = "spawn:vicinae vicinae://toggle", repeat = false }
 # Give standalone TUIs their desktop entry ID so shells resolve the app icon.
@@ -173,7 +173,7 @@
 "submap[leader],r" = { action = "submap:reset", submap = "run" }
 "submap[leader],Shift+r" = { action = "spawn:noctalia msg config-reload", submap = "reset" }
 "submap[leader],s" = { action = "submap:reset", submap = "screencapture" }
-"submap[leader],t" = { action = "spawn:$HOME/.local/kitty.app/bin/kitty --class time-tui -e $HOME/.local/bin/time-tui", submap = "reset" }
+"submap[leader],t" = { action = "spawn:xdg-terminal-exec --app-id=time-tui.desktop -- $HOME/.local/bin/time-tui", submap = "reset" }
 # "submap[leader],w" = { action = "submap:windows", repeat = false }
 "submap[leader],w" = { action = "submap:reset", submap = "windows" }
 "submap[leader],Shift+w" = { action = "submap:reset", submap = "workspaces" }

@@ -177,7 +177,7 @@ menu:
         cmd: niri msg action clear-dynamic-cast-target
   - key: "t"
     desc: World Clock
-    cmd: ~/.local/kitty.app/bin/kitty --class time-tui -e ~/.local/bin/time-tui
+    cmd: xdg-terminal-exec --app-id=time-tui.desktop -- $HOME/.local/bin/time-tui
   - key: "W"
     desc: Workspaces
     submenu:
