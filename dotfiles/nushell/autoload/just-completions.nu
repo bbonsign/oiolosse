@@ -58,11 +58,10 @@ def "nu-complete just" [] {
   }
 }
 
-def "nu-complete args" [context: string, offset: int] {
-  let r = ($context | split row ' ')
-  let name = $r.1
-  # First two are 'just' and name, minus one because `_get-just-args` is zero-indexed
-  let position = ($r | length) - 3
+def "nu-complete args" [place: record] {
+  let name = $place.command.1
+  # The recipe is positional 0; its arguments start at positional 1.
+  let position = $place.index - 1
 
   _get-just-arg $name $position
 }

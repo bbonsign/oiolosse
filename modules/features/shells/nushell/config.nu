@@ -5,10 +5,6 @@ use bb *
 
 const ALL_MODES = [emacs vi_normal vi_insert]
 
-let fzf_menu_source = {|buffer position|
-  fzf_menu_source $buffer
-}
-
 #################
 ## $env.config ##
 #################
@@ -57,7 +53,7 @@ $env.config.menus = (
         selected_text: green_reverse
         description_text: yellow
       }
-      source: $fzf_menu_source
+      source: {|buffer| fzf_menu_source $buffer }
     }
     {
       name: completion_menu
@@ -90,7 +86,7 @@ $env.config.menus = (
         selected_text: green_reverse
         description_text: yellow
       }
-      source: {|buffer position|
+      source: {|buffer|
         scope aliases
         | where name == ($buffer | str trim)
         | each {|it| {value: $"($it.expansion) "} }
@@ -113,7 +109,7 @@ $env.config.menus = (
       marker: ""
       type: {layout: list page_size: 25}
       style: {text: green selected_text: green_reverse description_text: yellow}
-      source: {|buffer position|
+      source: {|buffer place|
 
          let esc_regex: closure = {|input|
           # regex special symbols
@@ -139,7 +135,7 @@ $env.config.menus = (
 
         let segments = $buffer | split row -r '(\s\|\s)|\(|;|(\{\|\w\| )'
         let last_segment = $segments | last
-        let last_segment_length = $last_segment | str length
+        let last_segment_length = $last_segment | str length --utf-8-bytes
         let last_segment_esc = do $esc_regex $last_segment
         let smt = $buffer | str replace -r $'($last_segment_esc)$' ' '
 
@@ -151,7 +147,7 @@ $env.config.menus = (
         | str replace -r $'.*($last_segment_esc)' $last_segment
         | reverse
         | uniq
-        | each {|it| {value: $it span: {start: ($position - $last_segment_length) end: ($position)}} }
+        | each {|it| {value: $it span: {start: ($place.cursor - $last_segment_length) end: $place.cursor}} }
       }
     }
   ]
