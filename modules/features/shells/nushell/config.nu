@@ -6,7 +6,7 @@ use bb *
 const ALL_MODES = [emacs vi_normal vi_insert]
 
 let fzf_menu_source = {|buffer position|
-  fzf_menu_source $buffer $position
+  fzf_menu_source $buffer
 }
 
 #################
@@ -167,7 +167,7 @@ $env.config.keybindings = (
       mode: $ALL_MODES
       event: {
         send: executehostcommand
-        cmd: `commandline edit ( fzf-complete (commandline) (commandline get-cursor))`
+        cmd: "fzf-complete"
       }
     }
     {

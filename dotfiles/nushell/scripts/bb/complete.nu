@@ -1,105 +1,61 @@
-export def fish_completer [spans: list<string>] {
-  # print fish-comp
-  fish --command $'complete "--do-complete=($spans | str join " ")"'
-  | from tsv --flexible --noheaders --no-infer
-  | rename value description
-}
-
-# Replicate completion action of nu for completing nu aliases and commands
-# Doesn't handle arguments or options
-export def nu_completer [spans: list<string> cursor_pos: int = 0] {
-  # print nu-comp
-  # print $spans
-  let cmd = $spans.0? | str trim
-  let aliases_and_commands = (
-    scope aliases
-    | append (scope commands)
-    | rename --column {name: value}
-    | select value description
-  )
-  if ($cmd == "") {
-    $aliases_and_commands
-  } else {
-    $aliases_and_commands | where value like $cmd
-  }
-}
-
-export def carapace_completer [spans: list<string> cursor_pos: int = 0] {
-  # print carapace-comp
-  carapace $spans.0 nushell ...$spans
-  | from json
-  | if ($in | default [] | any {|| $in.display | str starts-with "ERR" }) { null } else { $in }
-}
-
-# This completer will use carapace by default
-export def multi_completer [spans: list<string> cursor_pos: int = 0] {
-  let cmd = $spans.0? | str trim
-  if ($cmd == "") {
-    return (nu_completer $spans)
+# Keep the selected record intact: its value and byte span come from Nushell,
+# not from parsing the display text returned by fzf.
+def pick-completion [completions: list<record>] {
+  if ($completions | is-empty) {
+    return null
   }
 
-  let expanded_alias = scope aliases
-  | where name == $cmd
-  | get --optional 0.expansion
-
-  let cmd = if $expanded_alias != null {
-    $expanded_alias | str trim
-  } else {
-    $cmd | split row ' ' | take 1
-  }
-
-  let spans = $spans | skip 1 | prepend ($cmd | split row ' ')
-  let carapace_completions = carapace_completer $spans $cursor_pos
-
-  if ($carapace_completions | is-empty) {
-    let nu_completions = nu_completer $spans
-    if ($nu_completions | is-empty) {
-      return (fish_completer $spans)
+  # Capture stdout only: fzf needs stderr connected to the terminal for its UI.
+  let selection = try {
+    $completions
+    | enumerate
+    | each {|entry|
+      let suggestion = $entry.item
+      let label = [
+        ($suggestion.display_override? | default $suggestion.value)
+        ($suggestion.description? | default "")
+      ] | str join " — " | ansi strip | str replace --all --regex '\s+' ' '
+      $"($entry.index)\t($label)"
     }
-    return $nu_completions
+    | str join (char nl)
+    | ^fzf --delimiter (char tab) --with-nth 2.. --select-1
+  } catch {|err|
+    if $err.exit_code? in [1 130] { null } else { error make $err }
   }
-  return $carapace_completions
+
+  if $selection == null {
+    return null
+  }
+
+  let index = $selection | split row (char tab) | first | into int
+  $completions | get $index
 }
 
-export def fzf-complete [buffer: string position: int = 0] {
-  let tokens = $buffer | split row -r '\s+'
-  # use the last word on the commandline to only complete the remain selected part
-  let last_word = $tokens | last
-  let last_word_len = $last_word | str length
-  let res = multi_completer $tokens $position
-
-  match $res {
-    null => { return "" }
-    [] => { return "" }
-    _ => $res
+# Ctrl-J runs as an execute-host-command, so the engine completes the editor
+# buffer at its actual cursor and leaves text beyond the replacement span alone.
+export def fzf-complete [] {
+  let buffer = commandline
+  let suggestion = pick-completion (commandline complete --detailed)
+  if $suggestion == null {
+    return
   }
 
-  # To align value/description columns in fzf
-  let max_len = $res
-  | each { $in.value | str length }
-  | math max
+  let before = $buffer | str substring --utf-8-bytes ..<$suggestion.span.start
+  let after = $buffer | str substring --utf-8-bytes $suggestion.span.end..
+  let padding = if (
+    ($suggestion.append_whitespace? | default false)
+    and not ($suggestion.value | str ends-with ' ')
+    and not ($after | str starts-with ' ')
+  ) { ' ' } else { '' }
+  let completed = $before + $suggestion.value + $padding
 
-  let return_val = $res
-  | each {|x|
-    $"(ansi --escape ($x.style? | default {}))($x.value | fill --alignment l --width $max_len)(ansi reset)\t(ansi yellow_bold)($x.description? | default "" | str trim)(ansi reset)"
-  }
-  | to text
-  | (fzf --ansi --select-1)
-  | from tsv --flexible --noheaders --no-infer
-  | rename completion_target description
-  | get completion_target?
-  | default [""]
-  | each { str trim }
-  | str join " "
-
-  let completed_end = $return_val | str substring $last_word_len.. | str trim
-  # Reconstruct commandline with the chosen completion
-  $tokens | slice 0..-2 | append $"($last_word)($completed_end)" | str join " "
+  commandline edit --replace ($completed + $after)
+  commandline set-cursor ($completed | str length --grapheme-clusters)
 }
 
-export def fzf_menu_source [buffer: string position: int] {
-  let result = (fzf-complete $buffer $position)
-  | do { {value: $in} }
-  # expects a table
-  [$result]
+# Menu inputs are the line through the cursor. Return the engine's suggestion
+# directly so Reedline replaces only its span and preserves the suffix.
+export def fzf_menu_source [buffer: string] {
+  let suggestion = pick-completion ($buffer | commandline complete --detailed)
+  if $suggestion == null { [] } else { [$suggestion] }
 }
