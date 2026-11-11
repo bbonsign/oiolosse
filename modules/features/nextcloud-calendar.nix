@@ -25,8 +25,6 @@ _: {
 
           config = {
             dbtype = "pgsql";
-            adminuser = "admin";
-            adminpassFile = passwordFile;
           };
 
           settings = {
@@ -67,6 +65,16 @@ _: {
               umask 0077
               ${lib.getExe pkgs.openssl} rand -base64 36 > ${passwordFile}.tmp
               ${lib.getExe' pkgs.coreutils "mv"} ${passwordFile}.tmp ${passwordFile}
+            fi
+          '';
+        };
+
+        systemd.services.nextcloud-setup = {
+          serviceConfig.LoadCredential = [ "adminpass:${passwordFile}" ];
+          postStart = ''
+            if ! ${lib.getExe config.services.nextcloud.occ} user:info admin > /dev/null; then
+              export OC_PASS="$(<"$CREDENTIALS_DIRECTORY/adminpass")"
+              ${lib.getExe config.services.nextcloud.occ} user:add --password-from-env --group=admin admin
             fi
           '';
         };

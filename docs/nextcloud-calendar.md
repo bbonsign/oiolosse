@@ -3,7 +3,7 @@ title: "Nextcloud Calendar on mithlond"
 document_type: "runbook"
 status: "active"
 created_at: "2026-09-02"
-updated_at: "2026-09-02"
+updated_at: "2026-11-11"
 source_thread: "https://ampcode.com/threads/T-01a0609a-f0a8-7264-89fa-6c198de0e41b"
 request_context: >-
   Operate the private family calendar service without exposing it outside the
@@ -119,9 +119,12 @@ sudo cat /var/lib/nextcloud-secrets/admin-password
 
 Store it in the family password manager and do not commit the value. Generation
 is idempotent and never replaces a non-empty password file. Local PostgreSQL
-authenticates over its Unix socket, so no database password is needed. The
-password file is only used when `nextcloud-setup.service` creates a new
-instance; changing it later does not change the existing admin password.
+authenticates over its Unix socket, so no database password is needed.
+Nextcloud is installed without an administrator by the upstream NixOS module.
+After setup and upgrades finish, `nextcloud-setup.service` checks for `admin`
+and, only if absent, creates it with the generated password and adds it to the
+`admin` group. Existing accounts are left unchanged; changing the password file
+later does not reset the existing admin password.
 
 Confirm the server is connected to Tailscale:
 
