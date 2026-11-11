@@ -99,7 +99,7 @@ $env.config.menus = (
     # Features:
     #     •    Matches the last segment of your current pipeline, even inside groups and sub-pipelines.
     #     •    Filters history for commands starting with your current segment.
-    #     •    Deduplicates and presents results in a clean, scrollable list (page_size: 25).
+    #     •    Deduplicates and presents results in a scrollable single-column menu.
     #     •    Styled for readability: green for text, yellow for descriptions.
     #
     # Use this when you want to quickly recall and reuse the exact command forms you’ve typed before, instead of guessing or re-typing flags and arguments from memory.#
@@ -107,7 +107,8 @@ $env.config.menus = (
       name: pipe_completions_menu
       only_buffer_difference: false # Search is done on the text written after activating the menu
       marker: ""
-      type: {layout: list page_size: 25}
+      # Nu 0.116.1 closes sourced list menus before fetching their first results.
+      type: {layout: columnar columns: 1}
       style: {text: green selected_text: green_reverse description_text: yellow}
       source: {|buffer place|
 
